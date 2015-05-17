@@ -33,6 +33,7 @@ if (isset($_COOKIE['tema'])){
     <!-- Favicon -->
     <link rel="shortcut icon" href="../libs/images/favicon.ico">
     <link rel="stylesheet" type="text/css" href="../libs/css/app.css">
+    <link rel="stylesheet" type="text/css" href="../libs/css/style.css">
     <?php echo $tema;?>	
 	<script type="text/javascript" src="../libs/jquery/jquery-1.11.3.min.js"></script>
     <script type="text/javascript" src="../libs/ext/ext-all-dev.js"></script>

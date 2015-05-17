@@ -139,7 +139,7 @@ function deletaLocalidade() {
 	// INSERI O OBJETO NO CONTROL
 	// E CHAMA O METODO CADASTRAR
 	$controller = new LocalidadeControl($object);
-	$controller->deletar();
+	$result = $controller->deletar();
 	
 	// REGISTA O LOG NO SISTEMA
 	$log = new LogSistema();
@@ -148,6 +148,10 @@ function deletaLocalidade() {
 	$log->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
 	$logController = new LogSistemaControl($log);
 	$logController->cadastrar();
+	
+	echo json_encode(array(
+			"success" => $result,
+	));
 }
 
 ?>
