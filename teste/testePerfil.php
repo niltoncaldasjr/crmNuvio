@@ -35,4 +35,5 @@ $id = $dao->cadastrar($perfil);
 echo "ULTIMO: " . $id;
 $lista = $dao->listarTodos();
 var_dump($lista);
+echo "hello";
 
