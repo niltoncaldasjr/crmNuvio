@@ -89,6 +89,7 @@ try{
 	$lista = $objRotinaControl->listarTodos();
 
 	echo "<font color='BLACK'>====================/-LISTAR TODAS -/=========================== </font></br>";
+	echo "<font color='BLACK'>====================/-LISTAR TODAS -/=========================== </font></br>";
 	foreach($lista as $objRotina)
 	{
 		echo "<font color='BLUE'>[INFO]: SUCESSO LISTAR POR NOME! ". $objRotina->getNome() ."</font></br>";
