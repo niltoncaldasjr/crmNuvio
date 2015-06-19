@@ -95,5 +95,6 @@ try{
 	}
 }catch(Exception $e){
 	echo "<font color='RED'>[ERRO]:". $e->getMessage() ."</font></br>";
+	echo "<font color='RED'>[ERRO]:". $e->getMessage() ."</font></br>";
 }
 ?>
