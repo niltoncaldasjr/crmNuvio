@@ -23,6 +23,4 @@ try{
 	echo "<font color='RED'>[ERRO]: $e->getMessage()</font></br>";
 }
 
-Echo "aqui";
-
 ?>
