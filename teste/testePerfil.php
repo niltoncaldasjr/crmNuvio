@@ -35,10 +35,11 @@ echo $string;
 $id = $perfilcontrol->cadastrar();
 echo '<h3>Id do perfil cadastrado: ' . $id.'</h3>';
 
-$p = new Perfil($id);
+echo '<h3>Procura perfil do ultimo id cadastrado</h3>';
+$p = new Perfil($id,null,null,null,null);
 $buscaporId = new PerfilControl($p);
 
-$perf =  $p->buscarPorId();
+$perf =  $buscaporId->buscarPorId();
 var_dump($perf);
 echo '<h3>Atualiza perfil</h3>';
 $lista = $perfilcontrol->listarTodos();

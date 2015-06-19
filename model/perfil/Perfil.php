@@ -61,7 +61,7 @@ class Perfil implements JsonSerializable{
 				'nome' => $this->nome,
 				'ativo' => $this->ativo,
 				'dataCadastrado' => $this->datacadastrado,
-				'dataEdicao' => $this->dataedicao				
+				'dataEdicao' => $this->dataedicao
 		];
 	}
 	
