@@ -15,23 +15,23 @@ class RotinaControl{
 	}
 	
 	function cadastrar(){
-		$this->objRotinaDAO->cadastrar($this->objRotina);
+		return $this->objRotinaDAO->cadastrar($this->objRotina);
 	}
 	
 	function atualizar(){
-		$this->objRotinaDAO->atualizar($this->objRotina);
+		return $this->objRotinaDAO->atualizar($this->objRotina);
 	}
 	function deletar(){
-		$this->objRotinaDAO->deletar($this->objRotina);
+		return $this->objRotinaDAO->deletar($this->objRotina);
 	}
 	function buscarPorID(){
-		$this->objRotinaDAO->buscarPorID($this->objRotina);
+		return $this->objRotinaDAO->buscarPorID($this->objRotina);
 	}
 	function listarTodos(){
-		$this->objRotinaDAO->listarTodos($this->objRotina);
+		return $this->objRotinaDAO->listarTodos($this->objRotina);
 	}
 	function listarPorNome(){
-		$this->objRotinaDAO->listarPorNome($this->objRotina);
+		return $this->objRotinaDAO->listarPorNome($this->objRotina);
 	}
 	
 }

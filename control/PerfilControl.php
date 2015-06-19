@@ -1,6 +1,6 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . "crmNuvio/" . 'util/Conexao.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . "crmNuvio/" . 'model/perfil/PerfilDAO.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'util/Conexao.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'model/perfil/PerfilDAO.php';
 // require_once $_SERVER['DOCUMENT_ROOT'] . "crmNuvio/" . 'model/perfil/Perfil.php';
 
 class PerfilControl{
