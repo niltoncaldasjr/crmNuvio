@@ -10,12 +10,12 @@ class PerfilControl{
 
 	function __construct(Perfil $o_perfil= null){
 		$this->con = Conexao::getInstance()->getConexao();
-		$this->o_perfilDAO = new PerfilDAO;
+		$this->o_perfilDAO = new PerfilDAO($this->con);
 		$this->o_perfil = $o_perfil;
 	}
 
 	function cadastrar(){
-		$id = $this-> $this->o ->cadastrar($this->o_perfil);
+		$id = $this->o_perfilDAO->cadastrar($this->o_perfil);
 		return $id;  // para desfazer o id de retorno
 	}
 

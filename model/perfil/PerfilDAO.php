@@ -6,10 +6,11 @@ class PerfilDAO {
 	private $sql;
 	private $o_perfil;
 	private $lista = array();
-	
+	//testando
 	function __construct($con){
 		$this->con = $con;
 	}
+	
 	
 	function cadastrar(Perfil $o_perfil){	
 		
@@ -46,7 +47,7 @@ class PerfilDAO {
 	}
 	
 	function buscarPorId(Perfil $o_perfil){
-		$id = $o_bairro->getId();
+		$id = $o_perfil->getId();
 	
 		$this->sql= "SELECT * FROM perfil WHERE id= '" . $id . "'";
 		$result = mysqli_query($this->con, $this->sql);
@@ -57,7 +58,7 @@ class PerfilDAO {
 			$this->o_perfil = new Perfil($row->id, $row->nome, $row->ativo, $row->datacadastrado, $row->dataedicao);
 		}
 	
-		return $this->$o_perfil;
+		return $this->o_perfil;
 	}
 	
 	function listarTodos(){
