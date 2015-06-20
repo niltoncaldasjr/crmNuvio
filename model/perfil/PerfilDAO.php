@@ -11,7 +11,6 @@ class PerfilDAO {
 		$this->con = $con;
 	}
 	
-	
 	function cadastrar(Perfil $o_perfil){	
 		
 		$this->sql = sprintf("INSERT INTO perfil (nome, ativo, datacadastrado, dataedicao) VALUES ('%s', %d, '%s', '%s')",
@@ -39,7 +38,7 @@ class PerfilDAO {
 	}
 	
 	function deletar(Perfil $o_perfil){
-		$id = $o_bairro->getId();
+		$id = $o_perfil->getId();
 		$this->sql = "DELETE FROM PERFIL WHERE id='" . $id ."'" ;
 		if (!mysqli_query($this->con, $this->sql)) {
 			die('Error: ' . mysqli_error($this->con));
@@ -80,16 +79,16 @@ class PerfilDAO {
 	function listarPorNome(Perfil $o_perfil){
 		$this->sql= "SELECT * FROM perfil WHERE nome like '" . $o_perfil->getNome() . "%'" ;
 		$result = mysqli_query($this->con, $this->sql);
-		if (!$st_query) {
+		if (!$result) {
 			die('Error: ' . mysqli_error($this->con));
 		}
 		while($row = mysqli_fetch_object($result)){
 			
-			$this->o_perfil = new Perfil($row->id, $row->nome, $row->ativo, $row->datacastrado, $row->dataedicao);
+			$this->o_perfil = new Perfil($row->id, $row->nome, $row->ativo, $row->datacadastrado, $row->dataedicao);
 			
 			$this->lista[] = $this->o_perfil;
 		}
 
-		return $this->v_o_perfil;
+		return $this->lista;
 	}
 }

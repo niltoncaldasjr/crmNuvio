@@ -1,7 +1,6 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'util/Conexao.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'model/perfil/PerfilDAO.php';
-// require_once $_SERVER['DOCUMENT_ROOT'] . "crmNuvio/" . 'model/perfil/Perfil.php';
 
 class PerfilControl{
 	protected $con;
@@ -32,7 +31,7 @@ class PerfilControl{
 	}
 
 	function listarPorPessoa(){
-		return $this->o_perfilDAO->listarPorPessoa($this->o_perfil);
+		return $this->o_perfilDAO->listarPorNome($this->o_perfil);
 	}
 	
 	function listarTodos(){
