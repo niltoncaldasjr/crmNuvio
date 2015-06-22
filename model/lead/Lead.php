@@ -8,6 +8,7 @@ class Lead implements JsonSerializable{
 	private $contato;
 	private $datacadastro;
 	private $dataedicao;
+	private $ativo;
 	
 	/*-- Construtor --*/
 	public function __construct
@@ -18,7 +19,8 @@ class Lead implements JsonSerializable{
 		$telefone=NULL,
 		$contato=NULL,
 		$datacadastro=NULL,
-		$dataedicao=NULL
+		$dataedicao=NULL,
+		$ativo=NULL
 	)
 	{
 		$this->id 			= $id;
@@ -28,6 +30,7 @@ class Lead implements JsonSerializable{
 		$this->contato		= $contato;
 		$this->datacadastro = $datacadastro;
 		$this->dataedicao 	= $dataedicao;
+		$this->ativo 		= $ativo;
 	}
 	
 	/*-- Getters / Setters --*/
@@ -80,13 +83,20 @@ class Lead implements JsonSerializable{
 		$this->dataedicao = $dataedicao;
 		return $this;
 	}
+	public function getAtivo() {
+		return $this->ativo;
+	}
+	public function setAtivo($ativo) {
+		$this->ativo = $ativo;
+		return $this;
+	}
 	
 	/*-- ToString --*/
 	public function toString()
 	{
 		return sprintf(
-			"Lead: [ID: %d, Empresa: %s, Email: %s, Telefone: %s, Contato: %s, Data Cadastro: %s, Data Edição: %s]",
-			$this->id, $this->empresa, $this->email, $this->telefone, $this->contato, $this->datacadastro, $this->dataedicao
+			"Lead: [ID: %d, Empresa: %s, Email: %s, Telefone: %s, Contato: %s, Data Cadastro: %s, Data Edição: %s, Ativo: %d]",
+			$this->id, $this->empresa, $this->email, $this->telefone, $this->contato, $this->datacadastro, $this->dataedicao, $this->ativo 
 		);
 	}
 	
@@ -100,9 +110,11 @@ class Lead implements JsonSerializable{
 			'telefone'		=> $this->telefone,
 			'contato'		=> $this->contato,
 			'datacadastro'	=> $this->datacadastro,
-			'dataedicao'	=> $this->dataedicao
+			'dataedicao'	=> $this->dataedicao,
+			'ativo'			=> $this->ativo
 		];
 	}
+	
 	
 }
 ?>

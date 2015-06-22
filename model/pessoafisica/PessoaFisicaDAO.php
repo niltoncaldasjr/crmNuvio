@@ -39,7 +39,7 @@ class PessoaFisicaDAO{
 	
 	/*-- Metodo Atualizar --*/
 	function atualizar(PessoaFisica $objPessoaFisica){
-		$this->sql = sprintf("UPDATE pessoafisica SET nome = '%s', cpf = '%s', datanascimento = '%s', estadocivil = '%s', sexo = '%s', nomepai = '%s', nomemae = '%s', cor = '%s', naturalidade = '%s', nacionalidade = '%s', datacadastro = '%s', dataatualizacao = '%s' WHERE id = %d",
+		$this->sql = sprintf("UPDATE pessoafisica SET nome = '%s', cpf = '%s', datanascimento = '%s', estadocivil = '%s', sexo = '%s', nomepai = '%s', nomemae = '%s', cor = '%s', naturalidade = '%s', nacionalidade = '%s', dataatualizacao = '%s' WHERE id = %d",
 				mysqli_real_escape_string( $this->con, $objPessoaFisica->getNome() ),
 				mysqli_real_escape_string( $this->con, $objPessoaFisica->getCpf() ),
 				mysqli_real_escape_string( $this->con, $objPessoaFisica->getDatanascimento() ),
@@ -50,7 +50,6 @@ class PessoaFisicaDAO{
 				mysqli_real_escape_string( $this->con, $objPessoaFisica->getCor() ),
 				mysqli_real_escape_string( $this->con, $objPessoaFisica->getNaturalidade() ),
 				mysqli_real_escape_string( $this->con, $objPessoaFisica->getNacionalidade() ),
-				mysqli_real_escape_string( $this->con, $objPessoaFisica->getDatacadastro() ),
 				mysqli_real_escape_string( $this->con, $objPessoaFisica->getDataatualizacao() ),
 				mysqli_real_escape_string( $this->con, $objPessoaFisica->getId() ) );
 		if(!mysqli_query($this->con, $this->sql)){
