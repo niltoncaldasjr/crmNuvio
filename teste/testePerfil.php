@@ -1,7 +1,7 @@
 <?php
-require_once '../model/perfil/Perfil.php';
+require_once $_SERVER ['DOCUMENT_ROOT'] . "/crmNuvio/" . 'model/perfil/Perfil.php';
 require_once $_SERVER ['DOCUMENT_ROOT'] . "/crmNuvio/" . 'control/PerfilControl.php';
-require_once '../util/Conexao.php';
+require_once $_SERVER ['DOCUMENT_ROOT'] . "/crmNuvio/" . 'util/Conexao.php';
 
 // instanciando um objeto PERFIL
 $perfil = new Perfil ();

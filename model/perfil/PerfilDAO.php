@@ -1,5 +1,5 @@
 <?php
-require_once 'Perfil.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/crmNuvio/' . 'model/perfil/Perfil.php';
 
 class PerfilDAO {
 	private $con;
@@ -39,7 +39,7 @@ class PerfilDAO {
 	
 	function deletar(Perfil $o_perfil){
 		$id = $o_perfil->getId();
-		$this->sql = "DELETE FROM PERFIL WHERE id='" . $id ."'" ;
+		$this->sql = "DELETE FROM perfil WHERE id='" . $id ."'" ;
 		if (!mysqli_query($this->con, $this->sql)) {
 			die('Error: ' . mysqli_error($this->con));
 		}
@@ -55,7 +55,8 @@ class PerfilDAO {
 		}
 		while($row = mysqli_fetch_object($result)){
 			$this->o_perfil = new Perfil($row->id, $row->nome, $row->ativo, $row->datacadastrado, $row->dataedicao);
-		}
+					
+		}		
 	
 		return $this->o_perfil;
 	}
