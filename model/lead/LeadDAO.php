@@ -1,0 +1,112 @@
+<?php
+require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'model/lead/Lead.php';
+
+class LeadDAO{
+	/*-- Criando atributos da class --*/
+	private $con;
+	private $sql;
+	private $objLead;
+	private $listaLead = array();
+	
+	function __construct($con){
+		$this->con = $con;
+	}
+	
+	/*-- Metodo Cadastrar --*/
+	function cadastrar(Lead $objLead){
+		$this->sql = sprintf("INSERT INTO lead (empresa, email, telefone, contato, datacadastro, dataedicao) VALUES('%s', '%s', '%s', '%s', '%s', '%s')",
+				mysqli_real_escape_string( $this->con, $objLead->getEmpresa() ),
+				mysqli_real_escape_string( $this->con, $objLead->getEmail() ),
+				mysqli_real_escape_string( $this->con, $objLead->getTelefone() ),
+				mysqli_real_escape_string( $this->con, $objLead->getContato() ),
+				mysqli_real_escape_string( $this->con, $objLead->getDatacadastro() ),
+				mysqli_real_escape_string( $this->con, $objLead->getDataedicao() ) );
+		
+		if(!mysqli_query($this->con, $this->sql)){
+			die('[ERRO]: '.mysqli_error($this->con));
+		}
+	
+	}
+	
+	/*-- Metodo Atualizar --*/
+	function atualizar(Lead $objLead){
+		$this->sql = sprintf("UPDATE lead SET empresa= '%s', email = '%s', telefone = %d, contato = '%s', datacadastro = '%s', dataedicao = '%s' WHERE id = %d",
+				mysqli_real_escape_string( $this->con, $objLead->getEmpresa() ),
+				mysqli_real_escape_string( $this->con, $objLead->getEmail() ),
+				mysqli_real_escape_string( $this->con, $objLead->getTelefone() ),
+				mysqli_real_escape_string( $this->con, $objLead->getContato() ),
+				mysqli_real_escape_string( $this->con, $objLead->getDatacadastro() ),
+				mysqli_real_escape_string( $this->con, $objLead->getDataedicao() ),
+				mysqli_real_escape_string( $this->con, $objLead->getId() ) );
+		if(!mysqli_query($this->con, $this->sql)){
+			die('[ERRO]: '.mysqli_error($this->con));
+		}
+		return $objLead;
+	}
+	
+	/*-- Deletar --*/
+	function deletar(Lead $objLead){
+		$this->sql = sprintf("DELETE FROM lead WHERE id = %d",
+				mysqli_real_escape_string( $this->con, $objLead->getId() ) );
+		if(!mysqli_query($this->con, $this->sql)){
+			die('[ERRO]: '.mysqli_error($this->con));
+		}
+		return $objLead;
+	}
+	
+	/*-- Buscar por ID --*/
+	function buscarPorID(Lead $objLead){
+		$this->sql = sprintf("SELECT * FROM lead WHERE id = %d",
+				mysqli_real_escape_string( $this->con, $objLead->getId() ) );
+		
+		$resultSet = mysqli_query($this->con, $this->sql);
+		if(!$resultSet){
+			die('[ERRO]: '.mysqli_error($this->con));
+		}
+		while($row = mysqli_fetch_object($resultSet)){
+			$this->objLead = new Lead($row->id, $row->empresa, $row->email, $row->telefone, $row->contato, $row->datacadastro, $row->dataedicao); 
+		}
+		
+		return $this->objLead;
+	}
+	
+	/*-- Listar Todos --*/
+	function listarTodos(Lead $objLead){
+		$this->sql = "SELECT * FROM lead";
+		$resultSet = mysqli_query($this->con, $this->sql);
+		if(!$resultSet){
+			die('[ERRO]: '.mysqli_error($this->con));
+		}
+		while($row = mysqli_fetch_object($resultSet)){
+				
+			$this->objLead = new Lead($row->id, $row->empresa, $row->email, $row->telefone, $row->contato, $row->datacadastro, $row->dataedicao); 
+				
+			array_push($this->listaLead, $this->objLead);
+		}
+		
+		return $this->listaLead;
+	}
+	
+	/*-- Listar Por Nome --*/
+	function listarPorNome(Lead $objLead){
+		 /*-- SQL PASSANDO COM %s(String do sprtintf) o percente % do LIKE --*/
+		$this->sql = sprintf("SELECT * FROM lead WHERE nome like '%s%s%s' ",
+				mysqli_real_escape_string( $this->con, '%' ),
+				mysqli_real_escape_string( $this->con, $objLead->getNome() ),
+				mysqli_real_escape_string( $this->con, '%' ) );
+		$resultSet = mysqli_query($this->con, $this->sql);
+		if(!$resultSet){
+			die('[ERRO]: '.mysqli_error($this->con));
+		}
+		while($row = mysqli_fetch_object($resultSet)){
+		
+			$this->objLead = new Lead($row->id, $row->empresa, $row->email, $row->telefone, $row->contato, $row->datacadastro, $row->dataedicao); 
+		
+			array_push($this->listaLead, $this->objLead);
+		}
+		
+		return $this->listaLead;
+	}
+			
+}
+?>
