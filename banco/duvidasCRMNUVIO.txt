@@ -1,0 +1,8 @@
+Dúvidas CRMNUVIO
+
+===== ALTERAÇÂO PERFIL ROTINA ==================================================
+Na tabela relacional prefil rotina será possível fazer alterações, ou apartir do
+momento que feita a ligação entre as tabelas isso se tornará totalmente inalterável?
+
+Resposta:
+================================================================================
