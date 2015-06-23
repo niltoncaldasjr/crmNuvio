@@ -3,6 +3,8 @@ require_once $_SERVER ['DOCUMENT_ROOT'] . "/crmNuvio/" . 'model/empresa/Empresa.
 require_once $_SERVER ['DOCUMENT_ROOT'] . "/crmNuvio/" . 'control/EmpresaControl.php';
 require_once $_SERVER ['DOCUMENT_ROOT'] . "/crmNuvio/" . 'util/Conexao.php';
 
+// require_once $_SERVER ['DOCUMENT_ROOT'] . "/crmNuvio/" . 'util/Utils.php';
+
 // instanciando um objeto USUARIO
 
 $empresa = new Empresa();
@@ -49,7 +51,8 @@ echo '<h3>Atualiza Empresa</h3>';
 $atualize = new Empresa ( $id, 'DB', 'DB Supermercados', 'DB', '76443624000145','951357852258', '654852', 'Rua Maceio', '150', 'prox. do shop', 'Adrianopolis', '69057-000', '..imagens/bd_logo.png' ,'bd_user' , date ( "Y-m-d H:i:s" ), 6, 1 );
 $atualizarEmpresa = new EmpresaControl ( $atualize );
 
-// $atualizarEmpresa->atualizar ();  // DESCOMENTAR QUANDO CONSERTAR O BANCO
+$atualizarEmpresa->atualizar ();  // DESCOMENTAR QUANDO CONSERTAR O BANCO
+
 $atualizado = $atualizarEmpresa->buscarPorId ();
 var_dump ( $atualizado );
 
