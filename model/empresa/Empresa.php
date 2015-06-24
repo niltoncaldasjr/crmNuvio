@@ -17,6 +17,7 @@ class Empresa implements JsonSerializable {
 	private $datasis;
 	private $idlocalidade;
 	private $idimposto;
+	
 	function __construct($id = null, $nomeFantasia = null, $razaoSocial = null, $nomeReduzido = null, $CNPJ = null, $inscricaoEstatual = null, $inscricaoMunicipal = null, $endereco = null, $numero = null, $complemento = null, $bairro = null, $cep = null, $imagemLogotipo = null, $login = null, $datasis = null, $idlocalidade = null, $idimposto = null) {
 		$this->id = $id;
 		$this->nomeFantasia = $nomeFantasia;

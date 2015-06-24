@@ -3,8 +3,6 @@ require_once $_SERVER ['DOCUMENT_ROOT'] . "/crmNuvio/" . 'model/empresa/Empresa.
 require_once $_SERVER ['DOCUMENT_ROOT'] . "/crmNuvio/" . 'control/EmpresaControl.php';
 require_once $_SERVER ['DOCUMENT_ROOT'] . "/crmNuvio/" . 'util/Conexao.php';
 
-// require_once $_SERVER ['DOCUMENT_ROOT'] . "/crmNuvio/" . 'util/Utils.php';
-
 // instanciando um objeto USUARIO
 
 $empresa = new Empresa();
@@ -23,7 +21,7 @@ $empresa->setCep('69010-100');
 $empresa->setImagemLogotipo('../imagens/bemol_logo.png');
 $empresa->setLogin('bemol_login');
 $empresa->setDatasis(date ( "Y-m-d H:i:s" ));
-$empresa->setIdlocalidade(6);
+$empresa->setIdlocalidade(3);
 $empresa->setIdimposto(1);
 
 echo '<h3>Funcao Serialize</h3>';
@@ -40,6 +38,17 @@ echo '<h3>Cadastra um novo USUARIO</h3>';
 $id = $empresaControl->cadastrar ();
 echo '<h3>Id da Empresa cadastrada: ' . $id . '</h3>';
 
+//***************************************
+echo "  ***** LISTAR TODOS ################";
+$emp = new Empresa();
+$cont = new EmpresaControl($emp);
+
+
+$completo = $cont->listarTodos();
+var_dump($completo);
+
+echo "#### fim listar Todos ######";
+//***********************************************
 echo '<h3>Procura Empresa do ultimo id cadastrado</h3>';
 $busca = new Empresa( $id );
 $buscaporId = new EmpresaControl ( $busca );

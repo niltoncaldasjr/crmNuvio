@@ -7,6 +7,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'control/PerfilControl.p
 require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'model/rotina/Rotina.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'control/RotinaControl.php';
 
+
+
 /*-- Lista de Perfil --*/
 $objPerfil = new Perfil(null);
 $objPerfilControl = new PerfilControl($objPerfil);

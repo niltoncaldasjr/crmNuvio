@@ -33,6 +33,9 @@ class EmpresaControl{
 	function listarPorPessoa(){
 		return $this->o_empresaDAO->listarPorNome($this->o_empresa);
 	}
+	function listarDadosCompletos(){
+		return $this->o_empresaDAO->buscarTodosOsDados($this->o_empresa);
+	}
 	
 	function listarTodos(){
 		return $this->o_empresaDAO->listarTodos();

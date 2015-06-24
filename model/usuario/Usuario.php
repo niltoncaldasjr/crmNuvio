@@ -1,5 +1,5 @@
 <?php
-class Usuario implements JsonSerializable{
+class Usuario implements JsonSerializable {
 	private $id;
 	private $nome;
 	private $usuario;
@@ -8,21 +8,19 @@ class Usuario implements JsonSerializable{
 	private $ativo;
 	private $datacadastrado;
 	private $dataedicao;
-	private $idperfil;
-	private $idpessoafisica;
-	
-	
-	function __construct($id = null, $nome = null, $usuario = null, $senha = null, $email = null, $ativo = null, $datacadastrado = null, $dataedicao = null, $idperfil = null, $idpessoafisica = null) {
+	private $objPerfil;
+	private $objPessoafisica;
+	function __construct($id = null, $nome = null, $usuario = null, $senha = null, $email = null, $ativo = null, $datacadastrado = null, $dataedicao = null, Perfil $objPerfil = null, PessoaFisica $objPessoafisica = null) {
 		$this->id = $id;
 		$this->nome = $nome;
 		$this->usuario = $usuario;
-		$this->senha = md5($senha);
+		$this->senha = md5 ( $senha );
 		$this->email = $email;
 		$this->ativo = $ativo;
 		$this->datacadastrado = $datacadastrado;
 		$this->dataedicao = $dataedicao;
-		$this->idperfil = $idperfil;
-		$this->idpessoafisica = $idpessoafisica;
+		$this->objPerfil = $objPerfil;
+		$this->objPessoafisica = $objPessoafisica;
 	}
 	public function getId() {
 		return $this->id;
@@ -49,7 +47,7 @@ class Usuario implements JsonSerializable{
 		return $this->senha;
 	}
 	public function setSenha($senha) {
-		$this->senha = md5($senha);
+		$this->senha = md5 ( $senha );
 		return $this;
 	}
 	public function getEmail() {
@@ -80,23 +78,22 @@ class Usuario implements JsonSerializable{
 		$this->dataedicao = $dataedicao;
 		return $this;
 	}
-	public function getIdperfil() {
-		return $this->idperfil;
+	public function getObjPerfil() {
+		return $this->objPerfil;
 	}
-	public function setIdperfil($idperfil) {
-		$this->idperfil = $idperfil;
+	public function setObjPerfil($objPerfil) {
+		$this->objPerfil = $objPerfil;
 		return $this;
 	}
-	public function getIdpessoafisica() {
-		return $this->idpessoafisica;
+	public function getObjPessoafisica() {
+		return $this->objPessoafisica;
 	}
-	public function setIdpessoafisica($idpessoafisica) {
-		$this->idpessoafisica = $idpessoafisica;
+	public function setObjPessoafisica($objPessoafisica) {
+		$this->objPessoafisica = $objPessoafisica;
 		return $this;
 	}
-	
 	public function jsonSerialize() {
-		$usuarios[] = [
+		$usuarios [] = [ 
 				'id' => $this->id,
 				'nome' => $this->nome,
 				'usuario' => $this->usuario,
@@ -105,11 +102,10 @@ class Usuario implements JsonSerializable{
 				'ativo' => $this->ativo,
 				'dataCadastrado' => $this->datacadastrado,
 				'dataEdicao' => $this->dataedicao,
-				'idPerfil' => $this->idperfil,
-				'idPessoaFisica' => $this->idpessoafisica
+				'perfil' => $this->objPerfil,
+				'PessoaFisica' => $this->objPessoafisica 
 		];
-		$json = json_encode($usuarios);
+		$json = json_encode ( $usuarios );
 		echo $json;
 	}
-	
 }

@@ -2,20 +2,29 @@
 require_once $_SERVER ['DOCUMENT_ROOT'] . "/crmNuvio/" . 'model/usuario/Usuario.php';
 require_once $_SERVER ['DOCUMENT_ROOT'] . "/crmNuvio/" . 'control/UsuarioControl.php';
 require_once $_SERVER ['DOCUMENT_ROOT'] . "/crmNuvio/" . 'util/Conexao.php';
+require_once $_SERVER ['DOCUMENT_ROOT'] . "/crmNuvio/" . 'model/perfil/Perfil.php';
+require_once $_SERVER ['DOCUMENT_ROOT'] . "/crmNuvio/" . 'control/PerfilControl.php';
+require_once $_SERVER ['DOCUMENT_ROOT'] . "/crmNuvio/" . 'model/pessoafisica/PessoaFisica.php';
+require_once $_SERVER ['DOCUMENT_ROOT'] . "/crmNuvio/" . 'control/PessoaFisicaControl.php';
 
-// instanciando um objeto USUARIO
+
+// INSTANCIA DE PERFIL e PESSOAFISICA
+$objPerfil = new Perfil(5);
+$objPessoafisica = new PessoaFisica(1);
+
+// Instanciando um objeto USUARIO
 $user = new Usuario();
 $user->setId(1);
-$user->setNome('Nome do Admin');
+$user->setNome('Nome do Usuario');
 $user->setUsuario('admin');
 $user->setSenha('admin');
 $user->setEmail('admin@empresa.com');
 $user->setAtivo(1);
 $user->setDatacadastrado(date ( "Y-m-d H:i:s" ));
 $user->setDataedicao(date ( "Y-m-d H:i:s" ));
-$user->setIdperfil(1);
-$user->setIdpessoafisica(1);
- 
+$user->setObjPerfil($objPerfil);
+$user->setObjPessoafisica($objPessoafisica);
+
 
 echo '<h3>Funcao Serialize</h3>';
 $user->jsonSerialize ();
@@ -25,21 +34,23 @@ $usuarioControl = new UsuarioControl ( $user );
 
 echo '<h3>Cadastra um novo USUARIO</h3>';
 
-// $string = $perfil->__toString (); // imprime com a funcao TOSTRING
-// echo $string;
+// // $string = $perfil->__toString (); // imprime com a funcao TOSTRING
+// // echo $string;
 
 $id = $usuarioControl->cadastrar ();
+
 echo '<h3>Id do Usuario cadastrado: ' . $id . '</h3>';
 
 echo '<h3>Procura Usuario do ultimo id cadastrado</h3>';
 $busca = new Usuario ( $id );
 $buscaporId = new UsuarioControl ( $busca );
 
-$achouUsuario = $buscaporId->buscarPorId ();
-var_dump ( $achouUsuario );
+$achouUsuario = $buscaporId->buscarPorId();
+echo "Usuario: " . $achouUsuario->getNome() . " Encontrado...";
 
 echo '<h3>Atualiza Usuario</h3>';
-$atualize = new Usuario ( $id, 'Usuario Testando', 'user', 'user', 'user@empresa.com', 0, date ( "Y-m-d H:i:s" ) );
+$novoperfil = new Perfil(5);
+$atualize = new Usuario ( $id, 'Usuario Testando', 'user', 'user', 'user@empresa.com', 0, null, date ( "Y-m-d H:i:s" ),$novoperfil,null );
 $atualizarUsuario = new UsuarioControl ( $atualize );
 $atualizarUsuario->atualizar ();
 $atualizado = $atualizarUsuario->buscarPorId ();
