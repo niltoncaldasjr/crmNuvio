@@ -24,8 +24,8 @@ class LeadControl{
 	function deletar(){
 		return $this->objLeadDAO->deletar($this->objLead);
 	}
-	function buscarPorID(){
-		return $this->objLeadDAO->buscarPorID($this->objLead);
+	function buscarPorId(){
+		return $this->objLeadDAO->buscarPorId($this->objLead);
 	}
 	function listarTodos(){
 		return $this->objLeadDAO->listarTodos($this->objLead);
