@@ -20,8 +20,6 @@ $user->setUsuario('admin');
 $user->setSenha('admin');
 $user->setEmail('admin@empresa.com');
 $user->setAtivo(1);
-$user->setDatacadastrado(date ( "Y-m-d H:i:s" ));
-$user->setDataedicao(date ( "Y-m-d H:i:s" ));
 $user->setObjPerfil($objPerfil);
 $user->setObjPessoafisica($objPessoafisica);
 
