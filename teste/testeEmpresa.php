@@ -40,11 +40,12 @@ echo '<h3>Id da Empresa cadastrada: ' . $id . '</h3>';
 
 //***************************************
 echo "  ***** LISTAR TODOS ################";
-$emp = new Empresa();
+$emp = new Empresa(16);
 $cont = new EmpresaControl($emp);
 
 
-$completo = $cont->listarTodos();
+// $completo = $cont->listarTodos();
+$completo = $cont->listarDadosCompletos();
 var_dump($completo);
 
 echo "#### fim listar Todos ######";

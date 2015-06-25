@@ -62,6 +62,22 @@ class EmpresaDAO {
 		return $this->lista;
 	}
 	
+function listarDadosCompletos(Empresa $o_empresa) {
+		$this->sql = sprintf ( "SELECT * FROM empresa WHERE id = %d", mysqli_real_escape_string ( $this->con, $o_empresa->getId () ) );
+		
+		$result = mysqli_query ( $this->con, $this->sql );
+		if (! $result) {
+			die ( '[ERRO]: ' . mysqli_error ( $this->con ) );
+		}
+		while ( $row = mysqli_fetch_object ( $result ) ) {
+			$localidade = new Lead();
+			
+			$this->o_empresa = new Empresa ( $row->id, $row->nomeFantasia, $row->razaoSocial, $row->nomeReduzido, $row->CNPJ, $row->inscricaoEstadual, $row->inscricaoMunicipal, $row->endereco, $row->numero, $row->complemento, $row->bairro, $row->cep, $row->imagemLogotipo, $row->login, $row->datasis, $row->idlocalidade, $row->idimposto );
+		}
+		
+		return $this->o_empresa;
+	}
+	
 	/* -- Listar Por Nome -- */
 	function listarPorNome(Empresa $o_empresa) {
 		/* -- SQL PASSANDO COM %s(String do sprtintf) o percente % do LIKE -- */
