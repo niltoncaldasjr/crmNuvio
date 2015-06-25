@@ -19,10 +19,6 @@ $listaBanco = $objBancoControl->listarTodos();
 		<input type='text' name="nome"/>
 		Codico Banco Central:
 		<input type='text' name="codigobancocentral"/>
-		Login:
-		<input type='text' name="login"/>
-		DataSis:
-		<input type='text' name="datasis"/>
 		
 		<input type="submit" id="cadastrar" name="cadastrar" value="cadastrar">
 	</form>
@@ -64,10 +60,8 @@ $listaBanco = $objBancoControl->listarTodos();
 		<input type='text' name="nome"/>
 		Codico Banco Central:
 		<input type='text' name="codigobancocentral"/>
-		Login:
-		<input type='text' name="login"/>
-		DataSis:
-		<input type='text' name="datasis"/>
+		dataedicao:
+		<input type='text' name="dataedicao"/>
 		<input type="submit" id="alterar" name="alterar" value="alterar">
 	</form>
 	
@@ -105,8 +99,6 @@ if(isset($_POST['cadastrar']))
 		$objBanco = new Banco();
 		$objBanco->setNome($_POST['nome']);
 		$objBanco->setCodigoBancoCentral($_POST['codigobancocentral']);
-		$objBanco->setLogin($_POST['login']);
-		$objBanco->setDatasis($_POST['datasis']);
 		$objBancoControl = new BancoControl($objBanco);
 		$objBanco = $objBancoControl->cadastrar();
 
@@ -141,8 +133,7 @@ if(isset($_POST['alterar']))
 		$objBanco->setId($_POST['banco']);
 		$objBanco->setNome($_POST['nome']);
 		$objBanco->setCodigoBancoCentral($_POST['codigobancocentral']);
-		$objBanco->setLogin($_POST['login']);
-		$objBanco->setDatasis($_POST['datasis']);
+		$objBanco->setDataedicao($_POST['dataedicao']);
 		
 		$objBancoControl = new BancoControl($objBanco);
 		$objBanco = $objBancoControl->atualizar();

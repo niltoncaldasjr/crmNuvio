@@ -26,8 +26,6 @@ $listaLocalidade = $objLocalidadeControl->listarTodos();
 		CodigoIBGE: <input type="text" name="codigoibge">
 		UF: <input type="text" name="uf">
 		Cidade: <input type="text" name="cidade">
-		DataCadastro: <input type="text" name="datacadastro">
-		DataEdicao: <input type="text" name="dataedicao">
 		Pais:
 		<select id='pais' name='pais'>
 			<option value='0'>Selecione o Pais</option>
@@ -133,8 +131,6 @@ if(isset($_POST['cadastrar']))
 		$objLocalidade->setCodigoIBGE($_POST['codigoibge']);
 		$objLocalidade->setUf($_POST['uf']);
 		$objLocalidade->setCidade($_POST['cidade']);
-		$objLocalidade->setDatacadastro($_POST['datacadastro']);
-		$objLocalidade->setDataedicao($_POST['dataedicao']);
 		$objLocalidade->setObjPais($objPais);
 		
 		$objLocalidadeControl = new LocalidadeControl($objLocalidade);

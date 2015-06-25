@@ -24,8 +24,8 @@ class PerfilRotinaControl{
 	function deletar(){
 		return $this->objPerfilRotinaDAO->deletar($this->objPerfilRotina);
 	}
-	function buscarPorID(){
-		return $this->objPerfilRotinaDAO->buscarPorID($this->objPerfilRotina);
+	function buscarPorId(){
+		return $this->objPerfilRotinaDAO->buscarPorId($this->objPerfilRotina);
 	}
 	function listarTodos(){
 		return $this->objPerfilRotinaDAO->listarTodos($this->objPerfilRotina);

@@ -11,8 +11,6 @@ try{
 	$objLead->setEmail('email@mail.com');
 	$objLead->setTelefone('0000-0000');
 	$objLead->setContato('Email, Telefone');
-	$objLead->setDatacadastro('2015/06/18 14:00:00');
-	$objLead->setDataedicao('2015/06/18 14:00:00');
 	$objLead->setAtivo(1);
 	
 	$objLeadControl = new LeadControl($objLead);
@@ -23,7 +21,7 @@ try{
 	echo "<font color='RED'>[ERRO]:". $e->getMessage() ."</font></br>";
 }
 
-/*-- Buscar Lead --*//*
+/*-- Buscar Lead --*/
 try{
 	$objLead = new Lead();
 	$objLead->setId(1);
@@ -36,7 +34,7 @@ try{
 	echo "<font color='RED'>[ERRO]:". $e->getMessage() ."</font></br>";
 }
 
-/*-- Aleterar Lead --*//*
+/*-- Aleterar Lead --*/
 try{
 	$objLead = new Lead();
 	$objLead->setId(2);
@@ -52,7 +50,7 @@ try{
 	echo "<font color='RED'>[ERRO]:". $e->getMessage() ."</font></br>";
 }
 
-/*-- Deletar Lead --*//*
+/*-- Deletar Lead --*/
 try{
 	$objLead = new Lead();
 	$objLead->setId(4);
@@ -65,7 +63,7 @@ try{
 	echo "<font color='RED'>[ERRO]:". $e->getMessage() ."</font></br>";
 }
 
-/*-- Litar Por Nome Lead --*//*
+/*-- Litar Por Nome Lead --*/
 try{
 	$objLead = new Lead();
 	$objLead->setEmpresa('Bemol');
@@ -81,7 +79,7 @@ try{
 	echo "<font color='RED'>[ERRO]:". $e->getMessage() ."</font></br>";
 }
 
-/*-- Litar Todas Leads --*//*
+/*-- Litar Todas Leads --*/
 try{
 	$objLead = new Lead();
 	$objLead->setEmpresa('Lead');

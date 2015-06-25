@@ -17,8 +17,6 @@ try{
 	$objPessoaFisica->setCor('BRANCA');
 	$objPessoaFisica->setNaturalidade('Cearense');
 	$objPessoaFisica->setNacionalidade('Brasileiro');
-	$objPessoaFisica->setDatacadastrado('2015/06/18 14:00:00');
-	$objPessoaFisica->setDataedicao('2015/06/18 14:00:00');
 	
 	$objPessoaFisicaControl = new PessoaFisicaControl($objPessoaFisica);
 	$objPessoaFisicaControl->cadastrar();
@@ -41,7 +39,7 @@ try{
 	echo "<font color='RED'>[ERRO]:". $e->getMessage() ."</font></br>";
 }
 
-/*-- Aleterar PessoaFisica --*/
+/*-- Alterar PessoaFisica --*/
 try{
 	$objPessoaFisica = new PessoaFisica();
 	$objPessoaFisica->setId(2);

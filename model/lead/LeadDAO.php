@@ -14,13 +14,11 @@ class LeadDAO{
 	
 	/*-- Metodo Cadastrar --*/
 	function cadastrar(Lead $objLead){
-		$this->sql = sprintf("INSERT INTO lead (empresa, email, telefone, contato, datacadastro, dataedicao, ativo) VALUES('%s', '%s', '%s', '%s', '%s', '%s', %d)",
+		$this->sql = sprintf("INSERT INTO lead (empresa, email, telefone, contato, ativo) VALUES('%s', '%s', '%s', '%s', %d)",
 				mysqli_real_escape_string( $this->con, $objLead->getEmpresa() ),
 				mysqli_real_escape_string( $this->con, $objLead->getEmail() ),
 				mysqli_real_escape_string( $this->con, $objLead->getTelefone() ),
 				mysqli_real_escape_string( $this->con, $objLead->getContato() ),
-				mysqli_real_escape_string( $this->con, $objLead->getDatacadastro() ),
-				mysqli_real_escape_string( $this->con, $objLead->getDataedicao() ),
 				mysqli_real_escape_string( $this->con, $objLead->getAtivo() ));
 		
 		if(!mysqli_query($this->con, $this->sql)){

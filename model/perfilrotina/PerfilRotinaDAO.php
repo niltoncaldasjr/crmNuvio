@@ -51,7 +51,7 @@ class PerfilRotinaDAO{
 	}
 	
 	/*-- Buscar por ID --*/
-	function buscarPorID(PerfilRotina $objPerfilRotina){
+	function buscarPorId(PerfilRotina $objPerfilRotina){
 		$this->sql = sprintf("SELECT * FROM perfilrotina WHERE id = %d",
 				mysqli_real_escape_string( $this->con, $objPerfilRotina->getId() ) );
 		
@@ -70,7 +70,7 @@ class PerfilRotinaDAO{
 			$objPerfilControl = new PerfilControl($objPerfil);
 			$objPerfil = $objPerfilControl->buscarPorId();
 			
-			$this->objPerfilRotina = new PerfilRotina($row->id, $objRotina, $objPerfil); 
+			$this->objPerfilRotina = new PerfilRotina($row->id, $row->datacadastro, $objRotina, $objPerfil); 
 		}
 		
 		return $this->objPerfilRotina;
@@ -94,7 +94,7 @@ class PerfilRotinaDAO{
 			$objPerfilControl = new PerfilControl($objPerfil);
 			$objPerfil = $objPerfilControl->buscarPorId();
 				
-			$this->objPerfilRotina = new PerfilRotina($row->id, $objRotina, $objPerfil);
+			$this->objPerfilRotina = new PerfilRotina($row->id, $row->datacadastro, $objRotina, $objPerfil);
 				
 			array_push($this->listaPerfilRotina, $this->objPerfilRotina);
 		}

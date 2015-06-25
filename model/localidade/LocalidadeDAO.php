@@ -17,13 +17,11 @@ class LocalidadeDAO{
 	
 	/*-- Metodo Cadastrar --*/
 	function cadastrar(Localidade $objLocalidade){
-		$this->sql = sprintf("INSERT INTO localidade (codigoIBGE, uf, cidade, datacadastro, dataedicao, idpais) 
-				VALUES(%d, '%s', '%s', '%s', '%s', %d)",
+		$this->sql = sprintf("INSERT INTO localidade (codigoIBGE, uf, cidade, idpais) 
+				VALUES(%d, '%s', '%s', %d)",
 				mysqli_real_escape_string( $this->con, $objLocalidade->getCodigoIBGE() ),
 				mysqli_real_escape_string( $this->con, $objLocalidade->getUf() ),
 				mysqli_real_escape_string( $this->con, $objLocalidade->getCidade() ),
-				mysqli_real_escape_string( $this->con, $objLocalidade->getDatacadastro() ),
-				mysqli_real_escape_string( $this->con, $objLocalidade->getDataedicao() ),
 				mysqli_real_escape_string( $this->con, $objLocalidade->getObjPais()->getId() ) );
 				
 		if(!mysqli_query($this->con, $this->sql)){

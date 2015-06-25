@@ -12,7 +12,7 @@ class PessoaFisica implements JsonSerializable{
 	private $cor;
 	private $naturalidade;
 	private $nacionalidade;
-	private $datacadastrado;
+	private $datacadastro;
 	private $dataedicao;
 		
 	/*-- Construtor --*/
@@ -29,7 +29,7 @@ class PessoaFisica implements JsonSerializable{
 		$cor			=	NULL, 
 		$naturalidade	=	NULL, 
 		$nacionalidade	=	NULL,
-		$datacadastrado	=	NULL, 
+		$datacadastro	=	NULL, 
 		$dataedicao		=	NULL
 	)
 	{
@@ -44,7 +44,7 @@ class PessoaFisica implements JsonSerializable{
 		$this->cor 				= 	$cor;
 		$this->naturalidade 	= 	$naturalidade;
 		$this->nacionalidade 	= 	$nacionalidade;
-		$this->datacadastrado 	= 	$datacadastrado;
+		$this->datacadastro 	= 	$datacadastro;
 		$this->dataedicao 		= 	$dataedicao;
 	}
 	
@@ -126,11 +126,11 @@ class PessoaFisica implements JsonSerializable{
 		$this->nacionalidade = $nacionalidade;
 		return $this;
 	}
-	public function getDatacadastrado() {
-		return $this->datacadastrado;
+	public function getDatacadastro() {
+		return $this->datacadastro;
 	}
-	public function setDatacadastrado($datacadastrado) {
-		$this->datacadastrado = $datacadastrado;
+	public function setDatacadastro($datacadastro) {
+		$this->datacadastro = $datacadastro;
 		return $this;
 	}
 	public function getDataedicao() {
@@ -147,7 +147,7 @@ class PessoaFisica implements JsonSerializable{
 		
 		return sprintf(
 				"Pessoa Física: [ID: %d, Nome: %s, CPF: %s, Data Nascimento: %s, Estado Cívil: %s, Sexo: %s, Nome Pai: %s, Nome Mãe: %s, "
-				."Cor: %s, Naturalidade: %s, Nacionalidade: %s, Data Cadastrado: %s, Data Edicao: %s]",
+				."Cor: %s, Naturalidade: %s, Nacionalidade: %s, Data Cadastro: %s, Data Edicao: %s]",
 				$this->id, 
 				$this->nome, 
 				$this->cpf, 
@@ -159,7 +159,7 @@ class PessoaFisica implements JsonSerializable{
 				$this->cor, 
 				$this->naturalidade, 
 				$this->nacionalidade, 
-				$this->datacadastrado, 
+				$this->datacadastro, 
 				$this->dataedicao);
 		
 	}
@@ -178,7 +178,7 @@ class PessoaFisica implements JsonSerializable{
 				'cor'				=> $this->cor,
 				'naturalidade'		=> $this->naturalidade,
 				'nacionalidade'		=> $this->nacionalidade,
-				'datacadastrado'	=> $this->datacadastrado,
+				'datacadastro'		=> $this->datacadastro,
 				'dataedicao' 		=> $this->dataedicao
 		];
 	}

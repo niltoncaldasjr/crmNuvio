@@ -13,11 +13,9 @@ class BancoDAO{
 	
 	/*-- Metodo Cadastrar --*/
 	function cadastrar(Banco $objBanco){
-		$this->sql = sprintf("INSERT INTO banco (nome, codigoBancoCentral, login, datasis) VALUES('%s', '%s', '%s', '%s')",
+		$this->sql = sprintf("INSERT INTO banco (nome, codigoBancoCentral) VALUES('%s', '%s')",
 				mysqli_real_escape_string( $this->con, $objBanco->getNome() ),
-				mysqli_real_escape_string( $this->con, $objBanco->getCodigoBancoCentral() ),
-				mysqli_real_escape_string( $this->con, $objBanco->getLogin() ),
-				mysqli_real_escape_string( $this->con, $objBanco->getDatasis() ) );
+				mysqli_real_escape_string( $this->con, $objBanco->getCodigoBancoCentral() ) );
 	
 		if(!mysqli_query($this->con, $this->sql)){
 			die('[ERRO]: '.mysqli_error($this->con));
@@ -27,11 +25,10 @@ class BancoDAO{
 	
 	/*-- Metodo Atualizar --*/
 	function atualizar(Banco $objBanco){
-		$this->sql = sprintf("UPDATE banco SET nome= '%s', codigoBancoCentral = '%s', login = '%s', datasis = '%s' WHERE id = %d",
+		$this->sql = sprintf("UPDATE banco SET nome= '%s', codigoBancoCentral = '%s', dataedicao = '%s' WHERE id = %d",
 				mysqli_real_escape_string( $this->con, $objBanco->getNome() ),
 				mysqli_real_escape_string( $this->con, $objBanco->getCodigoBancoCentral() ),
-				mysqli_real_escape_string( $this->con, $objBanco->getLogin() ),
-				mysqli_real_escape_string( $this->con, $objBanco->getDatasis() ),
+				mysqli_real_escape_string( $this->con, $objBanco->getDataedicao() ),
 				mysqli_real_escape_string( $this->con, $objBanco->getId() ) );
 		if(!mysqli_query($this->con, $this->sql)){
 			die('[ERRO]: '.mysqli_error($this->con));
@@ -50,7 +47,7 @@ class BancoDAO{
 	}
 	
 	/*-- Buscar por ID --*/
-	function buscarPorID(Banco $objBanco){
+	function buscarPorId(Banco $objBanco){
 		$this->sql = sprintf("SELECT * FROM banco WHERE id = %d",
 				mysqli_real_escape_string( $this->con, $objBanco->getId() ) );
 	
@@ -59,7 +56,7 @@ class BancoDAO{
 			die('[ERRO]: '.mysqli_error($this->con));
 		}
 		while($row = mysqli_fetch_object($resultSet)){
-			$this->objBanco = new Banco($row->id, $row->nome, $row->codigoBancoCentral, $row->login, $row->datasis);
+			$this->objBanco = new Banco($row->id, $row->nome, $row->codigoBancoCentral, $row->datacadastro, $row->dataedicao);
 		}
 	
 		return $this->objBanco;
@@ -74,7 +71,7 @@ class BancoDAO{
 		}
 		while($row = mysqli_fetch_object($resultSet)){
 	
-			$this->objBanco = new Banco($row->id, $row->nome, $row->codigoBancoCentral, $row->login, $row->datasis);
+			$this->objBanco = new Banco($row->id, $row->nome, $row->codigoBancoCentral, $row->datacadastro, $row->dataedicao);
 	
 			array_push($this->listaBanco, $this->objBanco);
 		}
@@ -95,7 +92,7 @@ class BancoDAO{
 		}
 		while($row = mysqli_fetch_object($resultSet)){
 	
-			$this->objBanco = new Banco($row->id, $row->nome, $row->codigoBancoCentral, $row->login, $row->datasis);
+			$this->objBanco = new Banco($row->id, $row->nome, $row->codigoBancoCentral, $row->datacadastro, $row->dataedicao);
 	
 			array_push($this->listaBanco, $this->objBanco);
 		}

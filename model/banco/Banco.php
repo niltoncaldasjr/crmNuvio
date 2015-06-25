@@ -5,8 +5,8 @@ class Banco implements JsonSerializable
 	private $id;
 	private $nome;
 	private $codigoBancoCentral;
-	private $login;
-	private $datasis;
+	private $datacadastro;
+	private $dataedicao;
 	
 	/*-- Construtor --*/
 	public function __construct
@@ -14,15 +14,15 @@ class Banco implements JsonSerializable
 		$id=NULL,
 		$nome=NULL,
 		$codigoBancoCentral=NULL,
-		$login=NULL,
-		$datasis=NULL
+		$datacadastro=NULL,
+		$dataedicao=NULL
 	)
 	{
-		$this->id 					= $id;
-		$this->nome 				= $nome;
-		$this->codigoBancoCentral 	= $codigoBancoCentral;
-		$this->login 				= $login;
-		$this->datasis 				= $datasis;
+		$this->id 					= 	$id;
+		$this->nome 				= 	$nome;
+		$this->codigoBancoCentral 	= 	$codigoBancoCentral;
+		$this->datacadastro 		= 	$datacadastro;
+		$this->dataedicao 			= 	$dataedicao;
 	}
 	
 	
@@ -48,26 +48,26 @@ class Banco implements JsonSerializable
 		$this->codigoBancoCentral = $codigoBancoCentral;
 		return $this;
 	}
-	public function getLogin() {
-		return $this->login;
+	public function getDatacadastro() {
+		return $this->datacadastro;
 	}
-	public function setLogin($login) {
-		$this->login = $login;
+	public function setDatacadastro($datacadastro) {
+		$this->datacadastro = $datacadastro;
 		return $this;
 	}
-	public function getDatasis() {
-		return $this->datasis;
+	public function getDataedicao() {
+		return $this->dataedicao;
 	}
-	public function setDatasis($datasis) {
-		$this->datasis = $datasis;
+	public function setDataedicao($dataedicao) {
+		$this->dataedicao = $dataedicao;
 		return $this;
 	}
 	
 	/*-- ToString --*/
 	public function toString()
 	{
-		return sprintf("Banco: [ ID: %d, Nome: %s, CoodigoBancoCentral: %s, Login: %s, DataSis: %s ]", 
-				$this->id, $this->nome, $this->codigoBancoCentral, $this->login, $this->datasis);
+		return sprintf("Banco: [ ID: %d, Nome: %s, CoodigoBancoCentral: %s, datacadastro: %s, dataedicao: %s ]", 
+				$this->id, $this->nome, $this->codigoBancoCentral, $this->datacadastro, $this->dataedicao);
 	}
 	
 	/*-- json --*/
@@ -76,8 +76,8 @@ class Banco implements JsonSerializable
 			'id' 					=> $this->id,
 			'nome' 					=> $this->nome,
 			'codigoBancoCentral' 	=> $this->codigoBancoCentral,
-			'login'					=> $this->login,
-			'datasis' 				=> $this->datasis
+			'datacadastro'			=> $this->datacadastro,
+			'dataedicao' 			=> $this->dataedicao
 		];
 	}
 
