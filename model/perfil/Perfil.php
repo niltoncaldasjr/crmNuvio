@@ -3,56 +3,61 @@ class Perfil implements JsonSerializable{
 	private $id;
 	private $nome;
 	private $ativo;
-	private $datacadastrado;
+	private $datacadastro;
 	private $dataedicao;
 	
-	function __construct($id=null, $nome=null, $ativo=null, $datacadastrado=null, $dataedicao=null){
-		$this->id     		  = $id;
-		$this->nome           = $nome;
-		$this->ativo          = $ativo;
-		$this->datacadastrado = $datacadastrado;
-		$this->dataedicao     = $dataedicao;
-	}
-	
-	public function getId() {
-		return $this->id;
-	}
-	public function setId($id) {
-		$this->id = $id;
-		return $this;
-	}
-	public function getNome() {
-		return $this->nome;
-	}
-	public function setNome($nome) {
-		$this->nome = $nome;
-		return $this;
-	}
-	public function getAtivo() {
-		return $this->ativo;
-	}
-	public function setAtivo($ativo) {
-		$this->ativo = $ativo;
-		return $this;
-	}
-	public function getDatacadastrado() {
-		return $this->datacadastrado;
-	}
-	public function setDatacadastrado($datacadastrado) {
-		$this->datacadastrado = $datacadastrado;
-		return $this;
-	}
-	public function getDataedicao() {
-		return $this->dataedicao;
-	}
-	public function setDataedicao($dataedicao) {
-		$this->dataedicao = $dataedicao;
-		return $this;
-	}
-	
+	function __construct($id=null, $nome=null, $ativo=null, $datacadastro=null, $dataedicao=null) {
+            $this->id = $id;
+            $this->nome = $nome;
+            $this->ativo = $ativo;
+            $this->datacadastro = $datacadastro;
+            $this->dataedicao = $dataedicao;
+        }
+
+        function getId() {
+            return $this->id;
+        }
+
+        function getNome() {
+            return $this->nome;
+        }
+
+        function getAtivo() {
+            return $this->ativo;
+        }
+
+        function getDatacadastro() {
+            return $this->datacadastro;
+        }
+
+        function getDataedicao() {
+            return $this->dataedicao;
+        }
+
+        function setId($id) {
+            $this->id = $id;
+        }
+
+        function setNome($nome) {
+            $this->nome = $nome;
+        }
+
+        function setAtivo($ativo) {
+            $this->ativo = $ativo;
+        }
+
+        function setDatacadastro($datacadastro) {
+            $this->datacadastro = $datacadastro;
+        }
+
+        function setDataedicao($dataedicao) {
+            $this->dataedicao = $dataedicao;
+        }
+
+        	
 	function __toString(){
 		return "Perfil [ id= " . $this->id . ", nome=" . $this->nome . ", ativo=" . $this->ativo . 
-		", dataCadastrado=" . $this->datacadastrado . " , dataEdicao=" . $this->dataedicao . "]";
+		", dataCadastrado=" . $this->datacadastro . " , dataEdicao=" . $this->dataedicao . "]";
 	}
 	
 	public function jsonSerialize() {
@@ -60,7 +65,7 @@ class Perfil implements JsonSerializable{
 				'id' => $this->id,
 				'nome' => $this->nome,
 				'ativo' => $this->ativo,
-				'dataCadastrado' => $this->datacadastrado,
+				'dataCadastro' => $this->datacadastro,
 				'dataEdicao' => $this->dataedicao
 		];
 	}
