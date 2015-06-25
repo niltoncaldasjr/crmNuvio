@@ -8,7 +8,7 @@ $perfil = new Perfil ();
 $perfil->setId ( 1 );
 $perfil->setNome ( 'Administrador' );
 $perfil->setAtivo ( 1 );
-$perfil->setDatacadastrado ( date ( "Y-m-d H:i:s" ) );
+$perfil->setDatacadastro( date ( "Y-m-d H:i:s" ) );
 $perfil->setDataedicao ( date ( "Y-m-d H:i:s" ) );
 echo '<h3>Funcao Serialize</h3>';
 $per = $perfil->jsonSerialize ();

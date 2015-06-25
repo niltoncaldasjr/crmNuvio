@@ -13,10 +13,10 @@ class PerfilDAO {
 	
 	function cadastrar(Perfil $o_perfil){	
 		
-		$this->sql = sprintf("INSERT INTO perfil (nome, ativo, datacadastrado, dataedicao) VALUES ('%s', %d, '%s', '%s')",
+		$this->sql = sprintf("INSERT INTO perfil (nome, ativo, datacadastro, dataedicao) VALUES ('%s', %d, '%s', '%s')",
 				mysqli_real_escape_string($this->con, $o_perfil->getNome()),
 				mysqli_real_escape_string($this->con, $o_perfil->getAtivo()),
-				mysqli_real_escape_string($this->con, $o_perfil->getDatacadastrado()),
+				mysqli_real_escape_string($this->con, $o_perfil->getDatacadastro()),
 				mysqli_real_escape_string($this->con, $o_perfil->getDataedicao()));
 		
 		if (!mysqli_query($this->con, $this->sql)) {
@@ -54,7 +54,7 @@ class PerfilDAO {
 			die('Error: ' . mysqli_error($this->con));
 		}
 		while($row = mysqli_fetch_object($result)){
-			$this->o_perfil = new Perfil($row->id, $row->nome, $row->ativo, $row->datacadastrado, $row->dataedicao);
+			$this->o_perfil = new Perfil($row->id, $row->nome, $row->ativo, $row->datacadastro, $row->dataedicao);
 					
 		}		
 	
@@ -69,7 +69,7 @@ class PerfilDAO {
 		}
 		while($row = mysqli_fetch_object($result)){
 			
-			$this->o_perfil = new Perfil($row->id, $row->nome, $row->ativo, $row->datacadastrado, $row->dataedicao);
+			$this->o_perfil = new Perfil($row->id, $row->nome, $row->ativo, $row->datacadastro, $row->dataedicao);
 			
 			$this->lista[] = $this->o_perfil;
 		}
@@ -85,7 +85,7 @@ class PerfilDAO {
 		}
 		while($row = mysqli_fetch_object($result)){
 			
-			$this->o_perfil = new Perfil($row->id, $row->nome, $row->ativo, $row->datacadastrado, $row->dataedicao);
+			$this->o_perfil = new Perfil($row->id, $row->nome, $row->ativo, $row->datacadastro, $row->dataedicao);
 			
 			$this->lista[] = $this->o_perfil;
 		}

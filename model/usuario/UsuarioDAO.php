@@ -10,7 +10,14 @@ class UsuarioDAO {
 		$this->con = $con;
 	}
 	function cadastrar(Usuario $o_usuario) {
-		$this->sql = sprintf ( "INSERT INTO usuario (nome, usuario, senha, email, ativo, datacadastrado, dataedicao, idperfil, idpessoafisica) VALUES ('%s', '%s', '%s', '%s', %d, '%s', '%s', %d, %d)", mysqli_real_escape_string ( $this->con, $o_usuario->getNome () ), mysqli_real_escape_string ( $this->con, $o_usuario->getUsuario () ), mysqli_real_escape_string ( $this->con, $o_usuario->getSenha () ), mysqli_real_escape_string ( $this->con, $o_usuario->getEmail () ), mysqli_real_escape_string ( $this->con, $o_usuario->getAtivo () ), mysqli_real_escape_string ( $this->con, $o_usuario->getDatacadastrado () ), mysqli_real_escape_string ( $this->con, $o_usuario->getDataedicao () ), mysqli_real_escape_string ( $this->con, $o_usuario->getObjPerfil ()->getId () ), mysqli_real_escape_string ( $this->con, $o_usuario->getObjPessoafisica ()->getId () ) );
+		$this->sql = sprintf ( "INSERT INTO usuario (nome, usuario, senha, email, ativo, idperfil, idpessoafisica) VALUES ('%s', '%s', '%s', '%s', %d, %d, %d)", 
+				mysqli_real_escape_string ( $this->con, $o_usuario->getNome () ), 
+				mysqli_real_escape_string ( $this->con, $o_usuario->getUsuario () ),
+				mysqli_real_escape_string ( $this->con, $o_usuario->getSenha () ), 
+				mysqli_real_escape_string ( $this->con, $o_usuario->getEmail () ), 
+				mysqli_real_escape_string ( $this->con, $o_usuario->getAtivo () ),  
+				mysqli_real_escape_string ( $this->con, $o_usuario->getObjPerfil ()->getId () ), 
+				mysqli_real_escape_string ( $this->con, $o_usuario->getObjPessoafisica ()->getId () ) );
 		
 		if (! mysqli_query ( $this->con, $this->sql )) {
 			die ( 'Error: ' . mysqli_error ( $this->con ) );
@@ -18,8 +25,14 @@ class UsuarioDAO {
 		return mysqli_insert_id ( $this->con );
 	}
 	function atualizar(Usuario $o_usuario) {
-		$this->sql = sprintf ( "UPDATE usuario SET nome= '%s', usuario= '%s', senha= '%s', email= '%s', ativo=%d, dataedicao='%s', idperfil=%d WHERE id= %d", mysqli_real_escape_string ( $this->con, $o_usuario->getNome () ), mysqli_real_escape_string ( $this->con, $o_usuario->getUsuario () ), mysqli_real_escape_string ( $this->con, $o_usuario->getSenha () ), mysqli_real_escape_string ( $this->con, $o_usuario->getEmail () ), mysqli_real_escape_string ( $this->con, $o_usuario->getAtivo () ), mysqli_real_escape_string ( $this->con, $o_usuario->getDataedicao () ), mysqli_real_escape_string ( $this->con, $o_usuario->getObjPerfil ()->getId () ), 
-				// mysqli_real_escape_string($this->con, $o_usuario->getIdpessoafisica()),
+		$this->sql = sprintf ( "UPDATE usuario SET nome= '%s', usuario= '%s', senha= '%s', email= '%s', ativo=%d, dataedicao='%s', idperfil=%d WHERE id= %d", 
+				mysqli_real_escape_string ( $this->con, $o_usuario->getNome () ), 				
+				mysqli_real_escape_string ( $this->con, $o_usuario->getUsuario () ), 
+				mysqli_real_escape_string ( $this->con, $o_usuario->getSenha () ), 
+				mysqli_real_escape_string ( $this->con, $o_usuario->getEmail () ), 
+				mysqli_real_escape_string ( $this->con, $o_usuario->getAtivo () ), 
+				mysqli_real_escape_string ( $this->con, $o_usuario->getDataedicao () ), 
+				mysqli_real_escape_string ( $this->con, $o_usuario->getObjPerfil ()->getId () ), 				
 				mysqli_real_escape_string ( $this->con, $o_usuario->getId () ) );
 		
 		if (! mysqli_query ( $this->con, $this->sql )) {
@@ -56,7 +69,7 @@ class UsuarioDAO {
 			$pessoafisicaControl = new PessoaFisicaControl ( $pessoafisica );
 			$pessoafisica = $pessoafisicaControl->buscarPorID ();
 			
-			$this->o_usuario = new Usuario ( $row->id, $row->nome, $row->usuario, $row->senha, $row->email, $row->ativo, $row->datacadastrado, $row->dataedicao, $perfil, $pessoafisica );
+			$this->o_usuario = new Usuario ( $row->id, $row->nome, $row->usuario, $row->senha, $row->email, $row->ativo, $row->datacadastro, $row->dataedicao, $perfil, $pessoafisica );
 		}
 		
 		return $this->o_usuario;
@@ -81,7 +94,7 @@ class UsuarioDAO {
 			$pessoafisicaControl = new PessoaFisicaControl ( $pessoafisica );
 			$pessoafisica = $pessoafisicaControl->buscarPorID ();
 			
-			$this->o_usuario = new Usuario ( $row->id, $row->nome, $row->usuario, $row->senha, $row->email, $row->ativo, $row->datacadastrado, $row->dataedicao, $perfil, $pessoafisica );
+			$this->o_usuario = new Usuario ( $row->id, $row->nome, $row->usuario, $row->senha, $row->email, $row->ativo, $row->datacadastro, $row->dataedicao, $perfil, $pessoafisica );
 			
 			$this->lista [] = $this->$o_usuario;
 		}
@@ -109,7 +122,7 @@ class UsuarioDAO {
 			$pessoafisicaControl = new PessoaFisicaControl ( $pessoafisica );
 			$pessoafisica = $pessoafisicaControl->buscarPorID ();
 			
-			$this->o_usuario = new Usuario ( $row->id, $row->nome, $row->usuario, $row->senha, $row->email, $row->ativo, $row->datacadastrado, $row->dataedicao, $perfil, $pessoafisica );
+			$this->o_usuario = new Usuario ( $row->id, $row->nome, $row->usuario, $row->senha, $row->email, $row->ativo, $row->datacadastro, $row->dataedicao, $perfil, $pessoafisica );
 			
 			$this->lista [] = $this->o_usuario;
 		}
