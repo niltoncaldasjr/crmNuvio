@@ -45,7 +45,7 @@ $achouPais = $buscaporId->buscarPorId ();
 var_dump ( $achouPais );
 
 echo '<h3>Atualiza Pais</h3>';
-$atualize = new Pais ( $id, 'DB', 'DB Supermercados', 'DB', '76443624000145','951357852258', '654852', 'Rua Maceio', '150', 'prox. do shop', 'Adrianopolis', '69057-000', '..imagens/bd_logo.png' ,'bd_user' , date ( "Y-m-d H:i:s" ), 6, 1 );
+$atualize = new Pais ( $id, 'Italia', 'Italiana', null, date ( "Y-m-d H:i:s" ) );
 $atualizarPais = new PaisControl ( $atualize );
 
 $atualizarPais->atualizar ();  // DESCOMENTAR QUANDO CONSERTAR O BANCO

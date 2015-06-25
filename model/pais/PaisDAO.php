@@ -21,10 +21,9 @@ class PaisDAO {
 		return mysqli_insert_id ( $this->con );
 	}
 	function atualizar(Pais $o_pais) {
-		$this->sql = sprintf ( "UPDATE pais SET descricao= '%s', nacionalidade= '%s', datacadastro= '%s', dataedicao= '%s' WHERE id= %d", 
+		$this->sql = sprintf ( "UPDATE pais SET descricao= '%s', nacionalidade= '%s', dataedicao= '%s' WHERE id= %d", 
 				mysqli_real_escape_string ( $this->con, $o_pais->getDescricao() ), 
-				mysqli_real_escape_string ( $this->con, $o_pais->getNacionalidade() ), 
-				mysqli_real_escape_string ( $this->con, $o_pais->getDatacadastro() ), 
+				mysqli_real_escape_string ( $this->con, $o_pais->getNacionalidade() ),				
 				mysqli_real_escape_string ( $this->con, $o_pais->getDataedicao() ), 				
 				mysqli_real_escape_string ( $this->con, $o_pais->getId() ) );
 		
