@@ -24,8 +24,8 @@ class PessoaFisicaControl{
 	function deletar(){
 		return $this->objPessoaFisicaDAO->deletar($this->objPessoaFisica);
 	}
-	function buscarPorID(){
-		return $this->objPessoaFisicaDAO->buscarPorID($this->objPessoaFisica);
+	function buscarPorId(){
+		return $this->objPessoaFisicaDAO->buscarPorId($this->objPessoaFisica);
 	}
 	function listarTodos(){
 		return $this->objPessoaFisicaDAO->listarTodos($this->objPessoaFisica);

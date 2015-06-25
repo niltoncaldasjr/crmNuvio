@@ -17,7 +17,7 @@ $objEmpresa = new Empresa(null);
 $objEmpresaControl = new EmpresaControl($objEmpresa);
 $listaEmpresa = $objEmpresaControl->listarTodos();
 
-/*-- Lista de Banco Empresa --*/
+/*-- Lista de Contato Banco--*/
 $objContaBanco = new ContaBanco(null);
 $objContaBancoControl = new ContaBancoControl($objContaBanco);
 $listaContaBanco = $objContaBancoControl->listarTodos();

@@ -56,7 +56,7 @@ class LeadDAO{
 	}
 	
 	/*-- Buscar por ID --*/
-	function buscarPorID(Lead $objLead){
+	function buscarPorId(Lead $objLead){
 		$this->sql = sprintf("SELECT * FROM lead WHERE id = %d",
 				mysqli_real_escape_string( $this->con, $objLead->getId() ) );
 		

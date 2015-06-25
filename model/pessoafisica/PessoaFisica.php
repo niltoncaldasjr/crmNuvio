@@ -12,40 +12,40 @@ class PessoaFisica implements JsonSerializable{
 	private $cor;
 	private $naturalidade;
 	private $nacionalidade;
-	private $datacadastro;
-	private $dataatualizacao;
+	private $datacadastrado;
+	private $dataedicao;
 		
 	/*-- Construtor --*/
 	public function __construct
 	(
-		$id=NULL, 
-		$nome=NULL, 
-		$cpf=NULL, 
-		$datanascimento=NULL, 
-		$estadocivil=NULL, 
-		$sexo=NULL, 
-		$nomepai=NULL, 
-		$nomemae=NULL, 
-		$cor=NULL, 
-		$naturalidade=NULL, 
-		$nacionalidade=NULL,
-		$datacadastro=NULL, 
-		$dataatualizacao=NULL
+		$id				=	NULL, 
+		$nome			=	NULL, 
+		$cpf			=	NULL, 
+		$datanascimento	=	NULL, 
+		$estadocivil	=	NULL, 
+		$sexo			=	NULL, 
+		$nomepai		=	NULL, 
+		$nomemae		=	NULL, 
+		$cor			=	NULL, 
+		$naturalidade	=	NULL, 
+		$nacionalidade	=	NULL,
+		$datacadastrado	=	NULL, 
+		$dataedicao		=	NULL
 	)
 	{
-		$this->id = $id;
-		$this->nome = $nome;
-		$this->cpf = $cpf;
-		$this->datanascimento = $datanascimento;
-		$this->estadocivil = $estadocivil;
-		$this->sexo =$sexo;
-		$this->nomepai = $nomepai;
-		$this->nomemae = $nomemae;
-		$this->cor = $cor;
-		$this->naturalidade = $naturalidade;
-		$this->nacionalidade = $nacionalidade;
-		$this->datacadastro = $datacadastro;
-		$this->dataatualizacao = $dataatualizacao;
+		$this->id 				= 	$id;
+		$this->nome 			= 	$nome;
+		$this->cpf 				= 	$cpf;
+		$this->datanascimento 	= 	$datanascimento;
+		$this->estadocivil 		= 	$estadocivil;
+		$this->sexo 			=	$sexo;
+		$this->nomepai 			= 	$nomepai;
+		$this->nomemae 			= 	$nomemae;
+		$this->cor 				= 	$cor;
+		$this->naturalidade 	= 	$naturalidade;
+		$this->nacionalidade 	= 	$nacionalidade;
+		$this->datacadastrado 	= 	$datacadastrado;
+		$this->dataedicao 		= 	$dataedicao;
 	}
 	
 	/*-- Getters / Setters --*/
@@ -126,18 +126,18 @@ class PessoaFisica implements JsonSerializable{
 		$this->nacionalidade = $nacionalidade;
 		return $this;
 	}
-	public function getDatacadastro() {
-		return $this->datacadastro;
+	public function getDatacadastrado() {
+		return $this->datacadastrado;
 	}
-	public function setDatacadastro($datacadastro) {
-		$this->datacadastro = $datacadastro;
+	public function setDatacadastrado($datacadastrado) {
+		$this->datacadastrado = $datacadastrado;
 		return $this;
 	}
-	public function getDataatualizacao() {
-		return $this->dataatualizacao;
+	public function getDataedicao() {
+		return $this->dataedicao;
 	}
-	public function setDataatualizacao($dataatualizacao) {
-		$this->dataatualizacao = $dataatualizacao;
+	public function setDataedicao($dataedicao) {
+		$this->dataedicao = $dataedicao;
 		return $this;
 	}
 	
@@ -147,7 +147,7 @@ class PessoaFisica implements JsonSerializable{
 		
 		return sprintf(
 				"Pessoa Física: [ID: %d, Nome: %s, CPF: %s, Data Nascimento: %s, Estado Cívil: %s, Sexo: %s, Nome Pai: %s, Nome Mãe: %s, "
-				."Cor: %s, Naturalidade: %s, Nacionalidade: %s, Data Cadastro: %s, Data Atualização: %s]",
+				."Cor: %s, Naturalidade: %s, Nacionalidade: %s, Data Cadastrado: %s, Data Edicao: %s]",
 				$this->id, 
 				$this->nome, 
 				$this->cpf, 
@@ -159,8 +159,8 @@ class PessoaFisica implements JsonSerializable{
 				$this->cor, 
 				$this->naturalidade, 
 				$this->nacionalidade, 
-				$this->datacadastro, 
-				$this->dataatualizacao);
+				$this->datacadastrado, 
+				$this->dataedicao);
 		
 	}
 	
@@ -178,8 +178,8 @@ class PessoaFisica implements JsonSerializable{
 				'cor'				=> $this->cor,
 				'naturalidade'		=> $this->naturalidade,
 				'nacionalidade'		=> $this->nacionalidade,
-				'datacadastro'		=> $this->datacadastro,
-				'dataatualizacao' 	=> $this->dataatualizacao
+				'datacadastrado'	=> $this->datacadastrado,
+				'dataedicao' 		=> $this->dataedicao
 		];
 	}
 	

@@ -16,7 +16,7 @@ class PessoaFisicaDAO{
 	
 	/*-- Metodo Cadastrar --*/
 	function cadastrar(PessoaFisica $objPessoaFisica){
-		$this->sql = sprintf("INSERT INTO pessoafisica (nome, cpf, datanascimento, estadocivil, sexo, nomepai, nomemae, cor, naturalidade, nacionalidade, datacadastro, dataatualizacao) VALUES('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')",
+		$this->sql = sprintf("INSERT INTO pessoafisica (nome, cpf, datanascimento, estadocivil, sexo, nomepai, nomemae, cor, naturalidade, nacionalidade, datacadastrado, dataedicao) VALUES('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')",
 				mysqli_real_escape_string( $this->con, $objPessoaFisica->getNome() ),
 				mysqli_real_escape_string( $this->con, $objPessoaFisica->getCpf() ),
 				mysqli_real_escape_string( $this->con, $objPessoaFisica->getDatanascimento() ),
@@ -27,8 +27,8 @@ class PessoaFisicaDAO{
 				mysqli_real_escape_string( $this->con, $objPessoaFisica->getCor() ),
 				mysqli_real_escape_string( $this->con, $objPessoaFisica->getNaturalidade() ),
 				mysqli_real_escape_string( $this->con, $objPessoaFisica->getNacionalidade() ),
-				mysqli_real_escape_string( $this->con, $objPessoaFisica->getDatacadastro() ),
-				mysqli_real_escape_string( $this->con, $objPessoaFisica->getDataatualizacao() ) );
+				mysqli_real_escape_string( $this->con, $objPessoaFisica->getDatacadastrado() ),
+				mysqli_real_escape_string( $this->con, $objPessoaFisica->getDataedicao()) );
 		
 	
 		if(!mysqli_query($this->con, $this->sql)){
@@ -39,7 +39,7 @@ class PessoaFisicaDAO{
 	
 	/*-- Metodo Atualizar --*/
 	function atualizar(PessoaFisica $objPessoaFisica){
-		$this->sql = sprintf("UPDATE pessoafisica SET nome = '%s', cpf = '%s', datanascimento = '%s', estadocivil = '%s', sexo = '%s', nomepai = '%s', nomemae = '%s', cor = '%s', naturalidade = '%s', nacionalidade = '%s', dataatualizacao = '%s' WHERE id = %d",
+		$this->sql = sprintf("UPDATE pessoafisica SET nome = '%s', cpf = '%s', datanascimento = '%s', estadocivil = '%s', sexo = '%s', nomepai = '%s', nomemae = '%s', cor = '%s', naturalidade = '%s', nacionalidade = '%s', dataedicao = '%s' WHERE id = %d",
 				mysqli_real_escape_string( $this->con, $objPessoaFisica->getNome() ),
 				mysqli_real_escape_string( $this->con, $objPessoaFisica->getCpf() ),
 				mysqli_real_escape_string( $this->con, $objPessoaFisica->getDatanascimento() ),
@@ -50,7 +50,7 @@ class PessoaFisicaDAO{
 				mysqli_real_escape_string( $this->con, $objPessoaFisica->getCor() ),
 				mysqli_real_escape_string( $this->con, $objPessoaFisica->getNaturalidade() ),
 				mysqli_real_escape_string( $this->con, $objPessoaFisica->getNacionalidade() ),
-				mysqli_real_escape_string( $this->con, $objPessoaFisica->getDataatualizacao() ),
+				mysqli_real_escape_string( $this->con, $objPessoaFisica->getDataedicao() ),
 				mysqli_real_escape_string( $this->con, $objPessoaFisica->getId() ) );
 		if(!mysqli_query($this->con, $this->sql)){
 			die('[ERRO]: AtualizarDAO '.mysqli_error($this->con));
@@ -69,7 +69,7 @@ class PessoaFisicaDAO{
 	}
 	
 	/*-- Buscar por ID --*/
-	function buscarPorID(PessoaFisica $objPessoaFisica){
+	function buscarPorId(PessoaFisica $objPessoaFisica){
 		$this->sql = sprintf("SELECT * FROM pessoafisica WHERE id = %d",
 				mysqli_real_escape_string( $this->con, $objPessoaFisica->getId() ) );
 	
@@ -78,7 +78,7 @@ class PessoaFisicaDAO{
 			die('[ERRO]: BuscarPorIDDAO'.mysqli_error($this->con));
 		}
 		while($row = mysqli_fetch_object($resultSet)){
-			$this->objPessoaFisica = new PessoaFisica($row->id, $row->nome, $row->cpf, $row->datanascimento, $row->estadocivil, $row->sexo, $row->nomepai, $row->nomemae, $row->cor, $row->naturalidade, $row->nacionalidade, $row->datacadastro, $row->dataatualizacao);
+			$this->objPessoaFisica = new PessoaFisica($row->id, $row->nome, $row->cpf, $row->datanascimento, $row->estadocivil, $row->sexo, $row->nomepai, $row->nomemae, $row->cor, $row->naturalidade, $row->nacionalidade, $row->datacadastrado, $row->dataedicao);
 		}
 	
 		return $this->objPessoaFisica;
@@ -93,7 +93,7 @@ class PessoaFisicaDAO{
 		}
 		while($row = mysqli_fetch_object($resultSet)){
 			
-			$this->objPessoaFisica = new PessoaFisica($row->id, $row->nome, $row->cpf, $row->datanascimento, $row->estadocivil, $row->sexo, $row->nomepai, $row->nomemae, $row->cor, $row->naturalidade, $row->nacionalidade, $row->datacadastro, $row->dataatualizacao);
+			$this->objPessoaFisica = new PessoaFisica($row->id, $row->nome, $row->cpf, $row->datanascimento, $row->estadocivil, $row->sexo, $row->nomepai, $row->nomemae, $row->cor, $row->naturalidade, $row->nacionalidade, $row->datacadastrado, $row->dataedicao);
 	
 			array_push($this->listaPessoaFisica, $this->objPessoaFisica);
 		}
@@ -114,7 +114,7 @@ class PessoaFisicaDAO{
 		}
 		while($row = mysqli_fetch_object($resultSet)){
 			
-			$this->objPessoaFisica = new PessoaFisica($row->id, $row->nome, $row->cpf, $row->datanascimento, $row->estadocivil, $row->sexo, $row->nomepai, $row->nomemae, $row->cor, $row->naturalidade, $row->nacionalidade, $row->datacadastro, $row->dataatualizacao);
+			$this->objPessoaFisica = new PessoaFisica($row->id, $row->nome, $row->cpf, $row->datanascimento, $row->estadocivil, $row->sexo, $row->nomepai, $row->nomemae, $row->cor, $row->naturalidade, $row->nacionalidade, $row->datacadastrado, $row->dataedicao);
 	
 			array_push($this->listaPessoaFisica, $this->objPessoaFisica);
 		}
