@@ -153,7 +153,7 @@ if(isset($_POST['buscar']))
 	try{
 		$objLocalidade = new Localidade($_POST['localidade']);
 		$objLocalidadeControl = new LocalidadeControl($objLocalidade);
-		$objLocalidade = $objLocalidadeControl->buscarPorID();
+		$objLocalidade = $objLocalidadeControl->buscarPorId();
 
 		echo "</br><font color='BLACK'> >>> Busca <<< </font></br>";
 		echo "<font color='BLUE'>[INFO]: SUCESSO! ". $objLocalidade->__toString()."</font>";

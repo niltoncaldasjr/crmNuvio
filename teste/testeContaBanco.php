@@ -17,7 +17,7 @@ $objEmpresa = new Empresa(null);
 $objEmpresaControl = new EmpresaControl($objEmpresa);
 $listaEmpresa = $objEmpresaControl->listarTodos();
 
-/*-- Lista de Banco Empresa --*/
+/*-- Lista de Contato Banco--*/
 $objContaBanco = new ContaBanco(null);
 $objContaBancoControl = new ContaBancoControl($objContaBanco);
 $listaContaBanco = $objContaBancoControl->listarTodos();
@@ -36,8 +36,8 @@ $listaContaBanco = $objContaBancoControl->listarTodos();
 		N.Convenio: <input type="text" name="numeroConvenio"/>
 		NomeCont:<input type="text" name="nomeContato">
 		Tel.Cont:<input type="text" name="telefoneContato">
-		Login: <input type="text" name="login">
-		DataSis: <input type="text" name="datasis">
+		DataCadastro: <input type="text" name="datacadastro">
+		DataEdicao: <input type="text" name="dataedicao">
 		Banco:
 		<select id='banco' name='banco'>
 			<option value='0'>Selecione o Banco</option>
@@ -105,8 +105,7 @@ $listaContaBanco = $objContaBancoControl->listarTodos();
 		N.Convenio: <input type="text" name="numeroConvenio"/>
 		NomeCont:<input type="text" name="nomeContato">
 		Tel.Cont:<input type="text" name="telefoneContato">
-		Login: <input type="text" name="login">
-		DataSis: <input type="text" name="datasis">
+		DataEdicao: <input type="text" name="dataedicao">
 		Banco:
 		<select id='banco' name='banco'>
 			<option value='0'>Selecione o Banco</option>
@@ -169,6 +168,16 @@ if(isset($_POST['cadastrar']))
 		$objEmpresa = new Empresa($_POST['Empresa']);
 		$objBanco = new Banco($_POST['Banco']);
 		$objContaBanco = new ContaBanco();
+		$objContaBanco->setAgencia($_POST['agencia']);
+		$objContaBanco->setAgencia($_POST['digitoAgencia']);
+		$objContaBanco->setAgencia($_POST['numeroConta']);
+		$objContaBanco->setAgencia($_POST['digitoConta']);
+		$objContaBanco->setAgencia($_POST['numeroCarteira']);
+		$objContaBanco->setAgencia($_POST['numeroConvenio']);
+		$objContaBanco->setAgencia($_POST['nomeContato']);
+		$objContaBanco->setAgencia($_POST['telefoneContato']);
+		$objContaBanco->setAgencia($_POST['dataCadastro']);
+		$objContaBanco->setAgencia($_POST['dataEdicao']);
 		$objContaBanco->setObjBanco($objBanco);
 		$objContaBanco->setObjEmpresa($objEmpresa);
 		
@@ -205,9 +214,18 @@ if(isset($_POST['alterar']))
 		$objBanco = new Banco($_POST['Banco']);
 		
 		$objContaBanco = new ContaBanco();
-		$objContaBanco->setId($_POST['ContaBanco']);
+		$objContaBanco->setAgencia($_POST['agencia']);
+		$objContaBanco->setAgencia($_POST['digitoAgencia']);
+		$objContaBanco->setAgencia($_POST['numeroConta']);
+		$objContaBanco->setAgencia($_POST['digitoConta']);
+		$objContaBanco->setAgencia($_POST['numeroCarteira']);
+		$objContaBanco->setAgencia($_POST['numeroConvenio']);
+		$objContaBanco->setAgencia($_POST['nomeContato']);
+		$objContaBanco->setAgencia($_POST['telefoneContato']);
+		$objContaBanco->setAgencia($_POST['dataEdicao']);
 		$objContaBanco->setObjBanco($objBanco);
 		$objContaBanco->setObjEmpresa($objEmpresa);
+		
 		
 		$objContaBancoControl = new ContaBancoControl($objContaBanco);
 		$objContaBanco = $objContaBancoControl->atualizar();

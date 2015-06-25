@@ -12,8 +12,8 @@ class ContaBanco implements JsonSerializable{
 	private $numeroConvenio;
 	private $nomeContato;
 	private $telefoneContato;
-	private $login;
-	private $datasis;
+	private $datacadastro;
+	private $dataedicao;
 	private $objBanco;
 	private $objEmpresa;
 	
@@ -29,8 +29,8 @@ class ContaBanco implements JsonSerializable{
 		$numeroConvenio		=	NULL,
 		$nomeContato		=	NULL,
 		$telefoneContato	=	NULL,
-		$login				=	NULL,
-		$datasis			=	NULL,
+		$datacadastro		=	NULL,
+		$dataedicao			=	NULL,
 		Banco $objBanco		=	NULL,
 		Empresa $objEmpresa	=	NULL
 	)
@@ -44,8 +44,8 @@ class ContaBanco implements JsonSerializable{
 		$this->numeroConvenio 	=	$numeroConvenio;
 		$this->nomeContato 		=	$nomeContato;
 		$this->telefoneContato 	=	$telefoneContato;
-		$this->login 			=	$login;
-		$this->datasis 			= 	$datasis;
+		$this->datacadastro 	=	$datacadastro;
+		$this->dataedicao 		= 	$dataedicao;
 		$this->objBanco 		=	$objBanco;
 		$this->objEmpresa  		=	$objEmpresa;
 	}
@@ -114,18 +114,18 @@ class ContaBanco implements JsonSerializable{
 		$this->telefoneContato = $telefoneContato;
 		return $this;
 	}
-	public function getLogin() {
-		return $this->login;
+	public function getDatacadastro() {
+		return $this->datacadastro;
 	}
-	public function setLogin($login) {
-		$this->login = $login;
+	public function setdatacadastro($datacadastro) {
+		$this->datacadastro = $datacadastro;
 		return $this;
 	}
-	public function getDatasis() {
-		return $this->datasis;
+	public function getDataedicao() {
+		return $this->dataedicao;
 	}
-	public function setDatasis($datasis) {
-		$this->datasis = $datasis;
+	public function setdataedicao($dataedicao) {
+		$this->dataedicao = $dataedicao;
 		return $this;
 	}
 	public function getObjBanco() {
@@ -145,7 +145,7 @@ class ContaBanco implements JsonSerializable{
 	
 	/*-- ToString --*/
 	public function __toString(){
-		return sprintf("ContaBanco: [ ID: %d, Agencia: %s, DigitoAgencia: %s, NumeroConta: %s, DigitoConta: %s, NumeroCarteira: %s, NumeroConvenio: %s, NomeContato: %s, TelefoneContato: %s, Login: %s, DataSis: %s , Banco: %s, Empresa: %s ]",
+		return sprintf("ContaBanco: [ ID: %d, Agencia: %s, DigitoAgencia: %s, NumeroConta: %s, DigitoConta: %s, NumeroCarteira: %s, NumeroConvenio: %s, NomeContato: %s, TelefoneContato: %s, DataCadastro: %s, DataEdicao: %s , Banco: %s, Empresa: %s ]",
 				$this->id, 
 				$this->agencia, 
 				$this->digitoAgencia, 
@@ -155,8 +155,8 @@ class ContaBanco implements JsonSerializable{
 				$this->numeroConvenio, 
 				$this->nomeContato,
 				$this->telefoneContato, 
-				$this->login, 
-				$this->datasis,
+				$this->datacadastro, 
+				$this->dataedicao,
 				$this->objBanco->getNome(), 
 				$this->objEmpresa->getNomeReduzido());
 	}
@@ -173,8 +173,8 @@ class ContaBanco implements JsonSerializable{
 			'numeroConvenio' 	=> 	$this->numeroConvenio,
 			'nomeContato' 		=> 	$this->nomeContato,
 			'telefoneContato' 	=>	$this->telefoneContato,
-			'login' 			=>	$this->login,
-			'datasis' 			=>	$this->datasis,
+			'datacadastro' 		=>	$this->datacadastro,
+			'dataedicao' 		=>	$this->dataedicao,
 			'objBanco' 			=>	$this->objBanco,
 			'objEmpresa' 		=>	$this->objEmpresa
 		];

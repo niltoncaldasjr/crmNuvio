@@ -17,8 +17,8 @@ try{
 	$objPessoaFisica->setCor('BRANCA');
 	$objPessoaFisica->setNaturalidade('Cearense');
 	$objPessoaFisica->setNacionalidade('Brasileiro');
-	$objPessoaFisica->setDatacadastro('2015/06/18 14:00:00');
-	$objPessoaFisica->setDataatualizacao('2015/06/18 14:00:00');
+	$objPessoaFisica->setDatacadastrado('2015/06/18 14:00:00');
+	$objPessoaFisica->setDataedicao('2015/06/18 14:00:00');
 	
 	$objPessoaFisicaControl = new PessoaFisicaControl($objPessoaFisica);
 	$objPessoaFisicaControl->cadastrar();
@@ -48,7 +48,7 @@ try{
 	$objPessoaFisicaControl = new PessoaFisicaControl($objPessoaFisica);
 	$objPessoaFisica = $objPessoaFisicaControl->buscarPorID();
 	$objPessoaFisica->setNome('Renata Fernanda');
-	$objPessoaFisica->setDataatualizacao('2015/06/22 17:00:00');
+	$objPessoaFisica->setDataedicao('2015/06/22 17:00:00');
 	$objPessoaFisicaControl = new PessoaFisicaControl($objPessoaFisica);
 	$objPessoaFisica = $objPessoaFisicaControl->atualizar();
 	echo "<font color='BLACK'>====================/- ALTERACAO -/=========================== </font></br>";

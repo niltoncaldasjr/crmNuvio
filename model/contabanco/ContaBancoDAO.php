@@ -18,7 +18,7 @@ class ContaBancoDAO{
 	
 	/*-- Metodo Cadastrar --*/
 	function cadastrar(ContaBanco $objContaBanco){
-		$this->sql = sprintf("INSERT INTO contabanco (agencia, digitoAgencia, numeroConta, digitoConta, numeroCarteira, numeroConvenio, nomeContato, telefoneContato, login, datasis, idbanco, idempresa) 
+		$this->sql = sprintf("INSERT INTO contabanco (agencia, digitoAgencia, numeroConta, digitoConta, numeroCarteira, numeroConvenio, nomeContato, telefoneContato, datacadastro, dataedicao, idbanco, idempresa) 
 				VALUES('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', %d, %d)",
 				mysqli_real_escape_string( $this->con, $objContaBanco->getAgencia() ),
 				mysqli_real_escape_string( $this->con, $objContaBanco->getdigitoAgencia() ),
@@ -28,8 +28,8 @@ class ContaBancoDAO{
 				mysqli_real_escape_string( $this->con, $objContaBanco->getNumeroConvenio() ),
 				mysqli_real_escape_string( $this->con, $objContaBanco->getNomeContato() ),
 				mysqli_real_escape_string( $this->con, $objContaBanco->getTelefoneContato() ),
-				mysqli_real_escape_string( $this->con, $objContaBanco->getLogin() ),
-				mysqli_real_escape_string( $this->con, $objContaBanco->getDatasis() ),
+				mysqli_real_escape_string( $this->con, $objContaBanco->getdatacadastro() ),
+				mysqli_real_escape_string( $this->con, $objContaBanco->getdataedicao() ),
 				mysqli_real_escape_string( $this->con, $objContaBanco->getObjBanco()->getId() ),
 				mysqli_real_escape_string( $this->con, $objContaBanco->getObjEmpresa()->getId() ) );
 				
@@ -41,7 +41,7 @@ class ContaBancoDAO{
 	
 	/*-- Metodo Atualizar --*/
 	function atualizar(ContaBanco $objContaBanco){
-		$this->sql = sprintf("UPDATE contabanco SET agencia = '%s', digitoAgencia = '%s', numeroConta ='%s', digitoConta = '%s', numeroCarteira = '%s', numeroConvenio = '%s', nomeContato = '%s', telefoneContato = '%s', login = '%s', datasis = '%s', idbanco = %d, idempresa = %d WHERE id = %d",
+		$this->sql = sprintf("UPDATE contabanco SET agencia = '%s', digitoAgencia = '%s', numeroConta ='%s', digitoConta = '%s', numeroCarteira = '%s', numeroConvenio = '%s', nomeContato = '%s', telefoneContato = '%s', dataedicao = '%s', idbanco = %d, idempresa = %d WHERE id = %d",
 				mysqli_real_escape_string( $this->con, $objContaBanco->getAgencia() ),
 				mysqli_real_escape_string( $this->con, $objContaBanco->getdigitoAgencia() ),
 				mysqli_real_escape_string( $this->con, $objContaBanco->getNumeroConta() ),
@@ -50,8 +50,7 @@ class ContaBancoDAO{
 				mysqli_real_escape_string( $this->con, $objContaBanco->getNumeroConvenio() ),
 				mysqli_real_escape_string( $this->con, $objContaBanco->getNomeContato() ),
 				mysqli_real_escape_string( $this->con, $objContaBanco->getTelefoneContato() ),
-				mysqli_real_escape_string( $this->con, $objContaBanco->getLogin() ),
-				mysqli_real_escape_string( $this->con, $objContaBanco->getDatasis() ),
+				mysqli_real_escape_string( $this->con, $objContaBanco->getdataedicao() ),
 				mysqli_real_escape_string( $this->con, $objContaBanco->getObjBanco()->getId() ),
 				mysqli_real_escape_string( $this->con, $objContaBanco->getObjEmpresa()->getId() ),
 				mysqli_real_escape_string( $this->con, $objContaBanco->getId() ) );
@@ -91,7 +90,7 @@ class ContaBancoDAO{
 			$objEmpresaControl = new EmpresaControl($objEmpresa);
 			$objEmpresa = $objEmpresaControl->buscarPorId();
 			
-			$this->objContaBanco = new ContaBanco($row->id, $row->agencia, $row->digitoAgencia, $row->numeroConta, $row->digitoConta, $row->numeroCarteira, $row->numeroConvenio, $row->nomeContato, $row->telefoneContato, $row->login, $row->datasis, $objBanco, $objEmpresa); 
+			$this->objContaBanco = new ContaBanco($row->id, $row->agencia, $row->digitoAgencia, $row->numeroConta, $row->digitoConta, $row->numeroCarteira, $row->numeroConvenio, $row->nomeContato, $row->telefoneContato, $row->datacadastro, $row->dataedicao, $objBanco, $objEmpresa); 
 		}
 		
 		return $this->objContaBanco;
@@ -115,7 +114,7 @@ class ContaBancoDAO{
 			$objEmpresaControl = new EmpresaControl($objEmpresa);
 			$objEmpresa = $objEmpresaControl->buscarPorId();
 				
-			$this->objContaBanco = new ContaBanco($row->id, $row->agencia, $row->digitoAgencia, $row->numeroConta, $row->digitoConta, $row->numeroCarteira, $row->numeroConvenio, $row->nomeContato, $row->telefoneContato, $row->login, $row->datasis, $objBanco, $objEmpresa); 
+			$this->objContaBanco = new ContaBanco($row->id, $row->agencia, $row->digitoAgencia, $row->numeroConta, $row->digitoConta, $row->numeroCarteira, $row->numeroConvenio, $row->nomeContato, $row->telefoneContato, $row->datacadastro, $row->dataedicao, $objBanco, $objEmpresa); 
 				
 			array_push($this->listaContaBanco, $this->objContaBanco);
 		}

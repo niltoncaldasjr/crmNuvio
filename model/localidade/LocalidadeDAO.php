@@ -58,7 +58,7 @@ class LocalidadeDAO{
 	}
 	
 	/*-- Buscar por ID --*/
-	function buscarPorID(Localidade $objLocalidade){
+	function buscarPorId(Localidade $objLocalidade){
 		$this->sql = sprintf("SELECT * FROM localidade WHERE id = %d",
 				mysqli_real_escape_string( $this->con, $objLocalidade->getId() ) );
 		
