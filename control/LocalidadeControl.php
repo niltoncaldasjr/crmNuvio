@@ -25,7 +25,7 @@ class LocalidadeControl{
 		return $this->objLocalidadeDAO->deletar($this->objLocalidade);
 	}
 	function buscarPorID(){
-		return $this->objLocalidadeDAO->buscarPorID($this->objLocalidade);
+		return $this->objLocalidadeDAO->buscarPorId($this->objLocalidade);
 	}
 	function listarTodos(){
 		return $this->objLocalidadeDAO->listarTodos($this->objLocalidade);
