@@ -18,7 +18,7 @@ class Empresa implements JsonSerializable {
 	private $objLocalidade;
 	private $objImposto;
 	
-	function __construct($id, $nomeFantasia, $razaoSocial, $nomeReduzido, $CNPJ, $inscricaoEstatual, $inscricaoMunicipal, $endereco, $numero, $complemento, $bairro, $cep, $imagemLogotipo, $datacadastro, $dataedicao, $objLocalidade, $objImposto) {
+	function __construct($id=null, $nomeFantasia=null, $razaoSocial=null, $nomeReduzido=null, $CNPJ=null, $inscricaoEstatual=null, $inscricaoMunicipal=null, $endereco=null, $numero=null, $complemento=null, $bairro=null, $cep=null, $imagemLogotipo=null, $datacadastro=null, $dataedicao=null, Localidade $objLocalidade=null, Imposto $objImposto=null) {
             $this->id = $id;
             $this->nomeFantasia = $nomeFantasia;
             $this->razaoSocial = $razaoSocial;
@@ -193,8 +193,8 @@ class Empresa implements JsonSerializable {
 				'imagemLogotipo' => $this->imagemLogotipo,
 				'datacadastro' => $this->datacadastro,  
 				'dataedicao' => $this->dataedicao,
-				'localidade' => $this->idlocalidade,
-				'imposto' => $this->idimposto 
+				'localidade' => $this->objLocalidade,
+				'imposto' => $this->objImposto 
 		];
 		$json = json_encode($empresa);
 		echo $json;

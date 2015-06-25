@@ -1,10 +1,19 @@
 <?php
 require_once $_SERVER ['DOCUMENT_ROOT'] . "/crmNuvio/" . 'model/empresa/Empresa.php';
+require_once $_SERVER ['DOCUMENT_ROOT'] . "/crmNuvio/" . 'model/imposto/Imposto.php';
+require_once $_SERVER ['DOCUMENT_ROOT'] . "/crmNuvio/" . 'model/localidade/Localidade.php';
 require_once $_SERVER ['DOCUMENT_ROOT'] . "/crmNuvio/" . 'control/EmpresaControl.php';
 require_once $_SERVER ['DOCUMENT_ROOT'] . "/crmNuvio/" . 'util/Conexao.php';
 
-// instanciando um objeto USUARIO
+// instancia uma localidade
+$locale = new Localidade(1);
 
+// instancia um imposto
+$imposto = new Imposto(1);
+
+
+
+// instanciando um objeto USUARIO
 $empresa = new Empresa();
 $empresa->setId(1);
 $empresa->setNomeFantasia('Bemol');
@@ -19,13 +28,14 @@ $empresa->setComplemento('Proximo ao Bradesco');
 $empresa->setBairro('Centro');
 $empresa->setCep('69010-100');
 $empresa->setImagemLogotipo('../imagens/bemol_logo.png');
-$empresa->setLogin('bemol_login');
-$empresa->setDatasis(date ( "Y-m-d H:i:s" ));
-$empresa->setIdlocalidade(3);
-$empresa->setIdimposto(1);
+$empresa->setDatacadastro(date ( "Y-m-d H:i:s" ));
+$empresa->setDataedicao(date ( "Y-m-d H:i:s" ));
+$empresa->setObjLocalidade($locale);
+$empresa->setObjImposto($imposto);
 
 echo '<h3>Funcao Serialize</h3>';
 $empresa->jsonSerialize ();
+
 
 // chamou a control
 $empresaControl = new EmpresaControl ( $empresa );
@@ -58,7 +68,7 @@ $achouEmpresa = $buscaporId->buscarPorId ();
 var_dump ( $achouEmpresa );
 
 echo '<h3>Atualiza Empresa</h3>';
-$atualize = new Empresa ( $id, 'DB', 'DB Supermercados', 'DB', '76443624000145','951357852258', '654852', 'Rua Maceio', '150', 'prox. do shop', 'Adrianopolis', '69057-000', '..imagens/bd_logo.png' ,'bd_user' , date ( "Y-m-d H:i:s" ), 6, 1 );
+$atualize = new Empresa ( $id, 'DB', 'DB Supermercados', 'DB', '76443624000145','951357852258', '654852', 'Rua Maceio', '150', 'prox. do shop', 'Adrianopolis', '69057-000', '..imagens/bd_logo.png' ,date ( "Y-m-d H:i:s" ) , date ( "Y-m-d H:i:s" ), $locale, $imposto );
 $atualizarEmpresa = new EmpresaControl ( $atualize );
 
 $atualizarEmpresa->atualizar ();  // DESCOMENTAR QUANDO CONSERTAR O BANCO
@@ -76,9 +86,11 @@ var_dump ( $listaDeNomes );
  * DELETAR> Pega o ultimo Id cadastrado e
  * subtrai 1, e passa para o controler apagar 
  */ 
-$id = $id - 1;
-echo '<h3>Deleta o penultima EMPRESA cadastrado. Id: '. $id .'</h3>';
-
-$deleta = new Empresa($id);
-$deletarControl = new EmpresaControl($deleta);
-$deletarControl->deletar();
+ if ($id>4){
+		$id = $id - 1;
+		echo '<h3>Deleta o penultima EMPRESA cadastrado. Id: '. $id .'</h3>';
+		
+		$deleta = new Empresa($id);
+		$deletarControl = new EmpresaControl($deleta);
+		$deletarControl->deletar();
+ }
