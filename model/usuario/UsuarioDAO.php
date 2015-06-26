@@ -76,7 +76,7 @@ class UsuarioDAO {
 	}
 	
 	/* -- Listar Todos -- */
-	function listarTodos(Usuario $o_usuario) {
+	function listarTodos() {
 		$this->sql = "SELECT * FROM usuario";
 		$result = mysqli_query ( $this->con, $this->sql );
 		if (! $result) {
@@ -96,7 +96,7 @@ class UsuarioDAO {
 			
 			$this->o_usuario = new Usuario ( $row->id, $row->nome, $row->usuario, $row->senha, $row->email, $row->ativo, $row->datacadastro, $row->dataedicao, $perfil, $pessoafisica );
 			
-			$this->lista [] = $this->$o_usuario;
+			$this->lista [] = $this->o_usuario;
 		}
 		
 		return $this->lista;

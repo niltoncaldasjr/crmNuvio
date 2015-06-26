@@ -70,3 +70,9 @@ echo '<h3>Deleta o penultimo USUARIO cadastrado. Id: '. $id .'</h3>';
 $deleta = new Usuario($id);
 $deletarControl = new UsuarioControl($deleta);
 $deletarControl->deletar();
+
+echo '<h3>Listar todos Usuario</h3>';
+$usertest =new Usuario(1,'Fabaino');
+$listar = new UsuarioControl($usertest);
+$todos = $listar->listarTodos();
+var_dump($todos);
