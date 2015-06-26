@@ -1,5 +1,4 @@
 <?php
-var_dump($_POST);
 require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'model/empresausuario/EmpresaUsuario.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'control/EmpresaUsuarioControl.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'model/empresa/Empresa.php';
@@ -65,7 +64,7 @@ $listaEmpresaUsuario = $objEmpresaUsuarioControl->listarTodos();
 	</form>
 	
 	<h1>Buscando Empresa Usuario por ID</h1>
-	Perfil Rotina:
+	Empresa Usuario:
 	<form action="" method="post">
 		<select id='empresausuario' name='empresausuario'>
 			<option value='0'>Selecione o empresa</option>
@@ -81,41 +80,41 @@ $listaEmpresaUsuario = $objEmpresaUsuarioControl->listarTodos();
 		<input type="submit" id="buscar" name="buscar" value="buscar">
 	</form>
 	
-	<h1>Alterando Perfil Rotina</h1>
-	Perfil Rotina:
+	<h1>Alterando Empresa Usuario</h1>
+	Empresa Usuario:
 	<form action="" method="post">
-		<select id='perfilrotina' name='perfilrotina'>
-			<option value='0'>Selecione o perfil rotina</option>
+		<select id='empresausuario' name='empresausuario'>
+			<option value='0'>Selecione o empresa rotina</option>
 			<?php 
-			foreach ($listaPerfilRotina as $perfilRotina)
+			foreach ($listaEmpresaUsuario as $empresausuario)
 			{
 				?>
-				<option value='<?php echo $perfilRotina->getId() ?>'>ID: <?php echo $perfilRotina->getId() ?></option>
+				<option value='<?php echo $empresausuario->getId() ?>'>ID: <?php echo $empresausuario->getId() ?></option>
 				<?php
 			}
 			?>
 		</select>
-		Perfil:
-		<select id='perfil' name='perfil'>
-			<option value='0'>Selecione o perfil</option>
+		Empresa:
+		<select id='empresa' name='empresa'>
+			<option value='0'>Selecione a empresa</option>
 			<?php 
-			foreach ($listaPerfil as $perfil)
+			foreach ($listaEmpresa as $empresa)
 			{
 				?>
-				<option value='<?php echo $perfil->getId() ?>'><?php echo $perfil->getNome() ?></option>
+				<option value='<?php echo $empresa->getId() ?>'><?php echo $empresa->getNomeFantasia() ?></option>
 				<?php
 			}
 			?>
 		
 		</select>
-		Rotina:
-		<select id='rotina' name='rotina'>
+		Usuario:
+		<select id='usuario' name='usuario'>
 			<option value='0'>Selecione a rotina</option>
 			<?php 
-			foreach ($listaRotina as $rotina)
+			foreach ($listaUsuario as $usuario)
 			{
 				?>
-				<option value='<?php echo $rotina->getId() ?>'><?php echo $rotina->getNome() ?></option>
+				<option value='<?php echo $usuario->getId() ?>'><?php echo $usuario->getNome() ?></option>
 				<?php
 			}
 			?>
@@ -123,15 +122,15 @@ $listaEmpresaUsuario = $objEmpresaUsuarioControl->listarTodos();
 		<input type="submit" id="alterar" name="alterar" value="alterar">
 	</form>
 	
-	<h1>Deletando Perfil Rotina</h1>
+	<h1>Deletando Empresa Usuario</h1>
 	<form action="" method="post">
-		<select id='perfilrotina' name='perfilrotina'>
-			<option value='0'>Selecione o perfil</option>
+		<select id='empresausuario' name='empresausuario'>
+			<option value='0'>Selecione o Empresa Usuario</option>
 			<?php 
-			foreach ($listaPerfilRotina as $perfilRotina)
+			foreach ($listaEmpresaUsuario as $empresausuario)
 			{
 				?>
-				<option value='<?php echo $perfilRotina->getId() ?>'>ID: <?php echo $perfilRotina->getId() ?></option>
+				<option value='<?php echo $empresausuario->getId() ?>'>ID: <?php echo $empresausuario->getId() ?></option>
 				<?php
 			}
 			?>
@@ -157,14 +156,14 @@ if(isset($_POST['cadastrar']))
 		$objEmpresa = new Empresa($_POST['empresa']);
 		$objUsuario = new Usuario($_POST['usuario']);
 		$objEmpresaUsuario = new EmpresaUsuario();
-		$objEmpresaUsuario->setOdjEmpresa($objEmpresa);
+		$objEmpresaUsuario->setObjEmpresa($objEmpresa);
 		$objEmpresaUsuario->setObjUsuario($objUsuario);
 		
 		$objEmpresaUsuarioControl = new EmpresaUsuarioControl($objEmpresaUsuario);
-		$objEmpresaUsuario = $objEmpresaUsuarioControl->cadastrar();
+		$id = $objEmpresaUsuarioControl->cadastrar();
 
 		echo "</br><font color='BLACK'> >>> CADASTRO <<< </font></br>";
-		echo "<font color='BLUE'>[INFO]: SUCESSO! ID: ". $objEmpresaUsuario ."</font>";
+		echo "<font color='BLUE'>[INFO]: SUCESSO! ID: ". $id ."</font>";
 	}catch(Exception $e){
 		echo "<font color='RED'>[ERRO]:". $e->getMessage() ."</font></br>";
 	}
@@ -179,7 +178,7 @@ if(isset($_POST['buscar']))
 		$objEmpresaUsuario = $objEmpresaControl->buscarPorId();
 
 		echo "</br><font color='BLACK'> >>> Busca <<< </font></br>";
-		echo "<font color='BLUE'>[INFO]: SUCESSO! ". $objEmpresaUsuario->jsonSerialize() ."</font>";
+		echo "<font color='BLUE'>[INFO]: SUCESSO! ". $objEmpresaUsuario->toString() ."</font>";
 	}catch(Exception $e){
 		echo "<font color='RED'>[ERRO]:". $e->getMessage() ."</font></br>";
 	}
@@ -189,19 +188,18 @@ if(isset($_POST['buscar']))
 if(isset($_POST['alterar']))
 {
 	try{
-		$objRotina = new Rotina($_POST['rotina']);
-		$objPerfil = new Perfil($_POST['perfil']);
 		
-		$objPerfilRotina = new PerfilRotina();
-		$objPerfilRotina->setId($_POST['perfilrotina']);
-		$objPerfilRotina->setObjPerfil($objPerfil);
-		$objPerfilRotina->setObjRotina($objRotina);
+		$objEmpresa = new Empresa($_POST['empresa']);
+		$objUsuario = new Usuario($_POST['usuario']);
+		$objEmpresaUsuario = new EmpresaUsuario();
+		$objEmpresaUsuario->setObjEmpresa($objEmpresa);
+		$objEmpresaUsuario->setObjUsuario($objUsuario);
 		
-		$objPerfilRotinaControl = new PerfilRotinaControl($objPerfilRotina);
-		$objPerfilRotina = $objPerfilRotinaControl->atualizar();
+		$objEmpresaUsuarioControl = new EmpresaUsuarioControl($objEmpresaUsuario);
+		$id = $objEmpresaUsuarioControl->atualizar();
 
 		echo "</br><font color='BLACK'> >>> ALTUALIZANDO <<< </font></br>";
-		echo "<font color='BLUE'>[INFO]: SUCESSO! ". $objPerfilRotina->toString() ."</font>";
+		echo "<font color='BLUE'>[INFO]: Alterado com SUCESSO! </font>";
 	}catch(Exception $e){
 		echo "<font color='RED'>[ERRO]:". $e->getMessage() ."</font></br>";
 	}
@@ -211,12 +209,12 @@ if(isset($_POST['alterar']))
 if(isset($_POST['deletar']))
 {
 	try{
-		$objPerfilRotina = new PerfilRotina($_POST['perfilrotina']);
-		$objPerfilRotinaControl = new PerfilRotinaControl($objPerfilRotina);
-		$objPerfilRotina = $objPerfilRotinaControl->deletar();
+		$objEmpresaUsuario = new EmpresaUsuario($_POST['empresausuario']);
+		$objEmpresaUsuarioControl = new EmpresaUsuarioControl($objEmpresaUsuario);
+		$objEmpresaUsuario = $objEmpresaUsuarioControl->deletar();
 	
 		echo "</br><font color='BLACK'> >>> DELETANDO <<< </font></br>";
-		echo "<font color='BLUE'>[INFO]: SUCESSO! ". $objPerfilRotina->getId()."</font>";
+		echo "<font color='BLUE'>[INFO]: SUCESSO! ". $objEmpresaUsuario->getId()."</font>";
 	}catch(Exception $e){
 		echo "<font color='RED'>[ERRO]:". $e->getMessage() ."</font></br>";
 	}
@@ -226,12 +224,12 @@ if(isset($_POST['deletar']))
 if(isset($_POST['listar']))
 {
 	try{
-		$objPerfilRotina = new PerfilRotina(null);
-		$objPerfilRotinaControl = new PerfilRotinaControl($objPerfilRotina);
-		$lista = $objPerfilRotinaControl->listarTodos();
+		$objEmpresaUsuario = new EmpresaUsuario();
+		$objEmpresaUsuarioControl = new EmpresaUsuarioControl($objEmpresaUsuario);
+		$lista = $objEmpresaUsuarioControl->listarTodos();
 		echo "</br><font color='BLACK'> >>> LISTANDO <<< </font></br>";
-		foreach ($lista as $objPerfilRotina){
-			echo "<font color='BLUE'>[INFO]: SUCESSO! ". $objPerfilRotina->toString()."</font></br>";
+		foreach ($lista as $objEmpresaUsuario){
+			echo "<font color='BLUE'>[INFO]: SUCESSO! ". $objEmpresaUsuario->toString()."</font></br>";
 		}
 		
 	}catch(Exception $e){

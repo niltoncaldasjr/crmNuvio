@@ -2,13 +2,13 @@
 class EmpresaUsuario implements JsonSerializable{
 	
 	private $id;
-	private $odjEmpresa;
+	private $objEmpresa;
 	private $objUsuario;
 	private $datacadastro;
 	
-        function __construct($id=null, Empresa $odjEmpresa=null, Usuario $objUsuario=null, $datacadastro=null) {
+        function __construct($id=null, Empresa $objEmpresa=null, Usuario $objUsuario=null, $datacadastro=null) {
             $this->id = $id;
-            $this->odjEmpresa = $odjEmpresa;
+            $this->objEmpresa = $objEmpresa;
             $this->objUsuario = $objUsuario;
             $this->datacadastro = $datacadastro;
         }
@@ -17,8 +17,8 @@ class EmpresaUsuario implements JsonSerializable{
             return $this->id;
         }
 
-        function getOdjEmpresa() {
-            return $this->odjEmpresa;
+        function getObjEmpresa() {
+            return $this->objEmpresa;
         }
 
         function getObjUsuario() {
@@ -33,8 +33,8 @@ class EmpresaUsuario implements JsonSerializable{
             $this->id = $id;
         }
 
-        function setOdjEmpresa($odjEmpresa) {
-            $this->odjEmpresa = $odjEmpresa;
+        function setObjEmpresa($objEmpresa) {
+            $this->objEmpresa = $objEmpresa;
         }
 
         function setObjUsuario($objUsuario) {
@@ -44,17 +44,18 @@ class EmpresaUsuario implements JsonSerializable{
         function setDatacadastro($datacadastro) {
             $this->datacadastro = $datacadastro;
         }
-        
+
+                
         public function toString()
         {
-//         	return sprintf("EmpresaUsuario: [ID: %d, DataCadastro: %s, Empresa: %s[ID:%d], Usuario: %s[ID:%d]]", $this->id, $this->datacadastro,  $this->, $this->objRotina->getId(), $this->objPerfil->getNome(), $this->objPerfil->getId());
+        	return sprintf("EmpresaUsuario: [ID: %d, DataCadastro: %s, Empresa: %s[ID:%d], Usuario: %s[ID:%d]]", $this->id, $this->datacadastro,  $this->objEmpresa->getNomeFantasia(), $this->objEmpresa->getId(), $this->objUsuario->getNome(), $this->objUsuario->getId());
         }
 
                 
 	public function jsonSerialize() {
 		$empresausuario [] = [ 
 				'id' => $this->id,
-				'idempresa' => $this->odjEmpresa,
+				'idempresa' => $this->objEmpresa,
 				'idusuario' => $this->objUsuario,
 				'datacadastro' => $this->datacadastro 
 		];

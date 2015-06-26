@@ -19,7 +19,7 @@ class EmpresaUsuarioDAO{
 	/*-- Metodo Cadastrar --*/
 	function cadastrar(EmpresaUsuario $objEmpresaUsuario){
 		$this->sql = sprintf("INSERT INTO empresausuario (idempresa, idusuario) VALUES(%d, %d)",
-				mysqli_real_escape_string( $this->con, $objEmpresaUsuario->getOdjEmpresa()->getId() ),
+				mysqli_real_escape_string( $this->con, $objEmpresaUsuario->getObjEmpresa()->getId() ),
 				mysqli_real_escape_string( $this->con, $objEmpresaUsuario->getObjUsuario()->getId() ) );
 	
 		if(!mysqli_query($this->con, $this->sql)){
@@ -31,7 +31,7 @@ class EmpresaUsuarioDAO{
 	/*-- Metodo Atualizar --*/
 	function atualizar(EmpresaUsuario $objEmpresaUsuario){
 		$this->sql = sprintf("UPDATE empresausuario SET idempresa = %d, idusuario = %d WHERE id = %d",
-				mysqli_real_escape_string( $this->con, $objEmpresaUsuario->getOdjEmpresa()->getId() ),
+				mysqli_real_escape_string( $this->con, $objEmpresaUsuario->getObjEmpresa()->getId() ),
 				mysqli_real_escape_string( $this->con, $objEmpresaUsuario->getObjUsuario()->getId() ), 
 				mysqli_real_escape_string( $this->con, $objEmpresaUsuario->getId() ));
 		
