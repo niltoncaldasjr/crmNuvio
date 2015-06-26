@@ -195,7 +195,7 @@ if(isset($_POST['alterar']))
 		$objLead = new Lead($_POST['Lead']);
 		$objUsuario = new Usuario($_POST['Usuario']);
 		
-		$objContatoLead = new ContatoLead($_POST['Lead']);
+		$objContatoLead = new ContatoLead($_POST['ContatoLead']);
 		$objContatoLead->setDatacontato($_POST['datacontato']);
 		$objContatoLead->setDescricao($_POST['descricao']);
 		$objContatoLead->setDataretorno($_POST['dataretorno']);

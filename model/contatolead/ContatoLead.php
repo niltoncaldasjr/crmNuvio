@@ -26,7 +26,7 @@ class ContatoLead implements JsonSerializable{
 		Lead 	$objLead 	= NULL
 	)
 	{
-		$this->id = $id;
+		$this->id 			= $id;
 		$this->datacontato 	= $datacontato;
 		$this->descricao 	= $descricao;
 		$this->dataretorno 	= $dataretorno;
@@ -54,6 +54,10 @@ class ContatoLead implements JsonSerializable{
 	public function getDataretorno() {
 		return $this->dataretorno;
 	}
+	public function setDataretorno($dataretorno) {
+		$this->dataretorno = $dataretorno;
+		return $this;
+	}
 	public function getDescricao() {
 		return $this->descricao;
 	}
@@ -61,10 +65,7 @@ class ContatoLead implements JsonSerializable{
 		$this->descricao = $descricao;
 		return $this;
 	}
-	public function setDataretorno($dataretorno) {
-		$this->dataretorno = $dataretorno;
-		return $this;
-	}
+	
 	public function getDatacadastro() {
 		return $this->datacadastro;
 	}
@@ -105,7 +106,7 @@ class ContatoLead implements JsonSerializable{
 	
 	public function jsonSerialize() {
 		return [
-			'id' => $this->id,
+			'id' 			=> $this->id,
 			'datacontato' 	=> $this->datacontato,
 			'descricao'		=> $this->descricao,
 			'dataretorno' 	=> $this->dataretorno,
