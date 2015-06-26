@@ -24,8 +24,8 @@ class ContaBancoControl{
 	function deletar(){
 		return $this->objContaBancoDAO->deletar($this->objContaBanco);
 	}
-	function buscarPorID(){
-		return $this->objContaBancoDAO->buscarPorID($this->objContaBanco);
+	function buscarPorId(){
+		return $this->objContaBancoDAO->buscarPorId($this->objContaBanco);
 	}
 	function listarTodos(){
 		return $this->objContaBancoDAO->listarTodos($this->objContaBanco);

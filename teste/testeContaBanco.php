@@ -1,10 +1,10 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'model/contabanco/ContaBanco.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'model/contaBanco/ContaBanco.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'control/ContaBancoControl.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'model/contabanco/ContaBancoDao.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'model/banco/Banco.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'model/contaBanco/ContaBancoDao.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'model/Banco/Banco.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'control/BancoControl.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'model/empresa/Empresa.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'model/Empresa/Empresa.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'control/EmpresaControl.php';
 
 /*-- Lista de Banco --*/
@@ -36,10 +36,8 @@ $listaContaBanco = $objContaBancoControl->listarTodos();
 		N.Convenio: <input type="text" name="numeroConvenio"/>
 		NomeCont:<input type="text" name="nomeContato">
 		Tel.Cont:<input type="text" name="telefoneContato">
-		DataCadastro: <input type="text" name="datacadastro">
-		DataEdicao: <input type="text" name="dataedicao">
 		Banco:
-		<select id='banco' name='banco'>
+		<select id='Banco' name='Banco'>
 			<option value='0'>Selecione o Banco</option>
 			<?php 
 			foreach ($listaBanco as $Banco)
@@ -52,7 +50,7 @@ $listaContaBanco = $objContaBancoControl->listarTodos();
 		
 		</select>
 		Empresa:
-		<select id='empresa' name='empresa'>
+		<select id='Empresa' name='Empresa'>
 			<option value='0'>Selecione a Empresa</option>
 			<?php 
 			foreach ($listaEmpresa as $Empresa)
@@ -67,10 +65,10 @@ $listaContaBanco = $objContaBancoControl->listarTodos();
 	</form>
 	
 	<h1>Buscando ContaBanco por ID</h1>
-	Banco Empresa:
+	ContaBanco:
 	<form action="" method="post">
 		<select id='ContaBanco' name='ContaBanco'>
-			<option value='0'>Selecione o Banco</option>
+			<option value='0'>Selecione a ContaBanco</option>
 			<?php 
 			foreach ($listaContaBanco as $ContaBanco)
 			{
@@ -84,7 +82,7 @@ $listaContaBanco = $objContaBancoControl->listarTodos();
 	</form>
 	
 	<h1>Alterando ContaBanco</h1>
-	Banco Empresa:
+	contaBanco:
 	<form action="" method="post">
 		<select id='ContaBanco' name='ContaBanco'>
 			<option value='0'>Selecione o ContaBanco</option>
@@ -107,7 +105,7 @@ $listaContaBanco = $objContaBancoControl->listarTodos();
 		Tel.Cont:<input type="text" name="telefoneContato">
 		DataEdicao: <input type="text" name="dataedicao">
 		Banco:
-		<select id='banco' name='banco'>
+		<select id='Banco' name='Banco'>
 			<option value='0'>Selecione o Banco</option>
 			<?php 
 			foreach ($listaBanco as $Banco)
@@ -120,7 +118,7 @@ $listaContaBanco = $objContaBancoControl->listarTodos();
 		
 		</select>
 		Empresa:
-		<select id='empresa' name='empresa'>
+		<select id='Empresa' name='Empresa'>
 			<option value='0'>Selecione a Empresa</option>
 			<?php 
 			foreach ($listaEmpresa as $Empresa)
@@ -134,7 +132,7 @@ $listaContaBanco = $objContaBancoControl->listarTodos();
 		<input type="submit" id="alterar" name="alterar" value="alterar">
 	</form>
 	
-	<h1>Deletando Banco Empresa</h1>
+	<h1>Deletando contaBanco</h1>
 	<form action="" method="post">
 		<select id='ContaBanco' name='ContaBanco'>
 			<option value='0'>Selecione o Banco</option>
@@ -150,7 +148,7 @@ $listaContaBanco = $objContaBancoControl->listarTodos();
 		<input type="submit" id="deletar" name="deletar" value="deletar">
 	</form>
 	
-	<h1>Listando Todos Banco Empresa</h1>
+	<h1>Listando Todos ContaBanco</h1>
 	<form action="" method="post">
 	Listar todos:
 	<input type="submit" id="listar" name="listar" value="listar">
@@ -169,15 +167,13 @@ if(isset($_POST['cadastrar']))
 		$objBanco = new Banco($_POST['Banco']);
 		$objContaBanco = new ContaBanco();
 		$objContaBanco->setAgencia($_POST['agencia']);
-		$objContaBanco->setAgencia($_POST['digitoAgencia']);
-		$objContaBanco->setAgencia($_POST['numeroConta']);
-		$objContaBanco->setAgencia($_POST['digitoConta']);
-		$objContaBanco->setAgencia($_POST['numeroCarteira']);
-		$objContaBanco->setAgencia($_POST['numeroConvenio']);
-		$objContaBanco->setAgencia($_POST['nomeContato']);
-		$objContaBanco->setAgencia($_POST['telefoneContato']);
-		$objContaBanco->setAgencia($_POST['dataCadastro']);
-		$objContaBanco->setAgencia($_POST['dataEdicao']);
+		$objContaBanco->setdigitoAgencia($_POST['digitoAgencia']);
+		$objContaBanco->setNumeroConta($_POST['numeroConta']);
+		$objContaBanco->setDigitoConta($_POST['digitoConta']);
+		$objContaBanco->setNumeroCarteira($_POST['numeroCarteira']);
+		$objContaBanco->setNumeroConvenio($_POST['numeroConvenio']);
+		$objContaBanco->setNomeContato($_POST['nomeContato']);
+		$objContaBanco->setTelefoneContato($_POST['telefoneContato']);
 		$objContaBanco->setObjBanco($objBanco);
 		$objContaBanco->setObjEmpresa($objEmpresa);
 		
@@ -185,7 +181,7 @@ if(isset($_POST['cadastrar']))
 		$objContaBanco = $objContaBancoControl->cadastrar();
 
 		echo "</br><font color='BLACK'> >>> CADASTRO <<< </font></br>";
-		echo "<font color='BLUE'>[INFO]: SUCESSO! ". $objContaBanco->toString() ."</font>";
+		echo "<font color='BLUE'>[INFO]: SUCESSO! ". $objContaBanco->__toString() ."</font>";
 	}catch(Exception $e){
 		echo "<font color='RED'>[ERRO]:". $e->getMessage() ."</font></br>";
 	}
@@ -197,10 +193,10 @@ if(isset($_POST['buscar']))
 	try{
 		$objContaBanco = new ContaBanco($_POST['ContaBanco']);
 		$objContaBancoControl = new ContaBancoControl($objContaBanco);
-		$objContaBanco = $objContaBancoControl->buscarPorID();
+		$objContaBanco = $objContaBancoControl->buscarPorId();
 
 		echo "</br><font color='BLACK'> >>> Busca <<< </font></br>";
-		echo "<font color='BLUE'>[INFO]: SUCESSO! ". $objContaBanco->toString()."</font>";
+		echo "<font color='BLUE'>[INFO]: SUCESSO! ". $objContaBanco->__toString()."</font>";
 	}catch(Exception $e){
 		echo "<font color='RED'>[ERRO]:". $e->getMessage() ."</font></br>";
 	}
@@ -213,16 +209,15 @@ if(isset($_POST['alterar']))
 		$objEmpresa = new Empresa($_POST['Empresa']);
 		$objBanco = new Banco($_POST['Banco']);
 		
-		$objContaBanco = new ContaBanco();
+		$objContaBanco = new ContaBanco($_POST['ContaBanco']);
 		$objContaBanco->setAgencia($_POST['agencia']);
-		$objContaBanco->setAgencia($_POST['digitoAgencia']);
-		$objContaBanco->setAgencia($_POST['numeroConta']);
-		$objContaBanco->setAgencia($_POST['digitoConta']);
-		$objContaBanco->setAgencia($_POST['numeroCarteira']);
-		$objContaBanco->setAgencia($_POST['numeroConvenio']);
-		$objContaBanco->setAgencia($_POST['nomeContato']);
-		$objContaBanco->setAgencia($_POST['telefoneContato']);
-		$objContaBanco->setAgencia($_POST['dataEdicao']);
+		$objContaBanco->setdigitoAgencia($_POST['digitoAgencia']);
+		$objContaBanco->setNumeroConta($_POST['numeroConta']);
+		$objContaBanco->setDigitoConta($_POST['digitoConta']);
+		$objContaBanco->setNumeroCarteira($_POST['numeroCarteira']);
+		$objContaBanco->setNumeroConvenio($_POST['numeroConvenio']);
+		$objContaBanco->setNomeContato($_POST['nomeContato']);
+		$objContaBanco->setTelefoneContato($_POST['telefoneContato']);
 		$objContaBanco->setObjBanco($objBanco);
 		$objContaBanco->setObjEmpresa($objEmpresa);
 		
@@ -231,7 +226,7 @@ if(isset($_POST['alterar']))
 		$objContaBanco = $objContaBancoControl->atualizar();
 
 		echo "</br><font color='BLACK'> >>> ALTUALIZANDO <<< </font></br>";
-		echo "<font color='BLUE'>[INFO]: SUCESSO! ". $objContaBanco->toString() ."</font>";
+		echo "<font color='BLUE'>[INFO]: SUCESSO! ". $objContaBanco->__toString() ."</font>";
 	}catch(Exception $e){
 		echo "<font color='RED'>[ERRO]:". $e->getMessage() ."</font></br>";
 	}
@@ -261,7 +256,7 @@ if(isset($_POST['listar']))
 		$lista = $objContaBancoControl->listarTodos();
 		echo "</br><font color='BLACK'> >>> LISTANDO <<< </font></br>";
 		foreach ($lista as $objContaBanco){
-			echo "<font color='BLUE'>[INFO]: SUCESSO! ". $objContaBanco->toString()."</font></br>";
+			echo "<font color='BLUE'>[INFO]: SUCESSO! ". $objContaBanco->__toString()."</font></br>";
 		}
 		
 	}catch(Exception $e){

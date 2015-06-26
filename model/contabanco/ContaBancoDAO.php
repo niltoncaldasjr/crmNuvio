@@ -18,8 +18,8 @@ class ContaBancoDAO{
 	
 	/*-- Metodo Cadastrar --*/
 	function cadastrar(ContaBanco $objContaBanco){
-		$this->sql = sprintf("INSERT INTO contabanco (agencia, digitoAgencia, numeroConta, digitoConta, numeroCarteira, numeroConvenio, nomeContato, telefoneContato, datacadastro, dataedicao, idbanco, idempresa) 
-				VALUES('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', %d, %d)",
+		$this->sql = sprintf("INSERT INTO contabanco (agencia, digitoAgencia, numeroConta, digitoConta, numeroCarteira, numeroConvenio, nomeContato, telefoneContato, idbanco, idempresa) 
+				VALUES('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', %d, %d)",
 				mysqli_real_escape_string( $this->con, $objContaBanco->getAgencia() ),
 				mysqli_real_escape_string( $this->con, $objContaBanco->getdigitoAgencia() ),
 				mysqli_real_escape_string( $this->con, $objContaBanco->getNumeroConta() ),
@@ -28,8 +28,6 @@ class ContaBancoDAO{
 				mysqli_real_escape_string( $this->con, $objContaBanco->getNumeroConvenio() ),
 				mysqli_real_escape_string( $this->con, $objContaBanco->getNomeContato() ),
 				mysqli_real_escape_string( $this->con, $objContaBanco->getTelefoneContato() ),
-				mysqli_real_escape_string( $this->con, $objContaBanco->getdatacadastro() ),
-				mysqli_real_escape_string( $this->con, $objContaBanco->getdataedicao() ),
 				mysqli_real_escape_string( $this->con, $objContaBanco->getObjBanco()->getId() ),
 				mysqli_real_escape_string( $this->con, $objContaBanco->getObjEmpresa()->getId() ) );
 				
@@ -71,7 +69,7 @@ class ContaBancoDAO{
 	}
 	
 	/*-- Buscar por ID --*/
-	function buscarPorID(ContaBanco $objContaBanco){
+	function buscarPorId(ContaBanco $objContaBanco){
 		$this->sql = sprintf("SELECT * FROM contabanco WHERE id = %d",
 				mysqli_real_escape_string( $this->con, $objContaBanco->getId() ) );
 		
