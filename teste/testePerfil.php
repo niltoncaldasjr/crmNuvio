@@ -40,7 +40,7 @@ $perf = $buscaporId->buscarPorId ();
 var_dump ( $perf );
 
 echo '<h3>Atualiza perfil</h3>';
-$p_atualize = new Perfil ( $id, 'Diretor', 0, null, date ( "Y-m-d H:i:s" ) );
+$p_atualize = new Perfil ( $id-1, 'Diretor', 0, null, date ( "Y-m-d H:i:s" ) );
 $atualizar = new PerfilControl ( $p_atualize );
 $atualizar->atualizar ();
 $atualizado = $atualizar->buscarPorId ();
@@ -63,4 +63,6 @@ $deleta = new Perfil($id);
 $deletarControl = new PerfilControl($deleta);
 $deletarControl->deletar();
 
-
+$control = new PerfilControl();
+$todos = $control->listarTodos();
+var_dump($todos);
