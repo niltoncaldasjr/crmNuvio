@@ -1,6 +1,8 @@
 <?php
 require_once $_SERVER ['DOCUMENT_ROOT'] . '/crmNuvio/' . 'model/usuario/Usuario.php';
-// require_once $_SERVER ['DOCUMENT_ROOT'] . "/crmNuvio/" . 'util/Utils.php';
+require_once $_SERVER ['DOCUMENT_ROOT'] . '/crmNuvio/' . 'model/perfil/Perfil.php';
+require_once $_SERVER ['DOCUMENT_ROOT'] . '/crmNuvio/' . 'model/pessoafisica/PessoaFisica.php';
+
 class UsuarioDAO {
 	private $con;
 	private $sql;
