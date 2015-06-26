@@ -15,7 +15,7 @@ class Usuario implements JsonSerializable {
             $this->id = $id;
             $this->nome = $nome;
             $this->usuario = $usuario;
-            $this->senha = $senha;
+            $this->senha = md5($senha);
             $this->email = $email;
             $this->ativo = $ativo;
             $this->datacadastro = $datacadastro;
@@ -77,7 +77,7 @@ class Usuario implements JsonSerializable {
         }
 
         function setSenha($senha) {
-            $this->senha = $senha;
+            $this->senha = md5($senha);
         }
 
         function setEmail($email) {

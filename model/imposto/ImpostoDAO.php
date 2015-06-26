@@ -40,10 +40,10 @@ class ImpostoDAO {
 			die ( 'Error: ' . mysqli_error ( $this->con ) );
 		}
 		
-		// var_dump($o_imposto);
+	
 	}
 	function deletar(Imposto $o_imposto) {
-		$this->sql = sprintf ( "DELETE FROM usuario WHERE id = %d", 
+		$this->sql = sprintf ( "DELETE FROM imposto WHERE id = %d", 
 				mysqli_real_escape_string ( $this->con, $o_imposto->getId () ) );
 		if (! mysqli_query ( $this->con, $this->sql )) {
 			die ( '[ERRO]: ' . mysqli_error ( $this->con ) );
