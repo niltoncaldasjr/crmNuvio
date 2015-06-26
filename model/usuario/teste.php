@@ -1,2 +1,2 @@
 <?php
-echo da
+echo date
