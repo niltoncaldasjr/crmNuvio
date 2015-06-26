@@ -47,7 +47,7 @@ class EmpresaUsuario implements JsonSerializable{
         
         public function toString()
         {
-        	return sprintf("EmpresaUsuario: [ID: %d, DataCadastro: %s, Empresa: %s[ID:%d], Usuario: %s[ID:%d]]", $this->id, $this->datacadastro,  $this->, $this->objRotina->getId(), $this->objPerfil->getNome(), $this->objPerfil->getId());
+//         	return sprintf("EmpresaUsuario: [ID: %d, DataCadastro: %s, Empresa: %s[ID:%d], Usuario: %s[ID:%d]]", $this->id, $this->datacadastro,  $this->, $this->objRotina->getId(), $this->objPerfil->getNome(), $this->objPerfil->getId());
         }
 
                 
