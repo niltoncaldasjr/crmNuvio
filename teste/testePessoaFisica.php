@@ -8,8 +8,8 @@ try{
 	
 	$objPessoaFisica = new PessoaFisica();
 	$objPessoaFisica->setNome('Manuel');
-	$objPessoaFisica->setCpf('000.000.000-00');
-	$objPessoaFisica->setDatanascimento('2000/05/25');
+	$objPessoaFisica->setCpf('00011122200');
+	$objPessoaFisica->setDatanascimento('2000-05-25');
 	$objPessoaFisica->setEstadocivil('SOLTEIRO');
 	$objPessoaFisica->setSexo('MASCULINO');
 	$objPessoaFisica->setNomepai('Jao');
@@ -46,7 +46,7 @@ try{
 	$objPessoaFisicaControl = new PessoaFisicaControl($objPessoaFisica);
 	$objPessoaFisica = $objPessoaFisicaControl->buscarPorID();
 	$objPessoaFisica->setNome('Renata Fernanda');
-	$objPessoaFisica->setDataedicao('2015/06/22 17:00:00');
+	$objPessoaFisica->setDataedicao('2015-06-22 17:00:00');
 	$objPessoaFisicaControl = new PessoaFisicaControl($objPessoaFisica);
 	$objPessoaFisica = $objPessoaFisicaControl->atualizar();
 	echo "<font color='BLACK'>====================/- ALTERACAO -/=========================== </font></br>";
