@@ -31,8 +31,6 @@ $listaContatoLead = $objContatoLeadControl->listarTodos();
 		DataContato: <input type="text" name="datacontato"/>
 		Descricao : <input type="text" name="descricao"/>
 		DataRetorno: <input type="text" name="dataretorno"/>
-		DataCadastro: <input type="text" name="datacadastro"/>
-		DataEdicao: <input type="text" name="dataedicao"/>
 		Usuario:
 		<select id='Usuario' name='Usuario'>
 			<option value='0'>Selecione o Usuario</option>
@@ -62,15 +60,15 @@ $listaContatoLead = $objContatoLeadControl->listarTodos();
 	</form>
 	
 	<h1>Buscando ContatoLead por ID</h1>
-	Usuario Lead:
+	ContatoLead:
 	<form action="" method="post">
 		<select id='ContatoLead' name='ContatoLead'>
-			<option value='0'>Selecione o Usuario</option>
+			<option value='0'>Selecione o ContatoLead</option>
 			<?php 
 			foreach ($listaContatoLead as $ContatoLead)
 			{
 				?>
-				<option value='<?php echo $ContatoLead->getId() ?>'>Conta: <?php echo $ContatoLead->getNumeroConta() ?></option>
+				<option value='<?php echo $ContatoLead->getId() ?>'>Desc: <?php echo $ContatoLead->getDescricao()?></option>
 				<?php
 			}
 			?>
@@ -79,7 +77,7 @@ $listaContatoLead = $objContatoLeadControl->listarTodos();
 	</form>
 	
 	<h1>Alterando ContatoLead</h1>
-	Usuario Lead:
+	ContatoLead:
 	<form action="" method="post">
 		<select id='ContatoLead' name='ContatoLead'>
 			<option value='0'>Selecione o ContatoLead</option>
@@ -87,7 +85,7 @@ $listaContatoLead = $objContatoLeadControl->listarTodos();
 			foreach ($listaContatoLead as $ContatoLead)
 			{
 				?>
-				<option value='<?php echo $ContatoLead->getId() ?>'>Conta: <?php echo $ContatoLead->getNumeroConta() ?></option>
+				<option value='<?php echo $ContatoLead->getId() ?>'>Desc: <?php echo $ContatoLead->getDescricao() ?></option>
 				<?php
 			}
 			?>
@@ -116,7 +114,7 @@ $listaContatoLead = $objContatoLeadControl->listarTodos();
 			foreach ($listaLead as $Lead)
 			{
 				?>
-				<option value='<?php echo $Lead->getId() ?>'><?php echo $Lead->getNomeReduzido() ?></option>
+				<option value='<?php echo $Lead->getId() ?>'><?php echo $Lead->getEmpresa() ?></option>
 				<?php
 			}
 			?>
@@ -127,12 +125,12 @@ $listaContatoLead = $objContatoLeadControl->listarTodos();
 	<h1>Deletando ContatoLead</h1>
 	<form action="" method="post">
 		<select id='ContatoLead' name='ContatoLead'>
-			<option value='0'>Selecione o Usuario</option>
+			<option value='0'>Selecione o ContatoLead</option>
 			<?php 
 			foreach ($listaContatoLead as $ContatoLead)
 			{
 				?>
-				<option value='<?php echo $ContatoLead->getId() ?>'>Conta: <?php echo $ContatoLead->getNumeroConta() ?></option>
+				<option value='<?php echo $ContatoLead->getId() ?>'>Desc: <?php echo $ContatoLead->getDescricao() ?></option>
 				<?php
 			}
 			?>
@@ -162,8 +160,6 @@ if(isset($_POST['cadastrar']))
 		$objContatoLead->setDatacontato($_POST['datacontato']);
 		$objContatoLead->setDescricao($_POST['descricao']);
 		$objContatoLead->setDataretorno($_POST['dataretorno']);
-		$objContatoLead->setDatacadastro($_POST['datacadastro']);
-		$objContatoLead->setDataedicao($_POST['dataedicao']);
 		$objContatoLead->setObjUsuario($objUsuario);
 		$objContatoLead->setObjLead($objLead);
 		
@@ -171,7 +167,7 @@ if(isset($_POST['cadastrar']))
 		$objContatoLead = $objContatoLeadControl->cadastrar();
 
 		echo "</br><font color='BLACK'> >>> CADASTRO <<< </font></br>";
-		echo "<font color='BLUE'>[INFO]: SUCESSO! ". $objContatoLead->toString() ."</font>";
+		echo "<font color='BLUE'>[INFO]: SUCESSO! ". $objContatoLead->__toString() ."</font>";
 	}catch(Exception $e){
 		echo "<font color='RED'>[ERRO]:". $e->getMessage() ."</font></br>";
 	}
@@ -186,7 +182,7 @@ if(isset($_POST['buscar']))
 		$objContatoLead = $objContatoLeadControl->buscarPorId();
 
 		echo "</br><font color='BLACK'> >>> Busca <<< </font></br>";
-		echo "<font color='BLUE'>[INFO]: SUCESSO! ". $objContatoLead->toString()."</font>";
+		echo "<font color='BLUE'>[INFO]: SUCESSO! ". $objContatoLead->__toString()."</font>";
 	}catch(Exception $e){
 		echo "<font color='RED'>[ERRO]:". $e->getMessage() ."</font></br>";
 	}
@@ -214,7 +210,7 @@ if(isset($_POST['alterar']))
 		$objContatoLead = $objContatoLeadControl->atualizar();
 
 		echo "</br><font color='BLACK'> >>> ALTUALIZANDO <<< </font></br>";
-		echo "<font color='BLUE'>[INFO]: SUCESSO! ". $objContatoLead->toString() ."</font>";
+		echo "<font color='BLUE'>[INFO]: SUCESSO! ". $objContatoLead->__toString() ."</font>";
 	}catch(Exception $e){
 		echo "<font color='RED'>[ERRO]:". $e->getMessage() ."</font></br>";
 	}
@@ -244,7 +240,7 @@ if(isset($_POST['listar']))
 		$lista = $objContatoLeadControl->listarTodos();
 		echo "</br><font color='BLACK'> >>> LISTANDO <<< </font></br>";
 		foreach ($lista as $objContatoLead){
-			echo "<font color='BLUE'>[INFO]: SUCESSO! ". $objContatoLead->toString()."</font></br>";
+			echo "<font color='BLUE'>[INFO]: SUCESSO! ". $objContatoLead->__toString()."</font></br>";
 		}
 		
 	}catch(Exception $e){

@@ -18,13 +18,11 @@ class ContatoLeadDAO{
 	
 	/*-- Metodo Cadastrar --*/
 	function cadastrar(ContatoLead $objContatoLead){
-		$this->sql = sprintf("INSERT INTO contatolead (datacontato, descricao, dataretorno, datacadastro, dataedicao, idUsuario, idLead) 
-				VALUES('%s', '%s', '%s', '%s', '%s', %d, %d)",
+		$this->sql = sprintf("INSERT INTO contatolead (datacontato, descricao, dataretorno, idusuario, idlead) 
+				VALUES('%s', '%s', '%s', %d, %d)",
 				mysqli_real_escape_string( $this->con, $objContatoLead->getDatacontato() ),
 				mysqli_real_escape_string( $this->con, $objContatoLead->getDescricao() ),
 				mysqli_real_escape_string( $this->con, $objContatoLead->getDataretorno() ),
-				mysqli_real_escape_string( $this->con, $objContatoLead->getDatacadastro() ),
-				mysqli_real_escape_string( $this->con, $objContatoLead->getDataedicao() ),
 				mysqli_real_escape_string( $this->con, $objContatoLead->getObjUsuario()->getId() ),
 				mysqli_real_escape_string( $this->con, $objContatoLead->getObjLead()->getId() ) );
 				
@@ -36,7 +34,7 @@ class ContatoLeadDAO{
 	
 	/*-- Metodo Atualizar --*/
 	function atualizar(ContatoLead $objContatoLead){
-		$this->sql = sprintf("UPDATE contatolead SET datacontato, descricao = '%s', dataretorno = '%s', dataedicao = '%s', idUsuario = %d, idLead = %d WHERE id = %d",
+		$this->sql = sprintf("UPDATE contatolead SET datacontato = '%s', descricao = '%s', dataretorno = '%s', dataedicao = '%s', idusuario = %d, idlead = %d WHERE id = %d",
 				mysqli_real_escape_string( $this->con, $objContatoLead->getDatacontato() ),
 				mysqli_real_escape_string( $this->con, $objContatoLead->getDescricao() ),
 				mysqli_real_escape_string( $this->con, $objContatoLead->getDataretorno() ),
@@ -88,7 +86,7 @@ class ContatoLeadDAO{
 	
 	/*-- Listar Todos --*/
 	function listarTodos(ContatoLead $objContatoLead){
-		$this->sql = "SELECT * FROM ContatoLead";
+		$this->sql = "SELECT * FROM contatolead";
 		$resultSet = mysqli_query($this->con, $this->sql);
 		if(!$resultSet){
 			die('[ERRO]: '.mysqli_error($this->con));

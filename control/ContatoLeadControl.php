@@ -30,9 +30,6 @@ class ContatoLeadControl{
 	function listarTodos(){
 		return $this->objContatoLeadDAO->listarTodos($this->objContatoLead);
 	}
-	function listarPorNome(){
-		return $this->objContatoLeadDAO->listarPorNome($this->objContatoLead);
-	}
 	
 }
 
