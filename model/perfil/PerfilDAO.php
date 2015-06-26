@@ -13,11 +13,9 @@ class PerfilDAO {
 	
 	function cadastrar(Perfil $o_perfil){	
 		
-		$this->sql = sprintf("INSERT INTO perfil (nome, ativo, datacadastro, dataedicao) VALUES ('%s', %d, '%s', '%s')",
+		$this->sql = sprintf("INSERT INTO perfil (nome, ativo) VALUES ('%s', %d)",
 				mysqli_real_escape_string($this->con, $o_perfil->getNome()),
-				mysqli_real_escape_string($this->con, $o_perfil->getAtivo()),
-				mysqli_real_escape_string($this->con, $o_perfil->getDatacadastro()),
-				mysqli_real_escape_string($this->con, $o_perfil->getDataedicao()));
+				mysqli_real_escape_string($this->con, $o_perfil->getAtivo()));
 		
 		if (!mysqli_query($this->con, $this->sql)) {
 			die('Error: ' . mysqli_error($this->con));

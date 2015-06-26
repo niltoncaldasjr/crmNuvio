@@ -1,6 +1,6 @@
 <?php
 require_once $_SERVER ['DOCUMENT_ROOT'] . '/crmNuvio/' . 'model/usuario/Usuario.php';
-require_once $_SERVER ['DOCUMENT_ROOT'] . "/crmNuvio/" . 'util/Utils.php';
+// require_once $_SERVER ['DOCUMENT_ROOT'] . "/crmNuvio/" . 'util/Utils.php';
 class UsuarioDAO {
 	private $con;
 	private $sql;
