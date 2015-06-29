@@ -1,12 +1,16 @@
 /**
- * crmNuvio
- * Junho/2015
- */
+*  Projeto crmNUVIO   - JUNHO/2015
+*
+*  ScrumMaster ..: Nilton Caldas Jr.
+*  P.O ..........: Giovanni Russo.
+*  Desenvolvedor.: Adelson Guimarães Monteiro
+*  Desenvolvedor.: Fabiano Ferreira da Silva Costa
+*/
 
 Ext.application({
-    name: 'crmnuvio',
+    name: 'crm',
 
-    extend: 'crmnuvio.Application',
+    extend: 'crm.Application',
     
     autoCreateViewport: true
 });

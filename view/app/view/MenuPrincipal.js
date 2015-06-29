@@ -1,4 +1,13 @@
-Ext.define('cau.view.MenuPrincipal',{
+/**
+*  Projeto crmNUVIO   - JUNHO/2015
+*
+*  ScrumMaster ..: Nilton Caldas Jr.
+*  P.O ..........: Giovanni Russo.
+*  Desenvolvedor.: Adelson Guimarães Monteiro
+*  Desenvolvedor.: Fabiano Ferreira da Silva Costa
+*/
+
+Ext.define('crm.view.MenuPrincipal',{
 	
 	extend: 'Ext.toolbar.Toolbar',
 	alias: 'widget.menuprincipal',

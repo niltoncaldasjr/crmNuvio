@@ -1,8 +1,13 @@
-/*
- * Ext JS BR Forum
- * http://www.extjs.com.br/forum/index.php?topic=5125.0 
- */
-Ext.define('cau.ux.CpfField', {
+/**
+*  Projeto crmNUVIO   - JUNHO/2015
+*
+*  ScrumMaster ..: Nilton Caldas Jr.
+*  P.O ..........: Giovanni Russo.
+*  Desenvolvedor.: Adelson Guimarães Monteiro
+*  Desenvolvedor.: Fabiano Ferreira da Silva Costa
+*/
+
+Ext.define('crm.ux.CpfField', {
    extend: 'Ext.form.field.Text',
    alias: ['widget.cpffield'],
 

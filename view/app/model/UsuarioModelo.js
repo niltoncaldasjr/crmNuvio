@@ -1,10 +1,13 @@
 /**
- * Controle e Autenticação de usuários - CAU 
- * Outubro/2014
- * Desenvolvedores : Allan Magnum e Nilton Caldas Jr.
- */
+*  Projeto crmNUVIO   - JUNHO/2015
+*
+*  ScrumMaster ..: Nilton Caldas Jr.
+*  P.O ..........: Giovanni Russo.
+*  Desenvolvedor.: Adelson Guimarães Monteiro
+*  Desenvolvedor.: Fabiano Ferreira da Silva Costa
+*/
 
-Ext.define('cau.model.Usuario',{
+Ext.define('crm.model.Usuario',{
 	extend: 'Ext.data.Model',
 
 	fields: [
