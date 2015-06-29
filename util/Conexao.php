@@ -4,7 +4,7 @@ class Conexao{
 	
 	protected function __construct(){
 
-		$this->con = mysqli_connect("localhost","root","", "crmnuvio");
+		$this->con = mysqli_connect("localhost","root","root", "crmnuvio");
 		if (mysqli_connect_error()) {
 			echo "Failed to connect to MySQL: " . mysqli_connect_error();
 		}
