@@ -41,14 +41,14 @@ class ContaBancoDAO{
 	function atualizar(ContaBanco $objContaBanco){
 		$this->sql = sprintf("UPDATE contabanco SET agencia = '%s', digitoAgencia = '%s', numeroConta ='%s', digitoConta = '%s', numeroCarteira = '%s', numeroConvenio = '%s', nomeContato = '%s', telefoneContato = '%s', dataedicao = '%s', idbanco = %d, idempresa = %d WHERE id = %d",
 				mysqli_real_escape_string( $this->con, $objContaBanco->getAgencia() ),
-				mysqli_real_escape_string( $this->con, $objContaBanco->getdigitoAgencia() ),
+				mysqli_real_escape_string( $this->con, $objContaBanco->getDigitoAgencia() ),
 				mysqli_real_escape_string( $this->con, $objContaBanco->getNumeroConta() ),
 				mysqli_real_escape_string( $this->con, $objContaBanco->getDigitoConta() ),
 				mysqli_real_escape_string( $this->con, $objContaBanco->getNumeroCarteira() ),
 				mysqli_real_escape_string( $this->con, $objContaBanco->getNumeroConvenio() ),
 				mysqli_real_escape_string( $this->con, $objContaBanco->getNomeContato() ),
 				mysqli_real_escape_string( $this->con, $objContaBanco->getTelefoneContato() ),
-				mysqli_real_escape_string( $this->con, $objContaBanco->getdataedicao() ),
+				mysqli_real_escape_string( $this->con, $objContaBanco->getDataedicao() ),
 				mysqli_real_escape_string( $this->con, $objContaBanco->getObjBanco()->getId() ),
 				mysqli_real_escape_string( $this->con, $objContaBanco->getObjEmpresa()->getId() ),
 				mysqli_real_escape_string( $this->con, $objContaBanco->getId() ) );

@@ -167,7 +167,7 @@ if(isset($_POST['cadastrar']))
 		$objBanco = new Banco($_POST['Banco']);
 		$objContaBanco = new ContaBanco();
 		$objContaBanco->setAgencia($_POST['agencia']);
-		$objContaBanco->setdigitoAgencia($_POST['digitoAgencia']);
+		$objContaBanco->setDigitoAgencia($_POST['digitoAgencia']);
 		$objContaBanco->setNumeroConta($_POST['numeroConta']);
 		$objContaBanco->setDigitoConta($_POST['digitoConta']);
 		$objContaBanco->setNumeroCarteira($_POST['numeroCarteira']);
@@ -218,6 +218,7 @@ if(isset($_POST['alterar']))
 		$objContaBanco->setNumeroConvenio($_POST['numeroConvenio']);
 		$objContaBanco->setNomeContato($_POST['nomeContato']);
 		$objContaBanco->setTelefoneContato($_POST['telefoneContato']);
+		$objContaBanco->setDataedicao($_POST['dataedicao']);
 		$objContaBanco->setObjBanco($objBanco);
 		$objContaBanco->setObjEmpresa($objEmpresa);
 		

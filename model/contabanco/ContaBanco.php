@@ -65,7 +65,7 @@ class ContaBanco implements JsonSerializable{
 		$this->agencia = $agencia;
 		return $this;
 	}
-	public function getdigitoAgencia() {
+	public function getDigitoAgencia() {
 		return $this->digitoAgencia;
 	}
 	public function setdigitoAgencia($digitoAgencia) {
@@ -117,14 +117,14 @@ class ContaBanco implements JsonSerializable{
 	public function getDatacadastro() {
 		return $this->datacadastro;
 	}
-	public function setdatacadastro($datacadastro) {
+	public function setDatacadastro($datacadastro) {
 		$this->datacadastro = $datacadastro;
 		return $this;
 	}
 	public function getDataedicao() {
 		return $this->dataedicao;
 	}
-	public function setdataedicao($dataedicao) {
+	public function setDataedicao($dataedicao) {
 		$this->dataedicao = $dataedicao;
 		return $this;
 	}
