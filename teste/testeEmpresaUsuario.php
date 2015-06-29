@@ -192,6 +192,7 @@ if(isset($_POST['alterar']))
 		$objEmpresa = new Empresa($_POST['empresa']);
 		$objUsuario = new Usuario($_POST['usuario']);
 		$objEmpresaUsuario = new EmpresaUsuario();
+		$objEmpresaUsuario->setId($_POST['empresausuario']);
 		$objEmpresaUsuario->setObjEmpresa($objEmpresa);
 		$objEmpresaUsuario->setObjUsuario($objUsuario);
 		
