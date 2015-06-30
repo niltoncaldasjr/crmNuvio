@@ -37,6 +37,14 @@ class PerfilControl{
 	function listarTodos(){
 		return $this->o_perfilDAO->listarTodos();
 	}
+	 
+	function listarPaginado($start, $limit){
+		return $this->o_perfilDAO->listarPaginado($start, $limit);
+	}
+	
+	function qtdTotal(){
+		return $this->o_perfilDAO->qtdTotal();
+	}
 
 }
 ?>

@@ -60,7 +60,7 @@ class PerfilDAO {
 	}
 	
 	function listarTodos(){
-		$this->sql= "SELECT * from perfil limit 50" ;
+		$this->sql= "SELECT * from perfil" ;
 		$result = mysqli_query($this->con, $this->sql);
 		if (!$result) {
 			die('Error: ' . mysqli_error($this->con));
@@ -73,6 +73,36 @@ class PerfilDAO {
 		}
 
 		return $this->lista;
+	}
+	
+	function listarPaginado($start, $limit){
+		$this->sql= "SELECT * from perfil limit " . $start . ", " . $limit;
+		$result = mysqli_query($this->con, $this->sql);
+		if (!$result) {
+			die('Error: ' . mysqli_error($this->con));
+		}
+		while($row = mysqli_fetch_object($result)){
+				
+			$this->o_perfil = new Perfil($row->id, $row->nome, $row->ativo, $row->datacadastro, $row->dataedicao);
+				
+			$this->lista[] = $this->o_perfil;
+		}
+	
+		return $this->lista;
+	}
+	
+	function qtdTotal() {
+		$this->sql = "SELECT count(*) as quantidade FROM perfil";
+		$result = mysqli_query ( $this->con, $this->sql );
+		if (! $result) {
+			die ( '[ERRO]: ' . mysqli_error ( $this->con ) );
+		}
+		$total = 0;
+		while ( $row = mysqli_fetch_object ( $result ) ) {
+			$total = $row->quantidade;
+		}
+	
+		return $total;
 	}
 	
 	function listarPorNome(Perfil $o_perfil){

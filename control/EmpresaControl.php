@@ -40,6 +40,14 @@ class EmpresaControl{
 	function listarTodos(){
 		return $this->o_empresaDAO->listarTodos();
 	}
+	
+	function listarPaginado($start, $limit){
+		return $this->o_empresaDAO->listarPaginado($start, $limit);
+	}
+	
+	function qtdtotal(){
+		return $this->o_empresaDAO->qtdTotal();
+	}
 
 }
 ?>

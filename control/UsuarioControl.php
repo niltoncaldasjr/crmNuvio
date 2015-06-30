@@ -37,6 +37,14 @@ class UsuarioControl{
 	function listarTodos(){
 		return $this->o_usuarioDAO->listarTodos();
 	}
+	
+	function listarPaginado($start, $limit){
+		return $this->o_usuarioDAO->listarPaginado($start, $limit);
+	}
+	
+	function qtdTotal(){
+		return $this->o_usuarioDAO->qtdTotal();
+	}
 
 }
 ?>

@@ -107,6 +107,46 @@ class UsuarioDAO {
 		return $this->lista;
 	}
 	
+	function listarPaginado($start, $limit) {
+		$this->sql = "SELECT * FROM usuario LIMIT " . $start . ", " . $limit;
+		$result = mysqli_query ( $this->con, $this->sql );
+		if (! $result) {
+			die ( '[ERRO]: ' . mysqli_error ( $this->con ) );
+		}
+		while ( $row = mysqli_fetch_object ( $result ) ) {
+				
+			// busca o perfil desse usuario
+			$perfil = new Perfil ( $row->idperfil );
+			$perfilControl = new PerfilControl ( $perfil );
+			$perfil = $perfilControl->buscarPorId ();
+				
+			// busca a pessoafisica desse usuario
+			$pessoafisica = new PessoaFisica ( $row->idpessoafisica );
+			$pessoafisicaControl = new PessoaFisicaControl ( $pessoafisica );
+			$pessoafisica = $pessoafisicaControl->buscarPorID ();
+				
+			$this->o_usuario = new Usuario ( $row->id, $row->nome, $row->usuario, $row->senha, $row->email, $row->ativo, $row->datacadastro, $row->dataedicao, $perfil, $pessoafisica );
+				
+			$this->lista [] = $this->o_usuario;
+		}
+	
+		return $this->lista;
+	}
+	
+	function qtdTotal() {
+		$this->sql = "SELECT count(*) as quantidade FROM usuario";
+		$result = mysqli_query ( $this->con, $this->sql );
+		if (! $result) {
+			die ( '[ERRO]: ' . mysqli_error ( $this->con ) );
+		}
+		$total = 0;
+		while ( $row = mysqli_fetch_object ( $result ) ) {
+			$total = $row->quantidade;
+		}
+	
+		return $total;
+	}
+	
 	/* -- Listar Por Nome -- */
 	function listarPorNome(Usuario $o_usuario) {
 		/* -- SQL PASSANDO COM %s(String do sprtintf) o percente % do LIKE -- */

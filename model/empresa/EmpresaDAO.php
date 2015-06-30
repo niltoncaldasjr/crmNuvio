@@ -102,30 +102,44 @@ class EmpresaDAO {
 		
 		return $this->lista;
 	}
-	function listarDadosCompletos(Empresa $o_empresa) {
-		$this->sql = sprintf ( "SELECT * FROM empresa WHERE id = %d", mysqli_real_escape_string ( $this->con, $o_empresa->getId () ) );
-		
-		$result = mysqli_query ( $this->con, $this->sql );
-		if (! $result) {
-			die ( '[ERRO]: ' . mysqli_error ( $this->con ) );
-		}
-		while ( $row = mysqli_fetch_object ( $result ) ) {
-			// busca o localidade desse empresa
-			$localidade = new Localidade ( $row->idlocalidade );
-			$localidadeControl = new LocalidadeControl ( $localidade );
-			$a_localidade = $localidadeControl->buscarPorId ();
+	
+	function listarPaginado($start, $limit) {
+			$this->sql = "SELECT * FROM empresa LIMIT " . $start . ", " . $limit;
+			$result = mysqli_query ( $this->con, $this->sql );
+			if (! $result) {
+				die ( '[ERRO]: ' . mysqli_error ( $this->con ) );
+			}
+			while ( $row = mysqli_fetch_object ( $result ) ) {
+				// busca o localidade desse empresa
+				$localidade = new Localidade ( $row->idlocalidade );
+				$localidadeControl = new LocalidadeControl ( $localidade );
+				$a_localidade = $localidadeControl->buscarPorId ();
+				
+				// busca a pessoafisica desse usuario
+				$imposto = new Imposto ( $row->idimposto );
+				$impostoControl = new ImpostoControl ( $imposto );
+				$o_imposto = $impostoControl->buscarPorID ();
+				
+				$this->o_empresa = new Empresa ( $row->id, $row->nomeFantasia, $row->razaoSocial, $row->nomeReduzido, $row->CNPJ, $row->inscricaoEstadual, $row->inscricaoMunicipal, $row->endereco, $row->numero, $row->complemento, $row->bairro, $row->cep, $row->imagemLogotipo, $row->datacadastro, $row->dataedicao, $a_localidade, $o_imposto );
+				$this->lista [] = $this->o_empresa;
+			}
 			
-			// busca a pessoafisica desse usuario
-			$imposto = new Imposto ( $row->idimposto );
-			$impostoControl = new ImpostoControl ( $imposto );
-			$o_imposto = $impostoControl->buscarPorID ();
-			
-			$this->o_empresa = new Empresa ( $row->id, $row->nomeFantasia, $row->razaoSocial, $row->nomeReduzido, $row->CNPJ, $row->inscricaoEstadual, $row->inscricaoMunicipal, $row->endereco, $row->numero, $row->complemento, $row->bairro, $row->cep, $row->imagemLogotipo, $row->datacadastro, $row->dataedicao, $a_localidade, $o_imposto );
-			$this->lista [] = $this->o_empresa;
+			return $this->lista;
 		}
 		
-		return $this->lista;
-	}
+		function qtdTotal() {
+			$this->sql = "SELECT count(*) as quantidade FROM empresa";
+			$result = mysqli_query ( $this->con, $this->sql );
+			if (! $result) {
+				die ( '[ERRO]: ' . mysqli_error ( $this->con ) );
+			}
+			$total = 0;
+			while ( $row = mysqli_fetch_object ( $result ) ) {
+				$total = $row->quantidade;
+			}
+		
+			return $total;
+		}
 	
 	/* -- Listar Por Nome -- */
 	function listarPorNome(Empresa $o_empresa) {
