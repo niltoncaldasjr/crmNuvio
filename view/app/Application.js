@@ -23,6 +23,6 @@ Ext.define('crm.Application', {
 
     stores: [
         // TODO: add stores here
-        'UsuarioStoreModelo'
+        'Pais'
     ]
 });

@@ -28,15 +28,14 @@ function listaPais() {
 	
 
 	$o_paisControl = new PaisControl();
-	//$v_o_pais = $o_paisControl->listarPaginado($start, $limit);
-	$v_o_pais = $o_paisControl->listarTodos();
+	$v_o_pais = $o_paisControl->listarPaginado($start, $limit);
 	
 	foreach ($v_o_pais as $o_pais) {
 		$v_registros[] = $o_pais;
 	}
 	
 	$o_paisControl = new PaisControl();
-	//$totalRegistro = $o_paisControl->qtdTotal();
+	$totalRegistro = $o_paisControl->qtdTotal();
 	
 	
 	// encoda para formato JSON
