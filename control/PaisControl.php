@@ -37,6 +37,14 @@ class PaisControl{
 	function listarTodos(){
 		return $this->o_paisDAO->listarTodos();
 	}
+	
+	function listarPaginado(){
+		return $this->o_paisDAO->listarPaginado($start, $limit);
+	}
+	
+	function qtdTotal(){
+		return $this->o_paisDAO->qtdTotal();
+	}
 
 }
 ?>
