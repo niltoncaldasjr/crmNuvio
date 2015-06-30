@@ -38,7 +38,7 @@ class PaisControl{
 		return $this->o_paisDAO->listarTodos();
 	}
 	
-	function listarPaginado(){
+	function listarPaginado($start, $limit){
 		return $this->o_paisDAO->listarPaginado($start, $limit);
 	}
 	

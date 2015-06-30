@@ -85,6 +85,36 @@ class ImpostoDAO {
 		return $this->lista;
 	}
 	
+	function listarPaginado($start, $limit) {
+		$this->sql = "SELECT * FROM imposto LIMIT " . $start . $limit;
+		$result = mysqli_query ( $this->con, $this->sql );
+		if (! $result) {
+			die ( '[ERRO]: ' . mysqli_error ( $this->con ) );
+		}
+		while ( $row = mysqli_fetch_object ( $result ) ) {
+				
+			$this->o_imposto = new Imposto (  $row->id, $row->aliquotaICMS, $row->aliquotaPIS, $row->aliquotaCOFINS, $row->aliquotaCSLL, $row->aliquotaISS, $row->aliquotaIRPJ, $row->datacadastro, $row->dataedicao );
+				
+			$this->lista [] = $this->o_imposto;
+		}
+	
+		return $this->lista;
+	}
+	
+	function qtdTotal() {
+		$this->sql = "SELECT count(*) as quantidade FROM imposto";
+		$result = mysqli_query ( $this->con, $this->sql );
+		if (! $result) {
+			die ( '[ERRO]: ' . mysqli_error ( $this->con ) );
+		}
+		$total = 0;
+		while ( $row = mysqli_fetch_object ( $result ) ) {
+			$total = $row->quantidade;
+		}
+	
+		return $total;
+	}
+	
 	/* -- Listar Por Nome -- */
 	function listarPorNome(Imposto $o_imposto) {
 		/* -- SQL PASSANDO COM %s(String do sprtintf) o percente % do LIKE -- */
