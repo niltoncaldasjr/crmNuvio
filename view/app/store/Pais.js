@@ -11,8 +11,12 @@ Ext.define('crm.store.Pais',{
 	extend: 'Ext.data.Store',
 
 	model: 'crm.model.Pais',
+	
+	autoLoad: true,
 
 	pageSize: 20,
+	
+	autoLoad: {start: 0, limit: 35},
 
 	proxy: {
 		type: 'rest',
@@ -21,11 +25,13 @@ Ext.define('crm.store.Pais',{
 		
 		reader: {
 			type: 'json',
-			root: 'data'
+			root: 'data',
+			successProperty: 'success'
 		},
 
 		writer: {
 			type: 'json',
+			writeAllFields: true,
 			root: 'data',
 			encode: true
 		}
