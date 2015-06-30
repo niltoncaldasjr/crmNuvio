@@ -75,6 +75,36 @@ class PaisDAO {
 		return $this->lista;
 	}
 	
+	function listarPaginado($start, $limit) {
+		$this->sql = "SELECT * FROM pais limit " . $start . ", " . $limit;
+		$result = mysqli_query ( $this->con, $this->sql );
+		if (! $result) {
+			die ( '[ERRO]: ' . mysqli_error ( $this->con ) );
+		}
+		while ( $row = mysqli_fetch_object ( $result ) ) {
+				
+			$this->o_pais = new Pais ( $row->id, $row->descricao, $row->nacionalidade, $row->datacadastro, $row->dataedicao );
+				
+			$this->lista [] = $this->o_pais;
+		}
+	
+		return $this->lista;
+	}
+	
+	function qtdTotal() {
+		$this->sql = "SELECT count(*) as quantidade FROM pais";
+		$result = mysqli_query ( $this->con, $this->sql );
+		if (! $result) {
+			die ( '[ERRO]: ' . mysqli_error ( $this->con ) );
+		}
+		$total = 0;
+		while ( $row = mysqli_fetch_object ( $result ) ) {	
+			$total = $row->quantidade;
+		}
+	
+		return $total;
+	}
+	
 	/* -- Listar Por Nome -- */
 	function listarPorNome(Pais $o_pais) {
 		/* -- SQL PASSANDO COM %s(String do sprtintf) o percente % do LIKE -- */
