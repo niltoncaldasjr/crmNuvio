@@ -1,4 +1,4 @@
-Ext.define('crm.controller.Contatos', {
+Ext.define('crm.controller.Pais', {
     extend: 'Ext.app.Controller',
 
     stores: ['Pais'],
@@ -7,27 +7,27 @@ Ext.define('crm.controller.Contatos', {
 
     views: ['pais.PaisForm', 'pais.PaisGrid'],
 
-    //refs: [{
-    //        ref: 'contatoPanel',
-    //        selector: 'panel'
-    //    },{
-    //        ref: 'contatoGrid',
-    //        selector: 'grid'
-    //    }
-    //],
+    refs: [{
+            ref: 'paisPanel',
+            selector: 'panel'
+        },{
+            ref: 'paisGrid',
+            selector: 'grid'
+        }
+    ],
 
     init: function() {
         this.control({
             'paisgrid dataview': {
                 itemdblclick: this.editarPais
             },
-            'paisgrid button[action=add]': {
+            'paisgrid button#addPais': {
             	click: this.editarPais
             },
-            'paisgrid button[action=delete]': {
+            'paisgrid button#deletePais': {
                 click: this.deletePais
             },
-            'paisform button[action=save]': {
+            'paisform button#salvapais': {
                 click: this.updatePais
             }
         });
@@ -57,9 +57,9 @@ Ext.define('crm.controller.Contatos', {
 			this.getPaisStore().add(record);
             novo = true;
 		}
-        
+		console.log('Botão Salvar Form');
 		win.close();
-        this.getContatosStore().sync();
+        this.getPaisStore().sync();
 
         if (novo){ //faz reload para atualziar
             this.getPaisStore().load();

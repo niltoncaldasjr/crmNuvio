@@ -7,10 +7,16 @@
 *  Desenvolvedor.: Fabiano Ferreira da Silva Costa
 */
 
+Ext.Loader.setConfig({enabled: true});
+
 Ext.application({
     name: 'crm',
 
-    extend: 'crm.Application',
+    //extend: 'crm.Application',
+    controllers: [
+                  'Pais'
+    ],
+
     
     autoCreateViewport: true
 });

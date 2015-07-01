@@ -15,9 +15,9 @@ Ext.define('crm.view.pais.PaisGrid',{
 	store: 'Pais',
 
 	columns: [
-		{ text: 'Id',  dataIndex: 'id', width: 50},
-        { text: 'Descrição', dataIndex: 'descricao', width: 70},
-        { text: 'Nacionalidade', dataIndex: 'nacionalidade', width: 70 },
+		{ text: 'Id',  dataIndex: 'id'},
+        { text: 'Descrição', dataIndex: 'descricao'},
+        { text: 'Nacionalidade', dataIndex: 'nacionalidade' },
         { text: 'Data cadastro', dataIndex: 'datacadastro', renderer : Ext.util.Format.dateRenderer('d/m/Y')}
 	],
 

@@ -80,9 +80,9 @@ Ext.define('crm.controller.Main', {
 
     gridSelectionChange: function(model, records) {
 
-        if (records[0]) {
-             this.getPaisForm().getForm().loadRecord(records[0]);
-        }
+//        if (records[0]) {
+//             this.getPaisForm().getForm().loadRecord(records[0]);
+//        }
     },
     
     onViewReady: function(grid) {
@@ -95,10 +95,10 @@ Ext.define('crm.controller.Main', {
 
     },
 
-    onAddClick: function(btn, e, eOpts ){
+//    onAddClick: function(btn, e, eOpts ){
         
-    	this.getPessoaForm().getForm().reset();
-    },
+//    	this.getPessoaForm().getForm().reset();
+//    },
 
     onDeleteClick: function(btn, e, eOpts){
   
