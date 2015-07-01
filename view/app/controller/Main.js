@@ -27,7 +27,7 @@ Ext.define('crm.controller.Main', {
     views: [
             	//'crm.view.MenuPrincipal',
              	'crm.view.pais.PaisForm',
-                'cau.view.pais.PaisGrid'
+                'crm.view.pais.PaisGrid'
     ],
 
     refs: [
