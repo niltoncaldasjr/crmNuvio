@@ -81,14 +81,15 @@ class PaisDAO {
 		if (! $result) {
 			die ( '[ERRO]: ' . mysqli_error ( $this->con ) );
 		}
-		while ( $row = mysqli_fetch_object ( $result ) ) {
+		while ( $row = mysqli_fetch_assoc ( $result ) ) {
 				
-			$this->o_pais = new Pais ( $row->id, $row->descricao, $row->nacionalidade, $row->datacadastro, $row->dataedicao );
+// 			$this->o_pais = new Pais ( $row->id, $row->descricao, $row->nacionalidade, $row->datacadastro, $row->dataedicao );
 				
-			$this->lista [] = $this->o_pais;
+// 			$this->lista [] = $this->o_pais;
+			$lista[]=$row;
 		}
 	
-		return $this->lista;
+		return $lista;
 	}
 	
 	function qtdTotal() {
