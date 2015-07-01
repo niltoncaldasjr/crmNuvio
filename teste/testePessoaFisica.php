@@ -19,9 +19,9 @@ try{
 	$objPessoaFisica->setNacionalidade('Brasileiro');
 	
 	$objPessoaFisicaControl = new PessoaFisicaControl($objPessoaFisica);
-	$objPessoaFisicaControl->cadastrar();
+	$id = $objPessoaFisicaControl->cadastrar();
 	echo "<font color='BLACK'>====================/- CADASTRO -/=========================== </font></br>";
-	echo "<font color='BLUE'>[INFO]: SUCESSO! ". $objPessoaFisica->getNome() ."</font></br>";
+	echo "<font color='BLUE'>[INFO]: SUCESSO! ". $id ."</font></br>";
 }catch(Exception $e){
 	echo "<font color='RED'>[ERRO]:". $e->getMessage() ."</font></br>";
 }

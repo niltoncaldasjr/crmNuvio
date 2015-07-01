@@ -30,7 +30,12 @@ class LocalidadeControl{
 	function listarTodos(){
 		return $this->objLocalidadeDAO->listarTodos($this->objLocalidade);
 	}
-	
+	function listarPaginado($start, $limit){
+		return $this->objRotinaDAO->listarPaginado($start, $limit);
+	}
+	function qtdTotal(){
+		return $this->objRotinaDAO->qtdTotal();
+	}
 }
 
 ?>

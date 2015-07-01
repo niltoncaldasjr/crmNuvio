@@ -24,8 +24,8 @@ class RotinaControl{
 	function deletar(){
 		return $this->objRotinaDAO->deletar($this->objRotina);
 	}
-	function buscarPorID(){
-		return $this->objRotinaDAO->buscarPorID($this->objRotina);
+	function buscarPorId(){
+		return $this->objRotinaDAO->buscarPorId($this->objRotina);
 	}
 	function listarTodos(){
 		return $this->objRotinaDAO->listarTodos($this->objRotina);
@@ -33,7 +33,12 @@ class RotinaControl{
 	function listarPorNome(){
 		return $this->objRotinaDAO->listarPorNome($this->objRotina);
 	}
-	
+	function listarPaginado($start, $limit){
+		return $this->objRotinaDAO->listarPaginado($start, $limit);
+	}
+	function qtdTotal(){
+		return $this->objRotinaDAO->qtdTotal();
+	}
 }
 
 ?>

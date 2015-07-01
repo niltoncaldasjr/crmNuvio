@@ -25,7 +25,9 @@ class PerfilRotinaDAO{
 		if(!mysqli_query($this->con, $this->sql)){
 			die('[ERRO] Cadastro: '.mysqli_error($this->con));
 		}
-		return $this->objPerfilRotina = $objPerfilRotina;
+		
+		/*-- Pegando ultimo obj cadastrado --*/
+		return mysqli_insert_id ( $this->con );
 	}
 	
 	/*-- Metodo Atualizar --*/
@@ -63,7 +65,7 @@ class PerfilRotinaDAO{
 			$objRotina = new Rotina();
 			$objRotina->setId($row->idrotina);
 			$objRotinaControl = new RotinaControl($objRotina);
-			$objRotina = $objRotinaControl->buscarPorID();
+			$objRotina = $objRotinaControl->buscarPorId();
 			
 			$objPerfil = new Perfil();
 			$objPerfil->setId($row->idperfil);

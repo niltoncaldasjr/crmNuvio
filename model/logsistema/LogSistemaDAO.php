@@ -25,7 +25,9 @@ class LogSistemaDAO{
 		if(!mysqli_query($this->con, $this->sql)){
 			die('[ERRO] Cadastro: '.mysqli_error($this->con));
 		}
-		return $this->objLogSistema = $objLogSistema;
+		
+		/*-- Pegando ultimo obj cadastrado --*/
+		return mysqli_insert_id ( $this->con );
 	}
 	
 	/*-- Metodo Atualizar --*/

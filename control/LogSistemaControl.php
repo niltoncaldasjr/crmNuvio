@@ -36,7 +36,12 @@ class LogSistemaControl{
 	function listarTodos(){
 		return $this->objLogSistemaDAO->listarTodos($this->objLogSistema);
 	}
-	
+	function listarPaginado($start, $limit){
+		return $this->objRotinaDAO->listarPaginado($start, $limit);
+	}
+	function qtdTotal(){
+		return $this->objRotinaDAO->qtdTotal();
+	}
 }
 
 ?>

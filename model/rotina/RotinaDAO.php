@@ -6,7 +6,7 @@ class RotinaDAO{
 	private $con;
 	private $sql;
 	private $objRotina;
-	private $listaRotina = array();
+	private $listaRotinaRotina = array();
 	
 	function __construct($con){
 		$this->con = $con;
@@ -14,18 +14,19 @@ class RotinaDAO{
 	
 	/*-- Metodo Cadastrar --*/
 	function cadastrar(Rotina $objRotina){
-		$this->sql = sprintf("INSERT INTO rotina (nome, descricao, ordem, url, ativo, datacadastro, dataedicao) VALUES('%s', '%s', %d, '%s', %d, '%s', '%s')",
+		$this->sql = sprintf("INSERT INTO rotina (nome, descricao, ordem, url, ativo) VALUES('%s', '%s', %d, '%s', %d)",
 				mysqli_real_escape_string( $this->con, $objRotina->getNome() ),
 				mysqli_real_escape_string( $this->con, $objRotina->getDescricao() ),
 				mysqli_real_escape_string( $this->con, $objRotina->getOrdem() ),
 				mysqli_real_escape_string( $this->con, $objRotina->getUrl() ),
-				mysqli_real_escape_string( $this->con, $objRotina->getAtivo() ),
-				mysqli_real_escape_string( $this->con, $objRotina->getDatacadastro() ),
-				mysqli_real_escape_string( $this->con, $objRotina->getDataedicao() ) );
+				mysqli_real_escape_string( $this->con, $objRotina->getAtivo() ) );
 		
 		if(!mysqli_query($this->con, $this->sql)){
 			die('[ERRO]: '.mysqli_error($this->con));
 		}
+		
+		/*-- Pegando ultimo obj cadastrado --*/
+		return mysqli_insert_id ( $this->con );
 	
 	}
 	
@@ -56,7 +57,7 @@ class RotinaDAO{
 	}
 	
 	/*-- Buscar por ID --*/
-	function buscarPorID(Rotina $objRotina){
+	function buscarPorId(Rotina $objRotina){
 		$this->sql = sprintf("SELECT * FROM rotina WHERE id = %d",
 				mysqli_real_escape_string( $this->con, $objRotina->getId() ) );
 		
@@ -71,8 +72,8 @@ class RotinaDAO{
 		return $this->objRotina;
 	}
 	
-	/*-- Listar Todos --*/
-	function listarTodos(Rotina $objRotina){
+	/*-- listaRotinar Todos --*/
+	function listaRotinarTodos(Rotina $objRotina){
 		$this->sql = "SELECT * FROM rotina";
 		$resultSet = mysqli_query($this->con, $this->sql);
 		if(!$resultSet){
@@ -82,14 +83,14 @@ class RotinaDAO{
 				
 			$this->objRotina = new Rotina($row->id, $row->nome, $row->descricao, $row->ordem, $row->url, $row->ativo, $row->datacadastro, $row->dataedicao);
 				
-			array_push($this->listaRotina, $this->objRotina);
+			array_push($this->listaRotinaRotina, $this->objRotina);
 		}
 		
-		return $this->listaRotina;
+		return $this->listaRotinaRotina;
 	}
 	
-	/*-- Listar Por Nome --*/
-	function listarPorNome(Rotina $objRotina){
+	/*-- listaRotinar Por Nome --*/
+	function listaRotinarPorNome(Rotina $objRotina){
 		 /*-- SQL PASSANDO COM %s(String do sprtintf) o percente % do LIKE --*/
 		$this->sql = sprintf("SELECT * FROM rotina WHERE nome like '%s%s%s' ",
 				mysqli_real_escape_string( $this->con, '%' ),
@@ -103,10 +104,42 @@ class RotinaDAO{
 		
 			$this->objRotina = new Rotina($row->id, $row->nome, $row->descricao, $row->ordem, $row->url, $row->ativo, $row->datacadastro, $row->dataedicao);
 		
-			array_push($this->listaRotina, $this->objRotina);
+			array_push($this->listaRotinaRotina, $this->objRotina);
 		}
 		
+		return $this->listaRotinaRotina;
+	}
+	
+	/*-- listaRotinar paginado --*/
+	function listaRotinarPaginado($start, $limit) {
+		$this->sql = "SELECT * FROM rotina limit " . $start . ", " . $limit;
+		$result = mysqli_query ( $this->con, $this->sql );
+		if (! $result) {
+			die ( '[ERRO]: ' . mysqli_error ( $this->con ) );
+		}
+		while ( $row = mysqli_fetch_object ( $result ) ) {
+	
+			$this->objRotina = new Rotina($row->id, $row->nome, $row->descricao, $row->ordem, $row->url, $row->ativo, $row->datacadastro, $row->dataedicao);
+		
+			$this->listaRotina[] = $this->objRotina;
+		}
+	
 		return $this->listaRotina;
+	}
+	
+	/*-- Quantidade Total --*/
+	function qtdTotal() {
+		$this->sql = "SELECT count(*) as quantidade FROM rotina";
+		$result = mysqli_query ( $this->con, $this->sql );
+		if (! $result) {
+			die ( '[ERRO]: ' . mysqli_error ( $this->con ) );
+		}
+		$total = 0;
+		while ( $row = mysqli_fetch_object ( $result ) ) {
+			$total = $row->quantidade;
+		}
+	
+		return $total;
 	}
 			
 }

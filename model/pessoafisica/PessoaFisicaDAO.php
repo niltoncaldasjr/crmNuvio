@@ -32,6 +32,9 @@ class PessoaFisicaDAO{
 		if(!mysqli_query($this->con, $this->sql)){
 			die("<font color='RED'>[ERRO]: CadastrarDAO~~> ".mysqli_error($this->con)."</font>");
 		}
+		
+		/*-- Pegando ultimo obj cadastrado --*/
+		return mysqli_insert_id ( $this->con );
 	
 	}
 	
@@ -118,6 +121,38 @@ class PessoaFisicaDAO{
 		}
 	
 		return $this->listaPessoaFisica;
+	}
+	
+	/*-- listaPessoaFisicar paginado --*/
+	function listaPessoaFisicarPaginado($start, $limit) {
+		$this->sql = "SELECT * FROM pessoafisica limit " . $start . ", " . $limit;
+		$result = mysqli_query ( $this->con, $this->sql );
+		if (! $result) {
+			die ( '[ERRO]: ' . mysqli_error ( $this->con ) );
+		}
+		while ( $row = mysqli_fetch_object ( $result ) ) {
+	
+			$this->objPessoaFisica = new PessoaFisica($row->id, $row->nome, $row->cpf, $row->datanascimento, $row->estadocivil, $row->sexo, $row->nomepai, $row->nomemae, $row->cor, $row->naturalidade, $row->nacionalidade, $row->datacadastro, $row->dataedicao);
+	
+			$this->listaPessoaFisica[] = $this->objPessoaFisica;
+		}
+	
+		return $this->listaPessoaFisica;
+	}
+	
+	/*-- Quantidade Total --*/
+	function qtdTotal() {
+		$this->sql = "SELECT count(*) as quantidade FROM pessoafisica";
+		$result = mysqli_query ( $this->con, $this->sql );
+		if (! $result) {
+			die ( '[ERRO]: ' . mysqli_error ( $this->con ) );
+		}
+		$total = 0;
+		while ( $row = mysqli_fetch_object ( $result ) ) {
+			$total = $row->quantidade;
+		}
+	
+		return $total;
 	}
 		
 }
