@@ -30,7 +30,12 @@ class PerfilRotinaControl{
 	function listarTodos(){
 		return $this->objPerfilRotinaDAO->listarTodos($this->objPerfilRotina);
 	}
-	
+	function listarPaginado($start, $limit){
+		return $this->objRotinaDAO->listarPaginado($start, $limit);
+	}
+	function qtdTotal(){
+		return $this->objRotinaDAO->qtdTotal();
+	}
 }
 
 ?>

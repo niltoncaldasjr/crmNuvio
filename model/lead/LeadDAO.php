@@ -24,6 +24,8 @@ class LeadDAO{
 		if(!mysqli_query($this->con, $this->sql)){
 			die('[ERRO]: '.mysqli_error($this->con));
 		}
+		/*-- Pegando ultimo obj cadastrado --*/
+		return mysqli_insert_id ( $this->con );
 	
 	}
 	

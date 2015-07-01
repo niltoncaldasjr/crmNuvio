@@ -20,7 +20,9 @@ class BancoDAO{
 		if(!mysqli_query($this->con, $this->sql)){
 			die('[ERRO]: '.mysqli_error($this->con));
 		}
-		return $objBanco;
+		
+		/*-- Pegando ultimo obj cadastrado --*/
+		return mysqli_insert_id ( $this->con );
 	}
 	
 	/*-- Metodo Atualizar --*/

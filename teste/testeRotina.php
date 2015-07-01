@@ -12,13 +12,11 @@ try{
 	$objRotina->setOrdem(1);
 	$objRotina->setUrl('www.com');
 	$objRotina->setAtivo(1);
-	$objRotina->setDatacadastro('2015/06/18 14:00:00');
-	$objRotina->setDataedicao('2015/06/18 14:00:00');
 	
 	$objRotinaControl = new RotinaControl($objRotina);
-	$objRotinaControl->cadastrar();
+	$id = $objRotinaControl->cadastrar();
 	echo "<font color='BLACK'>====================/- CADASTRO -/=========================== </font></br>";
-	echo "<font color='BLUE'>[INFO]: SUCESSO! ". $objRotina->getNome() ."</font></br>";
+	echo "<font color='BLUE'>[INFO]: SUCESSO! ". $id . "</font></br>";
 }catch(Exception $e){
 	echo "<font color='RED'>[ERRO]:". $e->getMessage() ."</font></br>";
 }
@@ -26,7 +24,7 @@ try{
 /*-- Buscar Rotina --*/
 try{
 	$objRotina = new Rotina();
-	$objRotina->setId(1);
+	$objRotina->setId(10);
 	$objRotinaControl = new RotinaControl($objRotina);
 	$objRotina = $objRotinaControl->buscarPorID();
 	

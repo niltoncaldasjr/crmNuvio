@@ -30,7 +30,12 @@ class ContatoLeadControl{
 	function listarTodos(){
 		return $this->objContatoLeadDAO->listarTodos($this->objContatoLead);
 	}
-	
+	function listarPaginado($start, $limit){
+		return $this->objRotinaDAO->listarPaginado($start, $limit);
+	}
+	function qtdTotal(){
+		return $this->objRotinaDAO->qtdTotal();
+	}
 }
 
 ?>

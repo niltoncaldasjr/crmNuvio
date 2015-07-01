@@ -33,7 +33,12 @@ class BancoControl{
 	function listarPorNome(){
 		return $this->objBancoDAO->listarPorNome($this->objBanco);
 	}
-	
+	function listarPaginado($start, $limit){
+		return $this->objRotinaDAO->listarPaginado($start, $limit);
+	}
+	function qtdTotal(){
+		return $this->objRotinaDAO->qtdTotal();
+	}
 }
 
 ?>
