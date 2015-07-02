@@ -18,14 +18,17 @@ Ext.define('crm.controller.Perfil', {
             'perfilgrid dataview': {
                 itemdblclick: this.editarPerfil
             },
-            'perfilgrid button#addPerfil]': {
+            'perfilgrid button#addPerfil': {
             	click: this.editarPerfil
             },
-            'perfilgrid button#deletePerfil]': {
+            'perfilgrid button#deletePerfil': {
                 click: this.deletePerfil
             },
-            'perfilform button#=salvaperfil]': {
+            'perfilform button#salvaperfil': {
                 click: this.updatePerfil
+            },
+            'perfilform button#cancelaperfil': {
+                click: this.onCancelClick
             }
         });
     },
@@ -37,7 +40,13 @@ Ext.define('crm.controller.Perfil', {
         	edit.down('form').loadRecord(record);
         }
     },
-    
+    onCancelClick: function(btn, e, eOpts){
+    	var win = btn.up('window');
+    	var form = win.down('form');
+    	form.getForm().reset();
+    	win.close(); 
+    	console.log('Fechou');
+    },
     updatePerfil: function(button) {
         var win    = button.up('window'),
             form   = win.down('form'),
