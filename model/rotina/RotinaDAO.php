@@ -111,7 +111,7 @@ class RotinaDAO{
 	}
 	
 	/*-- listaRotinar paginado --*/
-	function listaRotinarPaginado($start, $limit) {
+	function listarPaginado($start, $limit) {
 		$this->sql = "SELECT * FROM rotina limit " . $start . ", " . $limit;
 		$result = mysqli_query ( $this->con, $this->sql );
 		if (! $result) {

@@ -7,10 +7,11 @@ Ext.define('crm.controller.Rotina',{
 	
 	views: ['rotina.RotinaForm', 'rotina.RotinaGrid'],
 	
-	refs: [{
-		ref: 'rotinagrid',
-		selector: 'grid'
-	}],
+    refs: [{
+        ref: 'rotinaGrid',
+        selector: 'grid'
+    	}
+    ],
 	
 	init: function(){
 		this.control({
@@ -23,7 +24,7 @@ Ext.define('crm.controller.Rotina',{
 			'rotinagrid button#deleteRotina': {
 				click: this.deleteRotina
 			},
-			'rotinagrid button#salvaRotina': {
+			'rotinaform button#salvaRotina': {
 				click: this.updateRotina
 			}
 		});
@@ -39,7 +40,7 @@ Ext.define('crm.controller.Rotina',{
 	
 	updateRotina: function(button){
 		var win = button.up('window'),
-			form = win.dow('form'),
+			form = win.down('form'),
 			record = form.getRecord(),
 			values = form.getValues();
 		

@@ -16,7 +16,7 @@ Ext.application({
     controllers: [
                   'Pais',
                   'Perfil',
-                  'Rotina'
+                  'Rotina',
     ],
     
     autoCreateViewport: true

@@ -12,24 +12,24 @@ Ext.define('crm.view.rotina.RotinaGrid',{
 	alias: 'widget.rotinagrid',
 	title: 'Cadastro de Rotinas',
 	iconCls: 'icon-grid',
-	store: 'crm.store.Rotina',
+	store: 'Rotina',
 	
-	colums: [
-	    {text: 'ID', dataindex: 'id', width: 50},
-	    {text: 'Nome', dataindex: 'nome', width: 50},
-	    {text: 'Descrição', dataindex: 'descricao', width: 50},
-	    {text: 'Ordem', dataindex: 'ordem', width: 50},
-	    {text: 'URL', dataindex: 'url', width: 50},
-	    {text: 'Ativo', dataindex: 'ativo', width: 50},
-	    {text: 'Data Cad.', dataindex: 'datacadastro', renderer : Ext.util.Format.dateRenderer('d/m/Y'), width: 50},
-	    {text: 'Data Edi.', dataindex: 'dataedicao', renderer : Ext.util.Format.dateRenderer('d/m/Y'),  width: 50}
+	columns: [
+	    {text: 'ID', dataindex: 'id'},
+	    {text: 'Nome', dataindex: 'nome'},
+	    {text: 'Descrição', dataindex: 'descricao'},
+	    {text: 'Ordem', dataindex: 'ordem'},
+	    {text: 'URL', dataindex: 'url'},
+	    {text: 'Ativo', dataindex: 'ativo'},
+	    {text: 'Data Cad.', dataindex: 'datacadastro', renderer : Ext.util.Format.dateRenderer('d/m/Y')},
+	    {text: 'Data Edi.', dataindex: 'dataedicao', renderer : Ext.util.Format.dateRenderer('d/m/Y')}
 	],
 	
 	dockedItems: [
 	    {
 	    	xtype: 'toolbar',
 	    	dock: 	'top',
-	    	itemns: [
+	    	items: [
 	    	   {
 	    		   xtype: 'button',
 	    		   text: 'Novo',
@@ -46,7 +46,7 @@ Ext.define('crm.view.rotina.RotinaGrid',{
 	    },
 	    {
 	    	xtype: 	'pagingtoolbar',
-	    	store: 	'crm.store.Rotina',
+	    	store: 	'Rotina',
 	    	dock:	'bottom',
 	    	displayInfo: true,
 	    	empyMsg: 'Nenhum dado encontrado'

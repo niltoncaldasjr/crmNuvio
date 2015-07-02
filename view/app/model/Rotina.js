@@ -8,7 +8,7 @@
 */
 
 Ext.define('crm.model.Rotina', {
-	extend: 'Ext.data.model',
+	extend: 'Ext.data.Model',
 	
 	fields: [
 	    {name: 'id', 			type: 'int'},

@@ -30,6 +30,8 @@ function listaRotina() {
 	$objRotinaControl = new RotinaControl();
 	$listaRotina = $objRotinaControl->listarPaginado($start, $limit);
 	
+	$v_registros = array();
+	
 	foreach ($listaRotina as $objRotina) {
 		$v_registros[] = $objRotina;
 	}
