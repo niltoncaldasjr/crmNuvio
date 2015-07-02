@@ -130,14 +130,11 @@ class PessoaFisicaDAO{
 		if (! $result) {
 			die ( '[ERRO]: ' . mysqli_error ( $this->con ) );
 		}
-		while ( $row = mysqli_fetch_object ( $result ) ) {
-	
-			$this->objPessoaFisica = new PessoaFisica($row->id, $row->nome, $row->cpf, $row->datanascimento, $row->estadocivil, $row->sexo, $row->nomepai, $row->nomemae, $row->cor, $row->naturalidade, $row->nacionalidade, $row->datacadastro, $row->dataedicao);
-	
-			$this->listaPessoaFisica[] = $this->objPessoaFisica;
+		while ( $row = mysqli_fetch_assoc ( $result ) ) {		
+			$lista[]=$row;
 		}
-	
-		return $this->listaPessoaFisica;
+	//teste
+		return $lista;
 	}
 	
 	/*-- Quantidade Total --*/

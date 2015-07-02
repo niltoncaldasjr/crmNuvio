@@ -117,14 +117,11 @@ class RotinaDAO{
 		if (! $result) {
 			die ( '[ERRO]: ' . mysqli_error ( $this->con ) );
 		}
-		while ( $row = mysqli_fetch_object ( $result ) ) {
-	
-			$this->objRotina = new Rotina($row->id, $row->nome, $row->descricao, $row->ordem, $row->url, $row->ativo, $row->datacadastro, $row->dataedicao);
-		
-			$this->listaRotina[] = $this->objRotina;
+	while ( $row = mysqli_fetch_assoc ( $result ) ) {		
+			$lista[]=$row;
 		}
-	
-		return $this->listaRotina;
+	//teste
+		return $lista;
 	}
 	
 	/*-- Quantidade Total --*/
