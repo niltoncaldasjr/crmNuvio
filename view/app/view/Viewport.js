@@ -13,7 +13,9 @@ Ext.define('crm.view.Viewport', {
     
     requires: [
         'crm.view.pais.PaisGrid',
-        'crm.view.pais.PaisForm'
+        'crm.view.pais.PaisForm',
+        'crm.view.perfil.PerfilGrid',
+        'crm.view.perfil.PerfilForm'
     ],
     
     initComponent: function() {

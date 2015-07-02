@@ -7,7 +7,7 @@
 *  Desenvolvedor.: Fabiano Ferreira da Silva Costa
 */
 
-Ext.define('crm.view.Perfil.PerfilGrid',{
+Ext.define('crm.view.perfil.PerfilGrid',{
 	extend: 'Ext.grid.Panel',
 	alias: 'widget.perfilgrid',
 	title: 'Cadastro de Perfil',
@@ -36,7 +36,7 @@ Ext.define('crm.view.Perfil.PerfilGrid',{
 				{
 					xtype: 'button',
 					text: 'Excluir',
-					itemId: 'deletePPerfil',
+					itemId: 'deletePerfil',
 					iconCls: 'icon-delete'
 				}
 			]

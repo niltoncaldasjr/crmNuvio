@@ -5,29 +5,26 @@ Ext.define('crm.controller.Perfil', {
 
     models: ['Perfil'],
 
-    views: ['Perfil.PerfilForm', 'Perfil.PerfilGrid'],
+    views: ['perfil.PerfilForm', 'perfil.PerfilGrid'],
 
-    //refs: [{
-    //        ref: 'contatoPanel',
-    //        selector: 'panel'
-    //    },{
-    //        ref: 'contatoGrid',
-    //        selector: 'grid'
-    //    }
-    //],
+    refs: [{
+            ref: 'perfilGrid',
+            selector: 'grid'
+        }
+    ],
 
     init: function() {
         this.control({
             'perfilgrid dataview': {
                 itemdblclick: this.editarPerfil
             },
-            'perfilgrid button[action=add]': {
+            'perfilgrid button#addPerfil]': {
             	click: this.editarPerfil
             },
-            'perfilgrid button[action=delete]': {
+            'perfilgrid button#deletePerfil]': {
                 click: this.deletePerfil
             },
-            'perfilform button[action=save]': {
+            'perfilform button#=salvaperfil]': {
                 click: this.updatePerfil
             }
         });
@@ -35,7 +32,7 @@ Ext.define('crm.controller.Perfil', {
 
     editarPerfil: function(grid, record) {
         var edit = Ext.create('crm.view.perfil.PerfilForm').show();
-        
+        console.log('Botão Adds Form');
         if(record){
         	edit.down('form').loadRecord(record);
         }
@@ -54,7 +51,7 @@ Ext.define('crm.controller.Perfil', {
 		} else{
 			record = Ext.create('crm.model.Perfil');
 			record.set(values);
-			this.getPaisStore().add(record);
+			this.getPerfilStore().add(record);
             novo = true;
 		}
         

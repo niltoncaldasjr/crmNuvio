@@ -9,9 +9,8 @@
 
 Ext.define('crm.store.Perfil',{
 	extend: 'Ext.data.Store',
-
 	model: 'crm.model.Perfil',
-
+    autoLoad: true,
 	pageSize: 20,
 
 	proxy: {

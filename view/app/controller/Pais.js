@@ -8,12 +8,9 @@ Ext.define('crm.controller.Pais', {
     views: ['pais.PaisForm', 'pais.PaisGrid'],
 
     refs: [{
-            ref: 'paisPanel',
-            selector: 'panel'
-        },{
             ref: 'paisGrid',
             selector: 'grid'
-        }
+        	}
     ],
 
     init: function() {
@@ -57,7 +54,7 @@ Ext.define('crm.controller.Pais', {
 			this.getPaisStore().add(record);
             novo = true;
 		}
-		console.log('Botão Salvar Form');
+		
 		win.close();
         this.getPaisStore().sync();
 

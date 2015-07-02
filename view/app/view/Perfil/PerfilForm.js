@@ -8,7 +8,7 @@
 */
 
 
-Ext.define('crm.view.Perfil.PerfilForm',{
+Ext.define('crm.view.perfil.PerfilForm',{
 	
 	extend: 'Ext.window.Window',
 	alias: 'widget.perfilform',
