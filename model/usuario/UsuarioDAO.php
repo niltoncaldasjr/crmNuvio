@@ -113,7 +113,7 @@ class UsuarioDAO {
 		if (! $result) {
 			die ( '[ERRO]: ' . mysqli_error ( $this->con ) );
 		}
-		while ( $row = mysqli_fetch_object ( $result ) ) {
+		while ( $row = mysqli_fetch_assoc( $result ) ) {
 				
 			// busca o perfil desse usuario
 			$perfil = new Perfil ( $row->idperfil );
@@ -125,12 +125,10 @@ class UsuarioDAO {
 			$pessoafisicaControl = new PessoaFisicaControl ( $pessoafisica );
 			$pessoafisica = $pessoafisicaControl->buscarPorID ();
 				
-			$this->o_usuario = new Usuario ( $row->id, $row->nome, $row->usuario, $row->senha, $row->email, $row->ativo, $row->datacadastro, $row->dataedicao, $perfil, $pessoafisica );
-				
-			$this->lista [] = $this->o_usuario;
-		}
-	
-		return $this->lista;
+			$lista [] = $row;
+			}
+			
+			return $lista;
 	}
 	
 	function qtdTotal() {

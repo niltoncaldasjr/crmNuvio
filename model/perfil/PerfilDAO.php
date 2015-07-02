@@ -81,14 +81,12 @@ class PerfilDAO {
 		if (!$result) {
 			die('Error: ' . mysqli_error($this->con));
 		}
-		while($row = mysqli_fetch_object($result)){
+		while($row = mysqli_fetch_assoc($result)){
 				
-			$this->o_perfil = new Perfil($row->id, $row->nome, $row->ativo, $row->datacadastro, $row->dataedicao);
-				
-			$this->lista[] = $this->o_perfil;
-		}
-	
-		return $this->lista;
+			$lista [] = $row;
+			}
+			
+			return $lista;
 	}
 	
 	function qtdTotal() {

@@ -109,7 +109,7 @@ class EmpresaDAO {
 			if (! $result) {
 				die ( '[ERRO]: ' . mysqli_error ( $this->con ) );
 			}
-			while ( $row = mysqli_fetch_object ( $result ) ) {
+			while ( $row = mysqli_fetch_assoc( $result ) ) {
 				// busca o localidade desse empresa
 				$localidade = new Localidade ( $row->idlocalidade );
 				$localidadeControl = new LocalidadeControl ( $localidade );
@@ -120,11 +120,10 @@ class EmpresaDAO {
 				$impostoControl = new ImpostoControl ( $imposto );
 				$o_imposto = $impostoControl->buscarPorID ();
 				
-				$this->o_empresa = new Empresa ( $row->id, $row->nomeFantasia, $row->razaoSocial, $row->nomeReduzido, $row->CNPJ, $row->inscricaoEstadual, $row->inscricaoMunicipal, $row->endereco, $row->numero, $row->complemento, $row->bairro, $row->cep, $row->imagemLogotipo, $row->datacadastro, $row->dataedicao, $a_localidade, $o_imposto );
-				$this->lista [] = $this->o_empresa;
+				$lista [] = $row;
 			}
 			
-			return $this->lista;
+			return $lista;
 		}
 		
 		function qtdTotal() {

@@ -91,14 +91,12 @@ class ImpostoDAO {
 		if (! $result) {
 			die ( '[ERRO]: ' . mysqli_error ( $this->con ) );
 		}
-		while ( $row = mysqli_fetch_object ( $result ) ) {
+		while ( $row = mysqli_fetch_assoc( $result ) ) {
 				
-			$this->o_imposto = new Imposto (  $row->id, $row->aliquotaICMS, $row->aliquotaPIS, $row->aliquotaCOFINS, $row->aliquotaCSLL, $row->aliquotaISS, $row->aliquotaIRPJ, $row->datacadastro, $row->dataedicao );
-				
-			$this->lista [] = $this->o_imposto;
-		}
-	
-		return $this->lista;
+			$lista [] = $row;
+			}
+			
+			return $lista;
 	}
 	
 	function qtdTotal() {
