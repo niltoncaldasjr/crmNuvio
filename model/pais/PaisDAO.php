@@ -81,11 +81,7 @@ class PaisDAO {
 		if (! $result) {
 			die ( '[ERRO]: ' . mysqli_error ( $this->con ) );
 		}
-		while ( $row = mysqli_fetch_assoc ( $result ) ) {
-				
-// 			$this->o_pais = new Pais ( $row->id, $row->descricao, $row->nacionalidade, $row->datacadastro, $row->dataedicao );
-				
-// 			$this->lista [] = $this->o_pais;
+		while ( $row = mysqli_fetch_assoc ( $result ) ) {		
 			$lista[]=$row;
 		}
 	
