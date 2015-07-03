@@ -14,10 +14,9 @@ Ext.application({
 
     //extend: 'crm.Application',
     controllers: [
-                  'Pais',
-                  'Perfil',
-                  'Rotina',
+                  'Rotina'
     ],
+
     
     autoCreateViewport: true
 });

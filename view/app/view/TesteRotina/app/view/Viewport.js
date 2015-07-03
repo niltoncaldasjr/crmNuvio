@@ -11,11 +11,8 @@ Ext.define('crm.view.Viewport', {
     extend: 'Ext.Viewport',    
     layout: 'fit',
     
+   
     requires: [
-        'crm.view.pais.PaisGrid',
-        'crm.view.pais.PaisForm',
-        'crm.view.perfil.PerfilGrid',
-        'crm.view.perfil.PerfilForm',
         'crm.view.rotina.RotinaGrid',
         'crm.view.rotina.RotinaForm'
     ],
