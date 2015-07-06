@@ -55,16 +55,17 @@ function cadastraPerfil() {
 	$data = json_decode(stripslashes($jsonDados));
 	// Remover a mascara do CPF.
 	
-	$o_perfil = new Pais();
-	$o_perfil->setNome($data->descricao);
-	$o_perfil->setNome($data->nacionalidade);	
+	$o_perfil = new Perfil();
+	$o_perfil->setId($data->id);
+	$o_perfil->setNome($data->nome);	
+	$o_perfil->setAtivo($data->ativo);	
 	
 	$o_perfilControl = new PerfilControl($o_perfil);
 	$id = $o_perfilControl->cadastrar();
 	
 	$o_perfil->setId($id);
 	
-	
+	var_dump($o_perfil);
 	// encoda para formato JSON
 	echo json_encode(array(
 			"success" => 0,
@@ -83,6 +84,7 @@ function atualizaPerfil() {
 	$o_perfil->setId($data->id);
 	$o_perfil->setNome($data->nome);
 	$o_perfil->setAtivo($data->ativo);
+	$o_perfil->setDataedicao(date("Y-m-d H:i:s"));
 	$o_perfilControl = new PerfilControl($o_perfil);
 	$o_perfilControl->atualizar();
 	
