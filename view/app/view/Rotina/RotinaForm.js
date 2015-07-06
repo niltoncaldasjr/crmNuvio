@@ -7,6 +7,16 @@
 *  Desenvolvedor.: Fabiano Ferreira da Silva Costa
 */
 
+/*-- Criando Store de ComboBox Ativo --*/
+var ativo = Ext.create('Ext.data.Store', {
+    fields: ['value', 'name'],
+    data : [
+        {"value":"1", "name":"ATIVO"},
+        {"value":"0", "name":"INATIVO"},
+        //...
+    ]
+});
+
 Ext.define('crm.view.rotina.RotinaForm',{
 	
 	extend:	'Ext.window.Window',
@@ -29,7 +39,7 @@ Ext.define('crm.view.rotina.RotinaForm',{
 	    	
 	    	items: [
 	    	    {
-	    	    	xtype: 		'hiddenfiled',
+	    	    	xtype: 		'hiddenfield',
 	    	    	name: 		'id'
 	    	    },
 	    	    {
@@ -53,6 +63,18 @@ Ext.define('crm.view.rotina.RotinaForm',{
 	    	    	name: 		'url'
 	    	    },
 	    	    {
+					xtype:'combo',
+					fieldLabel:'Ativo',
+					emptyText:'Selecione a opção ...',
+					forceSelection:true,
+					editable:false,
+					name: 'ativo',
+					store: ativo,
+					queryMode: 'local',
+					displayField: 'name',
+					valueField: 'value'
+				},
+				/*{
 	    	    	xtype: 		'textfield',
 	    	    	fieldLabel: 'Ativo',
 	    	    	name: 		'ativo'
@@ -66,7 +88,7 @@ Ext.define('crm.view.rotina.RotinaForm',{
 	    	    	xtype: 		'textfield',
 	    	    	fieldLabel: 'Data Edição',
 	    	    	name: 		'dataedicao'
-	    	    },
+	    	    },*/
 	    	   
 	    	]
 	    }
@@ -84,13 +106,13 @@ Ext.define('crm.view.rotina.RotinaForm',{
 	    	      {
 	    	    	  xtype: 	'button',
 	    	    	  text: 	'Cancelar',
-	    	    	  itemId: 	'cancelarotina',
+	    	    	  itemId: 	'cancelaRotina',
 	    	    	  iconCls: 	'icon-reset'
 	    	      },
 	    	      {
 	    	    	  xtype: 	'button',
 	    	    	  text: 	'Salvar',
-	    	    	  itemId: 	'salarotina',
+	    	    	  itemId: 	'salvaRotina',
 	    	    	  iconCls: 	'icon-save'
 	    	      }
 	    	  ]

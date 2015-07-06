@@ -7,51 +7,51 @@
 *  Desenvolvedor.: Fabiano Ferreira da Silva Costa
 */
 
-Ext.define('cmr.view.rotina.RotinaGrid',{
-	extend: 'Ext.grid.Panel',
-	alias: 'widget.rotinagrid',
-	title: 'Cadastro de Rotinas',
-	iconCls: 'icon-grid',
-	store: 'crm.store.Rotina',
+Ext.define('crm.view.pessoafisica.PessoaFisicaGrid',{
+	extend: 	'Ext.grid.Panel',
+	alias: 		'widget.pessoafisicagrid',
+	title: 		'Cadastro de Pessoa Fisica',
+	iconCls: 	'icon-grid',
+	store: 		'PessoaFisica',
 	
-	colums: [
-	    {text: 'ID',				dataindex: 'id', 				width: 50},
-	    {text: 'Nome', 				dataindex: 'nome', 				width: 50},
-	    {text: 'CPF', 				dataindex: 'cpf', 				width: 50},
-	    {text: 'Data Nascimento', 	dataindex: 'datanascimento', 	width: 50},
-	    {text: 'Estado CivilL', 	dataindex: 'estadocivil', 		width: 50},
-	    {text: 'Sexo', 				dataindex: 'sexo', 				width: 50},
-	    {text: 'Nome Pai', 			dataindex: 'nomepai',			width: 50},
-	    {text: 'Nome Mãe', 			dataindex: 'nomemae', 			width: 50},
-	    {text: 'Cor', 				dataindex: 'cor', 				width: 50},
-	    {text: 'Naturalidade', 		dataindex: 'naturalidade',		width: 50},
-	    {text: 'Nacionalidade', 	dataindex: 'nacionalidade',		width: 50},
-	    {text: 'Data Cadadastro', 	dataindex: 'datacadastro', 		width: 50},
-	    {text: 'Data Edição', 		dataindex: 'dataedicao', 		width: 50}
+	columns: [
+	    {text: 'ID',				dataIndex: 'id' 				},
+	    {text: 'Nome', 				dataIndex: 'nome' 				},
+	    {text: 'CPF', 				dataIndex: 'cpf' 				},
+	    {text: 'Data Nascimento', 	dataIndex: 'datanascimento', 	renderer : Ext.util.Format.dateRenderer('d/m/Y')},
+	    {text: 'Estado CivilL', 	dataIndex: 'estadocivil' 		},
+	    {text: 'Sexo', 				dataIndex: 'sexo' 				},
+	    {text: 'Nome Pai', 			dataIndex: 'nomepai'			},
+	    {text: 'Nome Mãe', 			dataIndex: 'nomemae' 			},
+	    {text: 'Cor', 				dataIndex: 'cor' 				},
+	    {text: 'Naturalidade', 		dataIndex: 'naturalidade'		},
+	    {text: 'Nacionalidade', 	dataIndex: 'nacionalidade'		},
+	    {text: 'Data Cadadastro', 	dataIndex: 'datacadastro', 		renderer : Ext.util.Format.dateRenderer('d/m/Y')},
+	    {text: 'Data Edição', 		dataIndex: 'dataedicao', 		renderer : Ext.util.Format.dateRenderer('d/m/Y')}
 	],
 	
 	dockedItems: [
 	    {
 	    	xtype: 'toolbar',
 	    	dock: 	'top',
-	    	itemns: [
+	    	items: [
 	    	   {
 	    		   xtype: 'button',
 	    		   text: 'Novo',
-	    		   itemId: 'add',
+	    		   itemId: 'addPessoaFisica',
 	    		   iconCls: 'icon-add'
 	    	   },
 	    	   {
 	    		   xtype: 'button',
 	    		   text: 'Excluir',
-	    		   itemId: 'delete',
+	    		   itemId: 'deletePessoaFisica',
 	    		   iconCls: 'icon-delete'
 	    	   }
 	    	]
 	    },
 	    {
 	    	xtype: 	'pagingtoolbar',
-	    	store: 	'crm.store.Rotina',
+	    	store: 	'PessoaFisica',
 	    	dock:	'bottom',
 	    	displayInfo: true,
 	    	empyMsg: 'Nenhum dado encontrado'

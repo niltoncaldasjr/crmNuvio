@@ -34,10 +34,10 @@ class PessoaFisicaControl{
 		return $this->objPessoaFisicaDAO->listarPorNome($this->objPessoaFisica);
 	}
 	function listarPaginado($start, $limit){
-		return $this->objRotinaDAO->listarPaginado($start, $limit);
+		return $this->objPessoaFisicaDAO->listarPaginado($start, $limit);
 	}
 	function qtdTotal(){
-		return $this->objRotinaDAO->qtdTotal();
+		return $this->objPessoaFisicaDAO->qtdTotal();
 	}
 }
 

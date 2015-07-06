@@ -41,12 +41,12 @@ var cor = Ext.create('Ext.data.Store', {
     ]
 });
 
-Ext.define('crm.view.PessoaFisicaForm'{
+Ext.define('crm.view.pessoafisica.PessoaFisicaForm',{
 	
 	extend:	'Ext.window.Window',
-	alias:	'pessoafisicaform',
+	alias:	'widget.pessoafisicaform',
 	
-	height: 	300,
+	height: 	350,
 	width: 		450,
 	layout: 	'fit',
 	iconCls: 	'icon-user',
@@ -63,7 +63,7 @@ Ext.define('crm.view.PessoaFisicaForm'{
 	    	
 	    	items: [
 	    	    {
-	    	    	xtype: 		'hiddenfiled',
+	    	    	xtype: 		'hiddenfield',
 	    	    	name: 		'id'
 	    	    },
 	    	    {
@@ -77,10 +77,12 @@ Ext.define('crm.view.PessoaFisicaForm'{
 	    	    	name: 		'cpf'
 	    	    },
 	    	    {
-	    	    	xtype: 		'textfield',
-	    	    	fieldLabel: 'Data Nascimento',
-	    	    	name: 		'datanascimento'
-	    	    },
+	    	    	xtype: 'datefield',
+		            anchor: '100%',
+		            fieldLabel: 'Data Nascimento',
+		            name: 'datanascimento',
+		            format: 'd/m/Y',
+		        },
 	    	    {
 					defaults:{anchor:'100%'},
 					xtype:'combo',
@@ -89,7 +91,7 @@ Ext.define('crm.view.PessoaFisicaForm'{
 					forceSelection:true,
 					editable:false,
 					name: 'estadocivil',
-					store: 'estadoCivil',
+					store: estadoCivil,
 					queryMode: 'local',
 					displayField: 'name',
 					valueField: 'value'
@@ -102,7 +104,7 @@ Ext.define('crm.view.PessoaFisicaForm'{
 					forceSelection:true,
 					editable:false,
 					name: 'sexo',
-					store: 'sexo',
+					store: sexo,
 					queryMode: 'local',
 					displayField: 'name',
 					valueField: 'value'
@@ -125,7 +127,7 @@ Ext.define('crm.view.PessoaFisicaForm'{
 					forceSelection:true,
 					editable:false,
 					name: 'cor',
-					store: 'cor',
+					store: cor,
 					queryMode: 'local',
 					displayField: 'name',
 					valueField: 'value'
@@ -139,31 +141,6 @@ Ext.define('crm.view.PessoaFisicaForm'{
 	    	    	xtype: 		'textfield',
 	    	    	fieldLabel: 'Nacionalidade',
 	    	    	name: 		'nacionalidade'
-	    	    },
-	    	    {
-	    	    	//xtype: 		'textfield',
-	    	    	//fieldLabel: 'Data Cadastro',
-	    	    	//name: 		'datacadastro'
-	    	    	xtype: 		'datepicker',
-	    	    	fieldLabel: 'Data Cadastro',
-	    	    	name: 		'datacadastro'
-		    	    minDate: new Date(),
-		    	    handler: function(picker, date) {
-		    	    	valueField: 'date'
-		    	    }
-	    	    	
-	    	    },
-	    	    {
-	    	    	//xtype: 		'textfield',
-	    	    	//fieldLabel: 'Data Edição',
-	    	    	//name: 		'dataedicao'
-	    	    	xtype: 		'datepicker',
-	    	    	fieldLabel: 'Data Cadastro',
-	    	    	name: 		'datacadastro'
-		    	    minDate: new Date(),
-		    	    handler: function(picker, date) {
-		    	    	valueField: 'date'
-		    	    }
 	    	    },
 	    	   
 	    	]
@@ -182,13 +159,13 @@ Ext.define('crm.view.PessoaFisicaForm'{
 	    	      {
 	    	    	  xtype: 	'button',
 	    	    	  text: 	'Cancelar',
-	    	    	  itemId: 	'cancelrotina',
+	    	    	  itemId: 	'cancelaPessoaFisica',
 	    	    	  iconCls: 	'icon-reset'
 	    	      },
 	    	      {
 	    	    	  xtype: 	'button',
-	    	    	  text: 	'Slavar',
-	    	    	  itemId: 	'saverotina',
+	    	    	  text: 	'Salvar',
+	    	    	  itemId: 	'salvaPessoaFisica',
 	    	    	  iconCls: 	'icon-save'
 	    	      }
 	    	  ]
