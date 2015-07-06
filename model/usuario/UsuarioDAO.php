@@ -30,14 +30,15 @@ class UsuarioDAO {
 		return mysqli_insert_id ( $this->con );
 	}
 	function atualizar(Usuario $o_usuario) {
-		$this->sql = sprintf ( "UPDATE usuario SET nome= '%s', usuario= '%s', senha= '%s', email= '%s', ativo=%d, dataedicao='%s', idperfil=%d WHERE id= %d", 
+		$this->sql = sprintf ( "UPDATE usuario SET nome= '%s', usuario= '%s', senha= '%s', email= '%s', ativo=%d, dataedicao='%s', idperfil=%d, idpessoafisica=%d WHERE id= %d", 
 				mysqli_real_escape_string ( $this->con, $o_usuario->getNome () ), 				
 				mysqli_real_escape_string ( $this->con, $o_usuario->getUsuario () ), 
 				mysqli_real_escape_string ( $this->con, $o_usuario->getSenha () ), 
 				mysqli_real_escape_string ( $this->con, $o_usuario->getEmail () ), 
 				mysqli_real_escape_string ( $this->con, $o_usuario->getAtivo () ), 
 				mysqli_real_escape_string ( $this->con, $o_usuario->getDataedicao () ), 
-				mysqli_real_escape_string ( $this->con, $o_usuario->getObjPerfil ()->getId () ), 				
+				mysqli_real_escape_string ( $this->con, $o_usuario->getObjPerfil ()->getId () ),
+				mysqli_real_escape_string ( $this->con, $o_usuario->getObjPessoafisica()->getId () ),
 				mysqli_real_escape_string ( $this->con, $o_usuario->getId () ) );
 		
 		if (! mysqli_query ( $this->con, $this->sql )) {

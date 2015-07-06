@@ -1,33 +1,33 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'control/ImpostoControl.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'model/imposto/Imposto.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'control/LocalidadeControl.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'model/Localidade/Localidade.php';
 
 switch ($_SERVER['REQUEST_METHOD']) {
 	
 		case 'GET':
-			listaImposto();
+			listaLocalidade();
 			break;
 	
 		case 'POST':
-			cadastraImposto();
+			cadastraLocalidade();
 			break;
 	
 		case 'PUT':
-			atualizaImposto();
+			atualizaLocalidade();
 			break;
 				
 		case 'DELETE':
-			deletaImposto();
+			deletaLocalidade();
 			break;
 }
 	
-function listaImposto() {
+function listaLocalidade() {
 	
 	$start = $_REQUEST['start'];
 	$limit = $_REQUEST['limit'];
 	
 
-	$controller = new ImpostoControl();
+	$controller = new LocalidadeControl();
 	$lista = $controller->listarPaginado($start, $limit);
 	
 	
@@ -43,25 +43,23 @@ function listaImposto() {
 	
 }
 
-function cadastraImposto() {
+function cadastraLocalidade() {
 	
 	$jsonDados = $_POST['data'];
 	$data = json_decode(stripslashes($jsonDados));
 	// Remover a mascara do CPF.
 	
-	$object = new Imposto();
-	$object->setAliquotaICMS($data->aliquotaICMS);
-	$object->setAliquotaPIS($data->aliquotaPIS);
-	$object->setaliquotaCOFINS($data->aliquotaCOFINS);
-	$object->setAliquotaCSLL($data->aliquotaCSLL);
-	$object->setAliquotaISS($data->aliquotaISS);
-	$object->setAliquotaIRPJ($data->aliquotaIRPJ);
-	$controller = new ImpostoControl($object);
+	$object = new Localidade();
+	$object->setCodigoIBGE($data->codigoIBGE);
+	$object->setUf($data->uf);
+	$object->setCidade($data->cidade);
+	$object->setObjPais(new Pais($data->idpais));
+	$controller = new LocalidadeControl($object);
 	$id = $controller->cadastrar();
 	
 	$object->setId($id);
 	
-	
+	//var_dump($data);
 	// encoda para formato JSON
 	echo json_encode(array(
 			"success" => 0,
@@ -70,28 +68,26 @@ function cadastraImposto() {
 	
 }
 
-function atualizaImposto() {
+function atualizaLocalidade() {
 	
 	parse_str(file_get_contents("php://input"), $post_vars);
 	$jsonDados = $post_vars['data'];
 	$data = json_decode(stripslashes($jsonDados));
 	
-	$object = new Imposto();
+	$object = new Localidade();
 	$object->setId($data->id);
-	$object->setAliquotaICMS($data->aliquotaICMS);
-	$object->setAliquotaPIS($data->aliquotaPIS);
-	$object->setaliquotaCOFINS($data->aliquotaCOFINS);
-	$object->setAliquotaCSLL($data->aliquotaCSLL);
-	$object->setAliquotaISS($data->aliquotaISS);
-	$object->setAliquotaIRPJ($data->aliquotaIRPJ);
+	$object->setCodigoIBGE($data->codigoIBGE);
+	$object->setUf($data->uf);
+	$object->setCidade($data->cidade);	
 	$object->setDataedicao(date("Y-m-d H:i:s"));
-	$controller = new ImpostoControl($object);
+	$object->setObjPais(new Pais($data->idpais));
+	$controller = new LocalidadeControl($object);
 	$controller->atualizar();
-	var_dump($data);
+	//var_dump($data);
 	
 }
 
-function deletaImposto() {
+function deletaLocalidade() {
 	
 	parse_str(file_get_contents("php://input"), $post_vars);
 	$jsonDados = $post_vars['data'];
@@ -99,10 +95,10 @@ function deletaImposto() {
 		
 	$id = $data->id;
 	
-	$object = new Imposto();
+	$object = new Localidade();
 	$object->setId($id);
 	
-	$controller = new ImpostoControl($object);
+	$controller = new LocalidadeControl($object);
 	$controller->deletar();
 	
 }

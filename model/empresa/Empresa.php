@@ -5,7 +5,7 @@ class Empresa implements JsonSerializable {
 	private $razaoSocial;
 	private $nomeReduzido;
 	private $CNPJ;
-	private $inscricaoEstatual;
+	private $inscricaoEstadual;
 	private $inscricaoMunicipal;
 	private $endereco;
 	private $numero;
@@ -18,13 +18,13 @@ class Empresa implements JsonSerializable {
 	private $objLocalidade;
 	private $objImposto;
 	
-	function __construct($id=null, $nomeFantasia=null, $razaoSocial=null, $nomeReduzido=null, $CNPJ=null, $inscricaoEstatual=null, $inscricaoMunicipal=null, $endereco=null, $numero=null, $complemento=null, $bairro=null, $cep=null, $imagemLogotipo=null, $datacadastro=null, $dataedicao=null, Localidade $objLocalidade=null, Imposto $objImposto=null) {
+	function __construct($id=null, $nomeFantasia=null, $razaoSocial=null, $nomeReduzido=null, $CNPJ=null, $inscricaoEstadual=null, $inscricaoMunicipal=null, $endereco=null, $numero=null, $complemento=null, $bairro=null, $cep=null, $imagemLogotipo=null, $datacadastro=null, $dataedicao=null, Localidade $objLocalidade=null, Imposto $objImposto=null) {
             $this->id = $id;
             $this->nomeFantasia = $nomeFantasia;
             $this->razaoSocial = $razaoSocial;
             $this->nomeReduzido = $nomeReduzido;
             $this->CNPJ = $CNPJ;
-            $this->inscricaoEstatual = $inscricaoEstatual;
+            $this->inscricaoEstadual = $inscricaoEstadual;
             $this->inscricaoMunicipal = $inscricaoMunicipal;
             $this->endereco = $endereco;
             $this->numero = $numero;
@@ -58,8 +58,8 @@ class Empresa implements JsonSerializable {
             return $this->CNPJ;
         }
 
-        function getInscricaoEstatual() {
-            return $this->inscricaoEstatual;
+        function getInscricaoEstadual() {
+            return $this->inscricaoEstadual;
         }
 
         function getInscricaoMunicipal() {
@@ -126,8 +126,8 @@ class Empresa implements JsonSerializable {
             $this->CNPJ = $CNPJ;
         }
 
-        function setInscricaoEstatual($inscricaoEstatual) {
-            $this->inscricaoEstatual = $inscricaoEstatual;
+        function setInscricaoEstadual($inscricaoEstadual) {
+            $this->inscricaoEstadual = $inscricaoEstadual;
         }
 
         function setInscricaoMunicipal($inscricaoMunicipal) {
@@ -183,7 +183,7 @@ class Empresa implements JsonSerializable {
 				'razaoSocial' => $this->razaoSocial,
 				'nomeReduzido' => $this->nomeReduzido,
 				'CNPJ' => $this->CNPJ,
-				'inscricaoEstatual' => $this->inscricaoEstatual,
+				'inscricaoEstadual' => $this->inscricaoEstadual,
 				'inscricaoMunicipal' => $this->inscricaoMunicipal,
 				'endereco' => $this->endereco,
 				'numero' => $this->numero,

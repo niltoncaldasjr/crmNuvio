@@ -44,6 +44,7 @@ Ext.define('crm.controller.Perfil', {
     	var win = btn.up('window');
     	var form = win.down('form');
     	form.getForm().reset();
+    	win.close();
     },
     onAddPerfilClick: function(btn, e, eOpts){
     	Ext.create('crm.view.perfil.PerfilForm').show();

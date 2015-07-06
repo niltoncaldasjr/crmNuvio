@@ -82,23 +82,21 @@ Ext.define('crm.view.usuario.UsuarioForm',{
 					xtype: 'combo',
 					name: 'idperfil',
 					fieldLabel:'Perfil',
+					emptyText:'Selecioone o Perfil...',
 				    store: 'Perfil',
 				    displayField: 'nome',
 				    valueField: 'id'
 				    
 				},
-//				{
-//					xtype: 'combo',
-//					fieldLabel:'Pessoa Física',
-//				    store: 'PessoaFisica',
-//				    displayField: 'nome',
-//				    valueField: 'id'
-//				    
-//				}
 				{
-					xtype: 'textfield',
+					xtype: 'combo',
 					fieldLabel:'Pessoa Física',
-				    name: 'idpessoafisica'
+					emptyText:'Selecioone a Pessoa...',
+					name: 'idpessoafisica',
+				    store: 'PessoaFisica',
+				    displayField: 'nome',
+				    valueField: 'id'
+				    
 				}
 			]
 		}

@@ -1,68 +1,68 @@
-Ext.define('crm.controller.Empresa', {
+Ext.define('crm.controller.Localidade', {
     extend: 'Ext.app.Controller',
 
-    stores: ['Empresa'],
+    stores: ['Localidade'],
 
-    models: ['Empresa'],
+    models: ['Localidade'],
 
-    views: ['empresa.EmpresaForm', 'empresa.EmpresaGrid'],
+    views: ['localidade.LocalidadeForm', 'localidade.LocalidadeGrid'],
 
     refs: [{
-        ref: 'empresaGrid',
+        ref: 'localidadeGrid',
         selector: 'grid'
     }
     ],
 
     init: function() {
         this.control({
-            'empresagrid dataview': {
-                itemdblclick: this.onEditaEmpresa
+            'localidadegrid dataview': {
+                itemdblclick: this.onEditaLocalidade
             },
-            'empresagrid button#addEmpresa': {
-            	click: this.onAddEmpresaClick
+            'localidadegrid button#addLocalidade': {
+            	click: this.onAddLocalidadeClick
             },
-            'empresagrid button#deleteEmpresa': {
-                click: this.onDeleteEmpresaClick
+            'localidadegrid button#deleteLocalidade': {
+                click: this.onDeleteLocalidadeClick
             },
-            'empresaform button#salvaempresa': {
-                click: this.onSaveEmpresaClick
+            'localidadeform button#salvalocalidade': {
+                click: this.onSaveLocalidadeClick
             },
-            'empresaform button#cancelaempresa': {
-                click: this.onCancelEmpresaClick
+            'localidadeform button#cancelalocalidade': {
+                click: this.onCancelLocalidadeClick
             }
         });
     },
 
-    onEditaEmpresa: function(grid, record) {
-        var edit = Ext.create('crm.view.empresa.EmpresaForm').show();        
+    onEditaLocalidade: function(grid, record) {
+        var edit = Ext.create('crm.view.localidade.LocalidadeForm').show();        
         if(record){
         	edit.down('form').loadRecord(record);
         }
     },
-    onCancelEmpresaClick: function(btn, e, eOpts){
+    onCancelLocalidadeClick: function(btn, e, eOpts){
     	var win = btn.up('window');
     	var form = win.down('form');
     	form.getForm().reset();
     	win.close();
     },
-    onAddEmpresaClick: function(btn, e, eOpts){
-    	Ext.create('crm.view.empresa.EmpresaForm').show();
+    onAddLocalidadeClick: function(btn, e, eOpts){
+    	Ext.create('crm.view.localidade.LocalidadeForm').show();
     }, 
 
     
-    onSaveEmpresaClick: function(btn, e, eOpts){
+    onSaveLocalidadeClick: function(btn, e, eOpts){
     	var win = btn.up('window'),
     		form = win.down('form'),
     		values = form.getValues(),
     		record = form.getRecord(),
-    		grid = Ext.ComponentQuery.query('empresagrid')[0],
+    		grid = Ext.ComponentQuery.query('localidadegrid')[0],
     		store = grid.getStore();
     	
     	if (values.id > 0){
 			record.set(values);
     		
     	} else{   // se for um novo
-    		record = Ext.create('crm.model.Empresa');
+    		record = Ext.create('crm.model.Localidade');
     		record.set(values);
     		store.add(record);
     	}
@@ -71,7 +71,7 @@ Ext.define('crm.controller.Empresa', {
     	store.load();
   },
   
-  onDeleteEmpresaClick: function(btn, e, eOpts){
+  onDeleteLocalidadeClick: function(btn, e, eOpts){
   	Ext.MessageBox.confirm('Confirma', 'Deseja realmente deletar?', function(botton){			
 			if(botton == 'yes'){
 				var grid = btn.up('grid'),

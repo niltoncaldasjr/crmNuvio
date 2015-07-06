@@ -19,7 +19,9 @@ Ext.application({
                   'Rotina',
                   'PessoaFisica',
                   'Empresa',
-                  'Usuario'
+                  'Usuario',
+                  'Imposto',
+                  'Localidade'
     ],
     
     autoCreateViewport: true

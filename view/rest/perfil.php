@@ -65,7 +65,7 @@ function cadastraPerfil() {
 	
 	$o_perfil->setId($id);
 	
-	var_dump($o_perfil);
+	//var_dump($o_perfil);
 	// encoda para formato JSON
 	echo json_encode(array(
 			"success" => 0,

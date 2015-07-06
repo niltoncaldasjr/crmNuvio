@@ -31,10 +31,10 @@ class LocalidadeControl{
 		return $this->objLocalidadeDAO->listarTodos($this->objLocalidade);
 	}
 	function listarPaginado($start, $limit){
-		return $this->objRotinaDAO->listarPaginado($start, $limit);
+		return $this->objLocalidadeDAO->listarPaginado($start, $limit);
 	}
 	function qtdTotal(){
-		return $this->objRotinaDAO->qtdTotal();
+		return $this->objLocalidadeDAO->qtdTotal();
 	}
 }
 

@@ -18,14 +18,16 @@ Ext.define('crm.view.Viewport', {
                'crm.view.perfil.PerfilForm',  //ok
                'crm.view.rotina.RotinaGrid',
                'crm.view.rotina.RotinaForm',
-               'crm.view.usuario.UsuarioGrid', // falta o combobox pessoafisica
-               'crm.view.usuario.UsuarioForm', // falta o combobox pessoafisica
+               'crm.view.usuario.UsuarioGrid', //ok
+               'crm.view.usuario.UsuarioForm', //ok
                'crm.view.empresa.EmpresaGrid',
                'crm.view.empresa.EmpresaForm',
                'crm.view.imposto.ImpostoGrid', //ok
                'crm.view.imposto.ImpostoForm', //ok
                'crm.view.pessoafisica.PessoaFisicaGrid',
-               'crm.view.pessoafisica.PessoaFisicaForm'
+               'crm.view.pessoafisica.PessoaFisicaForm',
+               'crm.view.localidade.LocalidadeForm',
+               'crm.view.localidade.LocalidadeGrid'
      ],
     
     
@@ -36,7 +38,7 @@ Ext.define('crm.view.Viewport', {
         Ext.apply(me, {
             items: [
                 {
-                    xtype: 'impostogrid'
+                    xtype: 'localidadegrid'
                 }
             ]
         });
