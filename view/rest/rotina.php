@@ -83,7 +83,7 @@ function atualizaRotina() {
 	
 	$datahora = date("Y-m-d H:i:s");
 	
-	$objRotina = new Rotina($data->id, $data->nome, $data->descricao, $data->ordem, $data->url, $data->ativo ,$datahora );
+	$objRotina = new Rotina($data->id, $data->nome, $data->descricao, $data->ordem, $data->url, $data->ativo , NULL, $datahora );
 	
 	$objRotinaControl = new RotinaControl($objRotina);
 	$objRotinaControl->atualizar();

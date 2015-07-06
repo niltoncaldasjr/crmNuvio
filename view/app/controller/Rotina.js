@@ -26,6 +26,9 @@ Ext.define('crm.controller.Rotina',{
 			},
 			'rotinaform button#salvaRotina': {
 				click: this.updateRotina
+			},
+			'rotinaform button#cancelaRotina': {
+				click: this.cancelaRotina
 			}
 		});
 	},
@@ -70,9 +73,16 @@ Ext.define('crm.controller.Rotina',{
 		store = this.getRotinaStore();
 		
 		store.remove(record);
-		this.getRotinaStore.sync();
+		this.getRotinaStore().sync();
 		
 		/*-- reload na grid para atualizar a lista --*/
-		this.getRotinaStore.load();
+		this.getRotinaStore().load();
+	},
+	
+	cancelaRotina: function(button){
+		var win = button.up('window');
+		
+		win.close();
 	}
+	
 });

@@ -8,48 +8,48 @@
 */
 
 Ext.define('crm.view.rotina.RotinaGrid',{
-	extend: 'Ext.grid.Panel',
-	alias: 'widget.rotinagrid',
-	title: 'Cadastro de Rotinas',
-	iconCls: 'icon-grid',
-	store: 'Rotina',
+	extend: 	'Ext.grid.Panel',
+	alias: 		'widget.rotinagrid',
+	title: 		'Cadastro de Rotinas',
+	iconCls: 	'icon-grid',
+	store: 		'Rotina',
 	
 	columns: [
-	    {text: 'ID', dataindex: 'id'},
-	    {text: 'Nome', dataindex: 'nome'},
-	    {text: 'Descrição', dataindex: 'descricao'},
-	    {text: 'Ordem', dataindex: 'ordem'},
-	    {text: 'URL', dataindex: 'url'},
-	    {text: 'Ativo', dataindex: 'ativo'},
-	    {text: 'Data Cad.', dataindex: 'datacadastro', renderer : Ext.util.Format.dateRenderer('d/m/Y')},
-	    {text: 'Data Edi.', dataindex: 'dataedicao', renderer : Ext.util.Format.dateRenderer('d/m/Y')}
+	    {text: 'ID', 			dataIndex: 'id'},
+	    {text: 'Nome', 			dataIndex: 'nome'},
+	    {text: 'Descrição', 	dataIndex: 'descricao'},
+	    {text: 'Ordem', 		dataIndex: 'ordem'},
+	    {text: 'URL', 			dataIndex: 'url'},
+	    {text: 'Ativo', 		dataIndex: 'ativo'},
+	    {text: 'Data Cad.', 	dataIndex: 'datacadastro', 	renderer : Ext.util.Format.dateRenderer('d/m/Y')},
+	    {text: 'Data Edi.', 	dataIndex: 'dataedicao', 	renderer : Ext.util.Format.dateRenderer('d/m/Y')}
 	],
 	
 	dockedItems: [
 	    {
-	    	xtype: 'toolbar',
+	    	xtype:	'toolbar',
 	    	dock: 	'top',
 	    	items: [
 	    	   {
-	    		   xtype: 'button',
-	    		   text: 'Novo',
-	    		   itemId: 'addRotina',
+	    		   xtype: 	'button',
+	    		   text: 	'Novo',
+	    		   itemId: 	'addRotina',
 	    		   iconCls: 'icon-add'
 	    	   },
 	    	   {
-	    		   xtype: 'button',
-	    		   text: 'Excluir',
-	    		   itemId: 'deleteRotina',
+	    		   xtype: 	'button',
+	    		   text: 	'Excluir',
+	    		   itemId: 	'deleteRotina',
 	    		   iconCls: 'icon-delete'
 	    	   }
 	    	]
 	    },
 	    {
-	    	xtype: 	'pagingtoolbar',
-	    	store: 	'Rotina',
-	    	dock:	'bottom',
-	    	displayInfo: true,
-	    	empyMsg: 'Nenhum dado encontrado'
+	    	xtype: 			'pagingtoolbar',
+	    	store: 			'Rotina',
+	    	dock:			'bottom',
+	    	displayInfo: 	true,
+	    	empyMsg: 		'Nenhum dado encontrado'
 	    }
 	]
 });
