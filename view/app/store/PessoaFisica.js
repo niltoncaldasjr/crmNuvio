@@ -12,6 +12,8 @@ Ext.define('crm.store.PessoaFisica',{
 	
 	model: 'crm.model.PessoaFisica',
 	
+	autoLoad: true,
+	
 	pageSize: 20,
 	
 	proxy: {

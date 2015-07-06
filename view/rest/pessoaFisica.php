@@ -1,6 +1,6 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'control/PessoaFisicaControl.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" .'model/rotina/Rotina.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" .'model/pessoafisica/PessoaFisica.php';
 
 switch ($_SERVER['REQUEST_METHOD']) {
 	
@@ -29,6 +29,8 @@ function listaPessoaFisica() {
 
 	$objPessoaFisicaControl = new PessoaFisicaControl();
 	$listaPessoaFisica = $objPessoaFisicaControl->listarPaginado($start, $limit);
+	
+	$v_registros = array();
 	
 	foreach ($listaPessoaFisica as $objPessoaFisica) {
 		$v_registros[] = $objPessoaFisica;
@@ -102,17 +104,17 @@ function atualizaPessoaFisica() {
 	$cpf=$data->cpf;
 	$cpf=preg_replace("/\D+/", "", $cpf); // remove qualquer caracter não numérico
 	
-	$datanascimento = $data->dataNascimento;
+	$datanascimento = $data->datanascimento;
 
 	$d_for = explode('/', $datanascimento);	
-	$dia = $d_for[1];
-	$mes = $d_for[0];
+	$dia = $d_for[0];
+	$mes = $d_for[1];
 	$ano = $d_for[2];
 	$s_dataAniversario = $ano."-".$mes."-".$dia;
 	
 	
 	$objPessoaFisica = new PessoaFisica($data->id, $data->nome, $cpf, $s_dataAniversario, $data->estadocivil,
-			$data->sexo,$data->nomepai, $data->nomemae, $data->cor, $data->naturalidade, $data->nacionalidade, $datahora );
+			$data->sexo,$data->nomepai, $data->nomemae, $data->cor, $data->naturalidade, $data->nacionalidade,NULL, $datahora );
 	
 	$objPessoaFisicaControl = new PessoaFisicaControl($objPessoaFisica);
 	$objPessoaFisicaControl->atualizar();

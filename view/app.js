@@ -17,6 +17,7 @@ Ext.application({
                   'Pais',
                   'Perfil',
                   'Rotina',
+                  'PessoaFisica'
     ],
     
     autoCreateViewport: true

@@ -124,7 +124,7 @@ class PessoaFisicaDAO{
 	}
 	
 	/*-- listaPessoaFisicar paginado --*/
-	function listaPessoaFisicarPaginado($start, $limit) {
+	function listarPaginado($start, $limit) {
 		$this->sql = "SELECT * FROM pessoafisica limit " . $start . ", " . $limit;
 		$result = mysqli_query ( $this->con, $this->sql );
 		if (! $result) {

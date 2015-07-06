@@ -17,7 +17,9 @@ Ext.define('crm.view.Viewport', {
         'crm.view.perfil.PerfilGrid',
         'crm.view.perfil.PerfilForm',
         'crm.view.rotina.RotinaGrid',
-        'crm.view.rotina.RotinaForm'
+        'crm.view.rotina.RotinaForm',
+        'crm.view.pessoafisica.PessoaFisicaGrid',
+        'crm.view.pessoafisica.PessoaFisicaForm'
     ],
     
     initComponent: function() {
@@ -26,7 +28,7 @@ Ext.define('crm.view.Viewport', {
         Ext.apply(me, {
             items: [
                 {
-                    xtype: 'rotinagrid'
+                    xtype: 'pessoafisicagrid'
                 }
             ]
         });
