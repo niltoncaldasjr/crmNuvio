@@ -38,9 +38,29 @@ Ext.define('crm.view.perfil.PerfilForm',{
 				    name: 'nome'
 				},
 				{
-					xtype: 'textfield',
+					xtype: 'fieldcontainer',
 					fieldLabel:'Ativo',
-					name: 'ativo'	
+					defaultType: 'radiofield',
+					defaults: {
+		                flex: 1
+		            },
+		            defaults: {
+		                flex: 1
+		            },
+		            layout: 'hbox',
+		            items: [
+		                    {
+		                        boxLabel  : 'Sim',
+		                        name      : 'ativo',
+		                        inputValue: '0',
+		                        id        : 'radio1'
+		                    }, {
+		                        boxLabel  : 'Não',
+		                        name      : 'ativo',
+		                        inputValue: '1',
+		                        id        : 'radio2'
+		                    }
+		             ]
 				}
 			]
 		}

@@ -7,75 +7,85 @@ Ext.define('crm.controller.Usuario', {
 
     views: ['usuario.UsuarioForm', 'usuario.UsuarioGrid'],
 
-    //refs: [{
-    //        ref: 'contatoPanel',
-    //        selector: 'panel'
-    //    },{
-    //        ref: 'contatoGrid',
-    //        selector: 'grid'
-    //    }
-    //],
+    refs: [{
+        ref: 'usuarioGrid',
+        selector: 'grid'
+    }
+    ],
 
     init: function() {
         this.control({
             'usuariogrid dataview': {
-                itemdblclick: this.editarUsuario
+                itemdblclick: this.onEditaUsuario
             },
-            'usuariogrid button[action=add]': {
-            	click: this.editarUsuario
+            'usuariogrid button#addUsuario': {
+            	click: this.onAddUsuarioClick
             },
-            'usuariogrid button[action=delete]': {
-                click: this.deleteUsuario
+            'usuariogrid button#deleteUsuario': {
+                click: this.onDeleteUsuarioClick
             },
-            'usuarioform button[action=save]': {
-                click: this.updateUsuario
+            'usuarioform button#salvausuario': {
+                click: this.onSaveUsuarioClick
+            },
+            'usuarioform button#cancelausuario': {
+                click: this.onCancelUsuarioClick
             }
         });
     },
 
-    editarUsuario: function(grid, record) {
-        var edit = Ext.create('crm.view.usuario.UsuarioForm').show();
-        
+    onEditaUsuario: function(grid, record) {
+        var edit = Ext.create('crm.view.usuario.UsuarioForm').show();        
         if(record){
         	edit.down('form').loadRecord(record);
         }
     },
-    
-    updateUsuario: function(button) {
-        var win    = button.up('window'),
-            form   = win.down('form'),
-            record = form.getRecord(),
-            values = form.getValues();
-        
-        var novo = false;
-        
-		if (values.id > 0){
-			record.set(values);
-		} else{
-			record = Ext.create('crm.model.Usuario');
-			record.set(values);
-			this.getUsuarioStore().add(record);
-            novo = true;
-		}
-        
-		win.close();
-        this.getUsuarioStore().sync();
-
-        if (novo){ //faz reload para atualziar
-            this.getUsuarioStore().load();
-        }
+    onCancelUsuarioClick: function(btn, e, eOpts){
+    	var win = btn.up('window');
+    	var form = win.down('form');
+    	form.getForm().reset();
+    	win.close();
     },
+    onAddUsuarioClick: function(btn, e, eOpts){
+    	Ext.create('crm.view.usuario.UsuarioForm').show();
+    }, 
+
     
-    deleteUsuario: function(button) {
+    onSaveUsuarioClick: function(btn, e, eOpts){
+    	var win = btn.up('window'),
+    		form = win.down('form'),
+    		values = form.getValues(),
+    		record = form.getRecord(),
+    		grid = Ext.ComponentQuery.query('usuariogrid')[0],
+    		store = grid.getStore();
     	
-    	var grid = this.getUsuarioGrid(),
-    	record = grid.getSelectionModel().getSelection(), 
-        store = this.getUsuarioStore();
-
-	    store.remove(record);
-	    this.getUsuarioStore().sync();
-
-        //faz reload para atualziar
-        this.getUsuarioStore().load();
-    }
+    	if (values.id > 0){
+			record.set(values);
+    		
+    	} else{   // se for um novo
+    		record = Ext.create('crm.model.Usuario');
+    		record.set(values);
+    		store.add(record);
+    	}
+    	win.close();
+        store.sync();
+    	store.load();
+  },
+  
+  onDeleteUsuarioClick: function(btn, e, eOpts){
+  	Ext.MessageBox.confirm('Confirma', 'Deseja realmente deletar?', function(botton){			
+			if(botton == 'yes'){
+				var grid = btn.up('grid'),
+	    		records = grid.getSelectionModel().getSelection(),
+	    		store = grid.getStore();
+	    	
+		    	store.remove(records);
+		    	store.sync();
+		    	
+			}
+			else if(botton == 'no'){
+				return false;
+			}
+		});  	
+  }  
+  
 });

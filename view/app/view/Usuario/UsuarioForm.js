@@ -68,10 +68,11 @@ Ext.define('crm.view.usuario.UsuarioForm',{
 		                        boxLabel  : 'Sim',
 		                        name      : 'ativo',
 		                        inputValue: '0',
-		                        id        : 'radio1'
+		                        id        : 'radio1',
+		                        checked: true
 		                    }, {
 		                        boxLabel  : 'Não',
-		                        name      : 'color',
+		                        name      : 'ativo',
 		                        inputValue: '1',
 		                        id        : 'radio2'
 		                    }
@@ -79,19 +80,25 @@ Ext.define('crm.view.usuario.UsuarioForm',{
 				},
 				{
 					xtype: 'combo',
+					name: 'idperfil',
 					fieldLabel:'Perfil',
 				    store: 'Perfil',
 				    displayField: 'nome',
 				    valueField: 'id'
 				    
 				},
+//				{
+//					xtype: 'combo',
+//					fieldLabel:'Pessoa Física',
+//				    store: 'PessoaFisica',
+//				    displayField: 'nome',
+//				    valueField: 'id'
+//				    
+//				}
 				{
-					xtype: 'combo',
+					xtype: 'textfield',
 					fieldLabel:'Pessoa Física',
-				    store: 'PessoaFisica',
-				    displayField: 'nome',
-				    valueField: 'id'
-				    
+				    name: 'idpessoafisica'
 				}
 			]
 		}
@@ -109,13 +116,13 @@ Ext.define('crm.view.usuario.UsuarioForm',{
 				{
 					xtype: 'button',
 					text: 'Cancelar',
-					itemId: 'cancelapais',
+					itemId: 'cancelausuario',
 					iconCls: 'icon-reset'
 				},
 				{
 					xtype: 'button',
 					text: 'Salvar',
-					itemId: 'salvapais',
+					itemId: 'salvausuario',
 					iconCls: 'icon-save'
 				}
 			]

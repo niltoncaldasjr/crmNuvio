@@ -11,7 +11,7 @@ Ext.define('crm.store.Usuario',{
 	extend: 'Ext.data.Store',
 
 	model: 'crm.model.Usuario',
-
+	autoLoad: true,
 	pageSize: 20,
 
 	proxy: {

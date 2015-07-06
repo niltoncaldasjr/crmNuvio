@@ -17,7 +17,9 @@ Ext.application({
                   'Pais',
                   'Perfil',
                   'Rotina',
-                  'PessoaFisica'
+                  'PessoaFisica',
+                  'Empresa',
+                  'Usuario'
     ],
     
     autoCreateViewport: true

@@ -12,18 +12,20 @@ Ext.define('crm.view.empresa.EmpresaGrid',{
 	alias: 'widget.empresagrid',
 	title: 'Cadastro de Empresa',
 	iconCls: 'icon-grid',
-	store: 'Usuario',
+	store: 'Empresa',
 
 	columns: [
 		{ text: 'Id',  dataIndex: 'id', width: 50},
         { text: 'Nome Fantasia', dataIndex: 'nomeFantasia', width: 70},
         { text: 'Razão social', dataIndex: 'razaoSocial', width: 70 },
         { text: 'CNPJ',  dataIndex: 'CNPJ', width: 50},
+        { text: 'Inscrição Estadual', dataIndex: 'inscricaoEstadual', width: 70 },
+        { text: 'Inscrição Municipal', dataIndex: 'inscricaoMunicipal', width: 70 },
         { text: 'Bairro', dataIndex: 'bairro', width: 70},
         { text: 'Data cadastro', dataIndex: 'datacadastro', renderer : Ext.util.Format.dateRenderer('d/m/Y')},
         { text: 'Data edição', dataIndex: 'dataedicao', renderer : Ext.util.Format.dateRenderer('d/m/Y')},
-        { text: 'Id Perfil',  dataIndex: 'idperfil', width: 50},
-        { text: 'Id Pessoa Física',  dataIndex: 'idpessoafisica', width: 50}
+        { text: 'Localidade',  dataIndex: 'idlocalidade', width: 50},
+        { text: 'Imposto',  dataIndex: 'idimposto', width: 50}
 	],
 
 	dockedItems: [

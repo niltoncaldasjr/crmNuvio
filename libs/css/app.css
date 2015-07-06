@@ -25,3 +25,9 @@
 .icon-delete {
     background-image: url(../images/delete.png) !important;
 }
+.icon-empresa-add {
+    background-image: url(../images/building.png) !important;
+}
+.icon-imposto-add {
+    background-image: url(../images/money_add.png) !important;
+}

@@ -115,15 +115,17 @@ class UsuarioDAO {
 		}
 		while ( $row = mysqli_fetch_assoc( $result ) ) {
 				
-			// busca o perfil desse usuario
-			$perfil = new Perfil ( $row->idperfil );
-			$perfilControl = new PerfilControl ( $perfil );
-			$perfil = $perfilControl->buscarPorId ();
+// 			// busca o perfil desse usuario
+// 			$perfil = new Perfil ( $row['idperfil'] );
+// 			$perfilControl = new PerfilControl ( $perfil );
+// 			$perfil = $perfilControl->buscarPorId ();
+// 			$row['idperfil'] = $perfil->getNome();
 				
-			// busca a pessoafisica desse usuario
-			$pessoafisica = new PessoaFisica ( $row->idpessoafisica );
-			$pessoafisicaControl = new PessoaFisicaControl ( $pessoafisica );
-			$pessoafisica = $pessoafisicaControl->buscarPorID ();
+// 			// busca a pessoafisica desse usuario
+// 			$pessoafisica = new PessoaFisica ( $row['idpessoafisica'] );
+// 			$pessoafisicaControl = new PessoaFisicaControl ( $pessoafisica );
+// 			$pessoafisica = $pessoafisicaControl->buscarPorID ();
+// 			$row['idpessoafisica'] = $pessoafisica->getNome();
 				
 			$lista [] = $row;
 			}

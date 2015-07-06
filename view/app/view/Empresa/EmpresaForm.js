@@ -13,10 +13,10 @@ Ext.define('crm.view.empresa.EmpresaForm',{
 	extend: 'Ext.window.Window',
 	alias: 'widget.empresaform',
 
-	height: 300,
-	width: 450,
+	height: 500,
+	width: 500,
 	layout: 'fit',
-	iconCls: 'icon-user',
+	iconCls: 'icon-empresa-add',
 	title: 'Editar/Criar Empresa',
 	autoShow: true,
 
@@ -34,7 +34,7 @@ Ext.define('crm.view.empresa.EmpresaForm',{
 				},
 				{
 					xtype: 'textfield',
-					fieldLabel:'Nome',
+					fieldLabel:'Nome Fantasia',
 				    name: 'nomeFantasia'
 				},
 				{
@@ -93,21 +93,15 @@ Ext.define('crm.view.empresa.EmpresaForm',{
 				    name: 'imagemLogotipo'
 				},				
 				{
-					xtype: 'combo',
+					xtype: 'textfield',
 					fieldLabel:'Localidade',
-				    store: 'Localidade',
-				    displayField: 'cidade',
-				    valueField: 'id'
-				    
-				},
+				    name: 'idlocalidade'
+				},	
 				{
-					xtype: 'combo',
+					xtype: 'textfield',
 					fieldLabel:'Imposto',
-				    store: 'Imposto',
-				    displayField: 'id',
-				    valueField: 'id'
-				    
-				}
+				    name: 'idimposto'
+				}	
 			]
 		}
 	],

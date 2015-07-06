@@ -29,6 +29,12 @@ class ImpostoControl{
 	function buscarPorId(){
 		return $this->o_impostoDAO->buscarPorId($this->o_imposto);
 	}
+	function listarPaginado($start, $limit){
+		return $this->o_impostoDAO->listarPaginado($start, $limit);
+	}
+	function qtdTotal(){
+		return $this->o_impostoDAO->qtdTotal();
+	}
 
 	function listarPorPessoa(){
 		return $this->o_impostoDAO->listarPorNome($this->o_imposto);
