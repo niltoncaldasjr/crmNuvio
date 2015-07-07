@@ -34,10 +34,10 @@ class LeadControl{
 		return $this->objLeadDAO->listarPorNome($this->objLead);
 	}
 	function listarPaginado($start, $limit){
-		return $this->objRotinaDAO->listarPaginado($start, $limit);
+		return $this->objLeadDAO->listarPaginado($start, $limit);
 	}
 	function qtdTotal(){
-		return $this->objRotinaDAO->qtdTotal();
+		return $this->objLeadDAO->qtdTotal();
 	}
 }
 

@@ -121,6 +121,34 @@ class ContaBancoDAO{
 		return $this->listaContaBanco;
 	}
 	
+	/*-- listaRotinar paginado --*/
+	function listarPaginado($start, $limit) {
+		$this->sql = "SELECT * FROM contabanco limit " . $start . ", " . $limit;
+		$result = mysqli_query ( $this->con, $this->sql );
+		if (! $result) {
+			die ( '[ERRO]: ' . mysqli_error ( $this->con ) );
+		}
+		while ( $row = mysqli_fetch_assoc ( $result ) ) {
+			$lista[]=$row;
+		}
+		//teste
+		return $lista;
+	}
+	
+	/*-- Quantidade Total --*/
+	function qtdTotal() {
+		$this->sql = "SELECT count(*) as quantidade FROM contabanco";
+		$result = mysqli_query ( $this->con, $this->sql );
+		if (! $result) {
+			die ( '[ERRO]: ' . mysqli_error ( $this->con ) );
+		}
+		$total = 0;
+		while ( $row = mysqli_fetch_object ( $result ) ) {
+			$total = $row->quantidade;
+		}
+	
+		return $total;
+	}
 			
 }
 ?>

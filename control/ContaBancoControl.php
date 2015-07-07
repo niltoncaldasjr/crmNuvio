@@ -31,10 +31,10 @@ class ContaBancoControl{
 		return $this->objContaBancoDAO->listarTodos($this->objContaBanco);
 	}
 	function listarPaginado($start, $limit){
-		return $this->objRotinaDAO->listarPaginado($start, $limit);
+		return $this->objContaBancoDAO->listarPaginado($start, $limit);
 	}
 	function qtdTotal(){
-		return $this->objRotinaDAO->qtdTotal();
+		return $this->objContaBancoDAO->qtdTotal();
 	}
 }
 
