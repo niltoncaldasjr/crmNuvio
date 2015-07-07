@@ -15,21 +15,19 @@ class EmpresaDAO {
 	}
 	
 	function cadastrar(Empresa $o_empresa) {
-		$this->sql = sprintf ( "INSERT INTO empresa (nomeFantasia, razaoSocial, nomeReduzido, CNPJ, inscricaoEstadual, inscricaoMunicipal, endereco, numero, complemento, bairro, cep, imagemLogotipo, datacadastro, dataedicao, idlocalidade, idimposto) VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', %d, %d)", 
+		$this->sql = sprintf ( "INSERT INTO empresa (nomeFantasia, razaoSocial, nomeReduzido, CNPJ, inscricaoEstadual, inscricaoMunicipal, endereco, numero, complemento, bairro, cep, imagemLogotipo, idlocalidade, idimposto) VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', %d, %d)", 
 				mysqli_real_escape_string ( $this->con, $o_empresa->getNomeFantasia () ), 
 				mysqli_real_escape_string ( $this->con, $o_empresa->getRazaoSocial () ), 
 				mysqli_real_escape_string ( $this->con, $o_empresa->getNomeReduzido () ), 
 				mysqli_real_escape_string ( $this->con, $o_empresa->getCNPJ () ), 
-				mysqli_real_escape_string ( $this->con, $o_empresa->getInscricaoEstatual () ), 
+				mysqli_real_escape_string ( $this->con, $o_empresa->getInscricaoEstadual () ), 
 				mysqli_real_escape_string ( $this->con, $o_empresa->getInscricaoMunicipal () ), 
 				mysqli_real_escape_string ( $this->con, $o_empresa->getEndereco () ), 
 				mysqli_real_escape_string ( $this->con, $o_empresa->getNumero () ), 
 				mysqli_real_escape_string ( $this->con, $o_empresa->getComplemento()), 
 				mysqli_real_escape_string ( $this->con, $o_empresa->getBairro () ), 
 				mysqli_real_escape_string ( $this->con, $o_empresa->getCep () ), 
-				mysqli_real_escape_string ( $this->con, $o_empresa->getImagemLogotipo () ), 
-				mysqli_real_escape_string ( $this->con, $o_empresa->getDatacadastro ()), 
-				mysqli_real_escape_string ( $this->con, $o_empresa->getDataedicao ()), 
+				mysqli_real_escape_string ( $this->con, $o_empresa->getImagemLogotipo () ),
 				mysqli_real_escape_string ( $this->con, $o_empresa->getObjLocalidade()->getId ()),
 				mysqli_real_escape_string ( $this->con, $o_empresa->getObjImposto()->getId ()));
 		
@@ -39,7 +37,23 @@ class EmpresaDAO {
 		return mysqli_insert_id ( $this->con );
 	}
 	function atualizar(Empresa $o_empresa) {
-		$this->sql = sprintf ( "UPDATE empresa SET nomefantasia= '%s', razaoSocial= '%s', nomeReduzido= '%s', CNPJ= '%s', inscricaoEstadual='%s', inscricaoMunicipal='%s', endereco='%s', complemento='%s', bairro='%s', cep='%s', imagemLogotipo='%s', dataedicao='%s', idlocalidade=%d, idimposto=%d WHERE id= %d", mysqli_real_escape_string ( $this->con, $o_empresa->getNomeFantasia () ), mysqli_real_escape_string ( $this->con, $o_empresa->getRazaoSocial () ), mysqli_real_escape_string ( $this->con, $o_empresa->getNomeReduzido () ), mysqli_real_escape_string ( $this->con, $o_empresa->getCNPJ () ), mysqli_real_escape_string ( $this->con, $o_empresa->getInscricaoEstatual () ), mysqli_real_escape_string ( $this->con, $o_empresa->getInscricaoMunicipal () ), mysqli_real_escape_string ( $this->con, $o_empresa->getEndereco () ), mysqli_real_escape_string ( $this->con, $o_empresa->getNumero () ), mysqli_real_escape_string ( $this->con, $o_empresa->getComplemento () ), mysqli_real_escape_string ( $this->con, $o_empresa->getBairro () ), mysqli_real_escape_string ( $this->con, $o_empresa->getCep () ), mysqli_real_escape_string ( $this->con, $o_empresa->getImagemLogotipo () ), mysqli_real_escape_string ( $this->con, $o_empresa->getDataedicao () ), mysqli_real_escape_string ( $this->con, $o_empresa->getObjLocalidade ()->getId () ), mysqli_real_escape_string ( $this->con, $o_empresa->getObjImposto ()->getId () ), mysqli_real_escape_string ( $this->con, $o_empresa->getId () ) );
+		$this->sql = sprintf ( "UPDATE empresa SET nomeFantasia= '%s', razaoSocial= '%s', nomeReduzido= '%s', CNPJ= '%s', inscricaoEstadual='%s', inscricaoMunicipal='%s', endereco='%s', numero='%s', complemento='%s', bairro='%s', cep='%s', imagemLogotipo='%s', dataedicao='%s', idlocalidade=%d, idimposto=%d WHERE id= %d", 
+				mysqli_real_escape_string ( $this->con, $o_empresa->getNomeFantasia () ), 
+				mysqli_real_escape_string ( $this->con, $o_empresa->getRazaoSocial () ), 
+				mysqli_real_escape_string ( $this->con, $o_empresa->getNomeReduzido () ), 
+				mysqli_real_escape_string ( $this->con, $o_empresa->getCNPJ () ), 
+				mysqli_real_escape_string ( $this->con, $o_empresa->getInscricaoEstadual () ), 
+				mysqli_real_escape_string ( $this->con, $o_empresa->getInscricaoMunicipal () ), 
+				mysqli_real_escape_string ( $this->con, $o_empresa->getEndereco () ), 
+				mysqli_real_escape_string ( $this->con, $o_empresa->getNumero () ), 
+				mysqli_real_escape_string ( $this->con, $o_empresa->getComplemento () ), 
+				mysqli_real_escape_string ( $this->con, $o_empresa->getBairro () ), 
+				mysqli_real_escape_string ( $this->con, $o_empresa->getCep () ), 
+				mysqli_real_escape_string ( $this->con, $o_empresa->getImagemLogotipo () ), 
+				mysqli_real_escape_string ( $this->con, $o_empresa->getDataedicao () ), 
+				mysqli_real_escape_string ( $this->con, $o_empresa->getObjLocalidade ()->getId () ), 
+				mysqli_real_escape_string ( $this->con, $o_empresa->getObjImposto ()->getId () ), 
+				mysqli_real_escape_string ( $this->con, $o_empresa->getId () ) );
 		
 		if (! mysqli_query ( $this->con, $this->sql )) {
 			die ( 'Error: ' . mysqli_error ( $this->con ) );
@@ -110,15 +124,15 @@ class EmpresaDAO {
 				die ( '[ERRO]: ' . mysqli_error ( $this->con ) );
 			}
 			while ( $row = mysqli_fetch_assoc( $result ) ) {
-				// busca o localidade desse empresa
-				$localidade = new Localidade ( $row->idlocalidade );
-				$localidadeControl = new LocalidadeControl ( $localidade );
-				$a_localidade = $localidadeControl->buscarPorId ();
+// 				// busca o localidade desse empresa
+// 				$localidade = new Localidade ( $row->idlocalidade );
+// 				$localidadeControl = new LocalidadeControl ( $localidade );
+// 				$a_localidade = $localidadeControl->buscarPorId ();
 				
-				// busca a pessoafisica desse usuario
-				$imposto = new Imposto ( $row->idimposto );
-				$impostoControl = new ImpostoControl ( $imposto );
-				$o_imposto = $impostoControl->buscarPorID ();
+// 				// busca a pessoafisica desse usuario
+// 				$imposto = new Imposto ( $row->idimposto );
+// 				$impostoControl = new ImpostoControl ( $imposto );
+// 				$o_imposto = $impostoControl->buscarPorID ();
 				
 				$lista [] = $row;
 			}

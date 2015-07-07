@@ -119,6 +119,34 @@ class LocalidadeDAO{
 		}
 		
 		return $this->listaLocalidade;
+	}	
+	
+	function listarPaginado($start, $limit) {
+		$this->sql = "SELECT * FROM localidade LIMIT " . $start . ", " . $limit;
+		$result = mysqli_query ( $this->con, $this->sql );
+		if (! $result) {
+			die ( '[ERRO]: ' . mysqli_error ( $this->con ) );
+		}
+		while ( $row = mysqli_fetch_assoc( $result ) ) {	
+	
+			$lista [] = $row;
+		}
+			
+		return $lista;
+	}
+	
+	function qtdTotal() {
+		$this->sql = "SELECT count(*) as quantidade FROM localidade";
+		$result = mysqli_query ( $this->con, $this->sql );
+		if (! $result) {
+			die ( '[ERRO]: ' . mysqli_error ( $this->con ) );
+		}
+		$total = 0;
+		while ( $row = mysqli_fetch_object ( $result ) ) {
+			$total = $row->quantidade;
+		}
+	
+		return $total;
 	}
 	
 			

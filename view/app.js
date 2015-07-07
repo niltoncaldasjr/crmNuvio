@@ -17,7 +17,11 @@ Ext.application({
                   'Pais',
                   'Perfil',
                   'Rotina',
-                  'PessoaFisica'
+                  'PessoaFisica',
+                  'Empresa',
+                  'Usuario',
+                  'Imposto',
+                  'Localidade'
     ],
     
     autoCreateViewport: true

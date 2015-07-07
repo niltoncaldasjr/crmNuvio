@@ -11,7 +11,7 @@ Ext.define('crm.store.Empresa',{
 	extend: 'Ext.data.Store',
 
 	model: 'crm.model.Empresa',
-
+	autoLoad: true,
 	pageSize: 20,
 
 	proxy: {

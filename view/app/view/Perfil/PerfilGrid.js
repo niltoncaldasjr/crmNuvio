@@ -46,7 +46,8 @@ Ext.define('crm.view.perfil.PerfilGrid',{
 	        store: 'Perfil',
 	        dock: 'bottom',
 	        displayInfo: true,
-	        emptyMsg: 'Nenhuma Perfil encontrado'
+	        emptyMsg: 'Nenhum perfil encontrado',
+	    	 displayMsg: 'Mostrando {0} - {1} de {2}'
 		}
 	]
 	

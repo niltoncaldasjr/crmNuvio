@@ -10,15 +10,13 @@ class ImpostoDAO {
 		$this->con = $con;
 	}
 	function cadastrar(Imposto $o_imposto) {
-		$this->sql = sprintf ( "INSERT INTO imposto (aliquotaICMS, aliquotaPIS, aliquotaCOFINS, aliquotaCSLL, aliquotaISS, aliquotaIRPJ, datacadastro, dataedicao) VALUES (%f, %f, %f, %f, %f, %f, '%s', '%s')", 
+		$this->sql = sprintf ( "INSERT INTO imposto (aliquotaICMS, aliquotaPIS, aliquotaCOFINS, aliquotaCSLL, aliquotaISS, aliquotaIRPJ) VALUES (%f, %f, %f, %f, %f, %f)", 
 				mysqli_real_escape_string ( $this->con, $o_imposto->getAliquotaICMS() ), 
 				mysqli_real_escape_string ( $this->con, $o_imposto->getAliquotaPIS() ), 
 				mysqli_real_escape_string ( $this->con, $o_imposto->getaliquotaCOFINS() ),
 				mysqli_real_escape_string ( $this->con, $o_imposto->getAliquotaCSLL() ), 
 				mysqli_real_escape_string ( $this->con, $o_imposto->getAliquotaISS() ), 
-				mysqli_real_escape_string ( $this->con, $o_imposto->getAliquotaIRPJ() ), 
-				mysqli_real_escape_string ( $this->con, $o_imposto->getDatacadastro() ), 
-				mysqli_real_escape_string ( $this->con, $o_imposto->getDataedicao() ) );
+				mysqli_real_escape_string ( $this->con, $o_imposto->getAliquotaIRPJ() ));
 		
 		if (! mysqli_query ( $this->con, $this->sql )) {
 			die ( 'Error: ' . mysqli_error ( $this->con ) );

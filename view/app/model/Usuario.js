@@ -21,6 +21,7 @@ Ext.define('crm.model.Usuario',{
 		{name: 'dataedicao', 		type: 'date' , dateFormat: 'c'},
 		{name: 'idperfil',  		type: 'int'},
 		{name: 'idpessoafisica',	type: 'int'},
-	]	
+	],
+	//associations: [{ type: 'hasOne', model: 'Perfil' }]
 	
 });

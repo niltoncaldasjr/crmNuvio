@@ -16,15 +16,15 @@ Ext.define('crm.view.usuario.UsuarioGrid',{
 
 	columns: [
 		{ text: 'Id',  dataIndex: 'id', width: 50},
-        { text: 'Nome', dataIndex: 'nome', width: 70},
-        { text: 'Usuario', dataIndex: 'usuario', width: 70 },
-        { text: 'Senha',  dataIndex: 'senha', width: 50},
-        { text: 'Email', dataIndex: 'email', width: 70},
-        { text: 'Ativo', dataIndex: 'ativo', width: 70 },
+        { text: 'Nome', dataIndex: 'nome', width: 250},
+        { text: 'Usuario', dataIndex: 'usuario', width: 250 },
+        { text: 'Senha',  dataIndex: 'senha', width: 100},
+        { text: 'Email', dataIndex: 'email', width: 150},
+        { text: 'Ativo', dataIndex: 'ativo' },
         { text: 'Data cadastro', dataIndex: 'datacadastro', renderer : Ext.util.Format.dateRenderer('d/m/Y')},
         { text: 'Data edição', dataIndex: 'dataedicao', renderer : Ext.util.Format.dateRenderer('d/m/Y')},
-        { text: 'Id Perfil',  dataIndex: 'idperfil', width: 50},
-        { text: 'Id Pessoa Física',  dataIndex: 'idpessoafisica', width: 50}
+        { text: 'Id Perfil',  dataIndex: 'idperfil'},
+        { text: 'Id Pessoa Física',  dataIndex: 'idpessoafisica'}
 	],
 
 	dockedItems: [
@@ -51,7 +51,8 @@ Ext.define('crm.view.usuario.UsuarioGrid',{
 	        store: 'Usuario',
 	        dock: 'bottom',
 	        displayInfo: true,
-	        emptyMsg: 'Nenhuma Usuario encontrado'
+	        emptyMsg: 'Nenhum usuario encontrado',
+	    	displayMsg: 'Mostrando {0} - {1} de {2}'
 		}
 	]
 	

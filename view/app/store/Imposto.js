@@ -7,17 +7,17 @@
 *  Desenvolvedor.: Fabiano Ferreira da Silva Costa
 */
 
-Ext.define('crm.store.Usuario',{
+Ext.define('crm.store.Imposto',{
 	extend: 'Ext.data.Store',
 
-	model: 'crm.model.Usuario',
+	model: 'crm.model.Imposto',
 	autoLoad: true,
 	pageSize: 20,
 
 	proxy: {
 		type: 'rest',
 
-		url: 'rest/usuario.php',
+		url: 'rest/imposto.php',
 		
 		reader: {
 			type: 'json',

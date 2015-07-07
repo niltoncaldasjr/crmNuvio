@@ -1,68 +1,68 @@
-Ext.define('crm.controller.Usuario', {
+Ext.define('crm.controller.Imposto', {
     extend: 'Ext.app.Controller',
 
-    stores: ['Usuario'],
+    stores: ['Imposto'],
 
-    models: ['Usuario'],
+    models: ['Imposto'],
 
-    views: ['usuario.UsuarioForm', 'usuario.UsuarioGrid'],
+    views: ['imposto.ImpostoForm', 'imposto.ImpostoGrid'],
 
     refs: [{
-        ref: 'usuarioGrid',
+        ref: 'impostoGrid',
         selector: 'grid'
     }
     ],
 
     init: function() {
         this.control({
-            'usuariogrid dataview': {
-                itemdblclick: this.onEditaUsuario
+            'impostogrid dataview': {
+                itemdblclick: this.onEditaImposto
             },
-            'usuariogrid button#addUsuario': {
-            	click: this.onAddUsuarioClick
+            'impostogrid button#addImposto': {
+            	click: this.onAddImpostoClick
             },
-            'usuariogrid button#deleteUsuario': {
-                click: this.onDeleteUsuarioClick
+            'impostogrid button#deleteImposto': {
+                click: this.onDeleteImpostoClick
             },
-            'usuarioform button#salvausuario': {
-                click: this.onSaveUsuarioClick
+            'impostoform button#salvaimposto': {
+                click: this.onSaveImpostoClick
             },
-            'usuarioform button#cancelausuario': {
-                click: this.onCancelUsuarioClick
+            'impostoform button#cancelaimposto': {
+                click: this.onCancelImpostoClick
             }
         });
     },
 
-    onEditaUsuario: function(grid, record) {
-        var edit = Ext.create('crm.view.usuario.UsuarioForm').show();        
+    onEditaImposto: function(grid, record) {
+        var edit = Ext.create('crm.view.imposto.ImpostoForm').show();        
         if(record){
         	edit.down('form').loadRecord(record);
         }
     },
-    onCancelUsuarioClick: function(btn, e, eOpts){
+    onCancelImpostoClick: function(btn, e, eOpts){
     	var win = btn.up('window');
     	var form = win.down('form');
     	form.getForm().reset();
     	win.close();
     },
-    onAddUsuarioClick: function(btn, e, eOpts){
-    	Ext.create('crm.view.usuario.UsuarioForm').show();
+    onAddImpostoClick: function(btn, e, eOpts){
+    	Ext.create('crm.view.imposto.ImpostoForm').show();
     }, 
 
     
-    onSaveUsuarioClick: function(btn, e, eOpts){
+    onSaveImpostoClick: function(btn, e, eOpts){
     	var win = btn.up('window'),
     		form = win.down('form'),
     		values = form.getValues(),
     		record = form.getRecord(),
-    		grid = Ext.ComponentQuery.query('usuariogrid')[0],
+    		grid = Ext.ComponentQuery.query('impostogrid')[0],
     		store = grid.getStore();
     	
     	if (values.id > 0){
 			record.set(values);
     		
     	} else{   // se for um novo
-    		record = Ext.create('crm.model.Usuario');
+    		record = Ext.create('crm.model.Imposto');
     		record.set(values);
     		store.add(record);
     	}
@@ -71,7 +71,7 @@ Ext.define('crm.controller.Usuario', {
     	store.load();
   },
   
-  onDeleteUsuarioClick: function(btn, e, eOpts){
+  onDeleteImpostoClick: function(btn, e, eOpts){
   	Ext.MessageBox.confirm('Confirma', 'Deseja realmente deletar?', function(botton){			
 			if(botton == 'yes'){
 				var grid = btn.up('grid'),

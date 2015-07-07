@@ -16,34 +16,35 @@ Ext.define('crm.controller.Perfil', {
     init: function() {
         this.control({
             'perfilgrid dataview': {
-                itemdblclick: this.editarPerfil
+                itemdblclick: this.onEditaPerfil
             },
             'perfilgrid button#addPerfil': {
             	click: this.onAddPerfilClick
             },
             'perfilgrid button#deletePerfil': {
-                click: this.deletePerfil
+                click: this.onDeletePerfilClick
             },
             'perfilform button#salvaperfil': {
                 click: this.onSavePerfilClick
             },
             'perfilform button#cancelaperfil': {
-                click: this.onCancelClick
+                click: this.onCancelPerfilClick
             }
         });
     },
 
-    editarPerfil: function(grid, record) {
+    onEditaPerfil: function(grid, record) {
         var edit = Ext.create('crm.view.perfil.PerfilForm').show();
         console.log('Botão Adds Form');
         if(record){
         	edit.down('form').loadRecord(record);
         }
     },
-    onCancelClick: function(btn, e, eOpts){
+    onCancelPerfilClick: function(btn, e, eOpts){
     	var win = btn.up('window');
     	var form = win.down('form');
     	form.getForm().reset();
+    	win.close();
     },
     onAddPerfilClick: function(btn, e, eOpts){
     	Ext.create('crm.view.perfil.PerfilForm').show();
@@ -58,33 +59,49 @@ Ext.define('crm.controller.Perfil', {
     		grid = Ext.ComponentQuery.query('perfilgrid')[0],
     		store = grid.getStore();
     	
-    	if (record){     // se for edicao		   		
-    		record.set(values);
+    	if (values.id > 0){
+			record.set(values);
     		
     	} else{   // se for um novo
-    		var perfil = Ext.create('crm.model.Perfil',{
-    			id: values.id,
-        		nome: values.nome,
-        		ativo: values.ativo
-        	});
-        	
-        	store.add(perfil);
-
+    		record = Ext.create('crm.model.Perfil');
+    		record.set(values);
+    		store.add(record);
     	}
-    	store.sync(); 
     	win.close();
+        store.sync();
+    	store.load();
   },
+  
+  onDeletePerfilClick: function(btn, e, eOpts){
+  	Ext.MessageBox.confirm('Confirma', 'Deseja realmente deletar?', function(botton){			
+			if(botton == 'yes'){
+				var grid = btn.up('grid'),
+	    		records = grid.getSelectionModel().getSelection(),
+	    		store = grid.getStore();
+	    	
+		    	store.remove(records);
+		    	store.sync();
+		    	
+			}
+			else if(botton == 'no'){
+				return false;
+			}
+		});
+  	
+  }//,
     
-    deletePerfil: function(button) {
-    	
-    	var grid = this.getPerfilGrid(),
-    	record = grid.getSelectionModel().getSelection(), 
-        store = this.getPerfilStore();
-
-	    store.remove(record);
-	    this.getPerfilStore().sync();
-
-        //faz reload para atualziar
-        this.getPerfilStore().load();
-    }
+//    onDeletePerfilClick: function(button) {
+//    	
+//    	var grid = this.getPerfilGrid(),
+//    	record = grid.getSelectionModel().getSelection(), 
+//        store = this.getPerfilStore();
+//
+//	    store.remove(record);
+//	    this.getPerfilStore().sync();
+//
+//        //faz reload para atualziar
+//        this.getPerfilStore().load();
+//    }
+  
+  
 });

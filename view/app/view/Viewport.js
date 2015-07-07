@@ -12,15 +12,25 @@ Ext.define('crm.view.Viewport', {
     layout: 'fit',
     
     requires: [
-        'crm.view.pais.PaisGrid',
-        'crm.view.pais.PaisForm',
-        'crm.view.perfil.PerfilGrid',
-        'crm.view.perfil.PerfilForm',
-        'crm.view.rotina.RotinaGrid',
-        'crm.view.rotina.RotinaForm',
-        'crm.view.pessoafisica.PessoaFisicaGrid',
-        'crm.view.pessoafisica.PessoaFisicaForm'
-    ],
+               'crm.view.pais.PaisGrid',
+               'crm.view.pais.PaisForm',
+               'crm.view.perfil.PerfilGrid', //ok
+               'crm.view.perfil.PerfilForm',  //ok
+               'crm.view.rotina.RotinaGrid',
+               'crm.view.rotina.RotinaForm',
+               'crm.view.usuario.UsuarioGrid', //ok
+               'crm.view.usuario.UsuarioForm', //ok
+               'crm.view.empresa.EmpresaGrid',
+               'crm.view.empresa.EmpresaForm',
+               'crm.view.imposto.ImpostoGrid', //ok
+               'crm.view.imposto.ImpostoForm', //ok
+               'crm.view.pessoafisica.PessoaFisicaGrid',
+               'crm.view.pessoafisica.PessoaFisicaForm',
+               'crm.view.localidade.LocalidadeForm',
+               'crm.view.localidade.LocalidadeGrid'
+     ],
+    
+    
     
     initComponent: function() {
         var me = this;
@@ -28,7 +38,7 @@ Ext.define('crm.view.Viewport', {
         Ext.apply(me, {
             items: [
                 {
-                    xtype: 'pessoafisicagrid'
+                    xtype: 'localidadegrid'
                 }
             ]
         });
