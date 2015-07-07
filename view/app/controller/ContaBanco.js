@@ -54,7 +54,7 @@ Ext.define('crm.controller.ContaBanco',{
 		}else{
 			record = Ext.create('crm.model.ContaBanco');
 			record.set(values);
-			this.getBancoStore().add(record);
+			this.getContaBancoStore().add(record);
 			novo = true;
 		}
 		console.log('botão salvar form');
@@ -65,7 +65,7 @@ Ext.define('crm.controller.ContaBanco',{
 		if(novo){
 			this.getContaBancoStore().load();
 		}
-		this.getContaBancoStore().load();
+		//this.getContaBancoStore().load();
 	},
 	
 	deleteContaBanco: function(button){

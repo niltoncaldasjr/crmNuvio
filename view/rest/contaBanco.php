@@ -1,6 +1,8 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'control/ContaBancoControl.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" .'model/contabanco/ContaBanco.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" .'model/banco/Banco.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" .'model/empresa/Empresa.php';
 
 switch ($_SERVER['REQUEST_METHOD']) {
 	
@@ -63,8 +65,10 @@ function cadastraContaBanco() {
 	$objContaBanco->setNumeroConvenio($data->numeroConvenio);
 	$objContaBanco->setNomeContato($data->nomeContato);
 	$objContaBanco->setTelefoneContato($data->telefoneContato);
-	$objContaBanco->setObjBanco($data->banco);
-	$objContaBanco->setObjEmpresa($data->empresa);
+	$objBanco = new Banco($data->idbanco);
+	$objContaBanco->setObjBanco($objBanco);
+	$objEmpresa = new Empresa($data->idempresa);
+	$objContaBanco->setObjEmpresa($objEmpresa);
 	
 	$objContaContaBancoControl = new ContaBancoControl($objContaBanco);
 	$objContaBanco = $objContaContaBancoControl->cadastrar();
@@ -89,7 +93,7 @@ function atualizaContaBanco() {
 	$datahora = date("Y-m-d H:i:s");
 	
 	$objContaBanco = new ContaBanco();
-	$objContaBanco->setAgencia($data->id);
+	$objContaBanco->setId($data->id);
 	$objContaBanco->setAgencia($data->agencia);
 	$objContaBanco->setdigitoAgencia($data->digitoAgencia);
 	$objContaBanco->setNumeroConta($data->numeroConta);
@@ -99,9 +103,12 @@ function atualizaContaBanco() {
 	$objContaBanco->setNomeContato($data->nomeContato);
 	$objContaBanco->setTelefoneContato($data->telefoneContato);
 	$objContaBanco->setDataedicao($datahora);
-	$objContaBanco->setObjBanco($data->banco);
-	$objContaBanco->setObjEmpresa($data->empresa);
+	$objBanco = new Banco($data->idbanco);
+	$objContaBanco->setObjBanco($objBanco);
+	$objEmpresa = new Empresa($data->idempresa);
+	$objContaBanco->setObjEmpresa($objEmpresa);
 	
+	//echo $objContaBanco;
 	
 	$objContaContaBancoControl = new ContaBancoControl($objContaBanco);
 	$objContaContaBancoControl->atualizar();

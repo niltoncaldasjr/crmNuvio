@@ -74,28 +74,28 @@ Ext.define('crm.view.contabanco.ContaBancoForm',{
 	    	    	name: 		'telefoneContato'
 	    	    },
 	    	    {
-					defaults:{anchor:'100%'},
 					xtype:'combo',
 					fieldLabel:'Banco',
 					emptyText:'Selecione o banco ...',
+					forceSelection:true,
+					editable:false,
 					name: 'idbanco',
 					store: 'Banco',
-					displayField: 'name',
+					displayField: 'nome',
 					valueField: 'id'
 				},
-				/*{
-					defaults:{anchor:'100%'},
-					xtype:'combo',
+				{
+					xtype: 'combo',
 					fieldLabel:'Empresa',
-					emptyText:'Selecione a empresa ...',
+					emptyText:'Selecioone a Pessoa...',
 					forceSelection:true,
 					editable:false,
 					name: 'idempresa',
-					store: 'Empresa',
-					queryMode: 'rest',
-					displayField: 'name',
-					valueField: 'id'
-				},*/
+				    store: 'Empresa',
+				    displayField: 'nomeFantasia',
+				    valueField: 'id'
+				    
+				},
 	    	   
 	    	]
 	    }
