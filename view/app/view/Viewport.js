@@ -33,7 +33,9 @@ Ext.define('crm.view.Viewport', {
                'crm.view.banco.BancoForm',
                'crm.view.banco.BancoGrid',
                'crm.view.contabanco.ContaBancoForm',
-               'crm.view.contabanco.ContaBancoGrid'
+               'crm.view.contabanco.ContaBancoGrid',
+               'crm.view.contatolead.ContatoLeadForm',
+               'crm.view.contatolead.ContatoLeadGrid'
      ],
     
     
@@ -44,7 +46,7 @@ Ext.define('crm.view.Viewport', {
         Ext.apply(me, {
             items: [
                 {
-                    xtype: 'contabancogrid'
+                    xtype: 'contatoleadgrid'
                 }
             ]
         });

@@ -24,7 +24,8 @@ Ext.application({
                   'Localidade',
                   'Lead',
                   'Banco',
-                  'ContaBanco'
+                  'ContaBanco',
+                  'ContatoLead'
     ],
     
     autoCreateViewport: true
