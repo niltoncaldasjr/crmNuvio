@@ -21,7 +21,10 @@ Ext.application({
                   'Empresa',
                   'Usuario',
                   'Imposto',
-                  'Localidade'
+                  'Localidade',
+                  'Lead',
+                  'Banco',
+                  'ContaBanco'
     ],
     
     autoCreateViewport: true

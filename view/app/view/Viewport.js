@@ -28,6 +28,12 @@ Ext.define('crm.view.Viewport', {
                'crm.view.pessoafisica.PessoaFisicaForm',
                'crm.view.localidade.LocalidadeForm',
                'crm.view.localidade.LocalidadeGrid'
+               'crm.view.lead.LeadForm',
+               'crm.view.lead.LeadGrid',
+               'crm.view.banco.BancoForm',
+               'crm.view.banco.BancoGrid',
+               'crm.view.contabanco.ContaBancoForm',
+               'crm.view.contabanco.ContaBancoGrid',
      ],
     
     

@@ -78,8 +78,6 @@ Ext.define('crm.view.contabanco.ContaBancoForm',{
 					xtype:'combo',
 					fieldLabel:'Banco',
 					emptyText:'Selecione o banco ...',
-					forceSelection:true,
-					editable:false,
 					name: 'idbanco',
 					store: 'Banco',
 					displayField: 'name',
