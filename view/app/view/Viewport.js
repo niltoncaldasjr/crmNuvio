@@ -27,13 +27,13 @@ Ext.define('crm.view.Viewport', {
                'crm.view.pessoafisica.PessoaFisicaGrid',
                'crm.view.pessoafisica.PessoaFisicaForm',
                'crm.view.localidade.LocalidadeForm',
-               'crm.view.localidade.LocalidadeGrid'
+               'crm.view.localidade.LocalidadeGrid',
                'crm.view.lead.LeadForm',
                'crm.view.lead.LeadGrid',
                'crm.view.banco.BancoForm',
                'crm.view.banco.BancoGrid',
                'crm.view.contabanco.ContaBancoForm',
-               'crm.view.contabanco.ContaBancoGrid',
+               'crm.view.contabanco.ContaBancoGrid'
      ],
     
     
@@ -44,7 +44,7 @@ Ext.define('crm.view.Viewport', {
         Ext.apply(me, {
             items: [
                 {
-                    xtype: 'localidadegrid'
+                    xtype: 'contabancogrid'
                 }
             ]
         });
