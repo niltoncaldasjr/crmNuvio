@@ -1,3 +1,9 @@
+<?php 
+// session_start inicia a sessão
+	session_start();
+	$_SESSION['usuario']=array('idusuario'=>1,'usuario'=>'admin');
+?>
+
 <html>
 <head>
     <meta charset="UTF-8">
