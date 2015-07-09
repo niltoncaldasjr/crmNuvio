@@ -91,27 +91,17 @@ Ext.define('crm.view.empresa.EmpresaForm',{
 					xtype: 'textfield',
 					fieldLabel:'Logo',
 				    name: 'imagemLogotipo'
-				},				
+				},					
 				{
-					xtype: 'textfield',
+					xtype: 'combo',
+					name: 'idlocalidade',
 					fieldLabel:'Localidade',
-				    name: 'idlocalidade'
-				},	
-//				{
-//					xtype: 'textfield',
-//					fieldLabel:'Imposto',
-//				    name: 'idimposto'
-//				},
-//				{
-//					xtype: 'combo',
-//					name: 'idlocalidade',
-//					fieldLabel:'Localidade',
-//					emptyText:'Selecioone a Localidade...',
-//				    store: 'Localidade',
-//				    displayField: 'nome',
-//				    valueField: 'id'
-//				    
-//				},
+					emptyText:'Selecioone a Localidade...',
+				    store: 'Localidade',
+				    displayField: 'cidade',
+				    valueField: 'id'
+				    
+				},
 				{
 					xtype: 'combo',
 					fieldLabel:'Imposto',

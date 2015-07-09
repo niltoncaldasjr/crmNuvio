@@ -1,6 +1,9 @@
 <?php
+session_start();
 require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'control/ImpostoControl.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'model/imposto/Imposto.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'control/LogSistemaControl.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'model/logsistema/Logsistema.php';
 
 switch ($_SERVER['REQUEST_METHOD']) {
 	
@@ -56,9 +59,13 @@ function cadastraImposto() {
 	$object->setAliquotaCSLL($data->aliquotaCSLL);
 	$object->setAliquotaISS($data->aliquotaISS);
 	$object->setAliquotaIRPJ($data->aliquotaIRPJ);
+	
+	// INSERI O OBJETO NO CONTROL
+	// E CHAMA O METODO CADASTRAR
 	$controller = new ImpostoControl($object);
 	$id = $controller->cadastrar();
 	
+	// RETORNA O id CADASTRADO PARA O OBJETO
 	$object->setId($id);
 	
 	
@@ -67,6 +74,14 @@ function cadastraImposto() {
 			"success" => 0,
 			"data" => $object
 	));
+	
+	// REGISTA O LOG NO SISTEMA
+	$log = new LogSistema();
+	$log->setOcorrencia('Inclusão de registro na Classe Imposto.');
+	$log->setNivel('BASICO');
+	$log->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
+	$logController = new LogSistemaControl($log);
+	$logController->cadastrar();
 	
 }
 
@@ -85,10 +100,19 @@ function atualizaImposto() {
 	$object->setAliquotaISS($data->aliquotaISS);
 	$object->setAliquotaIRPJ($data->aliquotaIRPJ);
 	$object->setDataedicao(date("Y-m-d H:i:s"));
+	
+	// INSERI O OBJETO NO CONTROL
+	// E CHAMA O METODO CADASTRAR
 	$controller = new ImpostoControl($object);
 	$controller->atualizar();
-	var_dump($data);
 	
+	// REGISTA O LOG NO SISTEMA
+	$log = new LogSistema();
+	$log->setOcorrencia('Alteração de registro na Classe Imposto.');
+	$log->setNivel('MODERADO');
+	$log->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
+	$logController = new LogSistemaControl($log);
+	$logController->cadastrar();
 }
 
 function deletaImposto() {
@@ -99,11 +123,22 @@ function deletaImposto() {
 		
 	$id = $data->id;
 	
+	// INSERI O id NO OBJETO
 	$object = new Imposto();
 	$object->setId($id);
 	
+	// INSERI O OBJETO NO CONTROL
+	// E CHAMA O METODO CADASTRAR
 	$controller = new ImpostoControl($object);
 	$controller->deletar();
+	
+	// REGISTA O LOG NO SISTEMA
+	$log = new LogSistema();
+	$log->setOcorrencia('Exclusão de registro na Classe Imposto.');
+	$log->setNivel('CRITICO');
+	$log->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
+	$logController = new LogSistemaControl($log);
+	$logController->cadastrar();
 	
 }
 

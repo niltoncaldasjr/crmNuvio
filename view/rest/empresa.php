@@ -1,6 +1,9 @@
 <?php
+session_start();
 require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'control/EmpresaControl.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'model/Empresa/Empresa.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'control/LogSistemaControl.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'model/logsistema/Logsistema.php';
 
 switch ($_SERVER['REQUEST_METHOD']) {
 	
@@ -64,17 +67,27 @@ function cadastraEmpresa() {
 	$object->setImagemLogotipo($data->imagemLogotipo);
 	$object->setObjLocalidade(new Localidade($data->idlocalidade));
 	$object->setObjImposto(new Imposto($data->idimposto));
+	// INSERI O OBJETO NO CONTROL 
+	// E CHAMA O METODO CADASTRAR
 	$controller = new EmpresaControl($object);
 	$id = $controller->cadastrar();
 	
+	// RETORNA O id CADASTRADO PARA O OBJETO
 	$object->setId($id);
 	
-	//var_dump($data);
 	// encoda para formato JSON
 	echo json_encode(array(
 			"success" => 0,
 			"data" => $object
 	));
+	
+	// REGISTA O LOG NO SISTEMA
+	$log = new LogSistema();
+	$log->setOcorrencia('Inclusão de registro na Classe Empresa.');
+	$log->setNivel('BASICO');
+	$log->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
+	$logController = new LogSistemaControl($log);
+	$logController->cadastrar();
 	
 }
 
@@ -101,9 +114,19 @@ function atualizaEmpresa() {
 	$object->setDataedicao(date("Y-m-d H:i:s"));
 	$object->setObjLocalidade(new Localidade($data->idlocalidade));
 	$object->setObjImposto(new Imposto($data->idimposto));
+	
+	// INSERI O OBJETO NO CONTROL
+	// E CHAMA O METODO CADASTRAR
 	$controller = new EmpresaControl($object);
 	$controller->atualizar();
-	//var_dump($data);
+	
+	// REGISTA O LOG NO SISTEMA
+	$log = new LogSistema();
+	$log->setOcorrencia('Alteração de registro na Classe Empresa.');
+	$log->setNivel('MODERADO');
+	$log->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
+	$logController = new LogSistemaControl($log);
+	$logController->cadastrar();
 	
 }
 
@@ -115,11 +138,22 @@ function deletaEmpresa() {
 		
 	$id = $data->id;
 	
+	// INSERI O id NO OBJETO
 	$object = new Empresa();
 	$object->setId($id);
 	
+	// INSERI O OBJETO NO CONTROL
+	// E CHAMA O METODO CADASTRAR
 	$controller = new EmpresaControl($object);
 	$controller->deletar();
+	
+	// REGISTA O LOG NO SISTEMA
+	$log = new LogSistema();
+	$log->setOcorrencia('Exclusão de registro na Classe Empresa.');
+	$log->setNivel('CRITICO');
+	$log->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
+	$logController = new LogSistemaControl($log);
+	$logController->cadastrar();
 	
 }
 
