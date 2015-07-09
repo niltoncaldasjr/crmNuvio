@@ -1,6 +1,9 @@
 <?php
+session_start();
 require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'control/LocalidadeControl.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'model/Localidade/Localidade.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'control/LogSistemaControl.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'model/logsistema/Logsistema.php';
 
 switch ($_SERVER['REQUEST_METHOD']) {
 	
@@ -54,9 +57,13 @@ function cadastraLocalidade() {
 	$object->setUf($data->uf);
 	$object->setCidade($data->cidade);
 	$object->setObjPais(new Pais($data->idpais));
+	
+	// INSERI O OBJETO NO CONTROL
+	// E CHAMA O METODO CADASTRAR
 	$controller = new LocalidadeControl($object);
 	$id = $controller->cadastrar();
 	
+	// RETORNA O id CADASTRADO PARA O OBJETO
 	$object->setId($id);
 	
 	//var_dump($data);
@@ -66,6 +73,13 @@ function cadastraLocalidade() {
 			"data" => $object
 	));
 	
+	// REGISTA O LOG NO SISTEMA
+	$log = new LogSistema();
+	$log->setOcorrencia('Inclusão de registro na Classe Localidade.');
+	$log->setNivel('BASICO');
+	$log->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
+	$logController = new LogSistemaControl($log);
+	$logController->cadastrar();
 }
 
 function atualizaLocalidade() {
@@ -81,9 +95,19 @@ function atualizaLocalidade() {
 	$object->setCidade($data->cidade);	
 	$object->setDataedicao(date("Y-m-d H:i:s"));
 	$object->setObjPais(new Pais($data->idpais));
+	
+	// INSERI O OBJETO NO CONTROL
+	// E CHAMA O METODO CADASTRAR
 	$controller = new LocalidadeControl($object);
 	$controller->atualizar();
-	//var_dump($data);
+	
+	// REGISTA O LOG NO SISTEMA
+	$log = new LogSistema();
+	$log->setOcorrencia('Alteração de registro na Classe Localidade.');
+	$log->setNivel('MODERADO');
+	$log->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
+	$logController = new LogSistemaControl($log);
+	$logController->cadastrar();
 	
 }
 
@@ -98,9 +122,18 @@ function deletaLocalidade() {
 	$object = new Localidade();
 	$object->setId($id);
 	
+	// INSERI O OBJETO NO CONTROL
+	// E CHAMA O METODO CADASTRAR
 	$controller = new LocalidadeControl($object);
 	$controller->deletar();
 	
+	// REGISTA O LOG NO SISTEMA
+	$log = new LogSistema();
+	$log->setOcorrencia('Exclusão de registro na Classe Localidade.');
+	$log->setNivel('CRITICO');
+	$log->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
+	$logController = new LogSistemaControl($log);
+	$logController->cadastrar();
 }
 
 ?>

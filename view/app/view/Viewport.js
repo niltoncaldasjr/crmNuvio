@@ -46,7 +46,7 @@ Ext.define('crm.view.Viewport', {
         Ext.apply(me, {
             items: [
                 {
-                    xtype: 'impostogrid'
+                    xtype: 'localidadegrid'
                 }
             ]
         });

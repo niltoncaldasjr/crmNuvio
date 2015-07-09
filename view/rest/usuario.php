@@ -1,6 +1,9 @@
 <?php
+session_start();
 require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'control/UsuarioControl.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'model/Usuario/Usuario.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'control/LogSistemaControl.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'model/logsistema/Logsistema.php';
 
 switch ($_SERVER['REQUEST_METHOD']) {
 	
@@ -57,9 +60,13 @@ function cadastraUsuario() {
 	$object->setAtivo($data->ativo);
 	$object->setObjPerfil(new Perfil($data->idperfil));
 	$object->setObjPessoafisica(new PessoaFisica($data->idpessoafisica));
+	
+	// INSERI O OBJETO NO CONTROL
+	// E CHAMA O METODO CADASTRAR
 	$controller = new UsuarioControl($object);
 	$id = $controller->cadastrar();
 	
+	// RETORNA O id CADASTRADO PARA O OBJETO
 	$object->setId($id);
 	
 	//var_dump($data);
@@ -69,6 +76,13 @@ function cadastraUsuario() {
 			"data" => $object
 	));
 	
+	// REGISTA O LOG NO SISTEMA
+	$log = new LogSistema();
+	$log->setOcorrencia('Inclusão de registro na Classe Usuário.');
+	$log->setNivel('BASICO');
+	$log->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
+	$logController = new LogSistemaControl($log);
+	$logController->cadastrar();
 }
 
 function atualizaUsuario() {
@@ -87,10 +101,19 @@ function atualizaUsuario() {
 	$object->setDataedicao(date("Y-m-d H:i:s"));
 	$object->setObjPerfil(new Perfil($data->idperfil));
 	$object->setObjPessoafisica(new PessoaFisica($data->idpessoafisica));
+	
+	// INSERI O OBJETO NO CONTROL
+	// E CHAMA O METODO CADASTRAR
 	$controller = new UsuarioControl($object);
 	$controller->atualizar();
-	//var_dump($data);
 	
+	// REGISTA O LOG NO SISTEMA
+	$log = new LogSistema();
+	$log->setOcorrencia('Alteração de registro na Classe Usuário.');
+	$log->setNivel('MODERADO');
+	$log->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
+	$logController = new LogSistemaControl($log);
+	$logController->cadastrar();
 }
 
 function deletaUsuario() {
@@ -104,8 +127,18 @@ function deletaUsuario() {
 	$object = new Usuario();
 	$object->setId($id);
 	
+	// INSERI O OBJETO NO CONTROL
+	// E CHAMA O METODO CADASTRAR
 	$controller = new UsuarioControl($object);
 	$controller->deletar();
+	
+	// REGISTA O LOG NO SISTEMA
+	$log = new LogSistema();
+	$log->setOcorrencia('Exclusão de registro na Classe Usuário.');
+	$log->setNivel('CRITICO');
+	$log->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
+	$logController = new LogSistemaControl($log);
+	$logController->cadastrar();
 	
 }
 
