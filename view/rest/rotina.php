@@ -1,6 +1,13 @@
 <?php
+
+/*-- Sessao --*/
+session_start();
+
 require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'control/RotinaControl.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" .'model/rotina/Rotina.php';
+/*-- Log Sistema --*/
+require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" .'model/logsistema/LogSistema.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" .'control/LogSistemaControl.php';
 
 switch ($_SERVER['REQUEST_METHOD']) {
 	
@@ -47,6 +54,7 @@ function listaRotina() {
 			"data" => $v_registros
 	));
 	
+	
 }
 
 function cadastraRotina() {
@@ -73,6 +81,15 @@ function cadastraRotina() {
 			"data" => $objRotina
 	));
 	
+	// Resginstando Log do Sistema
+	$objLogSistema = new LogSistema();
+	$objLogSistema->setOcorrencia('Inclusão de registro na Classe Rotina');
+	$objLogSistema->setNivel('BASICO');
+	$objLogSistema->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
+	$objLogSistemaController = new LogSistemaControl($objLogSistema);
+	$objLogSistemaController->cadastrar();
+	
+	
 }
 
 function atualizaRotina() {
@@ -87,6 +104,14 @@ function atualizaRotina() {
 	
 	$objRotinaControl = new RotinaControl($objRotina);
 	$objRotinaControl->atualizar();
+	
+	// Resginstando Log do Sistema
+	$objLogSistema = new LogSistema();
+	$objLogSistema->setOcorrencia('Alteração de registro na Classe Rotina.');
+	$objLogSistema->setNivel('MODERADO');
+	$objLogSistema->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
+	$objLogSistemaController = new LogSistemaControl($objLogSistema);
+	$objLogSistemaController->cadastrar();
 	
 }
 
@@ -104,6 +129,13 @@ function deletaRotina() {
 	$objRotinaControl = new RotinaControl($objRotina);
 	$objRotinaControl->deletar();
 	
+	// Resginstando Log do Sistema
+	$objLogSistema = new LogSistema();
+	$objLogSistema->setOcorrencia('Exclusão de resgistro na Classe Rotina: ID '.$id);
+	$objLogSistema->setNivel('CRITICO');
+	$objLogSistema->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
+	$objLogSistemaController = new LogSistemaControl($objLogSistema);
+	$objLogSistemaController->cadastrar();
 }
 
 ?>

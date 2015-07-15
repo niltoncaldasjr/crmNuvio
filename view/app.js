@@ -11,9 +11,19 @@ Ext.Loader.setConfig({enabled: true});
 
 Ext.application({
     name: 'crm',
+    
+    requires: [
+       //'crm.view.Login',
+    ],
+    
+    views: [
+    	//'Login',
+    	
+    ],
 
     //extend: 'crm.Application',
     controllers: [
+                  //'Login',
                   'Pais',
                   'Perfil',
                   'Rotina',
@@ -28,5 +38,39 @@ Ext.application({
                   'ContatoLead'
     ],
     
-    autoCreateViewport: true
+    
+    init: function(){
+    	BoasVindas = Ext.getBody().mask('Carregando o Sistema aguarde...', 'splashscreen');
+    
+    	BoasVindas.addCls('splashscreen');
+    	
+    	Ext.DomHelper.insertFirst(Ext.query('.x-mask-msg')[0],{
+    		cls: 'x-splash-icon'
+    	});
+    },
+    
+    launch: function(){
+    	var task = new Ext.util.DelayedTask(function(){
+    		BoasVindas.fadeOut({
+    			duration: 1000,
+    			remove: true
+    		});
+    	BoasVindas.next().fadeOut({
+    		duration: 1500,
+    		remove: true,
+    		listeners: {
+    			afteranimate: function(el, starttime, eOpts){
+    				BoasVindas.unmask();
+    				Ext.create('crm.view.MyViewport');
+    			}
+    		}
+    	});
+    	//console.log('launch');
+    	});
+		task.delay(2500);
+    },
+    
+    
+    
+   // autoCreateViewport: true
 });

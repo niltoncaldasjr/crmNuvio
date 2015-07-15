@@ -1,8 +1,13 @@
 <?php
+/*-- Sessao --*/
+session_start();
 require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'control/ContaBancoControl.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" .'model/contabanco/ContaBanco.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" .'model/banco/Banco.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" .'model/empresa/Empresa.php';
+/*-- Log Sistema --*/
+require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" .'model/logsistema/LogSistema.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" .'control/LogSistemaControl.php';
 
 switch ($_SERVER['REQUEST_METHOD']) {
 	
@@ -81,7 +86,14 @@ function cadastraContaBanco() {
 			"success" => 0,
 			"data" => $objContaBanco
 	));
-	
+
+	// Resginstando Log do Sistema
+	$objLogSistema = new LogSistema();
+	$objLogSistema->setOcorrencia('Inclusão de registro na Classe ContaBanco');
+	$objLogSistema->setNivel('BASICO');
+	$objLogSistema->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
+	$objLogSistemaController = new LogSistemaControl($objLogSistema);
+	$objLogSistemaController->cadastrar();
 }
 
 function atualizaContaBanco() {
@@ -113,6 +125,14 @@ function atualizaContaBanco() {
 	$objContaContaBancoControl = new ContaBancoControl($objContaBanco);
 	$objContaContaBancoControl->atualizar();
 	
+	// Resginstando Log do Sistema
+	$objLogSistema = new LogSistema();
+	$objLogSistema->setOcorrencia('Alteração de registro na Classe ContaBanco');
+	$objLogSistema->setNivel('MODERADO');
+	$objLogSistema->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
+	$objLogSistemaController = new LogSistemaControl($objLogSistema);
+	$objLogSistemaController->cadastrar();
+	
 }
 
 function deletaContaBanco() {
@@ -128,6 +148,14 @@ function deletaContaBanco() {
 	
 	$objContaContaBancoControl = new ContaBancoControl($objContaBanco);
 	$objContaContaBancoControl->deletar();
+	
+	// Resginstando Log do Sistema
+	$objLogSistema = new LogSistema();
+	$objLogSistema->setOcorrencia('Exclusão de registro na Classe ContaBanco: ID '.$id);
+	$objLogSistema->setNivel('CRITICO');
+	$objLogSistema->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
+	$objLogSistemaController = new LogSistemaControl($objLogSistema);
+	$objLogSistemaController->cadastrar();
 	
 }
 

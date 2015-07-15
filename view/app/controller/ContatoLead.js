@@ -65,7 +65,7 @@ Ext.define('crm.controller.ContatoLead',{
 		if(novo){
 			this.getContatoLeadStore().load();
 		}
-		this.getContatoLeadStore().load();
+		//this.getContatoLeadStore().load();
 	},
 	
 	deleteContatoLead: function(button){
