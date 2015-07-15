@@ -1,4 +1,4 @@
-Ext.define('Packt.view.menu.Accordion',{
+Ext.define('crm.view.menu.Accordion',{
 	extend: 'Ext.panel.Panel',
 	alias: 'widget.mainmenu',
 

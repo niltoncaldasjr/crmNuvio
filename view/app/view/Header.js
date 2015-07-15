@@ -1,11 +1,11 @@
-Ext.define('Packt.view.Header',{
+Ext.define('crm.view.Header',{
 	/*-- A classe Header será do tipo toolbar --*/
 	extend: 'Ext.toolbar.Toolbar',
 	/*-- alias --*/
 	alias: 'widget.appheader',
 
 	/*-- Configuração --*/
-	height: 30,
+	height: 50,
 	ui: 'footer',
 	style: 'border-bottom: 4px solid #4c72a4;',
 

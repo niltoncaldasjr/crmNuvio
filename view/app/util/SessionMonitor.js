@@ -39,7 +39,7 @@ Ext.define('crm.util.SessionMonitor', {
         Packt.util.SessionMonitor.start();
         // 'poke' the server-side to update your session.
         Ext.Ajax.request({
-          url: 'php/sessionAlive.php'
+          url: 'rest/sessionAlive.php'
         });
       }
     },{

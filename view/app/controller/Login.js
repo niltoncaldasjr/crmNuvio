@@ -75,7 +75,7 @@ Ext.define('crm.controller.Login', {
 				}
 				if (result.success) { 
 					login.close(); 
-					Ext.create('crm.view.imposto.ImpostoForm').show();
+					Ext.create('crm.view.MyViewport');
 					crm.util.SessionMonitor.start();
 				} else {
 					Ext.Msg.show({ 

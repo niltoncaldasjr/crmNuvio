@@ -32,7 +32,7 @@ Ext.define('crm.view.MyViewport',{
 		},
 		/*-- Menu Accordion --*/
 		{
-			xtype: 'container',
+			xtype: 'mainmenu',
 			width: 185,
 			collapsible: true,
 			region: 'west',

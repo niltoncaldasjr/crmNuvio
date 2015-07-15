@@ -13,17 +13,17 @@ Ext.application({
     name: 'crm',
     
     requires: [
-       //'crm.view.Login',
+       'crm.view.Login',
     ],
     
     views: [
-    	//'Login',
+    	'Login',
     	
     ],
 
     //extend: 'crm.Application',
     controllers: [
-                  //'Login',
+                  'Login',
                   'Pais',
                   'Perfil',
                   'Rotina',
@@ -60,8 +60,8 @@ Ext.application({
     		remove: true,
     		listeners: {
     			afteranimate: function(el, starttime, eOpts){
-    				BoasVindas.unmask();
-    				Ext.create('crm.view.MyViewport');
+//    				BoasVindas.unmask();
+    				Ext.widget('login');
     			}
     		}
     	});

@@ -1,4 +1,4 @@
-Ext.define('Packt.view.menu.Item',{
+Ext.define('crm.view.menu.Item',{
 	extend: 'Ext.tree.Panel',
 	alias: 'widget.mainmenuitem',
 
