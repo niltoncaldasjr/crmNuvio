@@ -3,21 +3,23 @@ class Rotina implements JsonSerializable{
 	private $id;
 	private $nome;
 	private $descricao;
-	private $ordem;
-	private $url;
+	private $subrotina;
+	private $class;
+	private $icon;
 	private $ativo;
 	private $datacadastro;
 	private $dataedicao;
 	
-	public function __construct($id=null, $nome=null, $descricao=null, $ordem=null, $url=null, $ativo=null, $datacadastro=null, $dataedicao=null){
-		$this->id = $id;
-		$this->nome = $nome;
-		$this->descricao = $descricao;
-		$this->ordem = $ordem;
-		$this->url = $url;
-		$this->ativo = $ativo;
+	public function __construct($id=null, $nome=null, $descricao=null, $subrotina=null, $class=null, $icon=null, $ativo=null, $datacadastro=null, $dataedicao=null){
+		$this->id 			= $id;
+		$this->nome 		= $nome;
+		$this->descricao 	= $descricao;
+		$this->subrotina 	= $subrotina;
+		$this->class 		= $class;
+		$this->subrotina 	= $subrotina;
+		$this->ativo 		= $ativo;
 		$this->datacadastro = $datacadastro;
-		$this->dataedicao = $dataedicao;
+		$this->dataedicao 	= $dataedicao;
 	}
 	
 	
@@ -42,18 +44,25 @@ class Rotina implements JsonSerializable{
 		$this->descricao = $descricao;
 		return $this;
 	}
-	public function getOrdem() {
-		return $this->ordem;
+	public function getSubrotina() {
+		return $this->subrotina;
 	}
-	public function setOrdem($ordem) {
-		$this->ordem = $ordem;
+	public function setSubrotina($subrotina) {
+		$this->subrotina = $subrotina;
 		return $this;
 	}
-	public function getUrl() {
-		return $this->url;
+	public function getClass() {
+		return $this->class;
 	}
-	public function setUrl($url) {
-		$this->url = $url;
+	public function setClass($class) {
+		$this->class = $class;
+		return $this;
+	}
+	public function getIcon() {
+		return $this->icon;
+	}
+	public function setIcon($icon) {
+		$this->icon = $icon;
 		return $this;
 	}
 	public function getAtivo() {
@@ -80,7 +89,7 @@ class Rotina implements JsonSerializable{
 	
 	
 	public function __toString(){
-		return "Pais [ id= " . $this->id . ", nome= " . $this->nome . ", sigla= " . $this->descricao . "ordem= " .$this->ordem . "url= " .$this->url . "ativo=" .$this->ativo . "datacadastro=" .$this->datacadastro . "dataedicao= " .$this->dataedicao . " ]";
+		return "Rotina [ id= " . $this->id . ", nome= " . $this->nome . ", sigla= " . $this->descricao . "subrotina= " .$this->subrotina . "class= " .$this->class . "icon= " .$this->icon . "ativo=" .$this->ativo . "datacadastro=" .$this->datacadastro . "dataedicao= " .$this->dataedicao . " ]";
 	}
 	
 	
@@ -90,8 +99,9 @@ class Rotina implements JsonSerializable{
 				'id' => $this->id,
 				'nome' => $this->nome,
 				'descricao' => $this->descricao,
-				'ordem' => $this->ordem,
-				'url' => $this->url,
+				'subrotina' => $this->subrotina,
+				'class' => $this->class,
+				'icon' => $this->icon,
 				'ativo' => $this->ativo,
 				'datacadastro' =>$this->datacadastro,
 				'dataedicao' => $this->dataedicao,

@@ -14,11 +14,12 @@ class RotinaDAO{
 	
 	/*-- Metodo Cadastrar --*/
 	function cadastrar(Rotina $objRotina){
-		$this->sql = sprintf("INSERT INTO rotina (nome, descricao, ordem, url, ativo) VALUES('%s', '%s', %d, '%s', %d)",
+		$this->sql = sprintf("INSERT INTO rotina (nome, descricao, subrotina, class, icon, ativo) VALUES('%s', '%s', %d, '%s', '%s', %d)",
 				mysqli_real_escape_string( $this->con, $objRotina->getNome() ),
 				mysqli_real_escape_string( $this->con, $objRotina->getDescricao() ),
-				mysqli_real_escape_string( $this->con, $objRotina->getOrdem() ),
-				mysqli_real_escape_string( $this->con, $objRotina->getUrl() ),
+				mysqli_real_escape_string( $this->con, $objRotina->getSubrotina() ),
+				mysqli_real_escape_string( $this->con, $objRotina->getClass() ),
+				mysqli_real_escape_string( $this->con, $objRotina->getIcon() ),
 				mysqli_real_escape_string( $this->con, $objRotina->getAtivo() ) );
 		
 		if(!mysqli_query($this->con, $this->sql)){
@@ -32,12 +33,13 @@ class RotinaDAO{
 	
 	/*-- Metodo Atualizar --*/
 	function atualizar(Rotina $objRotina){
-		$this->sql = sprintf("UPDATE rotina SET nome= '%s', descricao = '%s', ordem = %d, url = '%s', ativo = %d, dataedicao = '%s' WHERE id = %d",
+		$this->sql = sprintf("UPDATE rotina SET nome= '%s', descricao = '%s', subrotina = %d, class = '%s', icon = '%s', ativo = %d, dataedicao = '%s' WHERE id = %d",
 				mysqli_real_escape_string( $this->con, $objRotina->getNome() ),
 				mysqli_real_escape_string( $this->con, $objRotina->getDescricao() ),
-				mysqli_real_escape_string( $this->con, $objRotina->getOrdem() ),
-				mysqli_real_escape_string( $this->con, $objRotina->getUrl() ),
+				mysqli_real_escape_string( $this->con, $objRotina->getSubrotina() ),
+				mysqli_real_escape_string( $this->con, $objRotina->getClass() ),
 				mysqli_real_escape_string( $this->con, $objRotina->getAtivo() ),
+				mysqli_real_escape_string( $this->con, $objRotina->getIcon() ),
 				mysqli_real_escape_string( $this->con, $objRotina->getDataedicao() ),
 				mysqli_real_escape_string( $this->con, $objRotina->getId() ) );
 		if(!mysqli_query($this->con, $this->sql)){
@@ -66,7 +68,7 @@ class RotinaDAO{
 			die('[ERRO]: '.mysqli_error($this->con));
 		}
 		while($row = mysqli_fetch_object($resultSet)){
-			$this->objRotina = new Rotina($row->id, $row->nome, $row->descricao, $row->ordem, $row->url, $row->ativo, $row->datacadastro, $row->dataedicao); 
+			$this->objRotina = new Rotina($row->id, $row->nome, $row->descricao, $row->subrotina, $row->class, $row->icon, $row->ativo, $row->datacadastro, $row->dataedicao); 
 		}
 		
 		return $this->objRotina;
@@ -81,7 +83,7 @@ class RotinaDAO{
 		}
 		while($row = mysqli_fetch_object($resultSet)){
 				
-			$this->objRotina = new Rotina($row->id, $row->nome, $row->descricao, $row->ordem, $row->url, $row->ativo, $row->datacadastro, $row->dataedicao);
+			$this->objRotina = new Rotina($row->id, $row->nome, $row->descricao, $row->subrotina, $row->class, $row->icon, $row->ativo, $row->datacadastro, $row->dataedicao);
 				
 			array_push($this->listaRotinaRotina, $this->objRotina);
 		}
@@ -102,7 +104,7 @@ class RotinaDAO{
 		}
 		while($row = mysqli_fetch_object($resultSet)){
 		
-			$this->objRotina = new Rotina($row->id, $row->nome, $row->descricao, $row->ordem, $row->url, $row->ativo, $row->datacadastro, $row->dataedicao);
+			$this->objRotina = new Rotina($row->id, $row->nome, $row->descricao, $row->subrotina, $row->class, $row->icon, $row->ativo, $row->datacadastro, $row->dataedicao);
 		
 			array_push($this->listaRotinaRotina, $this->objRotina);
 		}

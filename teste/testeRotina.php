@@ -7,10 +7,11 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'model/rotina/RotinaDao.
 try{
 	
 	$objRotina = new Rotina();
-	$objRotina->setNome('Ultimo Teste');
+	$objRotina->setNome('Teste Final');
 	$objRotina->setDescricao('Teste Final');
-	$objRotina->setOrdem(1);
-	$objRotina->setUrl('www.com');
+	$objRotina->setSubrotina(1);
+	$objRotina->setClass('www.com');
+	$objRotina->setIcon('teste.png');
 	$objRotina->setAtivo(1);
 	
 	$objRotinaControl = new RotinaControl($objRotina);
