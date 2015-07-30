@@ -24,6 +24,7 @@ Ext.application({
     //extend: 'crm.Application',
     controllers: [
                   'Login',
+                  'Menu',
                   'Pais',
                   'Perfil',
                   'Rotina',

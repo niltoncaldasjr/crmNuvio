@@ -27,6 +27,9 @@ class PerfilRotinaControl{
 	function buscarPorId(){
 		return $this->objPerfilRotinaDAO->buscarPorId($this->objPerfilRotina);
 	}
+	function listarPorPerfil(){
+		return $this->objPerfilRotinaDAO->listarPorPerfil($this->objPerfilRotina);
+	}
 	function listarTodos(){
 		return $this->objPerfilRotinaDAO->listarTodos($this->objPerfilRotina);
 	}
@@ -36,6 +39,7 @@ class PerfilRotinaControl{
 	function qtdTotal(){
 		return $this->objRotinaDAO->qtdTotal();
 	}
+	
 }
 
 ?>
