@@ -43,6 +43,52 @@ background-image:url('../images/key.png') !important;
 .logout {
 	background-image: url('../images/door_in.png') !important;
 }
+
+/** ICONES DO MENU **/
+.menu_icon_adm {
+    background-image: url(../icons/shield.png) !important;
+}
+.menu_icon_crm {
+    background-image: url(../icons/crm.png) !important;
+}
+.menu_icon_rel {
+    background-image: url(../icons/report.png) !important;
+}
+.menu_icon_empresa {
+    background-image: url(../icons/building.png) !important;
+}
+.menu_icon_perfil {
+    background-image: url(../icons/images.png) !important;
+}
+.menu_icon_contabanco {
+    background-image: url(../icons/lock.png) !important;
+}
+.menu_icon_pais {
+    background-image: url(../icons/world.png) !important;
+}
+.menu_icon_local {
+    background-image: url(../icons/map.png) !important;
+}
+.menu_icon_lead {
+    background-image: url(../icons/telephone.png) !important;
+}
+.menu_icon_contato {
+    background-image: url(../icons/phone.png) !important;
+}
+.menu_icon_pf {
+    background-image: url(../icons/vcard.png) !important;
+}
+.menu_icon_banco {
+    background-image: url(../icons/money.png) !important;
+}
+.menu_icon_usuario {
+    background-image: url(../icons/user_gray.png) !important;
+}
+.menu_icon_imposto {
+    background-image: url(../icons/coins.png) !important;
+}
+/** Fim icones do MENU **/
+
 /*-- Tela de Boas Vindas - Autor: Adelson --*/
 .mask.splashscreen{
 	background-color: #FFF;
