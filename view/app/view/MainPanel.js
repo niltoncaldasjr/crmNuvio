@@ -1,7 +1,7 @@
 Ext.define('Packt.view.MainPanel',{
 	extend: 'Ext.tab.Panel',
 	alias: 'widget.mainpanel',
-
+	
 	activeTab: 0,
 
 	items: [{
@@ -11,3 +11,4 @@ Ext.define('Packt.view.MainPanel',{
 		title: 'Home'
 	}]
 });
+

@@ -2,7 +2,7 @@ Ext.define('crm.view.menu.Accordion',{
 	extend: 'Ext.panel.Panel',
 	alias: 'widget.mainmenu',
 
-	width: 300,
+	width: 400,
 	layout: {
 		type: 'accordion'
 	},

@@ -1,6 +1,7 @@
 Ext.define('crm.view.Header',{
 	/*-- A classe Header será do tipo toolbar --*/
 	extend: 'Ext.toolbar.Toolbar',
+	
 	/*-- alias --*/
 	alias: 'widget.appheader',
 
@@ -30,6 +31,33 @@ Ext.define('crm.view.Header',{
 			text: 		'Deslogar',
 			itemId: 	'logout',
 			iconCls: 	'logout'
+		},
+		{
+			xtype: 'tbseparator' //ou '-'
+		},
+		/*-- Botão de Logout --*/
+		{
+			xtype: 'splitbutton',
+			iconCls: 'config',
+			itemId: 'temas',
+			menu: Ext.create('Ext.menu.Menu', { 					
+					items: [					
+					{
+						xtype: 'menuitem', 
+						text: 'Neptune'
+					},
+					{
+						xtype: 'menuitem', 
+						//iconCls: 'es',
+						text: 'Classico'
+					},
+					{
+						xtype: 'menuitem', 
+						//iconCls: 'pt_BR',
+						text: 'Gray'
+					}]
+				})
+			
 		}
 	]
 });

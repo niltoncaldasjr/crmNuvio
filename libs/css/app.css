@@ -37,6 +37,9 @@ background-image:url('../images/key.png') !important;
 .key-go {
 	background-image: url('../images/key_go.png') !important;
 }
+.config {
+background-image:url('../icons/cog.png') !important;
+}
 .cancel {
 	background-image: url('../images/cancel.png') !important;
 }

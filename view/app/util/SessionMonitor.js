@@ -35,8 +35,8 @@ Ext.define('crm.util.SessionMonitor', {
       text: 'Continue Working',
       handler: function() {
         Ext.TaskManager.stop(crm.util.SessionMonitor.countDownTask);
-        Packt.util.SessionMonitor.window.hide();
-        Packt.util.SessionMonitor.start();
+        crm.util.SessionMonitor.window.hide();
+        crm.util.SessionMonitor.start();
         // 'poke' the server-side to update your session.
         Ext.Ajax.request({
           url: 'rest/sessionAlive.php'
@@ -47,7 +47,7 @@ Ext.define('crm.util.SessionMonitor', {
       action: 'logout',
       handler: function() {
         Ext.TaskManager.stop(crm.util.SessionMonitor.countDownTask);
-        Packt.util.SessionMonitor.window.hide();
+        crm.util.SessionMonitor.window.hide();
         
         // find and invoke your app's "Logout" button.
         Ext.ComponentQuery.query('button#logout')[0].fireEvent('click',Ext.ComponentQuery.query('button#logout')[0]);

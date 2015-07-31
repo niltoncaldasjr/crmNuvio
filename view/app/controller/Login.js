@@ -3,7 +3,8 @@ Ext.define('crm.controller.Login', {
 	requires: [
 	           'crm.util.MD5',
 	           'crm.util.Util',
-	           'crm.util.SessionMonitor'
+	           'crm.util.SessionMonitor',
+	           'crm.view.Header'
 	],
 	
 	views: [
@@ -37,9 +38,22 @@ Ext.define('crm.controller.Login', {
 			},
 			"appheader button#logout": {
 				click: this.onButtonClickLogout
-				}
+			},
+			"appheader splitbutton menuitem": {
+				click: this.onMenuItemClick
+			}
 		});
 	},
+	
+	onMenuItemClick : function(item, e , opts){
+		console.log('cliquei!!');
+		
+//		var menu = getHeader();
+		//menu.setIconCls(item.iconCls); 
+		menu.setText(item.text); 
+		console.log(menu.getText());
+	},
+	
 	onButtonClickSubmit : function(button, e, options) {
 		var formPanel = button.up('form'),
 		login = button.up('login'),
