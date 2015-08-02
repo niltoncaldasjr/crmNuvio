@@ -17,7 +17,7 @@ Ext.application({
     ],
     
     views: [
-    	'Login',
+    	'Login'
     	
     ],
 
@@ -36,7 +36,8 @@ Ext.application({
                   'Lead',
                   'Banco',
                   'ContaBanco',
-                  'ContatoLead'
+                  'ContatoLead',
+                  'Temas'
     ],
     
     

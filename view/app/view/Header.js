@@ -4,6 +4,8 @@ Ext.define('crm.view.Header',{
 	
 	/*-- alias --*/
 	alias: 'widget.appheader',
+	
+	requires : ['crm.view.Temas'],
 
 	/*-- Configuração --*/
 	height: 50,
@@ -35,29 +37,8 @@ Ext.define('crm.view.Header',{
 		{
 			xtype: 'tbseparator' //ou '-'
 		},
-		/*-- Botão de Logout --*/
 		{
-			xtype: 'splitbutton',
-			iconCls: 'config',
-			itemId: 'temas',
-			menu: Ext.create('Ext.menu.Menu', { 					
-					items: [					
-					{
-						xtype: 'menuitem', 
-						text: 'Neptune'
-					},
-					{
-						xtype: 'menuitem', 
-						//iconCls: 'es',
-						text: 'Classico'
-					},
-					{
-						xtype: 'menuitem', 
-						//iconCls: 'pt_BR',
-						text: 'Gray'
-					}]
-				})
-			
+			xtype: 'temas' //ou '-'
 		}
 	]
 });
