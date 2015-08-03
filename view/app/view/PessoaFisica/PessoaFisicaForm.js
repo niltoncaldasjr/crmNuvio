@@ -23,7 +23,7 @@ var estadoCivil = Ext.create('Ext.data.Store', {
 var sexo = Ext.create('Ext.data.Store', {
     fields: ['value', 'name'],
     data : [
-        {"value":"MACULINO", "name":"MASCULINO"},
+        {"value":"MASCULINO", "name":"MASCULINO"},
         {"value":"FEMININO", "name":"FEMININO"}
         //...
     ]

@@ -11,12 +11,14 @@ Ext.define('crm.controller.Menu',{
 	],
 
 	stores: [
-		'Menu'
+		'Menu',
+		'EmpresaSelect'
 	],
 
 	views: [
 		'menu.Accordion',
 		'menu.Item',
+		'menu.MenuEmpresa'
 	],
 
 	refs: [{
@@ -32,10 +34,30 @@ Ext.define('crm.controller.Menu',{
 			"mainmenuitem": {
 				select: this.onTreepanelSelect,
 				itemclick: this.onTreepanelItemClick
+			},
+			"empresaselect":{
+				render: this.onEmpresaSelectRender
 			}
 		});
 	},
 
+	onEmpresaSelectRender: function(abtractcomponent, option){
+		this.getEmpresaSelectStore().load(function(records, op, sucess){
+			var menu1 = Ext.ComponentQuery.query('empresaselect menu#menuEmpresa');
+			
+			console.log(menu1);
+			
+			Ext.each(records, function(root){
+				
+				menu = Ext.create('Ext.menu.Item',{
+					text: root.get('nomeFantasia')
+					//iconCls: root.get('icon')
+				});
+				
+				menu1.add(menu);
+			});
+		})
+	},
 
 	onPanelRender: function(abstractcomponent, options){
 		this.getMenuStore().load(function(records, op, success){
