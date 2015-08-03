@@ -67,8 +67,8 @@ function cadastraPessoaFisica() {
 	
 	$d_for = explode('/', $datanascimento);
 
-	$dia = $d_for[1];
-	$mes = $d_for[0];
+	$dia = $d_for[0];
+	$mes = $d_for[1];
 	$ano = $d_for[2];
 	$s_dataAniversario = $ano."-".$mes."-".$dia;
 	
