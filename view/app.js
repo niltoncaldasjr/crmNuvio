@@ -63,8 +63,23 @@ Ext.application({
     		listeners: {
     			afteranimate: function(el, starttime, eOpts){
 //    				BoasVindas.unmask();
-    				Ext.widget('login');
+//    				Ext.widget('login');
 //    				Ext.create('crm.view.MyViewport');
+    				
+    				/*-- Função Ajax/JQuery - Verifica se o usuário está em sessão --*/
+    				$(function(){
+    					$.ajax({
+    						url: 'rest/verifySession.php',
+    						success: function( data ){
+    							if(data > 0)
+    							{
+    								Ext.create('crm.view.MyViewport');
+    							}else{
+    								Ext.widget('login');
+    							}
+    						}
+    					});
+    				});
     			}
     		}
     	});
