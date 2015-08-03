@@ -21,7 +21,7 @@ if (isset($_COOKIE['tema'])){
 		
 	}
 }else{
-	$tema = '<link rel="stylesheet" type="text/css" href="../libs/ext/resources/css/ext-all.css">';
+	$tema = '<link rel="stylesheet" type="text/css" href="../libs/ext/resources/ext-theme-neptune/ext-theme-neptune-all.css">';
 }
 
 ?>
@@ -37,6 +37,7 @@ if (isset($_COOKIE['tema'])){
 <!-- 	<link rel="stylesheet" type="text/css" href="../libs/ext/resources/ext-theme-neptune/ext-theme-neptune-all.css"> -->
 	<link rel="stylesheet" type="text/css" href="../libs/css/app.css">
 <!-- 	<link rel="stylesheet" type="text/css" href="../libs/bootstrap/css/bootstrap.css"> -->
+	<script type="text/javascript" src="../libs/jquery/jquery-1.11.3.min.js"></script>
     <script type="text/javascript" src="../libs/ext/ext-all.js"></script>
     <script type="text/javascript" src="app.js"></script></head>
 <body></body>
