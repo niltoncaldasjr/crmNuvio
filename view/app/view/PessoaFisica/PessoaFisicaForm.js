@@ -46,7 +46,7 @@ Ext.define('crm.view.pessoafisica.PessoaFisicaForm',{
 	extend:	'Ext.window.Window',
 	alias:	'widget.pessoafisicaform',
 	
-	height: 	350,
+	height: 	380,
 	width: 		450,
 	layout: 	'fit',
 	iconCls: 	'icon-user',
