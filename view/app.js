@@ -64,6 +64,7 @@ Ext.application({
     			afteranimate: function(el, starttime, eOpts){
 //    				BoasVindas.unmask();
     				Ext.widget('login');
+//    				Ext.create('crm.view.MyViewport');
     			}
     		}
     	});
