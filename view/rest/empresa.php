@@ -70,10 +70,10 @@ function cadastraEmpresa() {
 	// INSERI O OBJETO NO CONTROL 
 	// E CHAMA O METODO CADASTRAR
 	$controller = new EmpresaControl($object);
-	$id = $controller->cadastrar();
+ 	$id = $controller->cadastrar();
 	
 	// RETORNA O id CADASTRADO PARA O OBJETO
-	$object->setId($id);
+ 	$object->setId($id);
 	
 	// encoda para formato JSON
 	echo json_encode(array(

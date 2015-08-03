@@ -1,6 +1,7 @@
 <?php
 class Imposto implements JsonSerializable {
 	private $id;
+	private $titulo;
 	private $aliquotaICMS;
 	private $aliquotaPIS;
 	private $aliquotaCOFINS;
@@ -10,8 +11,9 @@ class Imposto implements JsonSerializable {
 	private $datacadastro;
 	private $dataedicao;
 	
-	function __construct($id=null, $aliquotaICMS=null, $aliquotaPIS=null, $aliquotaCOFINS=null, $aliquotaCSLL=null, $aliquotaISS=null, $aliquotaIRPJ=null, $datacadastro=null, $dataedicao=null) {
+	function __construct($id=null, $titulo=null, $aliquotaICMS=null, $aliquotaPIS=null, $aliquotaCOFINS=null, $aliquotaCSLL=null, $aliquotaISS=null, $aliquotaIRPJ=null, $datacadastro=null, $dataedicao=null) {
             $this->id = $id;
+            $this->titulo = $titulo;
             $this->aliquotaICMS = $aliquotaICMS;
             $this->aliquotaPIS = $aliquotaPIS;
             $this->aliquotaCOFINS = $aliquotaCOFINS;
@@ -25,7 +27,11 @@ class Imposto implements JsonSerializable {
         function getId() {
             return $this->id;
         }
-
+        
+        function getTitulo() {
+        	return $this->titulo;
+        }
+        
         function getAliquotaICMS() {
             return $this->aliquotaICMS;
         }
@@ -61,6 +67,11 @@ class Imposto implements JsonSerializable {
         function setId($id) {
             $this->id = $id;
         }
+        
+        function setTitulo($titulo) {
+        	$this->titulo = $titulo;
+        }
+        
 
         function setAliquotaICMS($aliquotaICMS) {
             $this->aliquotaICMS = $aliquotaICMS;
@@ -99,6 +110,7 @@ class Imposto implements JsonSerializable {
 		public function jsonSerialize() {
 				$impostos [] = [ 
 						'id' => $this->id,
+						'titulo' => $this->titulo,
 						'aliquotaICMS' => $this->aliquotaICMS,
 						'aliquotaPIS' => $this->aliquotaPIS,
 						'aliquotaCOFINS' => $this->aliquotaCOFINS,
@@ -110,7 +122,6 @@ class Imposto implements JsonSerializable {
 				];
 				$json = json_encode ( $impostos );
 				echo $json;
-			}
-	
+	}	
 
 }
