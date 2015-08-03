@@ -21,7 +21,7 @@ if (isset($_COOKIE['tema'])){
 		
 	}
 }else{
-	$tema = '<link rel="stylesheet" type="text/css" href="../libs/ext/resources/css/ext-all.css">';
+	$tema = '<link rel="stylesheet" type="text/css" href="../libs/ext/resources/ext-theme-neptune/ext-theme-neptune-all.css">';
 }
 
 ?>
