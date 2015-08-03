@@ -38,7 +38,7 @@ if (isset($_COOKIE['tema'])){
 	<link rel="stylesheet" type="text/css" href="../libs/css/app.css">
 <!-- 	<link rel="stylesheet" type="text/css" href="../libs/bootstrap/css/bootstrap.css"> -->
 	<script type="text/javascript" src="../libs/jquery/jquery-1.11.3.min.js"></script>
-    <script type="text/javascript" src="../libs/ext/ext-all.js"></script>
+    <script type="text/javascript" src="../libs/ext/ext-all-dev.js"></script>
     <script type="text/javascript" src="app.js"></script></head>
 <body></body>
 </html>
