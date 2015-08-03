@@ -47,8 +47,7 @@ function listaEmpresa() {
 }
 
 function cadastraEmpresa() {
-	var_dump($_POST);
-	var_dump($_FILES);
+	
 	$jsonDados = $_POST['data'];
 	$data = json_decode(stripslashes($jsonDados));
 	// Remover a mascara do CPF.
@@ -71,10 +70,10 @@ function cadastraEmpresa() {
 	// INSERI O OBJETO NO CONTROL 
 	// E CHAMA O METODO CADASTRAR
 	$controller = new EmpresaControl($object);
-// 	$id = $controller->cadastrar();
+ 	$id = $controller->cadastrar();
 	
 	// RETORNA O id CADASTRADO PARA O OBJETO
-// 	$object->setId($id);
+ 	$object->setId($id);
 	
 	// encoda para formato JSON
 	echo json_encode(array(
