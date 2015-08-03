@@ -13,7 +13,7 @@ Ext.define('crm.view.empresa.EmpresaForm',{
 	extend: 'Ext.window.Window',
 	alias: 'widget.empresaform',
 
-	height: 500,
+	height: 530,
 	width: 500,
 	layout: 'fit',
 	iconCls: 'icon-empresa-add',
@@ -88,10 +88,12 @@ Ext.define('crm.view.empresa.EmpresaForm',{
 				    name: 'cep'
 				},
 				{
-					xtype: 'textfield',
-					fieldLabel:'Logo',
-				    name: 'imagemLogotipo'
-				},					
+                    xtype: 'filefield',
+                    fieldLabel: 'Logo',
+                    name: 'imagemLogotipo',
+                    allowBlank: true,
+                    afterLabelTextTpl: ''
+                },					
 				{
 					xtype: 'combo',
 					name: 'idlocalidade',
@@ -108,7 +110,7 @@ Ext.define('crm.view.empresa.EmpresaForm',{
 					emptyText:'Selecioone o Imposto...',
 					name: 'idimposto',
 				    store: 'Imposto',
-				    displayField: 'id',
+				    displayField: 'titulo',
 				    valueField: 'id'
 				    
 				}

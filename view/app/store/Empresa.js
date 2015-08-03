@@ -15,7 +15,7 @@ Ext.define('crm.store.Empresa',{
 	pageSize: 20,
 
 	proxy: {
-		type: 'rest',
+		type: 'ajax',
 
 		url: 'rest/empresa.php',
 		

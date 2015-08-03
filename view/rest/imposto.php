@@ -53,6 +53,7 @@ function cadastraImposto() {
 	// Remover a mascara do CPF.
 	
 	$object = new Imposto();
+	$object->setTitulo($data->titulo);
 	$object->setAliquotaICMS($data->aliquotaICMS);
 	$object->setAliquotaPIS($data->aliquotaPIS);
 	$object->setaliquotaCOFINS($data->aliquotaCOFINS);
@@ -93,6 +94,7 @@ function atualizaImposto() {
 	
 	$object = new Imposto();
 	$object->setId($data->id);
+	$object->setTitulo($data->titulo);
 	$object->setAliquotaICMS($data->aliquotaICMS);
 	$object->setAliquotaPIS($data->aliquotaPIS);
 	$object->setaliquotaCOFINS($data->aliquotaCOFINS);

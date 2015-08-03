@@ -12,6 +12,7 @@ Ext.define('crm.model.Imposto',{
 
 	fields: [
 		{name: 'id',  				type: 'int'},
+		{name: 'titulo',  			type: 'string'},
 		{name: 'aliquotaICMS',  	type: 'float'},
 		{name: 'aliquotaPIS',		type: 'float'},
 		{name: 'aliquotaCOFINS', 	type: 'float'},

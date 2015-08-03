@@ -16,6 +16,7 @@ Ext.define('crm.view.imposto.ImpostoGrid',{
 
 	columns: [
 		{ text: 'Id',  dataIndex: 'id'},
+		{ text: 'Titulo',  dataIndex: 'titulo'},
         { text: 'ICMS', dataIndex: 'aliquotaICMS'},
         { text: 'PIS', dataIndex: 'aliquotaPIS'},
         { text: 'COFINS',  dataIndex: 'aliquotaCOFINS'},

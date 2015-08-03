@@ -34,6 +34,11 @@ Ext.define('crm.view.imposto.ImpostoForm',{
 				},
 				{
 					xtype: 'textfield',
+					fieldLabel:'Título',
+				    name: 'titulo'
+				},
+				{
+					xtype: 'textfield',
 					fieldLabel:'aliquotaICMS',
 				    name: 'aliquotaICMS'
 				},

@@ -21,18 +21,20 @@ Ext.define('crm.util.SessionMonitor', {
     closeAction: 'hide',
     modal: true,
     resizable: false,
-    title: 'Session Timeout Warning',
+    title: 'Aviso de tempo restante da sessão',
     width: 325,
     items: [{
       xtype: 'container',
       frame: true,
-      html: "Your session will automatically expires after 15 minutes of  inactivity. If your session expires, any unsaved data will be lost and  you will be automatically logged out. </br></br>If you want  to continue working, click the 'Continue Working'  button.</br></br>"    
+//      html: "Your session will automatically expires after 15 minutes of  inactivity. If your session expires, any unsaved data will be lost and  you will be automatically logged out. </br></br>If you want  to continue working, click the 'Continue Working'  button.</br></br>"
+      html: "Sua sessão será expirada depois de 15 minutos de inatividade. Se isso acontecer, todos os dados não salvos serão perdidos e você será automaticamente deslogado do sistema. </br></br>Se você quiser continuar trabalhando, clique no botão 'Continuar Trabalhando'.</br></br>"    
+    	    
     },{
       xtype: 'label',
       text: ''
     }],
     buttons: [{
-      text: 'Continue Working',
+      text: 'Continuar Trabalhando',
       handler: function() {
         Ext.TaskManager.stop(crm.util.SessionMonitor.countDownTask);
         crm.util.SessionMonitor.window.hide();
@@ -43,7 +45,7 @@ Ext.define('crm.util.SessionMonitor', {
         });
       }
     },{
-      text: 'Logout',
+      text: 'Sair',
       action: 'logout',
       handler: function() {
         Ext.TaskManager.stop(crm.util.SessionMonitor.countDownTask);
@@ -134,7 +136,7 @@ Ext.define('crm.util.SessionMonitor', {
    * the seconds remaining prior to session expiration.  If the counter expires, you're logged out.
    */
   countDown: function() {
-    this.window.down('label').update('Your session will expire in ' +  this.remaining + ' second' + ((this.remaining == 1) ? '.' : 's.') );
+    this.window.down('label').update('Sua sessão expirará em ' +  this.remaining + ' segundo' + ((this.remaining == 1) ? '.' : 's.') );
     
     --this.remaining;
 

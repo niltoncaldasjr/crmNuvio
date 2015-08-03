@@ -10,7 +10,8 @@ class ImpostoDAO {
 		$this->con = $con;
 	}
 	function cadastrar(Imposto $o_imposto) {
-		$this->sql = sprintf ( "INSERT INTO imposto (aliquotaICMS, aliquotaPIS, aliquotaCOFINS, aliquotaCSLL, aliquotaISS, aliquotaIRPJ) VALUES (%f, %f, %f, %f, %f, %f)", 
+		$this->sql = sprintf ( "INSERT INTO imposto (titulo, aliquotaICMS, aliquotaPIS, aliquotaCOFINS, aliquotaCSLL, aliquotaISS, aliquotaIRPJ) VALUES ('%s', %f, %f, %f, %f, %f, %f)", 
+				mysqli_real_escape_string ( $this->con, $o_imposto->getTitulo() ),
 				mysqli_real_escape_string ( $this->con, $o_imposto->getAliquotaICMS() ), 
 				mysqli_real_escape_string ( $this->con, $o_imposto->getAliquotaPIS() ), 
 				mysqli_real_escape_string ( $this->con, $o_imposto->getaliquotaCOFINS() ),
@@ -24,7 +25,8 @@ class ImpostoDAO {
 		return mysqli_insert_id ( $this->con );
 	}
 	function atualizar(Imposto $o_imposto) {
-		$this->sql = sprintf ( "UPDATE imposto SET aliquotaICMS= %f, aliquotaPIS= %f, aliquotaCOFINS= %f, aliquotaCSLL= %f, aliquotaISS= %f, aliquotaIRPJ= %f , dataedicao='%s' WHERE id= %d", 
+		$this->sql = sprintf ( "UPDATE imposto SET titulo='%s' ,aliquotaICMS= %f, aliquotaPIS= %f, aliquotaCOFINS= %f, aliquotaCSLL= %f, aliquotaISS= %f, aliquotaIRPJ= %f , dataedicao='%s' WHERE id= %d", 
+				mysqli_real_escape_string ( $this->con, $o_imposto->getTitulo() ),
 				mysqli_real_escape_string ( $this->con, $o_imposto->getAliquotaICMS() ), 
 				mysqli_real_escape_string ( $this->con, $o_imposto->getAliquotaPIS() ), 
 				mysqli_real_escape_string ( $this->con, $o_imposto->getaliquotaCOFINS() ),
@@ -75,7 +77,7 @@ class ImpostoDAO {
 		}
 		while ( $row = mysqli_fetch_object ( $result ) ) {
 			
-			$this->o_imposto = new Imposto (  $row->id, $row->aliquotaICMS, $row->aliquotaPIS, $row->aliquotaCOFINS, $row->aliquotaCSLL, $row->aliquotaISS, $row->aliquotaIRPJ, $row->datacadastro, $row->dataedicao );
+			$this->o_imposto = new Imposto (  $row->id, $row->titulo, $row->aliquotaICMS, $row->aliquotaPIS, $row->aliquotaCOFINS, $row->aliquotaCSLL, $row->aliquotaISS, $row->aliquotaIRPJ, $row->datacadastro, $row->dataedicao );
 			
 			$this->lista [] = $this->o_imposto;
 		}
@@ -121,7 +123,7 @@ class ImpostoDAO {
 		}
 		while ( $row = mysqli_fetch_object ( $result ) ) {
 			
-			$this->o_imposto = new Imposto (  $row->id, $row->aliquotaICMS, $row->aliquotaPIS, $row->aliquotaCOFINS, $row->aliquotaCSLL, $row->aliquotaISS, $row->aliquotaIRPJ, $row->datacadastro, $row->dataedicao );
+			$this->o_imposto = new Imposto (  $row->id, $row->titulo, $row->aliquotaICMS, $row->aliquotaPIS, $row->aliquotaCOFINS, $row->aliquotaCSLL, $row->aliquotaISS, $row->aliquotaIRPJ, $row->datacadastro, $row->dataedicao );
 			
 			$this->lista [] = $this->$o_imposto;
 		}
