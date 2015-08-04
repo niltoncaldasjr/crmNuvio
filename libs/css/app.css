@@ -155,6 +155,8 @@ background-image:url('../icons/cog.png') !important;
  	font-family: 'Lucida Grande', Arial, Sans;
  }
  
+ /*-- Seleção Empresa --*/
+ 
  #img-chooser-dlg .details {
     text-align: center;
 }
@@ -230,8 +232,6 @@ background-image:url('../icons/cog.png') !important;
     padding-left:20px;
     margin:10px;
 }
-
-/*---------------------------------------------------------------------*/
 
 #images img {
     margin: 20px;

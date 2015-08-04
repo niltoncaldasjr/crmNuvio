@@ -2,7 +2,9 @@ Ext.define('crm.view.SelecaoEmpresa.IconEmpresa', {
     extend: 'Ext.view.View',
     alias: 'widget.iconempresa',
     
-    uses: 'Ext.data.Store',
+//    uses: 'Ext.data.Store',
+    
+    store: 'SelecaoEmpresa',
     
 	singleSelect: true,
     overItemCls: 'x-view-over',
@@ -21,21 +23,21 @@ Ext.define('crm.view.SelecaoEmpresa.IconEmpresa', {
         // '</div>'
     ],
     
-    initComponent: function() {
-        this.store = Ext.create('Ext.data.Store', {
-            autoLoad: true,
-            fields: ['nomeFantasia', 'imagemLogotipo'],
-            proxy: {
-                type: 'ajax',
-                url : 'rest/empresausuario.php',
-                reader: {
-                    type: 'json',
-                    root: 'items'
-                }
-            }
-        });
+//    initComponent: function() {
+//        this.store = Ext.create('Ext.data.Store', {
+//            autoLoad: true,
+//            fields: ['id', 'nomeFantasia', 'imagemLogotipo', 'endereco', 'razaoSocial'],
+//            proxy: {
+//                type: 'ajax',
+//                url : 'rest/empresausuario.php',
+//                reader: {
+//                    type: 'json',
+//                    root: 'items'
+//                }
+//            }
+//        });
         
-        this.callParent(arguments);
-        this.store.sort();
-    }
+//        this.callParent(arguments);
+//        this.store.sort();
+//    }
 });

@@ -1,11 +1,13 @@
-Ext.define('crm.store.EmpresaSelect',{
+Ext.define('crm.store.SelecaoEmpresa',{
 	extend: 'Ext.data.Store',
 	
 	requires: [
-	    'crm.model.empresaselect.EmpresaSelect'
+	    'crm.model.selecaoempresa.SelecaoEmpresa'
 	],
 	
-	model: 'crm.model.empresaselect.EmpresaSelect',
+	model: 'crm.model.selecaoempresa.SelecaoEmpresa',
+	
+	autoLoad: true,
 	
 	proxy: {
 		type: 'ajax',

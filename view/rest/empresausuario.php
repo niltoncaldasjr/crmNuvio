@@ -15,7 +15,7 @@ $id = 1;//$_SESSION['usuario']['id'];
 
 //SELECT e.nomeFantasia FROM usuario u INNER JOIN empresausuario eu ON u.id = eu.idusuario INNER JOIN empresa e ON eu.idempresa = e.id
 
-$queryString = "SELECT e.id, e.nomeFantasia, e.imagemLogotipo FROM usuario u ";
+$queryString = "SELECT e.* FROM usuario u ";
 $queryString .= "INNER JOIN empresausuario eu ON u.id = eu.idusuario ";
 $queryString .= "INNER JOIN empresa e ON eu.idempresa = e.id ";
 $queryString .= "WHERE u.id = '$id' ";
