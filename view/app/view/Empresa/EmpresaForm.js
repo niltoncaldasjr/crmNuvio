@@ -23,6 +23,7 @@ Ext.define('crm.view.empresa.EmpresaForm',{
 	items: [
 		{
 			xtype: 'form',
+			hasUpload: true,
 			bodyPadding: 10,
 			defaults: {
 				anchor: '100%'

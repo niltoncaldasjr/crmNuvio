@@ -124,15 +124,6 @@ class EmpresaDAO {
 				die ( '[ERRO]: ' . mysqli_error ( $this->con ) );
 			}
 			while ( $row = mysqli_fetch_assoc( $result ) ) {
-// 				// busca o localidade desse empresa
-// 				$localidade = new Localidade ( $row->idlocalidade );
-// 				$localidadeControl = new LocalidadeControl ( $localidade );
-// 				$a_localidade = $localidadeControl->buscarPorId ();
-				
-// 				// busca a pessoafisica desse usuario
-// 				$imposto = new Imposto ( $row->idimposto );
-// 				$impostoControl = new ImpostoControl ( $imposto );
-// 				$o_imposto = $impostoControl->buscarPorID ();
 				
 				$lista [] = $row;
 			}

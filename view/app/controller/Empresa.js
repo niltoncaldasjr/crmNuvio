@@ -9,7 +9,7 @@ Ext.define('crm.controller.Empresa', {
 
     refs: [{
         ref: 'empresaGrid',
-        selector: 'grid'
+        selector: 'empresagrid'
     }
     ],
 
@@ -71,44 +71,39 @@ Ext.define('crm.controller.Empresa', {
 //    	store.load();
 //  },
     
-    onSaveEmpresaClick: function(btn, e, eOpts){
-    	var win = btn.up('window'),
-    		form = win.down('form'),
-    		values = form.getValues(),
-    		record = form.getRecord(),
-    		grid = Ext.ComponentQuery.query('empresagrid')[0],
-    		store = grid.getStore();
-    	
-    	if (form.getForm().isValid()) { // #4
-			form.getForm().submit({// #5
-			clientValidation: true,
-			url: 'rest/empresa.php', // #6
-			// success and failure
-			success: function(form, action) {
-					var result = action.result; // #7
-					if (result.success) {
-//						Packt.util.Alert.msg('Success!', 'User saved.'); // #8
-						store.load();
-						win.close();
-					} else {
-//						Packt.util.Util.showErrorMsg(result.msg); // #9
-					}
+   onSaveEmpresaClick: function(btn, e, eOpts){
+	var win = btn.up('window'),
+	form = win.down('form'),
+	grid = Ext.ComponentQuery.query('empresagrid')[0],
+	store = grid.getStore();
+
+	if(form.isValid()){
+		form.submit({
+			url: 'rest/empresa/criar_atualizar.php',//			
+			waitMsg: 'Enviando sua Logo...',
+			success: function(tp, o){
+				var result = o.result; 
+				if (result.success) {
+					store.load();
+					win.close();
+				}
 			},
 			failure: function(form, action) {
+				console.log('erro');
 				switch (action.failureType) {
 					case Ext.form.action.Action.CLIENT_INVALID:
-//						Ext.Msg.alert('Failure', 'Form fields may not be submitted with invalid values');
+						Ext.Msg.alert('Failure', 'Form fields may not be submitted with invalid values');
 						break;
 					case Ext.form.action.Action.CONNECT_FAILURE:
 						Ext.Msg.alert('Failure', 'Ajax communication failed');
 						break;
 					case Ext.form.action.Action.SERVER_INVALID:
-//						Ext.Msg.alert('Failure', action.result.msg);
+						Ext.Msg.alert('Failure', action.result.msg);
 				}
 			}	
-			});
+		});
 		}
-  },  
+   },
   
   onDeleteEmpresaClick: function(btn, e, eOpts){
   	Ext.MessageBox.confirm('Confirma', 'Deseja realmente deletar?', function(botton){			
