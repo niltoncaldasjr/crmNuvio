@@ -51,6 +51,7 @@ Ext.define('crm.view.empresa.EmpresaForm',{
 				{
 					xtype: 'textfield',
 					fieldLabel:'CNPJ',
+					allowBlank : true,
 				    name: 'CNPJ'
 				},
 				{
@@ -92,7 +93,7 @@ Ext.define('crm.view.empresa.EmpresaForm',{
                     xtype: 'filefield',
                     fieldLabel: 'Logo',
                     name: 'imagemLogotipo',
-                    allowBlank: true,
+                    allowBlank : true,
                     afterLabelTextTpl: ''
                 },					
 				{
@@ -100,6 +101,7 @@ Ext.define('crm.view.empresa.EmpresaForm',{
 					name: 'idlocalidade',
 					fieldLabel:'Localidade',
 					emptyText:'Selecioone a Localidade...',
+					allowBlank : false,
 				    store: 'Localidade',
 				    displayField: 'cidade',
 				    valueField: 'id'
@@ -109,6 +111,7 @@ Ext.define('crm.view.empresa.EmpresaForm',{
 					xtype: 'combo',
 					fieldLabel:'Imposto',
 					emptyText:'Selecioone o Imposto...',
+					allowBlank : false,
 					name: 'idimposto',
 				    store: 'Imposto',
 				    displayField: 'titulo',

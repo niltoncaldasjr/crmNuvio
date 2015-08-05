@@ -4,6 +4,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'control/EmpresaControl.
 require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'model/Empresa/Empresa.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'control/LogSistemaControl.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'model/logsistema/Logsistema.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'libs/wideimage/WideImage.php';
 	
 	$object = new Empresa();
 	$id = ($_POST['id']);
@@ -29,10 +30,23 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'model/logsistema/Logsis
 	}
 	if(isset($_FILES)){
 		$tmpName = $_FILES['imagemLogotipo']['tmp_name'];
-		$fileName = $_FILES['imagemLogotipo']['name'];
-// 		$fileName = $fileName.$_FILES['imagemLogotipo']['type'];
-		move_uploaded_file($tmpName, "$uploads_dir/$fileName");
+		$fileName = $object->getCNPJ() . ".png";
 		
+		list($width, $height, $type, $attr) = getimagesize($tmpName);
+		
+		if($width < 200 || $height < 100)
+		{
+// 			echo "<font color='RED'> A Imagem é Muito Pequena!</br>
+// 	<font color='Black'>Carregue uma imagem com tamanho superior a 200x100 altura/largura";
+// 			exit;
+		}else {
+			// Carrega a imagem a ser manipulada
+			$image = WideImage::load($tmpName);
+			// Redimensiona a imagem
+			$image = $image->resize(200, 100);
+			// Salva a imagem em um arquivo (novo ou não)
+			$image->saveToFile("$uploads_dir/$fileName");
+		}
 		$object->setImagemLogotipo($fileName);
 	}
 	if ($id ==  0) { //create
