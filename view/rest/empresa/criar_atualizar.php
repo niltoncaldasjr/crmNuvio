@@ -30,6 +30,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'model/logsistema/Logsis
 	if(isset($_FILES)){
 		$tmpName = $_FILES['imagemLogotipo']['tmp_name'];
 		$fileName = $_FILES['imagemLogotipo']['name'];
+// 		$fileName = $fileName.$_FILES['imagemLogotipo']['type'];
 		move_uploaded_file($tmpName, "$uploads_dir/$fileName");
 		
 		$object->setImagemLogotipo($fileName);
@@ -46,7 +47,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'model/logsistema/Logsis
 	
 		// REGISTA O LOG NO SISTEMA
 		$log = new LogSistema();
-		$log->setOcorrencia('Inclusão de registro na Classe Empresa.');
+		$log->setOcorrencia('Inclusï¿½o de registro na Classe Empresa.');
 		$log->setNivel('BASICO');
 		$log->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
 		$logController = new LogSistemaControl($log);
