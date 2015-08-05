@@ -24,8 +24,20 @@ Ext.define('crm.view.contabanco.ContaBancoGrid',{
 	    {text: 'Número Convênio', 	dataIndex: 'numeroConvenio'		},
 	    {text: 'Nome Contato', 		dataIndex: 'nomeContato' 		},
 	    {text: 'Telefone Contato', 	dataIndex: 'telefoneContato' 	},
-	    {text: 'Banco', 			dataIndex: 'idbanco'			},
-	    {text: 'Empresa', 			dataIndex: 'idempresa'			},
+	    {text: 'Banco', 			dataIndex: 'idbanco',			
+	    	renderer: function(value, metaData, record){
+				var Store = Ext.getStore('Banco');
+				var usuario = Store.findRecord('id', value);
+				return usuario != null ? usuario.get('nome') : value;
+		    }
+	    },
+	    {text: 'Empresa', 			dataIndex: 'idempresa',			
+	    	renderer: function(value, metaData, record){
+				var Store = Ext.getStore('Empresa');
+				var usuario = Store.findRecord('id', value);
+				return usuario != null ? usuario.get('nomeFantasia') : value;
+		    }			
+	    },
 	    {text: 'Data Cadadastro', 	dataIndex: 'datacadastro', 		renderer : Ext.util.Format.dateRenderer('d/m/Y')},
 	    {text: 'Data Edição', 		dataIndex: 'dataedicao', 		renderer : Ext.util.Format.dateRenderer('d/m/Y')}
 	],

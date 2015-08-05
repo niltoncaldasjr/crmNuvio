@@ -19,8 +19,20 @@ Ext.define('crm.view.contatolead.ContatoLeadGrid',{
 	    {text: 'Data Contato', 		dataIndex: 'datacontato', 		renderer : Ext.util.Format.dateRenderer('d/m/Y')},
 	    {text: 'Descrição', 		dataIndex: 'descricao' 			},
 	    {text: 'Data Retorno', 		dataIndex: 'dataretorno', 		renderer : Ext.util.Format.dateRenderer('d/m/Y')},
-	    {text: 'Usuário', 			dataIndex: 'idusuario'			},
-	    {text: 'Lead', 				dataIndex: 'idlead'			},
+	    {text: 'Usuário', 			dataIndex: 'idusuario',			
+	    	renderer: function(value, metaData, record){
+				var Store = Ext.getStore('Usuario');
+				var usuario = Store.findRecord('id', value);
+				return usuario != null ? usuario.get('nome') : value;
+		    }			
+		},
+	    {text: 'Lead', 				dataIndex: 'idlead',			
+	    	renderer: function(value, metaData, record){
+				var Store = Ext.getStore('Lead');
+				var lead = Store.findRecord('id', value);
+				return lead != null ? lead.get('empresa') : value;
+	    	}			
+	    },
 	    {text: 'Data Cadadastro', 	dataIndex: 'datacadastro', 		renderer : Ext.util.Format.dateRenderer('d/m/Y')},
 	    {text: 'Data Edição', 		dataIndex: 'dataedicao', 		renderer : Ext.util.Format.dateRenderer('d/m/Y')}
 	],

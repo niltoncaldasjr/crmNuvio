@@ -10,6 +10,7 @@ Ext.define('crm.view.SelecaoEmpresa.SelecaoEmpresa', {
     height: 250,
     width : 800,
     title : 'Selecione a empresa',
+    iconCls: 'icon-empresa-add',
     closeAction: 'hide',
     layout: 'border',
     autoShow: true,
@@ -49,6 +50,7 @@ Ext.define('crm.view.SelecaoEmpresa.SelecaoEmpresa', {
         	xtype : 'toolbar',
 			dock : 'bottom',
 			items : [ 
+			/*-- Espaçamento --*/
 			{
 				xtype: 'tbfill' //ou '->'
 			},

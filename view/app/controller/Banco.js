@@ -8,8 +8,8 @@ Ext.define('crm.controller.Banco',{
 	views: ['banco.BancoForm', 'banco.BancoGrid'],
 	
     refs: [{
-        ref: 'BancoGrid',
-        selector: 'grid'
+        ref: 'bancoGrid',
+        selector: 'bancogrid'
     	}
     ],
 	
@@ -65,7 +65,7 @@ Ext.define('crm.controller.Banco',{
 		if(novo){
 			this.getBancoStore().load();
 		}
-		this.getBancoStore().load();
+		//this.getBancoStore().load();
 	},
 	
 	deleteBanco: function(button){

@@ -76,7 +76,7 @@ Ext.define('crm.controller.Rotina',{
 		this.getRotinaStore().sync();
 		
 		/*-- reload na grid para atualizar a lista --*/
-		this.getRotinaStore().load();
+//		this.getRotinaStore().load();
 	},
 	
 	cancelaRotina: function(button){

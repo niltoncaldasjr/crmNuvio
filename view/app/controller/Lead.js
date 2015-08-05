@@ -65,7 +65,7 @@ Ext.define('crm.controller.Lead',{
 		if(novo){
 			this.getLeadStore().load();
 		}
-		this.getLeadStore().load();
+		//this.getLeadStore().load();
 	},
 	
 	deleteLead: function(button){

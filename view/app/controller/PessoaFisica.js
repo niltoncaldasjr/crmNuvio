@@ -77,7 +77,7 @@ Ext.define('crm.controller.PessoaFisica',{
 		this.getPessoaFisicaStore().sync();
 		
 		/*-- reload na grid para atualizar a lista --*/
-		this.getPessoaFisicaStore().load();
+		//this.getPessoaFisicaStore().load();
 	},
 	
 	cancelaPessoaFisica: function(button){
