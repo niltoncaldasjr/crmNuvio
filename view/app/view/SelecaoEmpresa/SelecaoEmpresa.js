@@ -7,7 +7,7 @@ Ext.define('crm.view.SelecaoEmpresa.SelecaoEmpresa', {
     	'crm.view.SelecaoEmpresa.InfoPanelEmpresa'
     ],
     
-    height: 200,
+    height: 300,
     width : 750,
     title : 'Selecione a empresa',
     iconCls: 'icon-empresa-add',
