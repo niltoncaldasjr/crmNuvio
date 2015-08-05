@@ -14,8 +14,8 @@ Ext.define('crm.view.SelecaoEmpresa.IconEmpresa', {
             '<tpl for=".">',
                 '<div class="thumb-wrap">',
                     '<div class="thumb">',
-                    (!Ext.isIE6? '<img src="../libs/images/{imagemLogotipo}" />' : 
-                    '<div style="width:74px;height:74px;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src=\'../libs/images/{imagemLogotipo}\')"></div>'),
+                    (!Ext.isIE6? '<img src="../libs/uploads/{imagemLogotipo}" />' : 
+                    '<div style="width:74px;height:74px;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src=\'../libs/uploads/{imagemLogotipo}\')"></div>'),
                     '</div>',
                     '<span>{nomeFantasia}</span>',
                 '</div>',

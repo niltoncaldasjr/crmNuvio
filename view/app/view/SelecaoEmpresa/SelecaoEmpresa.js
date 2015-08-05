@@ -7,8 +7,8 @@ Ext.define('crm.view.SelecaoEmpresa.SelecaoEmpresa', {
     	'crm.view.SelecaoEmpresa.InfoPanelEmpresa'
     ],
     
-    height: 230,
-    width : 670,
+    height: 250,
+    width : 800,
     title : 'Selecione a empresa',
     closeAction: 'hide',
     layout: 'border',
@@ -17,7 +17,7 @@ Ext.define('crm.view.SelecaoEmpresa.SelecaoEmpresa', {
     border: false,
     bodyBorder: false,
     closable: false,
-    resizeble: false,
+    resizable: false,
     draggable: false,
     
 //    initComponent: function() {
@@ -43,7 +43,25 @@ Ext.define('crm.view.SelecaoEmpresa.SelecaoEmpresa', {
                 region: 'east',
                 split: true
             }
-        ]
+        ],
+        
+        dockedItems: [{
+        	xtype : 'toolbar',
+			dock : 'bottom',
+			items : [ 
+        	{
+            	 text: 'OK',
+                 scope: this,
+                 handler: this.fireImageSelected
+             },
+             {
+            	 text: 'Cancel',
+                 scope: this,
+                 handler: function() {
+                	this.hide();
+                 }
+             }]
+        }]
         
 //        this.buttons = [
 //            {
