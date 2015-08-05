@@ -61,7 +61,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'libs/wideimage/WideImag
 	
 		// REGISTA O LOG NO SISTEMA
 		$log = new LogSistema();
-		$log->setOcorrencia('Inclus�o de registro na Classe Empresa.');
+		$log->setOcorrencia('Inclusão de registro na Classe Empresa.');
 		$log->setNivel('BASICO');
 		$log->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
 		$logController = new LogSistemaControl($log);

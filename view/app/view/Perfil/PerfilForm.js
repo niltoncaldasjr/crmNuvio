@@ -35,11 +35,13 @@ Ext.define('crm.view.perfil.PerfilForm',{
 				{
 					xtype: 'textfield',
 					fieldLabel:'Nome',
+					allowBlank : false,
 				    name: 'nome'
 				},
 				{
 					xtype: 'fieldcontainer',
 					fieldLabel:'Ativo',
+					allowBlank : false,
 					defaultType: 'radiofield',
 					defaults: {
 		                flex: 1

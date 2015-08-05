@@ -36,11 +36,13 @@ Ext.define('crm.view.empresa.EmpresaForm',{
 				{
 					xtype: 'textfield',
 					fieldLabel:'Nome Fantasia',
+					allowBlank : false,
 				    name: 'nomeFantasia'
 				},
 				{
 					xtype: 'textfield',
 					fieldLabel:'Razão Social',
+					allowBlank : false,
 					name: 'razaoSocial'	
 				},
 				{
@@ -51,7 +53,7 @@ Ext.define('crm.view.empresa.EmpresaForm',{
 				{
 					xtype: 'textfield',
 					fieldLabel:'CNPJ',
-					allowBlank : true,
+					allowBlank : false,
 				    name: 'CNPJ'
 				},
 				{
