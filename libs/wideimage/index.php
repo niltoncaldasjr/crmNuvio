@@ -1,7 +1,7 @@
 <?php
 
 /*-- Testa se o tamanho da imagem atende o permitido --*/
-list($width, $height, $type, $attr) = getimagesize('ad_squad.jpg');
+list($width, $height, $type, $attr) = getimagesize('apple.jpg');
 
 if($width < 200 || $height < 100)
 {
@@ -13,9 +13,9 @@ if($width < 200 || $height < 100)
 // Chama o arquivo com a classe WideImage
 require('WideImage.php');
 // Carrega a imagem a ser manipulada
-$image = WideImage::load('ad_squad.jpg');
+$image = WideImage::load('apple.jpg');
 // Redimensiona a imagem
-$image = $image->resize(200, 100);
+$image = $image->resize(200, 100)->roundCorners(20, $image->allocateColor(255, 255, 255));
 // Salva a imagem em um arquivo (novo ou não)
 $image->saveToFile('nova_foto.png');
 
