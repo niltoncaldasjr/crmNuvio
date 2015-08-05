@@ -49,17 +49,26 @@ Ext.define('crm.view.SelecaoEmpresa.SelecaoEmpresa', {
         	xtype : 'toolbar',
 			dock : 'bottom',
 			items : [ 
+			{
+				xtype: 'tbfill' //ou '->'
+			},
+			/*-- Separador da barra de ferramentas --*/
+//			{
+//				xtype: 'tbseparator' //ou '-'
+//			},
         	{
-            	 text: 'OK',
-                 scope: this,
-                 handler: this.fireImageSelected
+            	 text: 'Selecionar',
+            	 iconCls: 'icon-empresa_entrar-add',
+            	 itemId: 'okselecaoempresa',
+                 scope: this
+                 
              },
              {
-            	 text: 'Cancel',
-                 scope: this,
-                 handler: function() {
-                	this.hide();
-                 }
+            	 text: 'Cancelar',
+            	 iconCls: 'cancel',
+            	 itemId: 'cancelselecaoempresa',
+                 scope: this
+                 
              }]
         }]
         

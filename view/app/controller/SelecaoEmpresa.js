@@ -18,19 +18,25 @@ Ext.define('crm.controller.SelecaoEmpresa',{
 				selectionchange: this.onIconSelect,
 				itemdblclick: this.fireImageSelected
 			},
+			"selecaoempresa button#okselecaoempresa" : {
+				click: this.fireImageSelected
+			},
+			"selecaoempresa button#cancelselecaoempresa" : {
+				click: this.restartSystem
+			}
 			
 		});
 	},
 	
 	
 	
-  onIconSelect: function(dataview, selections) {
-      var selected = selections[0];
-      
-      if (selected) {
-    	  Ext.ComponentQuery.query('infopanelempresa')[0].loadRecord(selected);
-      }
-  },
+	  onIconSelect: function(dataview, selections) {
+	      var selected = selections[0];
+	      
+	      if (selected) {
+	    	  Ext.ComponentQuery.query('infopanelempresa')[0].loadRecord(selected);
+	      }
+	  },
   
   
   
@@ -51,6 +57,20 @@ Ext.define('crm.controller.SelecaoEmpresa',{
           win.close();
           
           Ext.create('crm.view.MyViewport');
+      }else{
+    	  Ext.MessageBox.alert('Alerta','Selecione uma empresa!!!');
+//    	  Ext.Msg.show({
+//				title:'Error!',
+//				msg: "Selecione uma empresa",
+//				icon: Ext.Msg.ERROR,
+//				buttons: Ext.Msg.OK
+//			});
       }
+  },
+  
+  restartSystem: function(btn, e, op){
+	  window.location.reload();
   }
+	  
+	  
 });
