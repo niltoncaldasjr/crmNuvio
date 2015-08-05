@@ -1,7 +1,8 @@
 Ext.define('crm.view.SelecaoEmpresa.InfoPanelEmpresa', {
     extend: 'Ext.panel.Panel',
     alias : 'widget.infopanelempresa',
-    id: 'img-detail-panel',
+    //id: 'img-detail-panel',
+    id: 'img-chooser-dlg',
 
     width: 150,
     minWidth: 150,
@@ -12,11 +13,11 @@ Ext.define('crm.view.SelecaoEmpresa.InfoPanelEmpresa', {
                     (!Ext.isIE6? '<img src="../libs/uploads/{imagemLogotipo}" />' : 
                     '<div style="width:74px;height:74px;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src=\'../libs/uploads/{imagemLogotipo}\')"></div>'),
                 '<div class="details-info">',
-                    '<b>Empresa:</b></br>',
-                    '<span>{nomeFantasia}</span></br>',
-                    '<b>Endereço:</b></br>',
-                    '<span>{endereco}</span></br>',
-                    '<b>Razão Social:</b></br>',
+                    '<b>Empresa:</b>',
+                    '<span>{nomeFantasia}</span>',
+                    '<b>Endereço:</b>',
+                    '<span>{endereco}</span>',
+                    '<b>Razão Social:</b>',
                     '<span>{razaoSocial}</span>',
                 '</div>',
             '</tpl>',
