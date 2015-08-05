@@ -9,8 +9,8 @@ Ext.define('crm.view.SelecaoEmpresa.InfoPanelEmpresa', {
     tpl: [
         '<div class="details">',
             '<tpl for=".">',
-                    (!Ext.isIE6? '<img src="../libs/uploads/{imagemLogotipo}" />' : 
-                    '<div style="width:74px;height:74px;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src=\'../libs/uploads/{imagemLogotipo}\')"></div>'),
+//                    (!Ext.isIE6? '<img src="../libs/uploads/{imagemLogotipo}" />' : 
+//                    '<div style="width:74px;height:74px;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src=\'../libs/uploads/{imagemLogotipo}\')"></div>'),
                 '<div class="details-info">',
                     '<b>Empresa:</b></br>',
                     '<span>{nomeFantasia}</span></br>',
