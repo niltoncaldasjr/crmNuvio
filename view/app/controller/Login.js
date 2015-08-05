@@ -77,7 +77,8 @@ Ext.define('crm.controller.Login', {
 				}
 				if (result.success) { 
 					login.close(); 
-					Ext.create('crm.view.MyViewport');
+//					Ext.create('crm.view.MyViewport');
+					Ext.widget('selecaoempresa');
 					crm.util.SessionMonitor.start();
 				} else {
 					Ext.Msg.show({ 
