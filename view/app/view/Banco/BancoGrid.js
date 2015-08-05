@@ -43,7 +43,7 @@ Ext.define('crm.view.banco.BancoGrid',{
 	    },
 	    {
 	    	xtype: 	'pagingtoolbar',
-	    	store: 	'Lead',
+	    	store: 	'Banco',
 	    	dock:	'bottom',
 	    	displayInfo: true,
 	    	empyMsg: 'Nenhum dado encontrado'
