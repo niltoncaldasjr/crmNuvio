@@ -15,13 +15,21 @@ Ext.define('crm.view.localidade.LocalidadeGrid',{
 	store: 'Localidade',
 
 	columns: [
-		{ text: 'Id',  dataIndex: 'id', width: 50},
-        { text: 'Codigo IBGE', dataIndex: 'codigoIBGE', width: 250},
-        { text: 'UF', dataIndex: 'uf', width: 250 },
-        { text: 'Cidade',  dataIndex: 'cidade', width: 100},
+		{ text: 'Id',  dataIndex: 'id'},
+        { text: 'Codigo IBGE', dataIndex: 'codigoIBGE'},
+        { text: 'UF', dataIndex: 'uf' },
+        { text: 'Cidade',  dataIndex: 'cidade'},
         { text: 'Data cadastro', dataIndex: 'datacadastro', renderer : Ext.util.Format.dateRenderer('d/m/Y')},
         { text: 'Data edição', dataIndex: 'dataedicao', renderer : Ext.util.Format.dateRenderer('d/m/Y')},
-        { text: 'País',  dataIndex: 'idpais'}
+        { 
+        	text: 'País',  
+        	dataIndex: 'idpais',
+        	renderer: function(value, metaData, record ){ 
+				var paisStore = Ext.getStore('Pais');
+				var pais = paisStore.findRecord('id', value);
+				return pais != null ? pais.get('descricao') : value;
+			}
+        }
 	],
 
 	dockedItems: [

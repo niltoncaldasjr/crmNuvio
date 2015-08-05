@@ -24,8 +24,24 @@ Ext.define('crm.view.empresa.EmpresaGrid',{
         { text: 'Bairro', dataIndex: 'bairro'},
         { text: 'Data cadastro', dataIndex: 'datacadastro', renderer : Ext.util.Format.dateRenderer('d/m/Y')},
         { text: 'Data edição', dataIndex: 'dataedicao', renderer : Ext.util.Format.dateRenderer('d/m/Y')},
-        { text: 'Localidade',  dataIndex: 'idlocalidade'},
-        { text: 'Imposto',  dataIndex: 'idimposto'}
+        { 
+        	text: 'Localidade',  
+        	dataIndex: 'idlocalidade',
+        	renderer: function(value, metaData, record ){ 
+				var localStore = Ext.getStore('Localidade');
+				var local = localStore.findRecord('id', value);
+				return local != null ? local.get('cidade') : value;
+			}
+        },
+        { 
+        	text: 'Imposto',  
+        	dataIndex: 'idimposto',
+        	renderer: function(value, metaData, record ){ 
+				var impostoStore = Ext.getStore('Imposto');
+				var imposto = impostoStore.findRecord('id', value);
+				return imposto != null ? imposto.get('titulo') : value;
+			}
+        }
 	],
 
 	dockedItems: [

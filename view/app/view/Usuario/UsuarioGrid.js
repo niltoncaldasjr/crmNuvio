@@ -15,16 +15,31 @@ Ext.define('crm.view.usuario.UsuarioGrid',{
 	store: 'Usuario',
 
 	columns: [
-		{ text: 'Id',  dataIndex: 'id', width: 50},
-        { text: 'Nome', dataIndex: 'nome', width: 250},
-        { text: 'Usuario', dataIndex: 'usuario', width: 250 },
-        { text: 'Senha',  dataIndex: 'senha', width: 100},
+		{ text: 'Id',  dataIndex: 'id'},
+        { text: 'Nome', dataIndex: 'nome'},
+        { text: 'Usuario', dataIndex: 'usuario'},
         { text: 'Email', dataIndex: 'email', width: 150},
         { text: 'Ativo', dataIndex: 'ativo' },
         { text: 'Data cadastro', dataIndex: 'datacadastro', renderer : Ext.util.Format.dateRenderer('d/m/Y')},
         { text: 'Data edição', dataIndex: 'dataedicao', renderer : Ext.util.Format.dateRenderer('d/m/Y')},
-        { text: 'Id Perfil',  dataIndex: 'idperfil'},
-        { text: 'Id Pessoa Física',  dataIndex: 'idpessoafisica'}
+        { 
+        	text: 'Perfil',  
+        	dataIndex: 'idperfil',
+        	renderer: function(value, metaData, record ){ 
+				var perfilStore = Ext.getStore('Perfil');
+				var perfil = perfilStore.findRecord('id', value);
+				return perfil != null ? perfil.get('nome') : value;
+			}
+        },
+        { 
+        	text: 'Pessoa Física',  
+        	dataIndex: 'idpessoafisica',
+        	renderer: function(value, metaData, record ){ 
+				var pfStore = Ext.getStore('PessoaFisica');
+				var pf = pfStore.findRecord('id', value);
+				return pf != null ? pf.get('nome') : value;
+			}
+        }
 	],
 
 	dockedItems: [

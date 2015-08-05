@@ -13,7 +13,7 @@ Ext.define('crm.view.empresa.EmpresaForm',{
 	extend: 'Ext.window.Window',
 	alias: 'widget.empresaform',
 
-	height: 530,
+	height: 560,
 	width: 500,
 	layout: 'fit',
 	iconCls: 'icon-empresa-add',
@@ -91,16 +91,17 @@ Ext.define('crm.view.empresa.EmpresaForm',{
 				},
 				{
                     xtype: 'filefield',
-                    fieldLabel: 'Logo',
+                    fieldLabel: 'Logotipo',
                     name: 'imagemLogotipo',
                     allowBlank : true,
+                    emptyText: 'Selecione uma imagem...',
                     afterLabelTextTpl: ''
                 },					
 				{
 					xtype: 'combo',
 					name: 'idlocalidade',
 					fieldLabel:'Localidade',
-					emptyText:'Selecioone a Localidade...',
+					emptyText:'Selecione a Localidade...',
 					allowBlank : false,
 				    store: 'Localidade',
 				    displayField: 'cidade',
@@ -110,7 +111,7 @@ Ext.define('crm.view.empresa.EmpresaForm',{
 				{
 					xtype: 'combo',
 					fieldLabel:'Imposto',
-					emptyText:'Selecioone o Imposto...',
+					emptyText:'Selecione o Imposto...',
 					allowBlank : false,
 					name: 'idimposto',
 				    store: 'Imposto',
