@@ -65,12 +65,7 @@ function cadastraPessoaFisica() {
 	
 	$datanascimento = $data->datanascimento;
 	
-	$d_for = explode('/', $datanascimento);
-
-	$dia = $d_for[0];
-	$mes = $d_for[1];
-	$ano = $d_for[2];
-	$s_dataAniversario = $ano."-".$mes."-".$dia;
+	$s_dataAniversario = substr($datanascimento,0,10);
 	
 	$objPessoaFisica = new PessoaFisica();
 	$objPessoaFisica->setNome($data->nome);
