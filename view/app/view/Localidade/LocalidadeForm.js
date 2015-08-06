@@ -40,11 +40,13 @@ Ext.define('crm.view.localidade.LocalidadeForm',{
 				{
 					xtype: 'textfield',
 					fieldLabel:'UF',
+					allowBlank : false,
 					name: 'uf'	
 				},
 				{
 					xtype: 'textfield',
 					fieldLabel:'Cidade',
+					allowBlank : false,
 				    name: 'cidade'
 				},				
 				
@@ -53,6 +55,7 @@ Ext.define('crm.view.localidade.LocalidadeForm',{
 					fieldLabel:'País',
 					emptyText:'Selecioone o País...',
 					name: 'idpais',
+					allowBlank : false,
 				    store: 'Pais',
 				    displayField: 'descricao',
 				    valueField: 'id'

@@ -58,18 +58,19 @@ Ext.define('crm.controller.Perfil', {
     		record = form.getRecord(),
     		grid = Ext.ComponentQuery.query('perfilgrid')[0],
     		store = grid.getStore();
-    	
-    	if (values.id > 0){
-			record.set(values);
-    		
-    	} else{   // se for um novo
-    		record = Ext.create('crm.model.Perfil');
-    		record.set(values);
-    		store.add(record);
+    	if(form.isValid()){
+	    	if (values.id > 0){
+				record.set(values);
+	    		
+	    	} else{   // se for um novo
+	    		record = Ext.create('crm.model.Perfil');
+	    		record.set(values);
+	    		store.add(record);
+	    	}
+	    	win.close();
+	        store.sync();
+	    	store.load();
     	}
-    	win.close();
-        store.sync();
-    	store.load();
   },
   
   onDeletePerfilClick: function(btn, e, eOpts){

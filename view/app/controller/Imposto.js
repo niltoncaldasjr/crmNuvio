@@ -58,17 +58,20 @@ Ext.define('crm.controller.Imposto', {
     		grid = Ext.ComponentQuery.query('impostogrid')[0],
     		store = grid.getStore();
     	
-    	if (values.id > 0){
-			record.set(values);
-    		
-    	} else{   // se for um novo
-    		record = Ext.create('crm.model.Imposto');
-    		record.set(values);
-    		store.add(record);
+    	if (form.isValid()){
+	    	if (values.id > 0){
+				record.set(values);
+	    		
+	    	} else{   // se for um novo
+	    		record = Ext.create('crm.model.Imposto');
+	    		record.set(values);
+	    		store.add(record);
+	    	}
+	    	
+	    	win.close();
+	        store.sync();
+	    	store.load();
     	}
-    	win.close();
-        store.sync();
-    	store.load();
   },
   
   onDeleteImpostoClick: function(btn, e, eOpts){

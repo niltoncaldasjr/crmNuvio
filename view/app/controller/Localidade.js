@@ -58,17 +58,19 @@ Ext.define('crm.controller.Localidade', {
     		grid = Ext.ComponentQuery.query('localidadegrid')[0],
     		store = grid.getStore();
     	
-    	if (values.id > 0){
-			record.set(values);
-    		
-    	} else{   // se for um novo
-    		record = Ext.create('crm.model.Localidade');
-    		record.set(values);
-    		store.add(record);
-    	}
-    	win.close();
-        store.sync();
-    	store.load();
+    	if (form.isValid()){
+	    	if (values.id > 0){
+				record.set(values);
+	    		
+	    	} else{   // se for um novo
+	    		record = Ext.create('crm.model.Localidade');
+	    		record.set(values);
+	    		store.add(record);
+	    	}
+	    	win.close();
+	        store.sync();
+	    	store.load();
+    	}    	
   },
   
   onDeleteLocalidadeClick: function(btn, e, eOpts){

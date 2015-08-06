@@ -35,21 +35,25 @@ Ext.define('crm.view.usuario.UsuarioForm',{
 				{
 					xtype: 'textfield',
 					fieldLabel:'Nome',
+					allowBlank : false,
 				    name: 'nome'
 				},
 				{
 					xtype: 'textfield',
 					fieldLabel:'Usuario',
+					allowBlank : false,
 					name: 'usuario'	
 				},
 				{
 					xtype: 'textfield',
 					fieldLabel:'Senha',
+					allowBlank : false,
 				    name: 'senha'
 				},
 				{
 					xtype: 'textfield',
 					fieldLabel:'Email',
+					allowBlank : false,
 				    name: 'email'
 				},
 				{
@@ -82,6 +86,7 @@ Ext.define('crm.view.usuario.UsuarioForm',{
 					xtype: 'combo',
 					name: 'idperfil',
 					fieldLabel:'Perfil',
+					allowBlank : false,
 					emptyText:'Selecioone o Perfil...',
 				    store: 'Perfil',
 				    displayField: 'nome',
@@ -93,6 +98,7 @@ Ext.define('crm.view.usuario.UsuarioForm',{
 					fieldLabel:'Pessoa Física',
 					emptyText:'Selecioone a Pessoa...',
 					name: 'idpessoafisica',
+					allowBlank : false,
 				    store: 'PessoaFisica',
 				    displayField: 'nome',
 				    valueField: 'id'

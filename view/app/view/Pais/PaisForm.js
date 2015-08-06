@@ -35,6 +35,7 @@ Ext.define('crm.view.pais.PaisForm',{
 				{
 					xtype: 'textfield',
 					fieldLabel:'Descrição',
+					allowBlank : false,
 				    name: 'descricao'
 				},
 				{
