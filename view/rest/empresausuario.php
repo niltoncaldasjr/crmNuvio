@@ -5,15 +5,17 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'util/Conexao.php';
 session_start();
 
 $mysqli = Conexao::getInstance()->getConexao();
+	
+$id = $_SESSION['usuario']['idusuario'];
 
-$id = 1;//$_SESSION['usuario']['id'];
-
+//var_dump($id);
 
 //- PR-> 	PerfilRotina
 //- U-> 	Usu�rio
 //- R-> 	Rotina
 
 //SELECT e.nomeFantasia FROM usuario u INNER JOIN empresausuario eu ON u.id = eu.idusuario INNER JOIN empresa e ON eu.idempresa = e.id
+
 
 $queryString = "SELECT e.* FROM usuario u ";
 $queryString .= "INNER JOIN empresausuario eu ON u.id = eu.idusuario ";
