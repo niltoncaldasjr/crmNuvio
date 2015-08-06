@@ -10,7 +10,7 @@ $id = 1;//$_SESSION['usuario']['id'];
 
 
 //- PR-> 	PerfilRotina
-//- U-> 	Usuário
+//- U-> 	Usuï¿½rio
 //- R-> 	Rotina
 
 //SELECT e.nomeFantasia FROM usuario u INNER JOIN empresausuario eu ON u.id = eu.idusuario INNER JOIN empresa e ON eu.idempresa = e.id

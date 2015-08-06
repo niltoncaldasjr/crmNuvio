@@ -57,6 +57,8 @@ Ext.define('crm.view.pessoafisica.PessoaFisicaForm',{
 	    {
 	    	xtype: 			'form',
 	    	bodyPadding: 	10,
+	    	autoScroll: true,
+	    	
 	    	defaults: {
 	    			anchor: '100%',
 	    			msgTarget: 'under'

@@ -48,7 +48,6 @@ Ext.define('crm.controller.PessoaFisica',{
 		
 		if(record){
 			edit.down('form').loadRecord(record);
-			
 			console.log(record);
 			
 		}
@@ -63,11 +62,30 @@ Ext.define('crm.controller.PessoaFisica',{
 		
 		var novo = false;
 		
+		console.log(values['nome']);
+		
 		if( form.isValid() )
 		{
+//			var val = {
+//				id:				values['id'],
+//			    nome: 			values['nome'],
+//			    cpf: 			values['cpf'],
+//			    datanascimento:	new Date( values['datanascimento'] ),
+//			    estadocivil: 	values['estadocivil'],
+//			    sexo: 			values['sexo'],
+//			    nomepai: 		values['nomepai'],
+//			    nomemae: 		values['nomemae'],
+//			    cor: 			values['cor'],
+//			    naturalidade: 	values['naturalidade'],
+//			    nacionalidade: 	values['nacionalidade']
+//			};
+			
+			console.log(val);
 			
 			if(values.id > 0){
 				record.set(values);
+				
+//				record.set('datanascimento', new Date(values.datanascimento) );
 			}else{
 				record = Ext.create('crm.model.PessoaFisica');
 				record.set(values);
@@ -75,7 +93,7 @@ Ext.define('crm.controller.PessoaFisica',{
 				this.getPessoaFisicaStore().add(record);
 				novo = true;
 			}
-			console.log(values.datanascimento);
+			console.log(record.get('datanascimento'));
 			//win.close();
 			this.getPessoaFisicaStore().sync();
 			

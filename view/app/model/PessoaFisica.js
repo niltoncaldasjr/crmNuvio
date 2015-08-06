@@ -14,7 +14,7 @@ Ext.define('crm.model.PessoaFisica', {
 	    {name: 'id', 				type: 'int'},
 	    {name: 'nome', 				type: 'string'},
 	    {name: 'cpf', 				type: 'string'},
-	    {name: 'datanascimento', 	type: 'string', dateFormat: 'c'},
+	    {name: 'datanascimento', 	type: 'date', dateFormat: 'c'},
 	    {name: 'estadocivil', 		type: 'string'},
 	    {name: 'sexo', 				type: 'string'},
 	    {name: 'nomepai', 			type: 'string'},
