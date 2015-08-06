@@ -16,9 +16,7 @@ Ext.define('crm.controller.SelecaoEmpresa',{
 		this.control({
 			"iconempresa" : {
 				selectionchange: this.onIconSelect,
-				itemdblclick: this.fireImageSelected
-			},
-			"selecaoempresa": {
+				itemdblclick: this.fireImageSelected,
 				render: this.onPanelRender
 			},
 			"selecaoempresa button#okselecaoempresa" : {
@@ -31,8 +29,8 @@ Ext.define('crm.controller.SelecaoEmpresa',{
 		});
 	},
 	
-	onPanelRender: function(){
-		//this.getStore().sync();
+	onPanelRender: function(component, options){
+		component.getStore().load();
 	},
 	
 	
