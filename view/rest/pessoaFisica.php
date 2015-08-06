@@ -61,7 +61,7 @@ function cadastraPessoaFisica() {
 	$data = json_decode(stripslashes($jsonDados));
 	// Remover a mascara do CPF.
 	$cpf=$data->cpf;
-	$cpf=preg_replace("/\D+/", "", $cpf); // remove qualquer caracter não numérico
+	$cpf=preg_replace("/\D+/", "", $cpf); // remove qualquer caracter nï¿½o numï¿½rico
 	
 	$datanascimento = $data->datanascimento;
 	
@@ -98,7 +98,7 @@ function cadastraPessoaFisica() {
 	
 	// Resginstando Log do Sistema
 	$objLogSistema = new LogSistema();
-	$objLogSistema->setOcorrencia('Inclusão de registro na Classe Pessoa Física');
+	$objLogSistema->setOcorrencia('Inclusï¿½o de registro na Classe Pessoa Fï¿½sica');
 	$objLogSistema->setNivel('BASICO');
 	$objLogSistema->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
 	$objLogSistemaController = new LogSistemaControl($objLogSistema);
@@ -111,20 +111,18 @@ function atualizaPessoaFisica() {
 	parse_str(file_get_contents("php://input"), $post_vars);
 	$jsonDados = $post_vars['data'];
 	$data = json_decode(stripslashes($jsonDados));
+	var_dump($data);
 	
 	$datahora = date("Y-m-d H:i:s");
 	
 	// Remover a mascara do CPF.
 	$cpf=$data->cpf;
-	$cpf=preg_replace("/\D+/", "", $cpf); // remove qualquer caracter não numérico
+	$cpf=preg_replace("/\D+/", "", $cpf); // remove qualquer caracter nï¿½o numï¿½rico
 	
 	$datanascimento = $data->datanascimento;
 
-	$d_for = explode('/', $datanascimento);	
-	$dia = $d_for[0];
-	$mes = $d_for[1];
-	$ano = $d_for[2];
-	$s_dataAniversario = $ano."-".$mes."-".$dia;
+
+	$s_dataAniversario = substr($datanascimento,0,10); 
 	
 	
 	$objPessoaFisica = new PessoaFisica($data->id, $data->nome, $cpf, $s_dataAniversario, $data->estadocivil,
@@ -135,7 +133,7 @@ function atualizaPessoaFisica() {
 	
 	// Resginstando Log do Sistema
 	$objLogSistema = new LogSistema();
-	$objLogSistema->setOcorrencia('Alteração de registro na Classe Pessoa Física');
+	$objLogSistema->setOcorrencia('Alteraï¿½ï¿½o de registro na Classe Pessoa Fï¿½sica');
 	$objLogSistema->setNivel('MODERADO');
 	$objLogSistema->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
 	$objLogSistemaController = new LogSistemaControl($objLogSistema);
@@ -159,7 +157,7 @@ function deletaPessoaFisica() {
 	
 	// Resginstando Log do Sistema
 	$objLogSistema = new LogSistema();
-	$objLogSistema->setOcorrencia('Exclusão de registro na Classe Rotina ID: '.$id);
+	$objLogSistema->setOcorrencia('Exclusï¿½o de registro na Classe Rotina ID: '.$id);
 	$objLogSistema->setNivel('CRITICO');
 	$objLogSistema->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
 	$objLogSistemaController = new LogSistemaControl($objLogSistema);

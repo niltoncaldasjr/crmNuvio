@@ -80,7 +80,7 @@ Ext.define('crm.controller.PessoaFisica',{
 //			    nacionalidade: 	values['nacionalidade']
 //			};
 			
-			console.log(val);
+//			console.log(val);
 			
 			if(values.id > 0){
 				record.set(values);

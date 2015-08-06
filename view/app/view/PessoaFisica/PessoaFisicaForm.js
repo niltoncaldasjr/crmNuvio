@@ -87,6 +87,7 @@ Ext.define('crm.view.pessoafisica.PessoaFisicaForm',{
 		            fieldLabel: 'Data Nascimento',
 		            name: 'datanascimento',
 		            format: 'd/m/Y',
+		            submitFormat: 'Y-m-d' ,
 		            allowBlank: false,
 		        },
 	    	    {
