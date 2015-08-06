@@ -8,71 +8,86 @@ Ext.define('crm.controller.Pais', {
     views: ['pais.PaisForm', 'pais.PaisGrid'],
 
     refs: [{
-            ref: 'paisGrid',
-            selector: 'grid'
-        	}
+        ref: 'paisGrid',
+        selector: 'grid'
+    }
     ],
 
     init: function() {
         this.control({
             'paisgrid dataview': {
-                itemdblclick: this.editarPais
+                itemdblclick: this.onEditaPais
             },
             'paisgrid button#addPais': {
-            	click: this.editarPais
+            	click: this.onAddPaisClick
             },
             'paisgrid button#deletePais': {
-                click: this.deletePais
+                click: this.onDeletePaisClick
             },
             'paisform button#salvapais': {
-                click: this.updatePais
+                click: this.onSavePaisClick
+            },
+            'paisform button#cancelapais': {
+                click: this.onCancelPaisClick
             }
         });
     },
 
-    editarPais: function(grid, record) {
-        var edit = Ext.create('crm.view.pais.PaisForm').show();
-        
+    onEditaPais: function(grid, record) {
+        var edit = Ext.create('crm.view.pais.PaisForm').show();        
         if(record){
         	edit.down('form').loadRecord(record);
         }
     },
-    
-    updatePais: function(button) {
-        var win    = button.up('window'),
-            form   = win.down('form'),
-            record = form.getRecord(),
-            values = form.getValues();
-        
-        var novo = false;
-        
-		if (values.id > 0){
-			record.set(values);
-		} else{
-			record = Ext.create('crm.model.Pais');
-			record.set(values);
-			this.getPaisStore().add(record);
-            novo = true;
-		}
-		
-		win.close();
-        this.getPaisStore().sync();
-
-        if (novo){ //faz reload para atualziar
-            this.getPaisStore().load();
-        }
+    onCancelPaisClick: function(btn, e, eOpts){
+    	var win = btn.up('window');
+    	var form = win.down('form');
+    	form.getForm().reset();
+    	win.close();
     },
+    onAddPaisClick: function(btn, e, eOpts){
+    	Ext.create('crm.view.pais.PaisForm').show();
+    }, 
+
     
-    deletePais: function(button) {
+    onSavePaisClick: function(btn, e, eOpts){
+    	var win = btn.up('window'),
+    		form = win.down('form'),
+    		values = form.getValues(),
+    		record = form.getRecord(),
+    		grid = Ext.ComponentQuery.query('paisgrid')[0],
+    		store = grid.getStore();
     	
-    	var grid = this.getPaisGrid(),
-    	record = grid.getSelectionModel().getSelection(), 
-        store = this.getPaisStore();
-
-	    store.remove(record);
-	    this.getPaisStore().sync();
-
-        //faz reload para atualziar
-        this.getPaisStore().load();
-    }
+    	if (form.isValid()){
+	    	if (values.id > 0){
+				record.set(values);
+	    		
+	    	} else{   // se for um novo
+	    		record = Ext.create('crm.model.Pais');
+	    		record.set(values);
+	    		store.add(record);
+	    	}
+	    	win.close();
+	        store.sync();
+	    	store.load();
+    	}    	
+  },
+  
+  onDeletePaisClick: function(btn, e, eOpts){
+  	Ext.MessageBox.confirm('Confirma', 'Deseja realmente deletar?', function(botton){			
+			if(botton == 'yes'){
+				var grid = btn.up('grid'),
+	    		records = grid.getSelectionModel().getSelection(),
+	    		store = grid.getStore();
+	    	
+		    	store.remove(records);
+		    	store.sync();
+		    	
+			}
+			else if(botton == 'no'){
+				return false;
+			}
+		});  	
+  }  
+  
 });

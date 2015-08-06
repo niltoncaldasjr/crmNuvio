@@ -35,36 +35,43 @@ Ext.define('crm.view.imposto.ImpostoForm',{
 				{
 					xtype: 'textfield',
 					fieldLabel:'Título',
+					allowBlank: false,
 				    name: 'titulo'
 				},
 				{
 					xtype: 'textfield',
 					fieldLabel:'aliquotaICMS',
+					allowBlank: false,
 				    name: 'aliquotaICMS'
 				},
 				{
 					xtype: 'textfield',
 					fieldLabel:'aliquotaPIS',
+					allowBlank: false,
 					name: 'aliquotaPIS'	
 				},
 				{
 					xtype: 'textfield',
 					fieldLabel:'aliquotaCOFINS',
+					allowBlank: false,
 				    name: 'aliquotaCOFINS'
 				},
 				{
 					xtype: 'textfield',
 					fieldLabel:'aliquotaCSLL',
+					allowBlank: false,
 				    name: 'aliquotaCSLL'
 				},
 				{
 					xtype: 'textfield',
 					fieldLabel:'aliquotaISS',
+					allowBlank: false,
 				    name: 'aliquotaISS'
 				},
 				{
 					xtype: 'textfield',
 					fieldLabel:'aliquotaIRPJ',
+					allowBlank: false,
 				    name: 'aliquotaIRPJ'
 				}
 			]

@@ -57,18 +57,19 @@ Ext.define('crm.controller.Usuario', {
     		record = form.getRecord(),
     		grid = Ext.ComponentQuery.query('usuariogrid')[0],
     		store = grid.getStore();
-    	
-    	if (values.id > 0){
-			record.set(values);
-    		
-    	} else{   // se for um novo
-    		record = Ext.create('crm.model.Usuario');
-    		record.set(values);
-    		store.add(record);
+    	if(form.isValid()){
+	    	if (values.id > 0){
+				record.set(values);
+	    		
+	    	} else{   // se for um novo
+	    		record = Ext.create('crm.model.Usuario');
+	    		record.set(values);
+	    		store.add(record);
+	    	}
+	    	win.close();
+	        store.sync();
+	    	store.load();
     	}
-    	win.close();
-        store.sync();
-    	store.load();
   },
   
   onDeleteUsuarioClick: function(btn, e, eOpts){
