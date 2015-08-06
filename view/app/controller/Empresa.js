@@ -37,6 +37,10 @@ Ext.define('crm.controller.Empresa', {
         var edit = Ext.create('crm.view.empresa.EmpresaForm').show();        
         if(record){
         	edit.down('form').loadRecord(record);
+//        	if (record.get('imagemLogotipo')) { // #4
+//				var img = editWindow.down('filefield');
+//				img.setSrc('resources/profileImages/' + record[0].get('picture'));
+//			}
         }
     },
     onCancelEmpresaClick: function(btn, e, eOpts){

@@ -31,23 +31,25 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'libs/wideimage/WideImag
 	if(isset($_FILES)){
 		$tmpName = $_FILES['imagemLogotipo']['tmp_name'];
 		$fileName = $object->getCNPJ() . ".png";
-		
-		list($width, $height, $type, $attr) = getimagesize($tmpName);
-		
-		if($width < 200 || $height < 100)
-		{
-// 			echo "<font color='RED'> A Imagem é Muito Pequena!</br>
-// 	<font color='Black'>Carregue uma imagem com tamanho superior a 200x100 altura/largura";
-// 			exit;
-		}else {
-			// Carrega a imagem a ser manipulada
-			$image = WideImage::load($tmpName);
-			// Redimensiona a imagem
-			$image = $image->resize(200, 100);
-			// Salva a imagem em um arquivo (novo ou não)
-			$image->saveToFile("$uploads_dir/$fileName");
+		//var_dump($_FILES);
+		if (!empty($tmpName)){
+			list($width, $height, $type, $attr) = getimagesize($tmpName);
+			
+			if($width < 200 || $height < 100)
+			{
+				// 			echo "<font color='RED'> A Imagem é Muito Pequena!</br>
+			}else {
+				// Carrega a imagem a ser manipulada
+				$image = WideImage::load($tmpName);
+				// Redimensiona a imagem
+				$image = $image->resize(200, 100);
+				// Salva a imagem em um arquivo (novo ou não)
+				$image->saveToFile("$uploads_dir/$fileName");
+			}
+			$object->setImagemLogotipo($fileName);
 		}
-		$object->setImagemLogotipo($fileName);
+		
+		
 	}
 	if ($id ==  0) { //create
 		// INSERI O OBJETO NO CONTROL 
