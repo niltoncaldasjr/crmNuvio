@@ -49,7 +49,9 @@ background-image:url('../icons/cog.png') !important;
 .logout {
 	background-image: url('../images/door_in.png') !important;
 }
-
+.icon_form_pessoafisica {
+	background-image: url('../icons/report_user.png') !important;
+}
 /** ICONES DO MENU **/
 .menu_icon_adm {
     background-image: url(../icons/shield.png) !important;

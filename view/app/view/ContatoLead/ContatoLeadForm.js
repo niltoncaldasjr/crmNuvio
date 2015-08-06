@@ -10,7 +10,7 @@
 
 Ext.define('crm.view.contatolead.ContatoLeadForm',{
 	
-	extend:	'Ext.window.Window',
+	extend:	'Ext.panel.Panel',
 	alias:	'widget.contatoleadform',
 	
 	height: 	350,
@@ -25,7 +25,8 @@ Ext.define('crm.view.contatolead.ContatoLeadForm',{
 	    	xtype: 			'form',
 	    	bodyPadding: 	10,
 	    	defaults: {
-	    			anchor: '100%'
+	    			anchor: '100%',
+	    			msgTarget: 'under'
 	    	},
 	    	
 	    	items: [
@@ -37,6 +38,7 @@ Ext.define('crm.view.contatolead.ContatoLeadForm',{
 	    	    	xtype: 		'textareafield',
 		            fieldLabel: 'Descrição',
 		            name: 		'descricao',
+		            allowBlank: false
 		        },
 	    	    {
 	    	    	xtype: 'datefield',
@@ -46,6 +48,7 @@ Ext.define('crm.view.contatolead.ContatoLeadForm',{
 		            forceSelection:true,
 					editable:false,
 		            format: 'd/m/Y',
+		            allowBlank: false
 		        },
 		        {
 	    	    	xtype: 'datefield',
@@ -55,6 +58,7 @@ Ext.define('crm.view.contatolead.ContatoLeadForm',{
 		            forceSelection:true,
 					editable:false,
 		            format: 'd/m/Y',
+		            allowBlank: false
 		        },
 	    	    {
 					xtype:'combo',
@@ -65,7 +69,8 @@ Ext.define('crm.view.contatolead.ContatoLeadForm',{
 					name: 'idusuario',
 					store: 'Usuario',
 					displayField: 'nome',
-					valueField: 'id'
+					valueField: 'id',
+					allowBlank: false
 				},
 				{
 					xtype: 'combo',
@@ -76,7 +81,8 @@ Ext.define('crm.view.contatolead.ContatoLeadForm',{
 					name: 'idlead',
 				    store: 'Lead',
 				    displayField: 'empresa',
-				    valueField: 'id'
+				    valueField: 'id',
+				    allowBlank: false
 				    
 				},
 	    	   

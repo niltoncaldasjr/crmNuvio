@@ -43,7 +43,7 @@ var cor = Ext.create('Ext.data.Store', {
 
 Ext.define('crm.view.pessoafisica.PessoaFisicaForm',{
 	
-	extend:	'Ext.window.Window',
+	extend:	'Ext.panel.Panel',
 	alias:	'widget.pessoafisicaform',
 	
 	height: 	400,
@@ -58,7 +58,8 @@ Ext.define('crm.view.pessoafisica.PessoaFisicaForm',{
 	    	xtype: 			'form',
 	    	bodyPadding: 	10,
 	    	defaults: {
-	    			anchor: '100%'
+	    			anchor: '100%',
+	    			msgTarget: 'under'
 	    	},
 	    	
 	    	items: [
@@ -69,12 +70,14 @@ Ext.define('crm.view.pessoafisica.PessoaFisicaForm',{
 	    	    {
 	    	    	xtype: 		'textfield',
 	    	    	fieldLabel: 'Nome',
-	    	    	name: 		'nome'
+	    	    	name: 		'nome',
+	    	    	allowBlank: false,
 	    	    },
 	    	    {
 	    	    	xtype: 		'textfield',
 	    	    	fieldLabel: 'CPF',
-	    	    	name: 		'cpf'
+	    	    	name: 		'cpf',
+	    	    	allowBlank: false,
 	    	    },
 	    	    {
 	    	    	xtype: 'datefield',
@@ -82,65 +85,73 @@ Ext.define('crm.view.pessoafisica.PessoaFisicaForm',{
 		            fieldLabel: 'Data Nascimento',
 		            name: 'datanascimento',
 		            format: 'd/m/Y',
+		            allowBlank: false,
 		        },
 	    	    {
 					defaults:{anchor:'100%'},
 					xtype:'combo',
 					fieldLabel:'Estado Cívil',
-					emptyText:'Selecioone o Estado Cívil ...',
+					emptyText:'Selecione o Estado Cívil ...',
 					forceSelection:true,
 					editable:false,
 					name: 'estadocivil',
 					store: estadoCivil,
 					queryMode: 'local',
 					displayField: 'name',
-					valueField: 'value'
+					valueField: 'value',
+					allowBlank: false,
 				},
 				{
 					defaults:{anchor:'100%'},
 					xtype:'combo',
 					fieldLabel:'Sexo',
-					emptyText:'Selecioone o Sexo ...',
+					emptyText:'Selecione o Sexo ...',
 					forceSelection:true,
 					editable:false,
 					name: 'sexo',
 					store: sexo,
 					queryMode: 'local',
 					displayField: 'name',
-					valueField: 'value'
+					valueField: 'value',
+					allowBlank: false,
 				},
 	    	    {
 	    	    	xtype: 		'textfield',
 	    	    	fieldLabel: 'Nome Pai',
-	    	    	name: 		'nomepai'
+	    	    	name: 		'nomepai',
+	    	    	allowBlank: false,
 	    	    },
 	    	    {
 	    	    	xtype: 		'textfield',
 	    	    	fieldLabel: 'Nome Mãe',
-	    	    	name: 		'nomemae'
+	    	    	name: 		'nomemae',
+	    	    	allowBlank: false,
 	    	    },
 	    	    {
 					defaults:{anchor:'100%'},
 					xtype:'combo',
 					fieldLabel:'Cor',
-					emptyText:'Selecioone a Cor ...',
+					emptyText:'Selecione a Cor ...',
 					forceSelection:true,
 					editable:false,
 					name: 'cor',
 					store: cor,
 					queryMode: 'local',
 					displayField: 'name',
-					valueField: 'value'
+					valueField: 'value',
+					allowBlank: false,
 				},
 				{
 	    	    	xtype: 		'textfield',
 	    	    	fieldLabel: 'Naturalidade',
-	    	    	name: 		'naturalidade'
+	    	    	name: 		'naturalidade',
+	    	    	allowBlank: false,
 	    	    },
 	    	    {
 	    	    	xtype: 		'textfield',
 	    	    	fieldLabel: 'Nacionalidade',
-	    	    	name: 		'nacionalidade'
+	    	    	name: 		'nacionalidade',
+	    	    	allowBlank: false,
 	    	    },
 	    	   
 	    	]

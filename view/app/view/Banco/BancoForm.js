@@ -9,10 +9,11 @@
 
 Ext.define('crm.view.banco.BancoForm',{
 	
-	extend:	'Ext.window.Window',
+	extend:	'Ext.panel.Panel',
 	alias:	'widget.bancoform',
 	
 	height: 	150,
+	//minHeight: 150,
 	width: 		450,
 	layout: 	'fit',
 	iconCls: 	'icon-user',
@@ -24,7 +25,8 @@ Ext.define('crm.view.banco.BancoForm',{
 	    	xtype: 			'form',
 	    	bodyPadding: 	10,
 	    	defaults: {
-	    			anchor: '100%'
+	    			anchor: '100%',
+	    			msgTarget: 'under'
 	    	},
 	    	
 	    	items: [
@@ -35,12 +37,14 @@ Ext.define('crm.view.banco.BancoForm',{
 	    	    {
 	    	    	xtype: 		'textfield',
 	    	    	fieldLabel: 'Nome',
-	    	    	name: 		'nome'
+	    	    	name: 		'nome',
+	    	    	allowBlank: false
 	    	    },
 	    	    {
 	    	    	xtype: 		'textfield',
 	    	    	fieldLabel: 'Código Banco Central',
-	    	    	name: 		'codigoBancoCentral'
+	    	    	name: 		'codigoBancoCentral',
+	    	    	allowBlank: false
 	    	    },
 	    	    		
 	    	]

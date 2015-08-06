@@ -5,11 +5,11 @@ Ext.define('crm.controller.PessoaFisica',{
 	
 	models: ['PessoaFisica'],
 	
-	views: ['pessoafisica.PessoaFisicaForm', 'pessoafisica.PessoaFisicaGrid'],
+	views: ['pessoafisica.PessoaFisicaPanel'],
 	
     refs: [{
         ref: 'PessoaFisicaGrid',
-        selector: 'grid'
+        selector: 'gridPessoaFisica'
     	}
     ],
 	
@@ -19,7 +19,7 @@ Ext.define('crm.controller.PessoaFisica',{
 				itemdblclick: this.editarPessoaFisica
 			},
 			'pessoafisicagrid button#addPessoaFisica': {
-				click: this.editarPessoaFisica
+				click: this.novoPessoaFisica
 			},
 			'pessoafisicagrid button#deletePessoaFisica': {
 				click: this.deletePessoaFisica
@@ -33,58 +33,89 @@ Ext.define('crm.controller.PessoaFisica',{
 		});
 	},
 	
+	novoPessoaFisica: function(){
+		// var edit = Ext.create('crm.view.pessoafisica.PessoaFisicaForm').show();
+		var edit = Ext.ComponentQuery.query('pessoafisicatabpanel')[0].expand(true);
+		
+		edit.down('form').getForm().reset();
+	},
+	
 	editarPessoaFisica: function(grid, record) {
-		var edit = Ext.create('crm.view.pessoafisica.PessoaFisicaForm').show();
+		// var edit = Ext.create('crm.view.pessoafisica.PessoaFisicaForm').show();
+		Ext.ComponentQuery.query('pessoafisicatabpanel')[0].expand(true);
+		
+		var edit = Ext.ComponentQuery.query('pessoafisicaform')[0];
 		
 		if(record){
 			edit.down('form').loadRecord(record);
+			
+			console.log(record);
+			
 		}
 	},
 	
 	updatePessoaFisica: function(button){
-		var win = button.up('window'),
+		// var win = button.up('window'),
+		var win = button.up('panel'),
 			form = win.down('form'),
 			record = form.getRecord(),
 			values = form.getValues();
 		
 		var novo = false;
 		
-		if(values.id > 0){
-			record.set(values);
-		}else{
-			record = Ext.create('crm.model.PessoaFisica');
-			record.set(values);
-			this.getPessoaFisicaStore().add(record);
-			novo = true;
+		if( form.isValid() )
+		{
+			
+			if(values.id > 0){
+				record.set(values);
+			}else{
+				record = Ext.create('crm.model.PessoaFisica');
+				record.set(values);
+				
+				this.getPessoaFisicaStore().add(record);
+				novo = true;
+			}
+			console.log(values.datanascimento);
+			//win.close();
+			this.getPessoaFisicaStore().sync();
+			
+			/*-- Se o novo for true da reload na grid para atualizar a lista --*/
+			if(novo){
+				this.getPessoaFisicaStore().load();
+			}
+			/*-- Limpa Form --*/
+			win.down('form').getForm().reset();
+			/*-- Minimiza a Tab --*/
+			win.up('panel').collapse( false );
 		}
-		console.log(values.datanascimento);
-		win.close();
-		this.getPessoaFisicaStore().sync();
-		
-		/*-- Se o novo for true da reload na grid para atualizar a lista --*/
-		if(novo){
-			this.getPessoaFisicaStore().load();
-		}
-		this.getPessoaFisicaStore().load();
+			
 	},
 	
-	deletePessoaFisica: function(button){
-		var grid = this.getPessoaFisicaGrid(),
-		record = grid.getSelectionModel().getSelection(),
-		store = this.getPessoaFisicaStore();
+	deletePessoaFisica: function(btn, e, opts){
+
+		Ext.MessageBox.confirm('Atenção', 'Deseja realmente deletar?', function(botton){			
+			if(botton == 'yes'){
+				
+				var grid = btn.up('grid'),
+	    		records = grid.getSelectionModel().getSelection(),
+	    		store = grid.getStore();
+	    	
+		    	store.remove(records);
+		    	store.sync();
+		    	
+			}
+			else if(botton == 'no'){
+				return false;
+			}
+		}); 
 		
-		store.remove(record);
-		this.getPessoaFisicaStore().sync();
-		
-		/*-- reload na grid para atualizar a lista --*/
-		//this.getPessoaFisicaStore().load();
 	},
 	
 	cancelaPessoaFisica: function(button){
-		var win = button.up('window');
-		console.log('Entramos aqui');
-		
-		win.close();
+		// var win = button.up('window');
+		button.up('panel').down('form').getForm().reset();
+		/*-- Minimiza a tab --*/
+		button.up('panel').up('panel').collapse( false );
 	}
 	
 });

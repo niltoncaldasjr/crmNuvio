@@ -19,7 +19,7 @@ var ativo = Ext.create('Ext.data.Store', {
 
 Ext.define('crm.view.lead.LeadForm',{
 	
-	extend:	'Ext.window.Window',
+	extend:	'Ext.panel.Panel',
 	alias:	'widget.leadform',
 	
 	height: 	300,
@@ -34,7 +34,8 @@ Ext.define('crm.view.lead.LeadForm',{
 	    	xtype: 			'form',
 	    	bodyPadding: 	10,
 	    	defaults: {
-	    			anchor: '100%'
+	    			anchor: '100%',
+	    			msgTarget: 'under'
 	    	},
 	    	
 	    	items: [
@@ -45,22 +46,26 @@ Ext.define('crm.view.lead.LeadForm',{
 	    	    {
 	    	    	xtype: 		'textfield',
 	    	    	fieldLabel: 'Empresa',
-	    	    	name: 		'empresa'
+	    	    	name: 		'empresa',
+	    	    	allowBlank: false
 	    	    },
 	    	    {
 	    	    	xtype: 		'textfield',
 	    	    	fieldLabel: 'E-mail',
-	    	    	name: 		'email'
+	    	    	name: 		'email',
+	    	    	allowBlank: false
 	    	    },
 	    	    {
 	    	    	xtype: 		'textfield',
 	    	    	fieldLabel: 'Telefone',
-	    	    	name: 		'telefone'
+	    	    	name: 		'telefone',
+	    	    	allowBlank: false
 	    	    },
 	    	    {
 	    	    	xtype: 		'textfield',
 	    	    	fieldLabel: 'Contato',
-	    	    	name: 		'contato'
+	    	    	name: 		'contato',
+	    	    	allowBlank: false
 	    	    },
 	    	    {
 					xtype:'combo',
@@ -72,7 +77,8 @@ Ext.define('crm.view.lead.LeadForm',{
 					store: ativo,
 					queryMode: 'local',
 					displayField: 'name',
-					valueField: 'value'
+					valueField: 'value',
+					allowBlank: false
 				},
 				
 	    	]

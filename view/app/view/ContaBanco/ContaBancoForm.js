@@ -10,7 +10,7 @@
 
 Ext.define('crm.view.contabanco.ContaBancoForm',{
 	
-	extend:	'Ext.window.Window',
+	extend:	'Ext.panel.Panel',
 	alias:	'widget.contabancoform',
 	
 	height: 	350,
@@ -19,13 +19,15 @@ Ext.define('crm.view.contabanco.ContaBancoForm',{
 	iconCls: 	'icon-user',
 	title: 		'Editar/Criar Conta Banco',
 	autoShow: 	true,
+	autoScroll: true,
 	
 	items: [
 	    {
 	    	xtype: 			'form',
 	    	bodyPadding: 	10,
 	    	defaults: {
-	    			anchor: '100%'
+	    			anchor: '100%',
+	    			msgTarget: 'under'
 	    	},
 	    	
 	    	items: [
@@ -36,42 +38,50 @@ Ext.define('crm.view.contabanco.ContaBancoForm',{
 	    	    {
 	    	    	xtype: 		'textfield',
 	    	    	fieldLabel: 'Agência',
-	    	    	name: 		'agencia'
+	    	    	name: 		'agencia',
+	    	    	allowBlank: false
 	    	    },
 	    	    {
 	    	    	xtype: 		'textfield',
 	    	    	fieldLabel: 'Dígito Agencia',
-	    	    	name: 		'digitoAgencia'
+	    	    	name: 		'digitoAgencia',
+	    	    	allowBlank: false
 	    	    },
 	    	    {
 	    	    	xtype: 		'textfield',
 		            fieldLabel: 'Número Conta',
 		            name: 		'numeroConta',
+		            allowBlank: false
 		        },
 	    	    {
 		        	xtype: 		'textfield',
 		            fieldLabel: 'Dígito Conta',
 		            name: 		'digitoConta',
+		            allowBlank: false
 				},
 				{
 					xtype: 		'textfield',
 		            fieldLabel: 'Número Carteira',
 		            name: 		'numeroCarteira',
+		            allowBlank: false
 				},
 	    	    {
 	    	    	xtype: 		'textfield',
 	    	    	fieldLabel: 'Número Convênio',
-	    	    	name: 		'numeroConvenio'
+	    	    	name: 		'numeroConvenio',
+	    	    	allowBlank: false
 	    	    },
 	    	    {
 	    	    	xtype: 		'textfield',
 	    	    	fieldLabel: 'Nome Contato',
-	    	    	name: 		'nomeContato'
+	    	    	name: 		'nomeContato',
+	    	    	allowBlank: false
 	    	    },
 	    	    {
 	    	    	xtype: 		'textfield',
 	    	    	fieldLabel: 'Telefone Contato',
-	    	    	name: 		'telefoneContato'
+	    	    	name: 		'telefoneContato',
+	    	    	allowBlank: false
 	    	    },
 	    	    {
 					xtype:'combo',
@@ -82,7 +92,8 @@ Ext.define('crm.view.contabanco.ContaBancoForm',{
 					name: 'idbanco',
 					store: 'Banco',
 					displayField: 'nome',
-					valueField: 'id'
+					valueField: 'id',
+					allowBlank: false
 				},
 				{
 					xtype: 'combo',
@@ -93,7 +104,8 @@ Ext.define('crm.view.contabanco.ContaBancoForm',{
 					name: 'idempresa',
 				    store: 'Empresa',
 				    displayField: 'nomeFantasia',
-				    valueField: 'id'
+				    valueField: 'id',
+				    allowBlank: false
 				    
 				},
 	    	   
