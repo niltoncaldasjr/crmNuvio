@@ -78,7 +78,7 @@ function cadastraUsuario() {
 	
 	// REGISTA O LOG NO SISTEMA
 	$log = new LogSistema();
-	$log->setOcorrencia('Inclusão de registro na Classe Usuário.');
+	$log->setOcorrencia('Inclusao de registro na Classe Usuario.');
 	$log->setNivel('BASICO');
 	$log->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
 	$logController = new LogSistemaControl($log);
@@ -109,7 +109,7 @@ function atualizaUsuario() {
 	
 	// REGISTA O LOG NO SISTEMA
 	$log = new LogSistema();
-	$log->setOcorrencia('Alteração de registro na Classe Usuário.');
+	$log->setOcorrencia('Alteracao de registro na Classe Usuario.');
 	$log->setNivel('MODERADO');
 	$log->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
 	$logController = new LogSistemaControl($log);
@@ -134,7 +134,7 @@ function deletaUsuario() {
 	
 	// REGISTA O LOG NO SISTEMA
 	$log = new LogSistema();
-	$log->setOcorrencia('Exclusão de registro na Classe Usuário.');
+	$log->setOcorrencia('Exclusao de registro na Classe Usuario.');
 	$log->setNivel('CRITICO');
 	$log->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
 	$logController = new LogSistemaControl($log);

@@ -83,7 +83,7 @@ function cadastraRotina() {
 	
 	// Resginstando Log do Sistema
 	$objLogSistema = new LogSistema();
-	$objLogSistema->setOcorrencia('Inclusão de registro na Classe Rotina');
+	$objLogSistema->setOcorrencia('Inclusao de registro na Classe Rotina');
 	$objLogSistema->setNivel('BASICO');
 	$objLogSistema->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
 	$objLogSistemaController = new LogSistemaControl($objLogSistema);
@@ -107,7 +107,7 @@ function atualizaRotina() {
 	
 	// Resginstando Log do Sistema
 	$objLogSistema = new LogSistema();
-	$objLogSistema->setOcorrencia('Alteração de registro na Classe Rotina.');
+	$objLogSistema->setOcorrencia('Alteracao de registro na Classe Rotina.');
 	$objLogSistema->setNivel('MODERADO');
 	$objLogSistema->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
 	$objLogSistemaController = new LogSistemaControl($objLogSistema);
@@ -131,7 +131,7 @@ function deletaRotina() {
 	
 	// Resginstando Log do Sistema
 	$objLogSistema = new LogSistema();
-	$objLogSistema->setOcorrencia('Exclusão de resgistro na Classe Rotina: ID '.$id);
+	$objLogSistema->setOcorrencia('Exclusao de resgistro na Classe Rotina: ID '.$id);
 	$objLogSistema->setNivel('CRITICO');
 	$objLogSistema->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
 	$objLogSistemaController = new LogSistemaControl($objLogSistema);

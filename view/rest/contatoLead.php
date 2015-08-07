@@ -94,7 +94,7 @@ function cadastraContatoLead() {
 	
 	// Resginstando Log do Sistema
 	$objLogSistema = new LogSistema();
-	$objLogSistema->setOcorrencia('Inclus�o de registro na Classe ContatoLead');
+	$objLogSistema->setOcorrencia('Inclusao de registro na Classe ContatoLead');
 	$objLogSistema->setNivel('BASICO');
 	$objLogSistema->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
 	$objLogSistemaController = new LogSistemaControl($objLogSistema);
@@ -136,7 +136,7 @@ function atualizaContatoLead() {
 	
 	// Resginstando Log do Sistema
 	$objLogSistema = new LogSistema();
-	$objLogSistema->setOcorrencia('Altera��o de registro na Classe ContatoLead');
+	$objLogSistema->setOcorrencia('Alteracao de registro na Classe ContatoLead');
 	$objLogSistema->setNivel('MODERADO');
 	$objLogSistema->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
 	$objLogSistemaController = new LogSistemaControl($objLogSistema);
@@ -159,7 +159,7 @@ function deletaContatoLead() {
 	
 	// Resginstando Log do Sistema
 	$objLogSistema = new LogSistema();
-	$objLogSistema->setOcorrencia('Exclus�o de registro na Classe ContatoLead: ID '.$id);
+	$objLogSistema->setOcorrencia('Exclusao de registro na Classe ContatoLead: ID '.$id);
 	$objLogSistema->setNivel('CRITICO');
 	$objLogSistema->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
 	$objLogSistemaController = new LogSistemaControl($objLogSistema);

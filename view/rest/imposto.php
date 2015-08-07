@@ -78,7 +78,7 @@ function cadastraImposto() {
 	
 	// REGISTA O LOG NO SISTEMA
 	$log = new LogSistema();
-	$log->setOcorrencia('Inclusão de registro na Classe Imposto.');
+	$log->setOcorrencia('Inclusao de registro na Classe Imposto.');
 	$log->setNivel('BASICO');
 	$log->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
 	$logController = new LogSistemaControl($log);
@@ -110,7 +110,7 @@ function atualizaImposto() {
 	
 	// REGISTA O LOG NO SISTEMA
 	$log = new LogSistema();
-	$log->setOcorrencia('Alteração de registro na Classe Imposto.');
+	$log->setOcorrencia('Alteracao de registro na Classe Imposto.');
 	$log->setNivel('MODERADO');
 	$log->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
 	$logController = new LogSistemaControl($log);
@@ -136,7 +136,7 @@ function deletaImposto() {
 	
 	// REGISTA O LOG NO SISTEMA
 	$log = new LogSistema();
-	$log->setOcorrencia('Exclusão de registro na Classe Imposto.');
+	$log->setOcorrencia('Exclusao de registro na Classe Imposto.');
 	$log->setNivel('CRITICO');
 	$log->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
 	$logController = new LogSistemaControl($log);

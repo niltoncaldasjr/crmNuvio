@@ -77,7 +77,7 @@ function cadastraBanco() {
 	
 	// Resginstando Log do Sistema
 	$objLogSistema = new LogSistema();
-	$objLogSistema->setOcorrencia('Inclusão de registro na Classe Banco');
+	$objLogSistema->setOcorrencia('Inclusao de registro na Classe Banco');
 	$objLogSistema->setNivel('BASICO');
 	$objLogSistema->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
 	$objLogSistemaController = new LogSistemaControl($objLogSistema);
@@ -100,7 +100,7 @@ function atualizaBanco() {
 	
 	// Resginstando Log do Sistema
 	$objLogSistema = new LogSistema();
-	$objLogSistema->setOcorrencia('Alteração de registro na Classe Banco');
+	$objLogSistema->setOcorrencia('Alteracao de registro na Classe Banco');
 	$objLogSistema->setNivel('MODERADO');
 	$objLogSistema->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
 	$objLogSistemaController = new LogSistemaControl($objLogSistema);
@@ -124,7 +124,7 @@ function deletaBanco() {
 	
 	// Resginstando Log do Sistema
 	$objLogSistema = new LogSistema();
-	$objLogSistema->setOcorrencia('Exclusão de registro na Classe Banco: ID '.$id);
+	$objLogSistema->setOcorrencia('Exclusao de registro na Classe Banco: ID '.$id);
 	$objLogSistema->setNivel('CRITICO');
 	$objLogSistema->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
 	$objLogSistemaController = new LogSistemaControl($objLogSistema);

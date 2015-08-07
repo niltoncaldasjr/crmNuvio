@@ -81,7 +81,7 @@ function cadastraLead() {
 	
 	// Resginstando Log do Sistema
 	$objLogSistema = new LogSistema();
-	$objLogSistema->setOcorrencia('Inclusão de registro na Classe Lead');
+	$objLogSistema->setOcorrencia('Inclusao de registro na Classe Lead');
 	$objLogSistema->setNivel('BASICO');
 	$objLogSistema->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
 	$objLogSistemaController = new LogSistemaControl($objLogSistema);
@@ -104,7 +104,7 @@ function atualizaLead() {
 	
 	// Resginstando Log do Sistema
 	$objLogSistema = new LogSistema();
-	$objLogSistema->setOcorrencia('Alteração de registro na Classe Lead');
+	$objLogSistema->setOcorrencia('Alteracao de registro na Classe Lead');
 	$objLogSistema->setNivel('MODERADO');
 	$objLogSistema->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
 	$objLogSistemaController = new LogSistemaControl($objLogSistema);
@@ -128,7 +128,7 @@ function deletaLead() {
 	
 	// Resginstando Log do Sistema
 	$objLogSistema = new LogSistema();
-	$objLogSistema->setOcorrencia('Exclusão de registro na Classe Lead: ID '.$id);
+	$objLogSistema->setOcorrencia('Exclusao de registro na Classe Lead: ID '.$id);
 	$objLogSistema->setNivel('BASICO');
 	$objLogSistema->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
 	$objLogSistemaController = new LogSistemaControl($objLogSistema);

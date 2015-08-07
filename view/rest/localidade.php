@@ -75,7 +75,7 @@ function cadastraLocalidade() {
 	
 	// REGISTA O LOG NO SISTEMA
 	$log = new LogSistema();
-	$log->setOcorrencia('Inclusão de registro na Classe Localidade.');
+	$log->setOcorrencia('Inclusao de registro na Classe Localidade.');
 	$log->setNivel('BASICO');
 	$log->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
 	$logController = new LogSistemaControl($log);
@@ -103,7 +103,7 @@ function atualizaLocalidade() {
 	
 	// REGISTA O LOG NO SISTEMA
 	$log = new LogSistema();
-	$log->setOcorrencia('Alteração de registro na Classe Localidade.');
+	$log->setOcorrencia('Alteracao de registro na Classe Localidade.');
 	$log->setNivel('MODERADO');
 	$log->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
 	$logController = new LogSistemaControl($log);
@@ -129,7 +129,7 @@ function deletaLocalidade() {
 	
 	// REGISTA O LOG NO SISTEMA
 	$log = new LogSistema();
-	$log->setOcorrencia('Exclusão de registro na Classe Localidade.');
+	$log->setOcorrencia('Exclusao de registro na Classe Localidade.');
 	$log->setNivel('CRITICO');
 	$log->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
 	$logController = new LogSistemaControl($log);

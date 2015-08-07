@@ -80,7 +80,7 @@ function cadastraPerfil() {
 	
 	// REGISTA O LOG NO SISTEMA
 	$log = new LogSistema();
-	$log->setOcorrencia('Inclusão de registro na Classe Perfil.');
+	$log->setOcorrencia('Inclusao de registro na Classe Perfil.');
 	$log->setNivel('BASICO');
 	$log->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
 	$logController = new LogSistemaControl($log);
@@ -106,7 +106,7 @@ function atualizaPerfil() {
 	
 	// REGISTA O LOG NO SISTEMA
 	$log = new LogSistema();
-	$log->setOcorrencia('Alteração de registro na Classe Perfil.');
+	$log->setOcorrencia('Alteracao de registro na Classe Perfil.');
 	$log->setNivel('MODERADO');
 	$log->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
 	$logController = new LogSistemaControl($log);
@@ -131,7 +131,7 @@ function deletaPerfil() {
 	
 	// REGISTA O LOG NO SISTEMA
 	$log = new LogSistema();
-	$log->setOcorrencia('Exclusão de registro na Classe Perfil.');
+	$log->setOcorrencia('Exclusao de registro na Classe Perfil.');
 	$log->setNivel('CRITICO');
 	$log->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
 	$logController = new LogSistemaControl($log);
