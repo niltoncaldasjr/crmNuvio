@@ -61,21 +61,13 @@ function cadastraContatoLead() {
 	$jsonDados = $_POST['data'];
 	$data = json_decode(stripslashes($jsonDados));
 		
-	$d_forContato = explode('/', $data->datacontato);
+	$d_forContato = $data->datacontato;
 	
-	$dia = $d_forContato[0];
-	$mes = $d_forContato[1]; 
-	$ano = $d_forContato[2];
+	$result_data = substr($d_forContato ,0,10); 
 	
-	$result_data = $ano."-".$mes."-".$dia;
+	$d_forRetorno = $data->dataretorno;
 	
-	$d_forRetorno = explode('/', $data->dataretorno);
-	
-	$dia = $d_forRetorno[0];
-	$mes = $d_forRetorno[1];
-	$ano = $d_forRetorno[2];
-	
-	$result_dataRetorno = $ano."-".$mes."-".$dia;
+	$result_dataRetorno = substr($d_forRetorno ,0,10); 
 	
 	
 	
@@ -102,7 +94,7 @@ function cadastraContatoLead() {
 	
 	// Resginstando Log do Sistema
 	$objLogSistema = new LogSistema();
-	$objLogSistema->setOcorrencia('Inclusão de registro na Classe ContatoLead');
+	$objLogSistema->setOcorrencia('Inclusï¿½o de registro na Classe ContatoLead');
 	$objLogSistema->setNivel('BASICO');
 	$objLogSistema->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
 	$objLogSistemaController = new LogSistemaControl($objLogSistema);
@@ -118,21 +110,13 @@ function atualizaContatoLead() {
 	
 	$datahora = date("Y-m-d H:i:s");
 	
-	$d_forContato = explode('/', $data->datacontato);
+	$d_forContato = $data->datacontato;
 	
-	$dia = $d_forContato[0];
-	$mes = $d_forContato[1];
-	$ano = $d_forContato[2];
+	$result_data = substr($d_forContato ,0,10); 
 	
-	$result_data = $ano."-".$mes."-".$dia;
+	$d_forRetorno = $data->dataretorno;
 	
-	$d_forRetorno = explode('/', $data->dataretorno);
-	
-	$dia = $d_forRetorno[0];
-	$mes = $d_forRetorno[1];
-	$ano = $d_forRetorno[2];
-	
-	$result_dataRetorno = $ano."-".$mes."-".$dia;
+	$result_dataRetorno = substr($d_forRetorno ,0,10); 
 	
 	$objContatoLead = new ContatoLead();
 	$objContatoLead->setId($data->id);
@@ -152,7 +136,7 @@ function atualizaContatoLead() {
 	
 	// Resginstando Log do Sistema
 	$objLogSistema = new LogSistema();
-	$objLogSistema->setOcorrencia('Alteração de registro na Classe ContatoLead');
+	$objLogSistema->setOcorrencia('Alteraï¿½ï¿½o de registro na Classe ContatoLead');
 	$objLogSistema->setNivel('MODERADO');
 	$objLogSistema->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
 	$objLogSistemaController = new LogSistemaControl($objLogSistema);
@@ -175,7 +159,7 @@ function deletaContatoLead() {
 	
 	// Resginstando Log do Sistema
 	$objLogSistema = new LogSistema();
-	$objLogSistema->setOcorrencia('Exclusão de registro na Classe ContatoLead: ID '.$id);
+	$objLogSistema->setOcorrencia('Exclusï¿½o de registro na Classe ContatoLead: ID '.$id);
 	$objLogSistema->setNivel('CRITICO');
 	$objLogSistema->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
 	$objLogSistemaController = new LogSistemaControl($objLogSistema);

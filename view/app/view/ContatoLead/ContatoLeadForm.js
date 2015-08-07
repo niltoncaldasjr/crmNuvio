@@ -13,12 +13,13 @@ Ext.define('crm.view.contatolead.ContatoLeadForm',{
 	extend:	'Ext.panel.Panel',
 	alias:	'widget.contatoleadform',
 	
-	height: 	350,
-	width: 		450,
+//	height: 	350,
+//	width: 		450,
 	layout: 	'fit',
 	iconCls: 	'icon-user',
 	title: 		'Editar/Criar Contato Lead',
 	autoShow: 	true,
+	autoScroll: true,
 	
 	items: [
 	    {
@@ -37,6 +38,7 @@ Ext.define('crm.view.contatolead.ContatoLeadForm',{
 	    	    {
 	    	    	xtype: 		'textareafield',
 		            fieldLabel: 'Descrição',
+		            emptyText:'Descreva informações sobre este contato',
 		            name: 		'descricao',
 		            allowBlank: false
 		        },
@@ -44,20 +46,24 @@ Ext.define('crm.view.contatolead.ContatoLeadForm',{
 	    	    	xtype: 'datefield',
 		            anchor: '100%',
 		            fieldLabel: 'Data Contato',
+		            emptyText:'Qual data foi feito o contato?',
 		            name: 'datacontato',
 		            forceSelection:true,
 					editable:false,
-		            format: 'd/m/Y',
+					format: 'd/m/Y',
+			        submitFormat: 'Y-m-d' ,
 		            allowBlank: false
 		        },
 		        {
 	    	    	xtype: 'datefield',
 		            anchor: '100%',
 		            fieldLabel: 'Data Retorno',
+		            emptyText:'Qual a data de retorno?',
 		            name: 'dataretorno',
 		            forceSelection:true,
 					editable:false,
-		            format: 'd/m/Y',
+					format: 'd/m/Y',
+			        submitFormat: 'Y-m-d' ,
 		            allowBlank: false
 		        },
 	    	    {

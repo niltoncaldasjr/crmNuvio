@@ -12,9 +12,9 @@ Ext.define('crm.model.ContatoLead', {
 	
 	fields: [
 	    {name: 'id', 				type: 'int'		},
-	    {name: 'datacontato', 		type: 'string', dateformat: 'c'},
+	    {name: 'datacontato', 		type: 'date', dateformat: 'c'},
 	    {name: 'descricao', 		type: 'string'	},
-	    {name: 'dataretorno', 		type: 'string', dateformat: 'c'},
+	    {name: 'dataretorno', 		type: 'date', dateformat: 'c'},
 	    {name: 'datacadastro', 		type: 'date', 	dateFormat: 'c'},
 	    {name: 'dataedicao', 		type: 'date', 	dateFormat: 'c'},
 	    {name: 'idusuario',			type: 'int'		},
