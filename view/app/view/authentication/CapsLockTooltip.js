@@ -7,11 +7,7 @@ Ext.define('crm.view.authentication.CapsLockTooltip', {
 	width: 300,
 	dismissDelay: 0,
 	autoHide: false,
-	title: '<div class="capslock">Caps Lock is On</div>',
-	html: '<div>Having Caps Lock on may cause you to enter your' +
-	'password</div>' +
-	'<div>incorrectly.</div><br/>' +
-	'<div>You should press Caps Lock to turn it off before' +
-	'entering</div>' +
-	'<div>your password.</div>'
+	title: '<div class="capslock">Caps Lock ativado</div>',
+	html: '<div>Se Caps lock estiver ativado, isso pode fazer com que você digite a senha incorretamente.</div><br/>' +
+	'<div>Você deve pressionar a tecla Caps lock para desativá-la antes de digitar a senha.</div>'
 });

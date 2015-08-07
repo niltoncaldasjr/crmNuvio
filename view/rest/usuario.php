@@ -66,10 +66,10 @@ function cadastraUsuario() {
 	$controller = new UsuarioControl($object);
 	$id = $controller->cadastrar();
 	
+	
 	// RETORNA O id CADASTRADO PARA O OBJETO
 	$object->setId($id);
 	
-	//var_dump($data);
 	// encoda para formato JSON
 	echo json_encode(array(
 			"success" => 0,
@@ -78,7 +78,7 @@ function cadastraUsuario() {
 	
 	// REGISTA O LOG NO SISTEMA
 	$log = new LogSistema();
-	$log->setOcorrencia('Inclusão de registro na Classe Usuário.');
+	$log->setOcorrencia('InclusÃ£o de registro na Classe UsuÃ¡rio.');
 	$log->setNivel('BASICO');
 	$log->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
 	$logController = new LogSistemaControl($log);
@@ -109,7 +109,7 @@ function atualizaUsuario() {
 	
 	// REGISTA O LOG NO SISTEMA
 	$log = new LogSistema();
-	$log->setOcorrencia('Alteração de registro na Classe Usuário.');
+	$log->setOcorrencia('AlteraÃ§Ã£o de registro na Classe UsuÃ¡rio.');
 	$log->setNivel('MODERADO');
 	$log->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
 	$logController = new LogSistemaControl($log);
@@ -134,7 +134,7 @@ function deletaUsuario() {
 	
 	// REGISTA O LOG NO SISTEMA
 	$log = new LogSistema();
-	$log->setOcorrencia('Exclusão de registro na Classe Usuário.');
+	$log->setOcorrencia('ExclusÃ£o de registro na Classe UsuÃ¡rio.');
 	$log->setNivel('CRITICO');
 	$log->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
 	$logController = new LogSistemaControl($log);

@@ -27,10 +27,10 @@ if ($resultdb = mysqli_query( $con, $sql )) {
 		$_SESSION ['username'] = $userName; 
 
 		$result ['success'] = true; 
-		$result ['msg'] = 'User authenticated!'; 
+		$result ['msg'] = 'Usuário autenticado!'; 
 	} else {
 		$result ['success'] = false; 
-		$result ['msg'] = 'Incorrect user or password.'; 
+		$result ['msg'] = 'Usuário ou Senha incorreto.'; 
 	}	
 	$resultdb->close (); 
 }

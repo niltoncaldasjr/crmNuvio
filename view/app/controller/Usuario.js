@@ -73,7 +73,7 @@ Ext.define('crm.controller.Usuario', {
   },
   
   onDeleteUsuarioClick: function(btn, e, eOpts){
-  	Ext.MessageBox.confirm('Confirma', 'Deseja realmente deletar?', function(botton){			
+  	Ext.MessageBox.confirm('Confirmar', 'Deseja deletar?', function(botton){			
 			if(botton == 'yes'){
 				var grid = btn.up('grid'),
 	    		records = grid.getSelectionModel().getSelection(),

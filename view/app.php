@@ -30,10 +30,13 @@ if (isset($_COOKIE['tema'])){
 <head>
     <meta charset="UTF-8">
     <title>Teste crmNuvio</title>
-    <?php echo $tema;?>
-	<link rel="stylesheet" type="text/css" href="../libs/css/app.css">
+    <link rel="stylesheet" type="text/css" href="../libs/css/app.css">
+    <?php echo $tema;?>	
 	<script type="text/javascript" src="../libs/jquery/jquery-1.11.3.min.js"></script>
     <script type="text/javascript" src="../libs/ext/ext-all.js"></script>
     <script type="text/javascript" src="app.js"></script></head>
-<body></body>
+<body>
+
+</body>
+	<script src="../libs/ext/locale/ext-lang-pt_BR.js"></script>
 </html>
