@@ -29,7 +29,7 @@ if (isset($_COOKIE['tema'])){
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Teste crmNuvio</title>
+    <title>crmNuvio</title>
     <link rel="stylesheet" type="text/css" href="../libs/css/app.css">
     <?php echo $tema;?>	
 	<script type="text/javascript" src="../libs/jquery/jquery-1.11.3.min.js"></script>
