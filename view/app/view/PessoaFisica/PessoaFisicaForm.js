@@ -89,6 +89,7 @@ Ext.define('crm.view.pessoafisica.PessoaFisicaForm',{
 		            format: 'd/m/Y',
 		            submitFormat: 'Y-m-d' ,
 		            allowBlank: false,
+		            editable:false,
 		        },
 	    	    {
 					defaults:{anchor:'100%'},

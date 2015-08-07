@@ -106,7 +106,6 @@ function atualizaPessoaFisica() {
 	parse_str(file_get_contents("php://input"), $post_vars);
 	$jsonDados = $post_vars['data'];
 	$data = json_decode(stripslashes($jsonDados));
-	var_dump($data);
 	
 	$datahora = date("Y-m-d H:i:s");
 	
