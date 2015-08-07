@@ -103,6 +103,7 @@ Ext.define('crm.view.empresa.EmpresaForm',{
 					xtype: 'combo',
 					name: 'idlocalidade',
 					fieldLabel:'Localidade',
+					editable: false,
 					emptyText:'Selecione a Localidade...',
 					allowBlank : false,
 				    store: 'Localidade',
@@ -113,6 +114,7 @@ Ext.define('crm.view.empresa.EmpresaForm',{
 				{
 					xtype: 'combo',
 					fieldLabel:'Imposto',
+					editable: false,
 					emptyText:'Selecione o Imposto...',
 					allowBlank : false,
 					name: 'idimposto',

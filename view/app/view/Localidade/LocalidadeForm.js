@@ -53,6 +53,7 @@ Ext.define('crm.view.localidade.LocalidadeForm',{
 				{
 					xtype: 'combo',
 					fieldLabel:'País',
+					editable: false,
 					emptyText:'Selecioone o País...',
 					name: 'idpais',
 					allowBlank : false,
