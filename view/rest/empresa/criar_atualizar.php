@@ -79,6 +79,15 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'libs/wideimage/WideImag
 		$controller = new EmpresaControl($object);
 		$controller->atualizar();
 		$lista = $object->jsonSerialize();
+		
+		// REGISTA O LOG NO SISTEMA
+		$log = new LogSistema();
+		$log->setOcorrencia('Alteracao de registro na Classe Empresa.');
+		$log->setNivel('MODERADO');
+		$log->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
+		$logController = new LogSistemaControl($log);
+		$logController->cadastrar();
+		header('Content-type: text/html');
 	}
 	
 	echo json_encode(array(
