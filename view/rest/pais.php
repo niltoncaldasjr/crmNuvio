@@ -59,9 +59,9 @@ function cadastraPais() {
 	$o_pais->setDataedicao($dataedicao);
 	
 	$o_paisControl = new PaisControl($o_pais);
-	$o_paisControl->cadastrar();
+	$id = $o_paisControl->cadastrar();
 	
-	$o_paisControl->setId($o_paisControl->getUltimoId());
+	$o_pais->setId($id);
 	
 	
 	// encoda para formato JSON

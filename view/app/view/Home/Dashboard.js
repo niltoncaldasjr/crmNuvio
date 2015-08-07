@@ -133,19 +133,19 @@ Ext.onReady(function(){
         fields: ['Name', 'Data'],
         data: [
         {
-            'Name': 'Price',
+            'Name': 'Preço',
             'Data': 100
         }, {
-            'Name': 'Revenue %',
+            'Name': 'Receita %',
             'Data': 100
         }, {
-            'Name': 'Growth %',
+            'Name': 'Crescimento %',
             'Data': 100
         }, {
-            'Name': 'Product %',
+            'Name': 'Produto %',
             'Data': 100
         }, {
-            'Name': 'Market %',
+            'Name': 'Mercado %',
             'Data': 100
         }]
     });
@@ -189,18 +189,18 @@ Ext.onReady(function(){
         id: 'company-form',
         flex: 7,
         store: ds,
-        title:'Company Data',
+        title:'Dados da Empresa',
 
         columns: [
             {
                 id       :'company',
-                text   : 'Company',
+                text   : 'Empresa',
                 flex: 1,
                 sortable : true,
                 dataIndex: 'company'
             },
             {
-                text   : 'Price',
+                text   : 'Preços',
                 width    : 90,
                 sortable : true,
                 dataIndex: 'price',
@@ -208,7 +208,7 @@ Ext.onReady(function(){
                 renderer : 'usMoney'
             },
             {
-                text   : 'Revenue',
+                text   : 'Receita',
                 width    : 110,
                 sortable : true,
                 align: 'right',
@@ -216,7 +216,7 @@ Ext.onReady(function(){
                 renderer: perc
             },
             {
-                text   : 'Growth',
+                text   : 'Crescimento',
                 width    : 100,
                 sortable : true,
                 align: 'right',
@@ -224,7 +224,7 @@ Ext.onReady(function(){
                 renderer: perc
             },
             {
-                text   : 'Product',
+                text   : 'Produto',
                 width    : 110,
                 sortable : true,
                 align: 'right',
@@ -232,7 +232,7 @@ Ext.onReady(function(){
                 renderer: perc
             },
             {
-                text   : 'Market',
+                text   : 'Mercado',
                 width    : 100,
                 sortable : true,
                 align: 'right',
@@ -330,7 +330,7 @@ Ext.onReady(function(){
     Ext.define('crm.view.home.Dashboard', {
     	extend: 'Ext.panel.Panel',
     	alias: 'widget.dashpanel',
-        title: 'Company data',
+        title: 'Dados da Empresa',
         collapsible: true,
         split: true,
         frame: true,
@@ -363,12 +363,12 @@ Ext.onReady(function(){
                     align:'stretch'
                 },
                 margin: '0 0 0 5',
-                title: 'Company Details',
+                title: 'Detalhes da Empresa',
                 items: [{
                     margin: '5',
                     xtype: 'fieldset',
                     flex: 1,
-                    title:'Company details',
+                    title:'Detalhes da Empresa',
                     defaults: {
                         width: 240,
                         labelWidth: 90,
@@ -382,24 +382,24 @@ Ext.onReady(function(){
                     },
                     defaultType: 'numberfield',
                     items: [{
-                        fieldLabel: 'Name',
+                        fieldLabel: 'Nome',
                         name: 'company',
                         xtype: 'textfield',
                         enforceMaxLength: false
                     }, {
-                        fieldLabel: 'Price',
+                        fieldLabel: 'Preço',
                         name: 'price'
                     }, {
-                        fieldLabel: 'Revenue %',
+                        fieldLabel: 'Receita %',
                         name: 'revenue %'
                     }, {
-                        fieldLabel: 'Growth %',
+                        fieldLabel: 'Crescimento %',
                         name: 'growth %'
                     }, {
-                        fieldLabel: 'Product %',
+                        fieldLabel: 'Produto %',
                         name: 'product %'
                     }, {
-                        fieldLabel: 'Market %',
+                        fieldLabel: 'Mercado %',
                         name: 'market %'
                     }]
                 }, radarChart],
