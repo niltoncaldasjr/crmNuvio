@@ -114,9 +114,9 @@ background-image:url('../icons/cog.png') !important;
 	background-position: top center;
 }
 
-.x-message-box .x-box-inner{
-	min-height: 110px !important;
-}
+/* .x-message-box .x-box-inner{ */
+/* 	min-height: 110px !important; */
+/* } */
 
 .x-splash-icon{
 	background: url(../images/nuviologoeditado.png) no-repeat !important;

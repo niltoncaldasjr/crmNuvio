@@ -62,13 +62,13 @@ Ext.define('crm.controller.SelecaoEmpresa',{
           
           Ext.create('crm.view.MyViewport');
       }else{
-    	  Ext.MessageBox.alert('Alerta','Selecione uma empresa!!!');
-//    	  Ext.Msg.show({
-//				title:'Error!',
-//				msg: "Selecione uma empresa",
-//				icon: Ext.Msg.ERROR,
-//				buttons: Ext.Msg.OK
-//			});
+//    	  Ext.MessageBox.alert('Alerta','Selecione uma empresa!!!');
+    	  Ext.Msg.show({
+				title:'Atenção!',
+				msg: "Selecione uma empresa",
+				icon: Ext.Msg.ERROR,
+				buttons: Ext.Msg.OK
+			});
       }
   },
   
