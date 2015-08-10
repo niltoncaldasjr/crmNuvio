@@ -17,7 +17,7 @@ Ext.define('crm.view.Header',{
 		/*-- Titulo da aplicação --*/
 		{
 			xtype: 'label',
-			html: '<div id="titleHeader">Sistema Nuvio <span style="font-size:12px;"> CRM </span></div>'
+			html: '<div id="titleHeader"> <span style="margin-top: -50px;">  <img src="../libs/images/nuviologoeditado.png" height="50"> </span></div>'
 		},
 		/*-- preenchimento da barra --*/
 		{

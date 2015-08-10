@@ -160,6 +160,11 @@ background-image:url('../icons/cog.png') !important;
  	font-family: 'Lucida Grande', Arial, Sans;
  }
  
+ /*-- --*/
+ .imagem_logo{
+ 	background-image: url('../images/nuviologoeditado.png'); !important;
+ }
+ 
  /*-- Seleção Empresa --*/
  
 #img-chooser-dlg .details {
