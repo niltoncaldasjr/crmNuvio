@@ -40,7 +40,7 @@ function listaEmpresa() {
 function deletaEmpresa() {
 	
 	$data = $_POST['data'];
-	$data = json_decode(stripcslashes($data));
+	$data = json_decode($data);
 	$id = $data->id;
 	// INSERI O id NO OBJETO
 	$object = new Empresa();

@@ -193,8 +193,11 @@ class Empresa implements JsonSerializable {
 				'imagemLogotipo' => $this->imagemLogotipo,
 				'datacadastro' => $this->datacadastro,  
 				'dataedicao' => $this->dataedicao,
-				'idlocalidade' => $this->objLocalidade->getId(),
-				'idimposto' => $this->objImposto->getId() 
+// 				'idlocalidade' => $this->getObjLocalidade()->getId(),
+// 				'idimposto' => $this->getObjImposto()->getId()
+				'idlocalidade' => $this->objLocalidade,
+				'idimposto' => $this->objImposto
+				
 		];
 		$json = json_encode($empresa);
 		//echo $json;

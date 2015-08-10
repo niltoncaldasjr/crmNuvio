@@ -59,7 +59,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'libs/wideimage/WideImag
 		
 		// RETORNA O id CADASTRADO PARA O OBJETO
 	 	$object->setId($id);
-	 	$lista = $object->jsonSerialize();
+// 	 	$lista = $object->jsonSerialize();
 	
 		// REGISTA O LOG NO SISTEMA
 		$log = new LogSistema();
@@ -78,7 +78,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'libs/wideimage/WideImag
 		}
 		$controller = new EmpresaControl($object);
 		$controller->atualizar();
-		$lista = $object->jsonSerialize();
+// 		$lista = $object->jsonSerialize();
 		
 		// REGISTA O LOG NO SISTEMA
 		$log = new LogSistema();
@@ -92,4 +92,4 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'libs/wideimage/WideImag
 	
 	echo json_encode(array(
 			"success" => true,
-			"data" => $lista));
+			"data" => array('id' => $object->getId())));

@@ -69,7 +69,7 @@ function cadastraLocalidade() {
 	
 	// RETORNA O id CADASTRADO PARA O OBJETO
 	$loc->setId($id);
-	
+// 	$lista = $loc->jsonSerialize();
 	
 	// REGISTA O LOG NO SISTEMA
 	$log = new LogSistema();
@@ -93,6 +93,7 @@ function cadastraLocalidade() {
 					'dataedicao' => $loc->getDataedicao(),
 					'idpais' => $loc->getObjPais()->getId())
 	));
+	
 }
 
 function atualizaLocalidade() {

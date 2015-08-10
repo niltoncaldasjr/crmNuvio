@@ -98,7 +98,7 @@ class Localidade implements JsonSerializable{
 			'cidade' => $this->cidade,
 			'datacadastro' => $this->datacadastro,
 			'dataedicao' => $this->dataedicao,
-			'pais' => $this->objPais
+			'idpais' => $this->objPais
 		];
 	}
 	
