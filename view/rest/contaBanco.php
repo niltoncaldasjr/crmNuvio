@@ -89,7 +89,7 @@ function cadastraContaBanco() {
 
 	// Resginstando Log do Sistema
 	$objLogSistema = new LogSistema();
-	$objLogSistema->setOcorrencia( utf8_encode('Inclusão de registro na Classe ContaBanco') );
+	$objLogSistema->setOcorrencia( 'InclusÃ£o de registro na Classe ContaBanco' );
 	$objLogSistema->setNivel('BASICO');
 	$objLogSistema->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
 	$objLogSistemaController = new LogSistemaControl($objLogSistema);
@@ -127,7 +127,7 @@ function atualizaContaBanco() {
 	
 	// Resginstando Log do Sistema
 	$objLogSistema = new LogSistema();
-	$objLogSistema->setOcorrencia( utf8_encode('Alteração de registro na Classe ContaBanco') );
+	$objLogSistema->setOcorrencia( 'AlteraÃ§Ã£o de registro na Classe ContaBanco' );
 	$objLogSistema->setNivel('MODERADO');
 	$objLogSistema->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
 	$objLogSistemaController = new LogSistemaControl($objLogSistema);
@@ -151,7 +151,7 @@ function deletaContaBanco() {
 	
 	// Resginstando Log do Sistema
 	$objLogSistema = new LogSistema();
-	$objLogSistema->setOcorrencia( utf8_encode('Exclusão de registro na Classe ContaBanco: ID '.$id) );
+	$objLogSistema->setOcorrencia( 'ExclusÃ£o de registro na Classe ContaBanco: ID '.$id );
 	$objLogSistema->setNivel('CRITICO');
 	$objLogSistema->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
 	$objLogSistemaController = new LogSistemaControl($objLogSistema);

@@ -74,7 +74,7 @@ class LogSistemaDAO{
 		return $this->objLogSistema;
 	}
 	
-	/*-- Listar por Nível --*/
+	/*-- Listar por Nï¿½vel --*/
 	function listarPorNivel(LogSistema $objLogSistema){
 		$this->sql = sprintf("SELECT * FROM logsistema WHERE nivel = '%s' ",
 				mysqli_real_escape_string( $this->con, $objLogSistema->getNivel() ) );
@@ -97,7 +97,7 @@ class LogSistemaDAO{
 		return $this->listaLogSistema;
 	}
 	
-	/*-- Buscar por Usuário --*/
+	/*-- Buscar por Usuï¿½rio --*/
 	function listarPorUsuario(LogSistema $objLogSistema){
 		$this->sql = sprintf("SELECT * FROM logsistema WHERE idusuario = %d ",
 				mysqli_real_escape_string( $this->con, $objLogSistema->getObjUsuario()->getId() ) );
@@ -145,6 +145,9 @@ class LogSistemaDAO{
 	function listarPaginado($start, $limit) {
 		$this->sql = "SELECT * FROM logsistema limit " . $start . ", " . $limit;
 		$result = mysqli_query ( $this->con, $this->sql );
+		
+		$lista = array();
+		
 		if (! $result) {
 			die ( '[ERRO]: ' . mysqli_error ( $this->con ) );
 		}

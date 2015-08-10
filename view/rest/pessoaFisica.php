@@ -93,7 +93,7 @@ function cadastraPessoaFisica() {
 	
 	// Resginstando Log do Sistema
 	$objLogSistema = new LogSistema();
-	$objLogSistema->setOcorrencia( utf8_encode('Inclusão de registro na Classe Pessoa Física') );
+	$objLogSistema->setOcorrencia( 'Inclusão de registro na Classe Pessoa Física' );
 	$objLogSistema->setNivel('BASICO');
 	$objLogSistema->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
 	$objLogSistemaController = new LogSistemaControl($objLogSistema);
@@ -127,7 +127,7 @@ function atualizaPessoaFisica() {
 	
 	// Resginstando Log do Sistema
 	$objLogSistema = new LogSistema();
-	$objLogSistema->setOcorrencia( utf8_encode('Alteração de registro na Classe Pessoa Física') );
+	$objLogSistema->setOcorrencia( 'Alteração de registro na Classe Pessoa Física' );
 	$objLogSistema->setNivel('MODERADO');
 	$objLogSistema->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
 	$objLogSistemaController = new LogSistemaControl($objLogSistema);
@@ -151,7 +151,7 @@ function deletaPessoaFisica() {
 	
 	// Resginstando Log do Sistema
 	$objLogSistema = new LogSistema();
-	$objLogSistema->setOcorrencia( utf8_encode('Exclusão de registro na Classe Pessoa Física ID: '.$id) );
+	$objLogSistema->setOcorrencia( 'Exclusão de registro na Classe Pessoa Física ID: '.$id );
 	$objLogSistema->setNivel('CRITICO');
 	$objLogSistema->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
 	$objLogSistemaController = new LogSistemaControl($objLogSistema);

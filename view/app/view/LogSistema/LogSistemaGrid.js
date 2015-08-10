@@ -91,7 +91,7 @@ Ext.define('crm.view.logsistema.LogSistemaGrid',{
 	    // },
 	    {
 	    	xtype: 	'pagingtoolbar',
-	    	store: 	'Banco',
+	    	store: 	'LogSistema',
 	    	dock:	'bottom',
 	    	displayInfo: true,
 	    	empyMsg: 'Nenhum dado encontrado'
