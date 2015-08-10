@@ -38,7 +38,8 @@ Ext.application({
                   'ContaBanco',
                   'ContatoLead',
                   'Temas',
-                  'SelecaoEmpresa'
+                  'SelecaoEmpresa',
+                  'LogSistema'
     ],
     
     
