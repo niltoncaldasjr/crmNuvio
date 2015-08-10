@@ -57,16 +57,16 @@ function listaBanco() {
 function cadastraBanco() {
 	
 	$jsonDados = $_POST['data'];
-	$data = json_decode(stripslashes($jsonDados));
+	$data = json_decode( $jsonDados );
 		
 	$objBanco = new Banco();
 	$objBanco->setNome($data->nome);
 	$objBanco->setCodigoBancoCentral($data->codigoBancoCentral);
 	
 	$objBancoControl = new BancoControl($objBanco);
-	$objBanco = $objBancoControl->cadastrar();
+	$id = $objBancoControl->cadastrar();
 	
-	//$objBanco->setId($objBancoControl->getUltimoId());
+	$objBanco->setId($id);
 	
 	
 	// encoda para formato JSON
@@ -77,7 +77,7 @@ function cadastraBanco() {
 	
 	// Resginstando Log do Sistema
 	$objLogSistema = new LogSistema();
-	$objLogSistema->setOcorrencia('Inclusao de registro na Classe Banco');
+	$objLogSistema->setOcorrencia( utf8_encode('Inclusão de registro na Classe Banco') );
 	$objLogSistema->setNivel('BASICO');
 	$objLogSistema->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
 	$objLogSistemaController = new LogSistemaControl($objLogSistema);
@@ -89,7 +89,7 @@ function atualizaBanco() {
 	
 	parse_str(file_get_contents("php://input"), $post_vars);
 	$jsonDados = $post_vars['data'];
-	$data = json_decode(stripslashes($jsonDados));
+	$data = json_decode( $jsonDados );
 	
 	$datahora = date("Y-m-d H:i:s");
 	
@@ -100,7 +100,7 @@ function atualizaBanco() {
 	
 	// Resginstando Log do Sistema
 	$objLogSistema = new LogSistema();
-	$objLogSistema->setOcorrencia('Alteracao de registro na Classe Banco');
+	$objLogSistema->setOcorrencia( utf8_encode('Alteração de registro na Classe Banco') );
 	$objLogSistema->setNivel('MODERADO');
 	$objLogSistema->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
 	$objLogSistemaController = new LogSistemaControl($objLogSistema);
@@ -124,7 +124,7 @@ function deletaBanco() {
 	
 	// Resginstando Log do Sistema
 	$objLogSistema = new LogSistema();
-	$objLogSistema->setOcorrencia('Exclusao de registro na Classe Banco: ID '.$id);
+	$objLogSistema->setOcorrencia( utf8_encode('Exclusão de registro na Classe Banco: ID '.$id) );
 	$objLogSistema->setNivel('CRITICO');
 	$objLogSistema->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
 	$objLogSistemaController = new LogSistemaControl($objLogSistema);

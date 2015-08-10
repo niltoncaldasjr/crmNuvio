@@ -59,7 +59,7 @@ function listaContatoLead() {
 function cadastraContatoLead() {
 	
 	$jsonDados = $_POST['data'];
-	$data = json_decode(stripslashes($jsonDados));
+	$data = json_decode( $jsonDados );
 		
 	$d_forContato = $data->datacontato;
 	
@@ -81,9 +81,9 @@ function cadastraContatoLead() {
 	$objContatoLead->setObjLead($objLead);
 	
 	$objContaContatoLeadControl = new ContatoLeadControl($objContatoLead);
-	$objContatoLead = $objContaContatoLeadControl->cadastrar();
+	$id = $objContaContatoLeadControl->cadastrar();
 	
-	//$objContatoLead->setId($objContaContatoLeadControl->getUltimoId());
+	$objContatoLead->setId( $id );
 	
 	
 	// encoda para formato JSON
@@ -94,7 +94,7 @@ function cadastraContatoLead() {
 	
 	// Resginstando Log do Sistema
 	$objLogSistema = new LogSistema();
-	$objLogSistema->setOcorrencia('Inclusao de registro na Classe ContatoLead');
+	$objLogSistema->setOcorrencia( utf8_encode('Inclusão de registro na Classe ContatoLead') );
 	$objLogSistema->setNivel('BASICO');
 	$objLogSistema->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
 	$objLogSistemaController = new LogSistemaControl($objLogSistema);
@@ -106,7 +106,7 @@ function atualizaContatoLead() {
 	
 	parse_str(file_get_contents("php://input"), $post_vars);
 	$jsonDados = $post_vars['data'];
-	$data = json_decode(stripslashes($jsonDados));
+	$data = json_decode( $jsonDados );
 	
 	$datahora = date("Y-m-d H:i:s");
 	
@@ -136,7 +136,7 @@ function atualizaContatoLead() {
 	
 	// Resginstando Log do Sistema
 	$objLogSistema = new LogSistema();
-	$objLogSistema->setOcorrencia('Alteracao de registro na Classe ContatoLead');
+	$objLogSistema->setOcorrencia( utf8_encode('Alteração de registro na Classe ContatoLead') );
 	$objLogSistema->setNivel('MODERADO');
 	$objLogSistema->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
 	$objLogSistemaController = new LogSistemaControl($objLogSistema);
@@ -159,7 +159,7 @@ function deletaContatoLead() {
 	
 	// Resginstando Log do Sistema
 	$objLogSistema = new LogSistema();
-	$objLogSistema->setOcorrencia('Exclusao de registro na Classe ContatoLead: ID '.$id);
+	$objLogSistema->setOcorrencia( utf8_encode('Exclusão de registro na Classe ContatoLead: ID '.$id) );
 	$objLogSistema->setNivel('CRITICO');
 	$objLogSistema->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
 	$objLogSistemaController = new LogSistemaControl($objLogSistema);

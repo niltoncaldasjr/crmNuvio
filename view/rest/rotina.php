@@ -60,7 +60,7 @@ function listaRotina() {
 function cadastraRotina() {
 	
 	$jsonDados = $_POST['data'];
-	$data = json_decode(stripslashes($jsonDados));
+	$data = json_decode( $jsonDados );
 		
 	$objRotina = new Rotina();
 	$objRotina->setNome($data->nome);
@@ -70,9 +70,9 @@ function cadastraRotina() {
 	$objRotina->setAtivo($data->ativo);
 	
 	$objRotinaControl = new RotinaControl($objRotina);
-	$objRotina = $objRotinaControl->cadastrar();
+	$id = $objRotinaControl->cadastrar();
 	
-	//$objRotina->setId($objRotinaControl->getUltimoId());
+	$objRotina->setId( $id );
 	
 	
 	// encoda para formato JSON
@@ -83,7 +83,7 @@ function cadastraRotina() {
 	
 	// Resginstando Log do Sistema
 	$objLogSistema = new LogSistema();
-	$objLogSistema->setOcorrencia('Inclusao de registro na Classe Rotina');
+	$objLogSistema->setOcorrencia( utf8_encode('Inclusão de registro na Classe Rotina') );
 	$objLogSistema->setNivel('BASICO');
 	$objLogSistema->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
 	$objLogSistemaController = new LogSistemaControl($objLogSistema);
@@ -107,7 +107,7 @@ function atualizaRotina() {
 	
 	// Resginstando Log do Sistema
 	$objLogSistema = new LogSistema();
-	$objLogSistema->setOcorrencia('Alteracao de registro na Classe Rotina.');
+	$objLogSistema->setOcorrencia( utf8_encode('Alteração de registro na Classe Rotina.') );
 	$objLogSistema->setNivel('MODERADO');
 	$objLogSistema->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
 	$objLogSistemaController = new LogSistemaControl($objLogSistema);
@@ -131,7 +131,7 @@ function deletaRotina() {
 	
 	// Resginstando Log do Sistema
 	$objLogSistema = new LogSistema();
-	$objLogSistema->setOcorrencia('Exclusao de resgistro na Classe Rotina: ID '.$id);
+	$objLogSistema->setOcorrencia( utf8_encode('Exclusão de resgistro na Classe Rotina: ID '.$id) );
 	$objLogSistema->setNivel('CRITICO');
 	$objLogSistema->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
 	$objLogSistemaController = new LogSistemaControl($objLogSistema);

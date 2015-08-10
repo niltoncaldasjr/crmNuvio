@@ -59,7 +59,7 @@ function listaContaBanco() {
 function cadastraContaBanco() {
 	
 	$jsonDados = $_POST['data'];
-	$data = json_decode(stripslashes($jsonDados));
+	$data = json_decode( $jsonDados );
 		
 	$objContaBanco = new ContaBanco();
 	$objContaBanco->setAgencia($data->agencia);
@@ -76,9 +76,9 @@ function cadastraContaBanco() {
 	$objContaBanco->setObjEmpresa($objEmpresa);
 	
 	$objContaContaBancoControl = new ContaBancoControl($objContaBanco);
-	$objContaBanco = $objContaContaBancoControl->cadastrar();
+	$id = $objContaContaBancoControl->cadastrar();
 	
-	//$objContaBanco->setId($objContaContaBancoControl->getUltimoId());
+	$objContaBanco->setId( $id );
 	
 	
 	// encoda para formato JSON
@@ -89,7 +89,7 @@ function cadastraContaBanco() {
 
 	// Resginstando Log do Sistema
 	$objLogSistema = new LogSistema();
-	$objLogSistema->setOcorrencia('Inclusao de registro na Classe ContaBanco');
+	$objLogSistema->setOcorrencia( utf8_encode('Inclusão de registro na Classe ContaBanco') );
 	$objLogSistema->setNivel('BASICO');
 	$objLogSistema->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
 	$objLogSistemaController = new LogSistemaControl($objLogSistema);
@@ -100,7 +100,7 @@ function atualizaContaBanco() {
 	
 	parse_str(file_get_contents("php://input"), $post_vars);
 	$jsonDados = $post_vars['data'];
-	$data = json_decode(stripslashes($jsonDados));
+	$data = json_decode( $jsonDados );
 	
 	$datahora = date("Y-m-d H:i:s");
 	
@@ -127,7 +127,7 @@ function atualizaContaBanco() {
 	
 	// Resginstando Log do Sistema
 	$objLogSistema = new LogSistema();
-	$objLogSistema->setOcorrencia('Alteracao de registro na Classe ContaBanco');
+	$objLogSistema->setOcorrencia( utf8_encode('Alteração de registro na Classe ContaBanco') );
 	$objLogSistema->setNivel('MODERADO');
 	$objLogSistema->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
 	$objLogSistemaController = new LogSistemaControl($objLogSistema);
@@ -151,7 +151,7 @@ function deletaContaBanco() {
 	
 	// Resginstando Log do Sistema
 	$objLogSistema = new LogSistema();
-	$objLogSistema->setOcorrencia('Exclusao de registro na Classe ContaBanco: ID '.$id);
+	$objLogSistema->setOcorrencia( utf8_encode('Exclusão de registro na Classe ContaBanco: ID '.$id) );
 	$objLogSistema->setNivel('CRITICO');
 	$objLogSistema->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
 	$objLogSistemaController = new LogSistemaControl($objLogSistema);
