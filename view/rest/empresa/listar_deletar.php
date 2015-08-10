@@ -53,7 +53,7 @@ function deletaEmpresa() {
 	
 	// REGISTA O LOG NO SISTEMA
 	$log = new LogSistema();
-	$log->setOcorrencia('Exclusao de registro na Classe Empresa.');
+	$log->setOcorrencia('Exclusão de registro na Classe Empresa.');
 	$log->setNivel('CRITICO');
 	$log->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
 	$logController = new LogSistemaControl($log);

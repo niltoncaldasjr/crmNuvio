@@ -49,7 +49,7 @@ function listaImposto() {
 function cadastraImposto() {
 	
 	$jsonDados = $_POST['data'];
-	$data = json_decode(stripslashes($jsonDados));
+	$data = json_decode($jsonDados);
 	// Remover a mascara do CPF.
 	
 	$object = new Imposto();
@@ -78,7 +78,7 @@ function cadastraImposto() {
 	
 	// REGISTA O LOG NO SISTEMA
 	$log = new LogSistema();
-	$log->setOcorrencia('Inclusao de registro na Classe Imposto.');
+	$log->setOcorrencia('Inclusão de registro na Classe Imposto.');
 	$log->setNivel('BASICO');
 	$log->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
 	$logController = new LogSistemaControl($log);
@@ -90,7 +90,7 @@ function atualizaImposto() {
 	
 	parse_str(file_get_contents("php://input"), $post_vars);
 	$jsonDados = $post_vars['data'];
-	$data = json_decode(stripslashes($jsonDados));
+	$data = json_decode($jsonDados);
 	
 	$object = new Imposto();
 	$object->setId($data->id);
@@ -110,7 +110,7 @@ function atualizaImposto() {
 	
 	// REGISTA O LOG NO SISTEMA
 	$log = new LogSistema();
-	$log->setOcorrencia('Alteracao de registro na Classe Imposto.');
+	$log->setOcorrencia('Alteração de registro na Classe Imposto.');
 	$log->setNivel('MODERADO');
 	$log->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
 	$logController = new LogSistemaControl($log);
@@ -121,7 +121,7 @@ function deletaImposto() {
 	
 	parse_str(file_get_contents("php://input"), $post_vars);
 	$jsonDados = $post_vars['data'];
-	$data = json_decode(stripslashes($jsonDados));
+	$data = json_decode($jsonDados);
 		
 	$id = $data->id;
 	
@@ -136,7 +136,7 @@ function deletaImposto() {
 	
 	// REGISTA O LOG NO SISTEMA
 	$log = new LogSistema();
-	$log->setOcorrencia('Exclusao de registro na Classe Imposto.');
+	$log->setOcorrencia('Exclusão de registro na Classe Imposto.');
 	$log->setNivel('CRITICO');
 	$log->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
 	$logController = new LogSistemaControl($log);

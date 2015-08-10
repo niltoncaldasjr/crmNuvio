@@ -32,8 +32,7 @@ function listaPais() {
 	
 
 	$o_paisControl = new PaisControl();
-	$totalRegistro = $o_paisControl->qtdTotal();
-	
+	$totalRegistro = $o_paisControl->qtdTotal();	
 	
 	// encoda para formato JSON
 	echo json_encode(array(
@@ -47,7 +46,7 @@ function listaPais() {
 function cadastraPais() {
 	
 	$jsonDados = $_POST['data'];
-	$data = json_decode(stripslashes($jsonDados));
+	$data = json_decode($jsonDados);
 	// Remover a mascara do CPF.
 	$datacadastro = date("Y-m-d H:i:s");
 	$dataedicao = date("Y-m-d H:i:s");
@@ -64,6 +63,14 @@ function cadastraPais() {
 	$o_pais->setId($id);
 	
 	
+	// REGISTA O LOG NO SISTEMA
+	$log = new LogSistema();
+	$log->setOcorrencia('Inclusão de registro na Classe País.');
+	$log->setNivel('BASICO');
+	$log->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
+	$logController = new LogSistemaControl($log);
+	$logController->cadastrar();
+		
 	// encoda para formato JSON
 	echo json_encode(array(
 			"success" => 0,
@@ -76,7 +83,7 @@ function atualizaPais() {
 	
 	parse_str(file_get_contents("php://input"), $post_vars);
 	$jsonDados = $post_vars['data'];
-	$data = json_decode(stripslashes($jsonDados));
+	$data = json_decode($jsonDados);
 	$dataedicao = date("Y-m-d H:i:s");
 	
 	$o_pais = new Pais( $data->id, $data->descricao, $data->nacionalidade,NULL,$dataedicao);
@@ -84,13 +91,21 @@ function atualizaPais() {
 	$o_paisControl = new PaisControl($o_pais);
 	$o_paisControl->atualizar();
 	
+	// REGISTA O LOG NO SISTEMA
+	$log = new LogSistema();
+	$log->setOcorrencia('Alteração de registro na Classe País.');
+	$log->setNivel('MODERADO');
+	$log->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
+	$logController = new LogSistemaControl($log);
+	$logController->cadastrar();
+	
 }
 
 function deletaPais() {
 	
 	parse_str(file_get_contents("php://input"), $post_vars);
 	$jsonDados = $post_vars['data'];
-	$data = json_decode(stripslashes($jsonDados));
+	$data = json_decode($jsonDados);
 		
 	$id = $data->id;
 	
@@ -99,6 +114,14 @@ function deletaPais() {
 	
 	$o_paisControl = new PaisControl($o_pais);
 	$o_paisControl->deletar();
+	
+	// REGISTA O LOG NO SISTEMA
+	$log = new LogSistema();
+	$log->setOcorrencia('Exclusão de registro na Classe País.');
+	$log->setNivel('CRITICO');
+	$log->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
+	$logController = new LogSistemaControl($log);
+	$logController->cadastrar();
 	
 }
 

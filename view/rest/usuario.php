@@ -49,7 +49,7 @@ function listaUsuario() {
 function cadastraUsuario() {
 	
 	$jsonDados = $_POST['data'];
-	$data = json_decode(stripslashes($jsonDados));
+	$data = json_decode($jsonDados);
 	// Remover a mascara do CPF.
 	
 	$object = new Usuario();
@@ -78,7 +78,7 @@ function cadastraUsuario() {
 	
 	// REGISTA O LOG NO SISTEMA
 	$log = new LogSistema();
-	$log->setOcorrencia('Inclusao de registro na Classe Usuario.');
+	$log->setOcorrencia('Inclusão de registro na Classe Usuario.');
 	$log->setNivel('BASICO');
 	$log->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
 	$logController = new LogSistemaControl($log);
@@ -89,7 +89,7 @@ function atualizaUsuario() {
 	
 	parse_str(file_get_contents("php://input"), $post_vars);
 	$jsonDados = $post_vars['data'];
-	$data = json_decode(stripslashes($jsonDados));
+	$data = json_decode($jsonDados);
 	
 	$object = new Usuario();
 	$object->setId($data->id);
@@ -109,7 +109,7 @@ function atualizaUsuario() {
 	
 	// REGISTA O LOG NO SISTEMA
 	$log = new LogSistema();
-	$log->setOcorrencia('Alteracao de registro na Classe Usuario.');
+	$log->setOcorrencia('Alteração de registro na Classe Usuario.');
 	$log->setNivel('MODERADO');
 	$log->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
 	$logController = new LogSistemaControl($log);
@@ -120,7 +120,7 @@ function deletaUsuario() {
 	
 	parse_str(file_get_contents("php://input"), $post_vars);
 	$jsonDados = $post_vars['data'];
-	$data = json_decode(stripslashes($jsonDados));
+	$data = json_decode($jsonDados);
 		
 	$id = $data->id;
 	
@@ -134,7 +134,7 @@ function deletaUsuario() {
 	
 	// REGISTA O LOG NO SISTEMA
 	$log = new LogSistema();
-	$log->setOcorrencia('Exclusao de registro na Classe Usuario.');
+	$log->setOcorrencia('Exclusão de registro na Classe Usuario.');
 	$log->setNivel('CRITICO');
 	$log->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
 	$logController = new LogSistemaControl($log);

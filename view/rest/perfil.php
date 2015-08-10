@@ -55,7 +55,7 @@ function listaPerfil() {
 function cadastraPerfil() {
 	
 	$jsonDados = $_POST['data'];
-	$data = json_decode(stripslashes($jsonDados));
+	$data = json_decode($jsonDados);
 	// Remover a mascara do CPF.
 	
 	$o_perfil = new Perfil();
@@ -80,7 +80,7 @@ function cadastraPerfil() {
 	
 	// REGISTA O LOG NO SISTEMA
 	$log = new LogSistema();
-	$log->setOcorrencia('Inclusao de registro na Classe Perfil.');
+	$log->setOcorrencia('Inclusão de registro na Classe Perfil.');
 	$log->setNivel('BASICO');
 	$log->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
 	$logController = new LogSistemaControl($log);
@@ -91,7 +91,7 @@ function atualizaPerfil() {
 	
 	parse_str(file_get_contents("php://input"), $post_vars);
 	$jsonDados = $post_vars['data'];
-	$data = json_decode(stripslashes($jsonDados));
+	$data = json_decode($jsonDados);
 	
 	$o_perfil = new Perfil();
 	$o_perfil->setId($data->id);
@@ -106,7 +106,7 @@ function atualizaPerfil() {
 	
 	// REGISTA O LOG NO SISTEMA
 	$log = new LogSistema();
-	$log->setOcorrencia('Alteracao de registro na Classe Perfil.');
+	$log->setOcorrencia('Alteração de registro na Classe Perfil.');
 	$log->setNivel('MODERADO');
 	$log->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
 	$logController = new LogSistemaControl($log);
@@ -117,7 +117,7 @@ function deletaPerfil() {
 	
 	parse_str(file_get_contents("php://input"), $post_vars);
 	$jsonDados = $post_vars['data'];
-	$data = json_decode(stripslashes($jsonDados));
+	$data = json_decode($jsonDados);
 		
 	$id = $data->id;
 	
@@ -131,7 +131,7 @@ function deletaPerfil() {
 	
 	// REGISTA O LOG NO SISTEMA
 	$log = new LogSistema();
-	$log->setOcorrencia('Exclusao de registro na Classe Perfil.');
+	$log->setOcorrencia('Exclusão de registro na Classe Perfil.');
 	$log->setNivel('CRITICO');
 	$log->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
 	$logController = new LogSistemaControl($log);
