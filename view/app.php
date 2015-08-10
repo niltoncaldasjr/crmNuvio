@@ -30,6 +30,8 @@ if (isset($_COOKIE['tema'])){
 <head>
     <meta charset="UTF-8">
     <title>crmNuvio</title>
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="../libs/images/favicon.ico">
     <link rel="stylesheet" type="text/css" href="../libs/css/app.css">
     <?php echo $tema;?>	
 	<script type="text/javascript" src="../libs/jquery/jquery-1.11.3.min.js"></script>
