@@ -95,6 +95,9 @@ background-image:url('../icons/cog.png') !important;
 .menu_icon_imposto {
     background-image: url(../icons/coins.png) !important;
 }
+.menu_icon_logsistema{
+    background-image: url(../icons/script.png) !important;
+}
 /** Fim icones do MENU **/
 
 /*-- Tela de Boas Vindas - Autor: Adelson --*/
@@ -151,6 +154,10 @@ background-image:url('../icons/cog.png') !important;
  .menu_users{
  	background-image: url('../images/group_edit.png'); !important;
  }
+ .menu_users{
+    background-image: url('../images/group_edit.png'); !important;
+ }
+ 
 
 /*-- Cabeçalho --*/
  #titleHeader{
@@ -162,7 +169,11 @@ background-image:url('../icons/cog.png') !important;
  
  /*-- --*/
  .imagem_logo{
- 	background-image: url('../images/nuviologoeditado.png'); !important;
+ 	background: url(../images/logocabecalho.png);
+	width: 168px;
+	height: 45px;
+	color:#900;
+	margin-top: -1;
  }
  
  /*-- Seleção Empresa --*/
