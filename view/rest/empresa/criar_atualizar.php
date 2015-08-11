@@ -48,6 +48,9 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'libs/wideimage/WideImag
 			}
 			$object->setImagemLogotipo($fileName);
 		}
+		else {
+			$object->setImagemLogotipo("empresa_padrao.png");
+		}
 		
 		
 	}
