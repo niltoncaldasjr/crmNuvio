@@ -5,18 +5,22 @@ Ext.define('crm.controller.Empresa', {
 
     models: ['Empresa'],
 
-    views: ['empresa.EmpresaForm', 'empresa.EmpresaGrid'],
+    views: ['empresa.EmpresaTab', 'empresa.EmpresaGrid', 'empresa.EmpresaPanel', 'crm.view.empresa.EmpresaFormulario'],
 
     refs: [{
         ref: 'empresaGrid',
         selector: 'empresagrid'
+    },
+    {
+        ref: 'imagemEmpresa',
+        selector: 'empresaformulario image'
     }
     ],
 
     init: function() {
         this.control({
             'empresagrid dataview': {
-                itemdblclick: this.onEditaEmpresa
+            	itemclick: this.onEditaEmpresa
             },
             'empresagrid button#addEmpresa': {
             	click: this.onAddEmpresaClick
@@ -24,63 +28,48 @@ Ext.define('crm.controller.Empresa', {
             'empresagrid button#deleteEmpresa': {
                 click: this.onDeleteEmpresaClick
             },
-            'empresaform button#salvaempresa': {
+            'empresaformulario button#salvaempresa': {
                 click: this.onSaveEmpresaClick
             },
-            'empresaform button#cancelaempresa': {
+            "empresaformulario filefield": {		// SALVAR DA TELA DE PROFILE
+				change: this.onFilefieldChange
+			},
+            'empresaformulario button#cancelaempresa': {
                 click: this.onCancelEmpresaClick
             }
         });
     },
 
     onEditaEmpresa: function(grid, record) {
-        var edit = Ext.create('crm.view.empresa.EmpresaForm').show();        
+    	var edit = Ext.ComponentQuery.query('empresatab')[0].expand(true);
+    	Ext.ComponentQuery.query('empresaformulario')[0];        
         if(record){
         	edit.down('form').loadRecord(record);
-//        	if (record.get('imagemLogotipo')) { // #4
-//				var img = editWindow.down('filefield');
-//				img.setSrc('resources/profileImages/' + record[0].get('picture'));
-//			}
+        	if (record.get('imagemLogotipo')) { // #4
+				var img = edit.down('form').down('image');
+				img.setSrc('../libs/uploads/' + record.get('imagemLogotipo'));
+			}
         }
     },
     onCancelEmpresaClick: function(btn, e, eOpts){
-    	var win = btn.up('window');
-    	var form = win.down('form');
-    	form.getForm().reset();
-    	win.close();
+    	var panel = btn.up('panel').up('panel'),
+    		form = btn.up('form');  
+	    form.getForm().reset();
+	    panel.collapse( false );
     },
-    onAddEmpresaClick: function(btn, e, eOpts){
-    	Ext.create('crm.view.empresa.EmpresaForm').show();
-    }, 
-
     
-//    onSaveEmpresaClick: function(btn, e, eOpts){
-//    	var win = btn.up('window'),
-//    		form = win.down('form'),
-//    		values = form.getValues(),
-//    		record = form.getRecord(),
-//    		grid = Ext.ComponentQuery.query('empresagrid')[0],
-//    		store = grid.getStore();
-//    	
-//    	if (values.id > 0){
-//			record.set(values);
-//    		
-//    	} else{   // se for um novo
-//    		record = Ext.create('crm.model.Empresa');
-//    		record.set(values);
-//    		store.add(record);
-//    	}
-//    	win.close();
-//        store.sync();
-//    	store.load();
-//  },
+    onAddEmpresaClick: function(btn, e, eOpts){
+    	Ext.ComponentQuery.query('empresatab')[0].expand(true);
+    	Ext.create('crm.view.empresa.EmpresaFormulario').show();
+    },     
     
    onSaveEmpresaClick: function(btn, e, eOpts){
-	var win = btn.up('window'),
-	form = win.down('form'),
-	grid = Ext.ComponentQuery.query('empresagrid')[0],
-	store = grid.getStore();
-
+	   console.log('Clicou Save!!');
+	   var panel = btn.up('panel').up('panel'),
+		   form = panel.down('form'),
+		   grid = Ext.ComponentQuery.query('empresagrid')[0],
+		   store = grid.getStore();
+	   
 	if(form.isValid()){
 		form.submit({
 			url: 'rest/empresa/criar_atualizar.php',//			
@@ -89,7 +78,8 @@ Ext.define('crm.controller.Empresa', {
 				var result = o.result; 
 				if (result.success) {
 					store.load();
-					win.close();
+					form.getForm().reset();
+					panel.collapse( false );
 				}
 			},
 			failure: function(form, action) {
@@ -124,6 +114,21 @@ Ext.define('crm.controller.Empresa', {
 				return false;
 			}
 		});  	
-  }  
+  },
+  
+  onFilefieldChange: function(filefield, value, options){
+	  var file = filefield.fileInputEl.dom.files[0];
+      var picture = this.getImagemEmpresa();
+      if (typeof FileReader !== "undefined" && (/image/i).test(file.type)) {
+          var reader = new FileReader();
+          reader.onload = function(e){
+              picture.setSrc(e.target.result);
+          };
+          reader.readAsDataURL(file); 
+      } else if (!(/image/i).test(file.type)){
+          Ext.Msg.alert('Alerta', 'Você só pode enviar imagens!');
+          filefield.reset();
+      }  
+  }
   
 });

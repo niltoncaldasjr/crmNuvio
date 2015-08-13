@@ -10,7 +10,8 @@
 
 Ext.define('crm.view.empresa.EmpresaForm',{
 	
-	extend: 'Ext.window.Window',
+//	extend: 'Ext.window.Window',
+	extend:	'Ext.panel.Panel',
 	alias: 'widget.empresaform',
 
 	height: 560,
@@ -24,6 +25,7 @@ Ext.define('crm.view.empresa.EmpresaForm',{
 		{
 			xtype: 'form',
 			hasUpload: true,
+			autoScroll: true,
 			bodyPadding: 10,
 			defaults: {
 				anchor: '100%'
