@@ -171,7 +171,7 @@ class LogSistemaDAO{
 		}
 	
 		return $total;
-	}
+	}                   
 			
 }
 ?>

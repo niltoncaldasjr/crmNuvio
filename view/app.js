@@ -39,7 +39,8 @@ Ext.application({
                   'ContatoLead',
                   'Temas',
                   'SelecaoEmpresa',
-                  'LogSistema'
+                  'LogSistema',
+                  'EmpresaUsuario'
     ],
     
     

@@ -24,10 +24,19 @@ class EmpresaUsuarioControl{
 	function deletar(){
 		return $this->objEmpresaUsuarioDAO->deletar($this->objEmpresaUsuario);
 	}
+	function deletarPorEmpresaUsuario(){
+		return $this->objEmpresaUsuarioDAO->deletarPorEmpresaUsuario($this->objEmpresaUsuario);
+	}
 	function buscarPorId(){
 		return $this->objEmpresaUsuarioDAO->buscarPorId($this->objEmpresaUsuario);
 	}
 	function listarTodos(){
 		return $this->objEmpresaUsuarioDAO->listarTodos($this->objEmpresaUsuario);
 	}	
+	function listarPaginado($start, $limit){
+		return $this->objEmpresaUsuarioDAO->listarPaginado($start, $limit);
+	}
+	function qtdTotal(){
+		return $this->objEmpresaUsuarioDAO->qtdTotal();
+	}
 }

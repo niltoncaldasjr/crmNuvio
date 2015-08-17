@@ -157,7 +157,20 @@ background-image:url('../icons/cog.png') !important;
  .menu_users{
     background-image: url('../images/group_edit.png'); !important;
  }
- 
+
+/*-- Posições do Form no Panel --*/
+.view{
+    background-image: url('../icons/application_view_tile.png'); !important;
+}
+.hide{
+    background-image: url('../icons/preview-hide.gif'); !important;
+}
+.bottom{
+    background-image: url('../icons/preview-bottom.gif'); !important;
+}
+.right{
+    background-image: url('../icons/preview-right.gif'); !important;
+} 
 
 /*-- Cabeçalho --*/
  #titleHeader{

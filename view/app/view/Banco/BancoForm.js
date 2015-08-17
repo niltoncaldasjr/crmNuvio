@@ -16,9 +16,10 @@ Ext.define('crm.view.banco.BancoForm',{
 	//minHeight: 150,
 	width: 		450,
 	layout: 	'fit',
-	iconCls: 	'icon-user',
-	title: 		'Editar/Criar Banco',
+	// iconCls: 	'icon-user',
+	// title: 		'Editar/Criar Banco',
 	autoShow: 	true,
+	// flex: 1,
 	
 	items: [
 	    {

@@ -7,6 +7,8 @@ class LogSistema implements JsonSerializable{
 	private $nivel;
 	private $datacadastro;
 	private $objUsuario;
+	private $acao;
+	private $class;
 	
 	/*-- Construtor --*/
 	public function __construct
@@ -15,7 +17,9 @@ class LogSistema implements JsonSerializable{
 		$ocorrencia 		= 	NULL,
 		$nivel 				= 	NULL,
 		$datacadastro 		=	NULL,
-		Usuario $objUsuario = 	NULL
+		Usuario $objUsuario = 	NULL,
+		$acao 				=	NULL,
+		$class 				=	NULL
 	)
 	{
 		$this->id = $id;
@@ -23,6 +27,8 @@ class LogSistema implements JsonSerializable{
 		$this->nivel = $nivel;
 		$this-> datacadastro = $datacadastro;
 		$this->objUsuario = $objUsuario;
+		$this->acao = $acao;
+		$this->class = $class;
 	}
 	
 	/*-- Getters Setters --*/
@@ -61,12 +67,26 @@ class LogSistema implements JsonSerializable{
 		$this->objUsuario = $objUsuario;
 		return $this;
 	}
+	public function getAcao() {
+		return $this->objUsuario;
+	}
+	public function setAcao($acao) {
+		$this->objUsuario = $acao;
+		return $this;
+	}
+	public function getClass() {
+		return $this->objUsuario;
+	}
+	public function setClass($class) {
+		$this->objUsuario = $class;
+		return $this;
+	}
 	
 	/*-- ToString --*/
 	public function __toString()
 	{
-		return sprintf("LogSistema: [ ID: %d, Ocorrencia: %s, Nivel: %s, DataCadastro: %s, Usuario: %s ]",
-				$this->id, $this->ocorrencia, $this->nivel, $this->datacadastro, $this->objUsuario->getNome() );
+		return sprintf("LogSistema: [ ID: %d, Ocorrencia: %s, Nivel: %s, DataCadastro: %s, Usuario: %s, Acao: %s, Class: %s ]",
+				$this->id, $this->ocorrencia, $this->nivel, $this->datacadastro, $this->objUsuario->getNome(), $this->acao, $this->class );
 	}
 	
 	/*-- Json --*/

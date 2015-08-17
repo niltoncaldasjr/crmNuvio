@@ -7,7 +7,7 @@ Ext.define('crm.store.SelecaoEmpresa',{
 	
 	model: 'crm.model.selecaoempresa.SelecaoEmpresa',
 	
-	autoLoad: true,
+//	autoLoad: true,
 	
 	proxy: {
 		type: 'ajax',

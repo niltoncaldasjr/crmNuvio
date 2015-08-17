@@ -49,6 +49,17 @@ class EmpresaUsuarioDAO{
 		}
 		return $objEmpresaUsuario;
 	}
+
+	/*-- Deletar Por Usuario --*/
+	function deletarPorEmpresaUsuario(EmpresaUsuario $objEmpresaUsuario){
+		$this->sql = sprintf("DELETE FROM empresausuario WHERE idempresa = %d AND idusuario = %d",
+				mysqli_real_escape_string( $this->con, $objEmpresaUsuario->getObjEmpresa()->getId() ),
+				mysqli_real_escape_string( $this->con, $objEmpresaUsuario->getObjUsuario()->getId() ));
+		if(!mysqli_query($this->con, $this->sql)){
+			die('[ERRO]: '.mysqli_error($this->con));
+		}
+		return $objEmpresaUsuario;
+	}
 	
 	/*-- Buscar por ID --*/
 	function buscarPorId(EmpresaUsuario $objEmpresaUsuario){
@@ -102,6 +113,38 @@ class EmpresaUsuarioDAO{
 		return $this->listaEmpresaUsuario;
 	}
 	
+	/*-- listaRotinar paginado --*/
+	function listarPaginado($start, $limit) {
+		$this->sql = "SELECT * FROM empresausuario limit " . $start . ", " . $limit;
+		$result = mysqli_query ( $this->con, $this->sql );
+		if (! $result) {
+			die ( '[ERRO]: ' . mysqli_error ( $this->con ) );
+		}
+	
+		$lista = array();
+	
+		while ( $row = mysqli_fetch_assoc ( $result ) ) {
+			$lista[]=$row;
+		}
+		//teste
+		return $lista;
+	}
+	
+	/*-- Quantidade Total --*/
+	function qtdTotal() {
+		$this->sql = "SELECT count(*) as quantidade FROM empresausuario";
+		$result = mysqli_query ( $this->con, $this->sql );
+		if (! $result) {
+			die ( '[ERRO]: ' . mysqli_error ( $this->con ) );
+		}
+		$total = 0;
+		while ( $row = mysqli_fetch_object ( $result ) ) {
+			$total = $row->quantidade;
+		}
+	
+		return $total;
+	}
+		
 		
 	}
 	?>
