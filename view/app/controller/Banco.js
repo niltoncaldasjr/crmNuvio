@@ -29,7 +29,7 @@ Ext.define('crm.controller.Banco',{
 			'bancogrid button#deleteBanco': {
 				click: this.deleteBanco
 			},
-			'menu#posform menuitem': {
+			'menu#posformbanco menuitem': {
 				click: this.posicaoForm
 			},
 			'bancoform button#salvaBanco': {
@@ -74,8 +74,6 @@ Ext.define('crm.controller.Banco',{
     },
 
 	novoBanco: function(){
-		// var edit = Ext.create('crm.view.banco.BancoForm').show();
-		
 		var oeste 	= Ext.ComponentQuery.query('bancopanel panel#oeste')[0];
         var sul		= Ext.ComponentQuery.query('bancopanel panel#sul')[0];
 

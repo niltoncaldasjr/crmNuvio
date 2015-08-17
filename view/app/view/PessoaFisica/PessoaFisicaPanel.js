@@ -20,20 +20,31 @@ Ext.define('crm.view.pessoafisica.PessoaFisicaPanel',{
         flex: 1                                       // Use 1/3 of Container's height (hint to Box layout)
     }, 
     {
-    	xtype: 'pessoafisicatabpanel',
+    	xtype: 'panel',
 	    region: 'south',
+	    itemId: 'sul',
 	    collapsible: true,
 	    collapsed: true,
 	    title: 'Formulários',
 	    iconCls: 'icon_form_pessoafisica',
-	    //collapseDirection: 'bottom', 
-	    //collapseMode: 'header',
 	    split: true,
-	    // columns: [{header: 'Column One'}],            // One header just for show. There's no data,
-	    // store: Ext.create('Ext.data.ArrayStore', {}), // A dummy empty data store
-	    flex: 3,      // Use 2/3 of Container's height (hint to Box layout)
+	    flex: 2,
+	    autoScroll: true,
+	    hidden: true
 	       
-    	
+    },
+    {
+    	xtype: 'panel',
+    	itemId: 'oeste',
+	    region: 'east',
+	    collapsible: true,
+	    collapsed: true,
+	    title: 'Formulários',
+	    iconCls: 'icon_form_pessoafisica',
+	    split: true,
+	    flex: 2,
+	    autoScroll: true,
+	    items: [{ xtype:'pessoafisicatabpanel'}]
     }]
         
     

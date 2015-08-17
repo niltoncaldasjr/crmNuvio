@@ -50,6 +50,16 @@ Ext.define('crm.view.MyViewport',{
 			height: 30,
 			style: 'border-top: 1px solid #4c72a4;',
 			html: '<div id="titleHeader"><center><span style="font-size:10px;">CRM - NUVIO - http://www.nuvio.com</span></center></div>'
+		},
+		{
+			xtype: 'panel',
+			region: 'east',
+			width: 180,
+			collapsible: true,
+			collapsed: true,
+			split: true,
+			title: 'DashBoard',
+			iconCls: 'view'
 		}
 	]
 });

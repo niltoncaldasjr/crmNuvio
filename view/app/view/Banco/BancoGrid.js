@@ -45,7 +45,7 @@ Ext.define('crm.view.banco.BancoGrid',{
 	    	   		text: 'À Direita',
 	    	   		menu: {
 		    			xtype: 'menu',
-		    			itemId: 'posform',
+		    			itemId: 'posformbanco',
 		    			// width: 120,
 		    			items: [
 		    				{

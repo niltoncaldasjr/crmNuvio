@@ -46,7 +46,37 @@ Ext.define('crm.view.pessoafisica.PessoaFisicaGrid',{
 	    		   text: 'Excluir',
 	    		   itemId: 'deletePessoaFisica',
 	    		   iconCls: 'icon-delete'
-	    	   }
+	    	   },
+	    	   {
+	   	   		xtype: 'button',
+	   	   		iconCls: 'right',
+	   	   		text: 'À Direita',
+	   	   		menu: {
+	       			xtype: 'menu',
+	       			itemId: 'posformpessoafisica',
+	       			// width: 120,
+	       			items: [
+	       				{
+	       					xtype: 'menuitem',
+	       					itemId: 'hide',
+	       					iconCls: 'hide',
+	       					text: 'Formulário Oculto'
+	       				},
+	       				{
+	       					xtype: 'menuitem',
+	       					itemId: 'bottom',
+	       					iconCls: 'bottom',
+	       					text: 'Formulário  Abaixo'
+	       				},
+	       				{
+	       					xtype: 'menuitem',
+	       					itemId: 'right',
+	       					iconCls: 'right',
+	       					text: 'Formulário À Direita'
+	       				}
+	       			]
+	       		}
+	   	   }
 	    	]
 	    },
 	    {
@@ -56,5 +86,6 @@ Ext.define('crm.view.pessoafisica.PessoaFisicaGrid',{
 	    	displayInfo: true,
 	    	empyMsg: 'Nenhum dado encontrado'
 	    }
+	    
 	]
 });
