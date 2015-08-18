@@ -12,8 +12,12 @@ Ext.define('crm.model.LogSistema', {
 	
 	fields: [
 	    {name: 'id', 				type: 'int'},
-	    {name: 'ocorrencia', 		type: 'string'},
 	    {name: 'nivel', 			type: 'string'},
+	    {name: 'acao', 				type: 'string'},
+	    {name: 'class', 			type: 'string'},
+	    {name: 'idregistro', 		type: 'int'},
+	    {name: 'antes',				type: 'string'},
+	    {name: 'depois', 			type: 'string'},
 	    {name: 'idusuario', 		type: 'int'},
 	    {name: 'datacadastro', 		type: 'date', dateFormat: 'c'},
 	]

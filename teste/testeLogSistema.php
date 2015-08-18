@@ -21,7 +21,6 @@ $listaLogSistema = $objLogSistemaControl->listarTodos();
 <body>
 	<h1>Cadastrando LogSistema</h1>
 	<form action="" method="post">
-		Ocorrencia: <input type="text" name="ocorrencia"/>
 		Nivel: 
 		<select id='nivel' name='nivel'>
 			<option value='0'>Selecione o Nivel</option>
@@ -29,6 +28,20 @@ $listaLogSistema = $objLogSistemaControl->listarTodos();
 			<option value='MODERADO'>MODERADO</option>
 			<option value='CRITICO'>CRITICO</option>
 		</select>
+		Ação: 
+		<select id='acao' name='acao'>
+			<option value='0'>Selecione o Ação</option>
+			<option value='INCLUIR'>INCLUIR</option>
+			<option value='ALTERAR'>ALTERAR</option>
+			<option value='EXCLUIR'>EXCLUIR</option>
+			<option value='ESTORNAR'>ESTORNAR</option>
+			<option value='ROWBACK'>ROWBACK</option>
+			<option value='OUTRO'>OUTRO</option>
+		</select>
+		Class: <input type='text' name='class' id='class' value='teste'>
+		ID Registro: <input type='text' name='idregistro' name='idregistro' value='1'>
+		Antes: <input type='text' id='antes' name='antes' value='json'>
+		Depois: <input type='text' id='depois' name='depois' value='json'>
 		Usuario:
 		<select id='Usuario' name='Usuario'>
 			<option value='0'>Selecione o Usuario</option>
@@ -54,7 +67,7 @@ $listaLogSistema = $objLogSistemaControl->listarTodos();
 			foreach ($listaLogSistema as $LogSistema)
 			{
 				?>
-				<option value='<?php echo $LogSistema->getId() ?>'>Conta: <?php echo $LogSistema->getOcorrencia() ?></option>
+				<option value='<?php echo $LogSistema->getId() ?>'>Class: <?php echo $LogSistema->getClass() ?></option>
 				<?php
 			}
 			?>
@@ -71,7 +84,7 @@ $listaLogSistema = $objLogSistemaControl->listarTodos();
 			foreach ($listaLogSistema as $LogSistema)
 			{
 				?>
-				<option value='<?php echo $LogSistema->getId() ?>'>Conta: <?php echo $LogSistema->getOcorrencia() ?></option>
+				<option value='<?php echo $LogSistema->getId() ?>'>Class: <?php echo $LogSistema->getClass() ?></option>
 				<?php
 			}
 			?>
@@ -108,7 +121,7 @@ $listaLogSistema = $objLogSistemaControl->listarTodos();
 			foreach ($listaLogSistema as $LogSistema)
 			{
 				?>
-				<option value='<?php echo $LogSistema->getId() ?>'>Conta: <?php echo $LogSistema->getOcorrencia() ?></option>
+				<option value='<?php echo $LogSistema->getId() ?>'>Class: <?php echo $LogSistema->getClass() ?></option>
 				<?php
 			}
 			?>
@@ -165,8 +178,12 @@ if(isset($_POST['cadastrar']))
 	try{
 		$objUsuario = new Usuario($_POST['Usuario']);
 		$objLogSistema = new LogSistema();
-		$objLogSistema->setocorrencia($_POST['ocorrencia']);
-		$objLogSistema->setnivel($_POST['nivel']);
+		$objLogSistema->setNivel($_POST['nivel']);
+		$objLogSistema->setAcao($_POST['acao']);
+		$objLogSistema->setClass($_POST['class']);
+		$objLogSistema->setIdregistro($_POST['idregistro']);
+		$objLogSistema->setAntes($_POST['antes']);
+		$objLogSistema->setDepois($_POST['depois']);
 		$objLogSistema->setObjUsuario($objUsuario);
 		
 		$objLogSistemaControl = new LogSistemaControl($objLogSistema);

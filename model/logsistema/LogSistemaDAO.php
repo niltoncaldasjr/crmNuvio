@@ -16,14 +16,18 @@ class LogSistemaDAO{
 	
 	/*-- Metodo Cadastrar --*/
 	function cadastrar(LogSistema $objLogSistema){
-		$this->sql = sprintf("INSERT INTO logsistema (ocorrencia, nivel, idusuario) 
-				VALUES('%s', '%s', %d)",
-				mysqli_real_escape_string( $this->con, $objLogSistema->getOcorrencia() ),
+		$this->sql = sprintf("INSERT INTO logsistema (nivel, acao, class, idregistro, antes, depois, idusuario) 
+				VALUES('%s', '%s', '%s', %d, '%s', '%s', %d)",
 				mysqli_real_escape_string( $this->con, $objLogSistema->getNivel() ),
+				mysqli_real_escape_string( $this->con, $objLogSistema->getAcao() ),
+				mysqli_real_escape_string( $this->con, $objLogSistema->getClass() ),
+				mysqli_real_escape_string( $this->con, $objLogSistema->getIdregistro() ),
+				mysqli_real_escape_string( $this->con, $objLogSistema->getAntes() ),
+				mysqli_real_escape_string( $this->con, $objLogSistema->getDepois() ),
 				mysqli_real_escape_string( $this->con, $objLogSistema->getObjUsuario()->getId() ) );
 				
 		if(!mysqli_query($this->con, $this->sql)){
-			die('[ERRO] Cadastro: '.mysqli_error($this->con));
+			die('[ERRO] Cadastro LogSistema: '.mysqli_error($this->con));
 		}
 		
 		/*-- Pegando ultimo obj cadastrado --*/
@@ -32,13 +36,17 @@ class LogSistemaDAO{
 	
 	/*-- Metodo Atualizar --*/
 	function atualizar(LogSistema $objLogSistema){
-		$this->sql = sprintf("UPDATE logsistema SET ocorrencia = '%s', nivel = '%s', idusuario = %d WHERE id = %d",
-				mysqli_real_escape_string( $this->con, $objLogSistema->getOcorrencia() ),
+		$this->sql = sprintf("UPDATE logsistema SET nivel = '%s', acao = '%s', class = '%s', idregistro = %d, antes = '%s', depois = '%s', idusuario = %d WHERE id = %d",
 				mysqli_real_escape_string( $this->con, $objLogSistema->getNivel() ),
+				mysqli_real_escape_string( $this->con, $objLogSistema->getAcao() ),
+				mysqli_real_escape_string( $this->con, $objLogSistema->getClass() ),
+				mysqli_real_escape_string( $this->con, $objLogSistema->getIdregistro() ),
+				mysqli_real_escape_string( $this->con, $objLogSistema->getAntes() ),
+				mysqli_real_escape_string( $this->con, $objLogSistema->getDepois() ),
 				mysqli_real_escape_string( $this->con, $objLogSistema->getObjUsuario()->getId() ),
 				mysqli_real_escape_string( $this->con, $objLogSistema->getId() ) );
 		if(!mysqli_query($this->con, $this->sql)){
-			die('[ERRO]: '.mysqli_error($this->con));
+			die('[ERRO]: Atualização LogSistema'.mysqli_error($this->con));
 		}
 		return $this->objLogSistema = $objLogSistema;
 	}
@@ -68,13 +76,13 @@ class LogSistemaDAO{
 			$objUsuarioControl = new UsuarioControl($objUsuario);
 			$objUsuario = $objUsuarioControl->buscarPorId();
 			
-			$this->objLogSistema = new LogSistema($row->id, $row->ocorrencia, $row->nivel, $row->datacadastro, $objUsuario); 
+			$this->objLogSistema = new LogSistema($row->id, $row->nivel, $row->acao, $row->class, $row->idregistro, $row->antes, $row->depois, $row->idusuario, $objUsuario); 
 		}
 		
 		return $this->objLogSistema;
 	}
 	
-	/*-- Listar por N�vel --*/
+	/*-- Listar por Nível --*/
 	function listarPorNivel(LogSistema $objLogSistema){
 		$this->sql = sprintf("SELECT * FROM logsistema WHERE nivel = '%s' ",
 				mysqli_real_escape_string( $this->con, $objLogSistema->getNivel() ) );
@@ -89,7 +97,7 @@ class LogSistemaDAO{
 			$objUsuarioControl = new UsuarioControl($objUsuario);
 			$objUsuario = $objUsuarioControl->buscarPorId();
 					
-			$this->objLogSistema = new LogSistema($row->id, $row->ocorrencia, $row->nivel, $row->datacadastro, $objUsuario); 
+			$this->objLogSistema = new LogSistema($row->id, $row->nivel, $row->acao, $row->class, $row->idregistro, $row->antes, $row->depois, $row->idusuario, $objUsuario); 
 				
 			array_push($this->listaLogSistema, $this->objLogSistema);
 		}
@@ -112,7 +120,7 @@ class LogSistemaDAO{
 			$objUsuarioControl = new UsuarioControl($objUsuario);
 			$objUsuario = $objUsuarioControl->buscarPorId();
 				
-			$this->objLogSistema = new LogSistema($row->id, $row->ocorrencia, $row->nivel, $row->datacadastro, $objUsuario); 
+			$this->objLogSistema = new LogSistema($row->id, $row->nivel, $row->acao, $row->class, $row->idregistro, $row->antes, $row->depois, $row->idusuario, $objUsuario); 
 				
 			array_push($this->listaLogSistema, $this->objLogSistema);
 		}
@@ -133,7 +141,7 @@ class LogSistemaDAO{
 			$objUsuarioControl = new UsuarioControl($objUsuario);
 			$objUsuario = $objUsuarioControl->buscarPorId();
 				
-			$this->objLogSistema = new LogSistema($row->id, $row->ocorrencia, $row->nivel, $row->datacadastro, $objUsuario); 
+			$this->objLogSistema = new LogSistema($row->id, $row->nivel, $row->acao, $row->class, $row->idregistro, $row->antes, $row->depois, $row->idusuario, $objUsuario); 
 				
 			array_push($this->listaLogSistema, $this->objLogSistema);
 		}

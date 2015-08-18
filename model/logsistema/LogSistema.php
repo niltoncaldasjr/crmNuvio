@@ -3,35 +3,40 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'model/usuario/Usuario.p
 class LogSistema implements JsonSerializable{
 	/*-- Atributos --*/
 	private $id;
-	private $ocorrencia;
 	private $nivel;
-	private $datacadastro;
-	private $objUsuario;
 	private $acao;
 	private $class;
+	private $idregistro;
+	private $antes;
+	private $depois;
+	private $datacadastro;
+	private $objUsuario;
 	
 	/*-- Construtor --*/
 	public function __construct
 	(
 		$id 				=	NULL,
-		$ocorrencia 		= 	NULL,
 		$nivel 				= 	NULL,
-		$datacadastro 		=	NULL,
-		Usuario $objUsuario = 	NULL,
 		$acao 				=	NULL,
-		$class 				=	NULL
+		$class 				=	NULL,
+		$idregistro			= 	NULL,
+		$antes				=	NULL,
+		$depois				=	NULL,
+		$datacadastro 		=	NULL,
+		Usuario $objUsuario = 	NULL
+		
 	)
 	{
-		$this->id = $id;
-		$this->ocorrencia = $ocorrencia;
-		$this->nivel = $nivel;
-		$this-> datacadastro = $datacadastro;
-		$this->objUsuario = $objUsuario;
-		$this->acao = $acao;
-		$this->class = $class;
+		$this->id 				= $id;
+		$this->nivel 			= $nivel;
+		$this->acao 			= $acao;
+		$this->class 			= $class;
+		$this->idregistro 		= $idregistro;
+		$this->antes 			= $antes;
+		$this->datacadastro 	= $datacadastro;
+		$this->objUsuario 		= $objUsuario;
 	}
 	
-	/*-- Getters Setters --*/
 	public function getId() {
 		return $this->id;
 	}
@@ -39,18 +44,46 @@ class LogSistema implements JsonSerializable{
 		$this->id = $id;
 		return $this;
 	}
-	public function getOcorrencia() {
-		return $this->ocorrencia;
-	}
-	public function setOcorrencia($ocorrencia) {
-		$this->ocorrencia = $ocorrencia;
-		return $this;
-	}
 	public function getNivel() {
 		return $this->nivel;
 	}
 	public function setNivel($nivel) {
 		$this->nivel = $nivel;
+		return $this;
+	}
+	public function getAcao() {
+		return $this->acao;
+	}
+	public function setAcao($acao) {
+		$this->acao = $acao;
+		return $this;
+	}
+	public function getClass() {
+		return $this->class;
+	}
+	public function setClass($class) {
+		$this->class = $class;
+		return $this;
+	}
+	public function getIdregistro() {
+		return $this->idregistro;
+	}
+	public function setIdregistro($idregistro) {
+		$this->idregistro = $idregistro;
+		return $this;
+	}
+	public function getAntes() {
+		return $this->antes;
+	}
+	public function setAntes($antes) {
+		$this->antes = $antes;
+		return $this;
+	}
+	public function getDepois() {
+		return $this->depois;
+	}
+	public function setDepois($depois) {
+		$this->depois = $depois;
 		return $this;
 	}
 	public function getDatacadastro() {
@@ -67,38 +100,29 @@ class LogSistema implements JsonSerializable{
 		$this->objUsuario = $objUsuario;
 		return $this;
 	}
-	public function getAcao() {
-		return $this->objUsuario;
-	}
-	public function setAcao($acao) {
-		$this->objUsuario = $acao;
-		return $this;
-	}
-	public function getClass() {
-		return $this->objUsuario;
-	}
-	public function setClass($class) {
-		$this->objUsuario = $class;
-		return $this;
-	}
 	
 	/*-- ToString --*/
 	public function __toString()
 	{
-		return sprintf("LogSistema: [ ID: %d, Ocorrencia: %s, Nivel: %s, DataCadastro: %s, Usuario: %s, Acao: %s, Class: %s ]",
-				$this->id, $this->ocorrencia, $this->nivel, $this->datacadastro, $this->objUsuario->getNome(), $this->acao, $this->class );
+		return sprintf("LogSistema: [ ID: %d, Nivel: %s, Ação: %s, Class: %s, IDRegistro: %d, Antes: %s, Depois: %s, DataCadastro: %s, Usuário: %s ]",
+				$this->id, $this->nivel, $this->acao, $this->class, $this->idregistro, $this->antes, $this->depois, $this->datacadastro, $this->objUsuario->getNome() );
 	}
 	
 	/*-- Json --*/
 	public function jsonSerialize() {
 		return [
 			'id' 			=> 	$this->id,
-			'ocorrencia' 	=> 	$this->ocorrencia,
 			'nivel' 		=> 	$this->datacadastro,
+			'acao'			=>  $this->acao,
+			'class'			=> 	$this->class,
+			'idregistro'	=> 	$this->idregistro,
+			'antes'			=>	$this->antes,
+			'depois'		=> 	$this->depois,
+			'datacadastro'	=>	$this->datacadastro,
 			'objUsuario' 	=> 	$this->objUsuario->jsonSerialize()
 		];
 	}
-
+	
 	
 }
 ?>

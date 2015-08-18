@@ -46,9 +46,9 @@ Ext.define('crm.view.pessoafisica.PessoaFisicaForm',{
 	extend:	'Ext.panel.Panel',
 	alias:	'widget.pessoafisicaform',
 	
-	height: 	400,
-	width: 		450,
-	layout: 	'fit',
+//	height: 	400,
+//	width: 		450,
+//	layout: 	'fit',
 	iconCls: 	'icon-user',
 	title: 		'Editar/Criar Pessoa Física',
 	autoShow: 	true,

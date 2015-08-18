@@ -15,20 +15,23 @@ Ext.define('crm.view.logsistema.LogSistemaGrid',{
 	store: 		'LogSistema',
 	
 	columns: [
-	    {text: 'ID',					dataIndex: 'id' 				},
-	    {text: 'Ocorrência',			dataIndex: 'ocorrencia' 		},
+	    {text: 'ID',					dataIndex: 'id' },
+	    {text: 'Menu', 					dataIndex: 'class'},
+	    {text: 'ID Registro', 			dataIndex: 'idregistro'},
 	    {text: 'Nível', 				dataIndex: 'nivel', 			
 		    filter: 
 		    { 
 		    	type: 'list',
-	            options: 
-	            [
-	            	'BASICO', 
-	            	'MODERADO', 
-	            	'CRITICO',
-	            ] 
+	            options: ['BÁSICO','MODERADO','CRÍTICO'] 
 	        } 
     	},
+    	{text: 'Ação', 					dataIndex: 'acao',
+	    	filter: 
+		    { 
+		    	type: 'list',
+	            options: ['INCLUIR','ALTERAR','EXCLUIR','ESTORNAR','ROWBACK','OUTRA'] 
+	        } 
+		},
 	    {text: 'Usuário', 				dataIndex: 'idusuario',			
 	    	renderer: function(value, metaData, record){
 				var Store = Ext.getStore('Usuario');
@@ -41,7 +44,7 @@ Ext.define('crm.view.logsistema.LogSistemaGrid',{
 		    }			
 		},
 	    {text: 'Data Cadastro', 		dataIndex: 'datacadastro', 		renderer : Ext.util.Format.dateRenderer('d/m/Y'),
-	    filter: 
+			filter: 
 		    { 
 		    	type: 'date'
 		    }	
