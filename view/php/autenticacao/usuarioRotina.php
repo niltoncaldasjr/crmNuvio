@@ -6,17 +6,15 @@ session_start();
 
 $mysqli = Conexao::getInstance()->getConexao();
 
-$username = $_SESSION['usuario']['usuario'];
+$iduser = $_SESSION['usuario']['idusuario'];
 
 
 //- PR-> 	usuariorotina
 //- U-> 	Usu�rio
 //- R-> 	Rotina
 
-$queryString = "SELECT pr.idrotina menuId FROM usuario u ";
-$queryString .= "INNER JOIN usuariorotina pr ON u.idperfil = pr.idusuario ";
-$queryString .= "INNER JOIN rotina r ON pr.idrotina = r.id ";
-$queryString .= "WHERE u.usuario = '$username' ";
+$queryString = "SELECT idrotina menuId FROM usuariorotina  ";
+$queryString .= "WHERE idusuario = '$iduser' ";
 
 
 $folder = array();
