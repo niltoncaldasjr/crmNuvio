@@ -18,9 +18,9 @@ Ext.define('crm.view.rotina.RotinaGrid',{
 	    {text: 'ID', 			dataIndex: 'id'},
 	    {text: 'Nome', 			dataIndex: 'nome'},
 	    {text: 'Descrição', 	dataIndex: 'descricao'},
-	    {text: 'Ordem', 		dataIndex: 'ordem'},
-	    {text: 'URL', 			dataIndex: 'url'},
-	    {text: 'Ativo', 		dataIndex: 'ativo'},
+	    {text: 'subrotina', 	dataIndex: 'subrotina'},
+	    {text: 'class', 		dataIndex: 'class'},
+	    {text: 'icon', 			dataIndex: 'icon'},
 	    {text: 'Data Cad.', 	dataIndex: 'datacadastro', 	renderer : Ext.util.Format.dateRenderer('d/m/Y')},
 	    {text: 'Data Edi.', 	dataIndex: 'dataedicao', 	renderer : Ext.util.Format.dateRenderer('d/m/Y')}
 	],

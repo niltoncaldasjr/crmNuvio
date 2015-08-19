@@ -14,9 +14,10 @@ Ext.define('crm.model.Rotina', {
 	    {name: 'id', 			type: 'int'},
 	    {name: 'nome', 			type: 'string'},
 	    {name: 'descricao', 	type: 'string'},
-	    {name: 'ordem', 		type: 'int'},
-	    {name: 'url', 			type: 'string'},
+	    {name: 'subrotina', 	type: 'int'},
+	    {name: 'class', 		type: 'string'},
 	    {name: 'ativo', 		type: 'int'},
+	    {name: 'icon', 			type: 'string'},
 	    {name: 'datacadastro', 	type: 'date', dateFormat: 'c'},
 	    {name: 'dataedicao', 	type: 'date', dateFormat: 'c'}
 	]

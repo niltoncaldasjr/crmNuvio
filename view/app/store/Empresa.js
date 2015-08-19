@@ -17,7 +17,7 @@ Ext.define('crm.store.Empresa',{
 	proxy: {
 		type: 'ajax',
 
-		url: 'rest/empresa/listar_deletar.php',	
+		url: 'php/empresa/listar_deletar.php',	
 		
 		reader: {
 			type: 'json',

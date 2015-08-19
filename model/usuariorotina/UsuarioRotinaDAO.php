@@ -61,6 +61,16 @@ class UsuarioRotinaDAO{
 		return $this->objUsuarioRotina = $objUsuarioRotina;
 	}
 	
+	function deletarPorUsuarioRotina(UsuarioRotina $objUsuarioRotina){
+		$this->sql = sprintf("DELETE FROM usuariorotina WHERE idrotina = %d AND idusuario = %d",
+				mysqli_real_escape_string( $this->con, $objUsuarioRotina->getObjRotina()->getId() ),
+				mysqli_real_escape_string( $this->con, $objUsuarioRotina->getObjUsuario()->getId() ));
+		if(!mysqli_query($this->con, $this->sql)){
+			die('[ERRO]: '.mysqli_error($this->con));
+		}
+		return $objUsuarioRotina;
+	}
+	
 	
 	/*-- Listar Todos --*/
 	function listarTodos(UsuarioRotina $objUsuarioRotina){

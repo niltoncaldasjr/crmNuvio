@@ -75,7 +75,7 @@ Ext.define('crm.controller.Empresa', {
 	   
 	if(form.isValid()){
 		form.submit({
-			url: 'rest/empresa/criar_atualizar.php',//			
+			url: 'php/empresa/criar_atualizar.php',//			
 			waitMsg: 'Enviando sua Logo...',
 			success: function(tp, o){
 				var result = o.result; 

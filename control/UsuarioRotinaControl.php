@@ -25,7 +25,10 @@ class UsuarioRotinaControl{
 		return $this->objUsuarioRotinaDAO->deletar($this->objUsuarioRotina);
 	}
 	function deletarRotinasDoUsuario(){
-		return $this->objUsuarioRotinaDAO->deletar($this->objUsuarioRotina);
+		return $this->objUsuarioRotinaDAO->deletarRotinasDoUsuario($this->objUsuarioRotina);
+	}
+	function deletarPorUsuarioRotina(){
+		return $this->objUsuarioRotinaDAO->deletarPorUsuarioRotina($this->objUsuarioRotina);
 	}
 	
 	function buscarPorId(){

@@ -50,10 +50,10 @@ Ext.define('crm.controller.Login', {
 		pass = crm.util.MD5.encode(pass);
 		
 		if (formPanel.getForm().isValid()) {
-			Ext.get(login.getEl()).mask("Authenticating... Please wait...",
+			Ext.get(login.getEl()).mask("Autenticando... Por Favor aguarde...",
 			'loading');
 			Ext.Ajax.request({
-				url: 'rest/login.php',
+				url: 'php/autenticacao/login.php',
 				params: {
 					user: user,
 					password: pass
@@ -118,7 +118,7 @@ Ext.define('crm.controller.Login', {
 	},
 	onButtonClickLogout: function(button, e, options) {
 		Ext.Ajax.request({
-			url: 'rest/logout.php',
+			url: 'php/autenticacao/logout.php',
 			success: function(conn, response, options, eOpts){
 				var result =
 				crm.util.Util.decodeJSON(conn.responseText);
