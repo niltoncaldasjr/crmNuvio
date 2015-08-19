@@ -1,9 +1,16 @@
 <?php
 session_start();
 require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'control/UsuarioControl.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'model/Usuario/Usuario.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'model/usuario/Usuario.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'model/perfil/Perfil.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'control/PerfilControl.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'model/rotina/Rotina.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'control/LogSistemaControl.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'model/logsistema/Logsistema.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'control/PerfilRotinaControl.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'model/perfilrotina/PerfilRotina.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'model/usuariorotina/UsuarioRotina.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'control/UsuarioRotinaControl.php';
 
 switch ($_SERVER['REQUEST_METHOD']) {
 	
@@ -61,6 +68,8 @@ function cadastraUsuario() {
 	$object->setObjPerfil(new Perfil($data->idperfil));
 	$object->setObjPessoafisica(new PessoaFisica($data->idpessoafisica));
 	
+	
+	
 	// INSERI O OBJETO NO CONTROL
 	// E CHAMA O METODO CADASTRAR
 	$controller = new UsuarioControl($object);
@@ -73,16 +82,30 @@ function cadastraUsuario() {
 	// encoda para formato JSON
 	echo json_encode(array(
 			"success" => 0,
-			"data" => $object
+			"data" => array('id' => $id)
 	));
 	
+	// pegar todos as permissoes pra esse idperfil
+	
+	$perfilrotina = new PerfilRotina(null,null,null,$object->getObjPerfil());
+	$perfilrotinaControl = new PerfilRotinaControl($perfilrotina);
+	$permissoes = $perfilrotinaControl->listarPorPerfil();
+	
+	
+	// copiar as permissoes para usuariorotina
+	foreach ($permissoes as $cada){
+		$objRotina = new Rotina($cada->idrotina);
+		$usuariorotina = new UsuarioRotina(null,null,$objRotina,$object);
+		$urControl = new UsuarioRotinaControl($usuariorotina);
+		$id_ur = $urControl->cadastrar();
+	}
+	
+	
+	
 	// REGISTA O LOG NO SISTEMA
-	$log = new LogSistema();
-	$log->setOcorrencia('Inclusão de registro na Classe Usuario.');
-	$log->setNivel('BASICO');
-	$log->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
-	$logController = new LogSistemaControl($log);
-	$logController->cadastrar();
+// 	$log = new LogSistema(null, null,'BASICO',null,$object,'Inclusão','Usuario');
+// 	$logController = new LogSistemaControl($log);
+// 	$logController->cadastrar();
 }
 
 function atualizaUsuario() {

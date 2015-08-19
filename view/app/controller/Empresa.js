@@ -22,6 +22,9 @@ Ext.define('crm.controller.Empresa', {
             'empresagrid dataview': {
             	itemclick: this.onEditaEmpresa
             },
+            'empresagrid': {
+            	select: this.onEditaEmpresa
+            },
             'empresagrid button#addEmpresa': {
             	click: this.onAddEmpresaClick
             },
