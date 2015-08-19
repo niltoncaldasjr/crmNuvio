@@ -10,7 +10,7 @@
 Ext.define('crm.view.logsistema.LogSistemaGrid',{
 	extend: 	'Ext.ux.LiveSearchGridPanel',
 	alias: 		'widget.logsistemagrid',
-	title: 		'Logs do Sistrma',
+	title: 		'Logs do Sistema',
 	iconCls: 	'icon-grid',
 	store: 		'LogSistema',
 	
@@ -74,24 +74,6 @@ Ext.define('crm.view.logsistema.LogSistemaGrid',{
     
 	
 	me.dockedItems = [
-	    // {
-	    // 	xtype: 'toolbar',
-	    // 	dock: 	'top',
-	    // 	items: [
-	    // 	   {
-	    // 		   xtype: 'button',
-	    // 		   text: 'Novo',
-	    // 		   itemId: 'addBanco',
-	    // 		   iconCls: 'icon-add'
-	    // 	   },
-	    // 	   {
-	    // 		   xtype: 'button',
-	    // 		   text: 'Excluir',
-	    // 		   itemId: 'deleteBanco',
-	    // 		   iconCls: 'icon-delete'
-	    // 	   }
-	    // 	]
-	    // },
 	    {
 	    	xtype: 	'pagingtoolbar',
 	    	store: 	'LogSistema',

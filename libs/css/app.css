@@ -270,3 +270,28 @@ background-image:url('../icons/cog.png') !important;
 #images img {
     margin: 20px;
 }
+
+/*-- CSS Log Sistema Detalhes --*/
+
+.patient-source {
+    cursor: pointer;
+}
+
+td.patient-label {
+    background-color: #ddd;
+    border: 1px solid #bbb;
+    font-weight: bold;
+    text-align: right;
+    width: 100px;
+    padding: 0px 3px 0px 0px;
+}
+
+.patient-view table {
+    border-collapse: separate;
+    border-spacing: 2px;
+}
+
+.patient-view td {
+    font-family: verdana,arial,sans-serif;
+    font-size: 12px;
+}

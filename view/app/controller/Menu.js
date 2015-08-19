@@ -30,7 +30,7 @@ Ext.define('crm.controller.Menu',{
 				render: this.onPanelRender
 			},
 			"mainmenuitem": {
-				select: this.onTreepanelSelect,
+//				select: this.onTreepanelSelect,
 				itemclick: this.onTreepanelItemClick
 			}
 		});
@@ -69,7 +69,7 @@ Ext.define('crm.controller.Menu',{
 
 	onTreepanelSelect: function(selModel, record, index, options){
 
-		console.log('Entramos aqui');
+//		console.log('Entramos aqui');
 		
 		var mainPanel = this.getMainPanel();
 

@@ -4,8 +4,7 @@ session_start();
 require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'control/BancoControl.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" .'model/banco/Banco.php';
 /*-- Log Sistema --*/
-require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" .'model/logsistema/LogSistema.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" .'control/LogSistemaControl.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" .'view/php/LogSistema/Cadastrar.php';
 
 switch ($_SERVER['REQUEST_METHOD']) {
 	
@@ -57,6 +56,7 @@ function listaBanco() {
 function cadastraBanco() {
 	
 	$jsonDados = $_POST['data'];
+
 	$data = json_decode( $jsonDados );
 		
 	$objBanco = new Banco();
@@ -68,20 +68,17 @@ function cadastraBanco() {
 	
 	$objBanco->setId($id);
 	
+	$jsonDepois = json_encode( $objBanco );
+	$jsonAntes = $jsonDepois;
+	
+	/*-- LogSistema      class -               ID -  NIVEL  -   AÇÃO  - ANTES - DEPOIS --*/
+	CadastraLogSistema( get_class($objBanco), $id, 'BASICO', 'INCLUIR', $jsonAntes, $jsonDepois);
 	
 	// encoda para formato JSON
 	echo json_encode(array(
 			"success" => 0,
 			"data" => $objBanco
 	));
-	
-	// Resginstando Log do Sistema
-	$objLogSistema = new LogSistema();
-	$objLogSistema->setOcorrencia( 'Inclusão de registro na Classe Banco' );
-	$objLogSistema->setNivel('BASICO');
-	$objLogSistema->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
-	$objLogSistemaController = new LogSistemaControl($objLogSistema);
-	$objLogSistemaController->cadastrar();
 	
 }
 
@@ -90,21 +87,21 @@ function atualizaBanco() {
 	parse_str(file_get_contents("php://input"), $post_vars);
 	$jsonDados = $post_vars['data'];
 	$data = json_decode( $jsonDados );
+
+	$jsonDepois = json_encode( $data );
 	
 	$datahora = date("Y-m-d H:i:s");
 	
 	$objBanco = new Banco($data->id, $data->nome, $data->codigoBancoCentral, NULL, $datahora );
 	
 	$objBancoControl = new BancoControl($objBanco);
+
+	$jsonAntes = json_encode( $objBancoControl->BuscarPorID() );
+
 	$objBancoControl->atualizar();
 	
-	// Resginstando Log do Sistema
-	$objLogSistema = new LogSistema();
-	$objLogSistema->setOcorrencia( 'Alteração de registro na Classe Banco' );
-	$objLogSistema->setNivel('MODERADO');
-	$objLogSistema->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
-	$objLogSistemaController = new LogSistemaControl($objLogSistema);
-	$objLogSistemaController->cadastrar();
+	/*-- LogSistema      class -               ID -  NIVEL  -   AÇÃO  - ANTES - DEPOIS --*/
+	CadastraLogSistema( get_class($objBanco), $data->id, 'MODERADO', 'ALTERAR', $jsonAntes, $jsonDepois);
 	
 }
 
@@ -113,6 +110,8 @@ function deletaBanco() {
 	parse_str(file_get_contents("php://input"), $post_vars);
 	$jsonDados = $post_vars['data'];
 	$data = json_decode(stripslashes($jsonDados));
+
+	$jsonDepois = json_encode( $data );
 		
 	$id = $data->id;
 	
@@ -120,15 +119,13 @@ function deletaBanco() {
 	$objBanco->setId($id);
 	
 	$objBancoControl = new BancoControl($objBanco);
+
+	$jsonAntes = json_encode( $objBancoControl->BuscarPorID() );
+
 	$objBancoControl->deletar();
 	
-	// Resginstando Log do Sistema
-	$objLogSistema = new LogSistema();
-	$objLogSistema->setOcorrencia( 'Exclusão de registro na Classe Banco: ID '.$id );
-	$objLogSistema->setNivel('CRITICO');
-	$objLogSistema->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
-	$objLogSistemaController = new LogSistemaControl($objLogSistema);
-	$objLogSistemaController->cadastrar();
+	/*-- LogSistema      class -               ID -  NIVEL  -   AÇÃO  - ANTES - DEPOIS --*/
+	CadastraLogSistema( get_class($objBanco), $id, 'CRITICO', 'EXCLUIR', $jsonAntes, $jsonDepois);
 	
 }
 
