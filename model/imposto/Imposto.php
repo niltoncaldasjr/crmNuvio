@@ -108,7 +108,7 @@ class Imposto implements JsonSerializable {
         
 
 		public function jsonSerialize() {
-				$impostos [] = [ 
+				return [ 
 						'id' => $this->id,
 						'titulo' => $this->titulo,
 						'aliquotaICMS' => $this->aliquotaICMS,
@@ -119,9 +119,7 @@ class Imposto implements JsonSerializable {
 						'aliquotaIRPJ' => $this->aliquotaIRPJ,
 						'datacadastro' => $this->datacadastro,
 						'dataedicao' => $this->dataedicao
-				];
-				$json = json_encode ( $impostos );
-				echo $json;
+				];				
 	}	
 
 }

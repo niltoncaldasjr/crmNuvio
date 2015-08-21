@@ -1,5 +1,6 @@
 <?php
 class Pais implements JsonSerializable {
+	
 	private $id;
 	private $descricao;
 	private $nacionalidade;
@@ -48,14 +49,12 @@ class Pais implements JsonSerializable {
 		return $this;
 	}
 	public function jsonSerialize() {
-		$pais [] = [ 
+		return [ 
 				'id' => $this->id,
 				'descricao' => $this->descricao,
 				'nacionalidade' => $this->nacionalidade,
 				'datacadastro' => $this->datacadastro,
 				'dataedicao' => $this->dataedicao
 		];
-		$json = json_encode ( $pais );
-		echo $json;
 	}
 }

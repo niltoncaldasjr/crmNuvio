@@ -5,6 +5,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'model/Empresa/Empresa.p
 require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'control/LogSistemaControl.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'model/logsistema/Logsistema.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'libs/wideimage/WideImage.php';
+/*-- Log Sistema --*/
+require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" .'view/php/LogSistema/Cadastrar.php';
 	
 	$object = new Empresa();
 	$id = ($_POST['id']);
@@ -64,13 +66,12 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'libs/wideimage/WideImag
 	 	$object->setId($id);
 // 	 	$lista = $object->jsonSerialize();
 	
-		// REGISTA O LOG NO SISTEMA
-		$log = new LogSistema();
-		$log->setOcorrencia('Inclusão de registro na Classe Empresa.');
-		$log->setNivel('BASICO');
-		$log->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
-		$logController = new LogSistemaControl($log);
-		$logController->cadastrar();
+			/**		INICIO LOGSISTEMA	**/
+		$jsonDepois = json_encode( $object );
+		$jsonAntes = $jsonDepois;
+		/*-- LogSistema      class -               ID -  NIVEL  -   AÇÃO  - ANTES - DEPOIS --*/
+		CadastraLogSistema( get_class($object), $id, 'BASICO', 'INCLUIR', $jsonAntes, $jsonDepois);
+		/**		FIM LOGSISTEMA	**/
 		header('Content-type: text/html');
 		// encoda para formato JSON
 		
@@ -80,16 +81,18 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'libs/wideimage/WideImag
 			$object->setImagemLogotipo($fileName) ;
 		}
 		$controller = new EmpresaControl($object);
+		//localica como era esse registro antes de atualizar
+		$empresaAntes = $controller->buscarPorId();
+		// agora sim atualiza
 		$controller->atualizar();
 // 		$lista = $object->jsonSerialize();
 		
-		// REGISTA O LOG NO SISTEMA
-		$log = new LogSistema();
-		$log->setOcorrencia('Alteração de registro na Classe Empresa.');
-		$log->setNivel('MODERADO');
-		$log->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
-		$logController = new LogSistemaControl($log);
-		$logController->cadastrar();
+			/**		INICIO LOGSISTEMA	**/	
+		$jsonDepois = json_encode( $object );
+		$jsonAntes = json_encode($empresaAntes);
+		/*-- LogSistema      class -               ID -  NIVEL  -   AÇÃO  - ANTES - DEPOIS --*/
+		CadastraLogSistema( get_class($object), $id, 'MODERADO', 'ALTERAR', $jsonAntes, $jsonDepois);
+		/**		FIM LOGSISTEMA	**/
 		header('Content-type: text/html');
 	}
 	

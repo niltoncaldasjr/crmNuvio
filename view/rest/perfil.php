@@ -4,6 +4,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'control/PerfilControl.p
 require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'model/perfil/Perfil.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'control/LogSistemaControl.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'model/logsistema/Logsistema.php';
+/*-- Log Sistema --*/
+require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" .'view/php/LogSistema/Cadastrar.php';
 
 switch ($_SERVER['REQUEST_METHOD']) {
 	
@@ -71,20 +73,19 @@ function cadastraPerfil() {
 	// RETORNA O id CADASTRADO PARA O OBJETO
 	$o_perfil->setId($id);
 	
+	/**		INICIO LOGSISTEMA	**/
+	$jsonDepois = json_encode( $o_perfil );
+	$jsonAntes = $jsonDepois;
+	// 	var_dump($jsonDepois);
+	/*-- LogSistema      class -               ID -  NIVEL  -   AÇÃO  - ANTES - DEPOIS --*/
+	CadastraLogSistema( get_class($o_perfil), $id, 'BASICO', 'INCLUIR', $jsonAntes, $jsonDepois);
+	
 	//var_dump($o_perfil);
 	// encoda para formato JSON
 	echo json_encode(array(
 			"success" => 0,
 			"data" => $o_perfil
 	));
-	
-	// REGISTA O LOG NO SISTEMA
-	$log = new LogSistema();
-	$log->setOcorrencia('Inclusão de registro na Classe Perfil.');
-	$log->setNivel('BASICO');
-	$log->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
-	$logController = new LogSistemaControl($log);
-	$logController->cadastrar();
 }
 
 function atualizaPerfil() {

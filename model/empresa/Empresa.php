@@ -176,8 +176,7 @@ class Empresa implements JsonSerializable {
 
                 	
 	public function jsonSerialize() {
-		
-		$empresa [] = [ 
+		return [ 
 				'id' => $this->id,
 				'nomeFantasia' => $this->nomeFantasia,
 				'razaoSocial' => $this->razaoSocial,
@@ -193,14 +192,9 @@ class Empresa implements JsonSerializable {
 				'imagemLogotipo' => $this->imagemLogotipo,
 				'datacadastro' => $this->datacadastro,  
 				'dataedicao' => $this->dataedicao,
-// 				'idlocalidade' => $this->getObjLocalidade()->getId(),
-// 				'idimposto' => $this->getObjImposto()->getId()
 				'idlocalidade' => $this->objLocalidade,
 				'idimposto' => $this->objImposto
 				
 		];
-		$json = json_encode($empresa);
-		//echo $json;
-		return $empresa;
 	}
 }

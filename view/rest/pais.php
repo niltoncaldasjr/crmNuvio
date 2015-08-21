@@ -1,6 +1,9 @@
 <?php
+session_start();
 require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'control/PaisControl.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'model/pais/Pais.php';
+/*-- Log Sistema --*/
+require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" .'view/php/LogSistema/Cadastrar.php';
 
 switch ($_SERVER['REQUEST_METHOD']) {
 	
@@ -48,14 +51,14 @@ function cadastraPais() {
 	$jsonDados = $_POST['data'];
 	$data = json_decode($jsonDados);
 	// Remover a mascara do CPF.
-	$datacadastro = date("Y-m-d H:i:s");
-	$dataedicao = date("Y-m-d H:i:s");
+// 	$datacadastro = date("Y-m-d H:i:s");
+// 	$dataedicao = date("Y-m-d H:i:s");
 	
 	$o_pais = new Pais();
 	$o_pais->setDescricao($data->descricao);
 	$o_pais->setNacionalidade($data->nacionalidade);
-	$o_pais->setDatacadastro($datacadastro);
-	$o_pais->setDataedicao($dataedicao);
+// 	$o_pais->setDatacadastro($datacadastro);
+// 	$o_pais->setDataedicao($dataedicao);
 	
 	$o_paisControl = new PaisControl($o_pais);
 	$id = $o_paisControl->cadastrar();
@@ -63,13 +66,13 @@ function cadastraPais() {
 	$o_pais->setId($id);
 	
 	
-	// REGISTA O LOG NO SISTEMA
-	$log = new LogSistema();
-	$log->setOcorrencia('Inclusão de registro na Classe País.');
-	$log->setNivel('BASICO');
-	$log->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
-	$logController = new LogSistemaControl($log);
-	$logController->cadastrar();
+	/**		INICIO LOGSISTEMA	**/
+	$jsonDepois = json_encode( $o_pais );
+	$jsonAntes = $jsonDepois;
+// 	var_dump($jsonDepois);
+	/*-- LogSistema      class -               ID -  NIVEL  -   AÇÃO  - ANTES - DEPOIS --*/
+	CadastraLogSistema( get_class($o_pais), $id, 'BASICO', 'INCLUIR', $jsonAntes, $jsonDepois);
+	/**		FIM LOGSISTEMA	**/
 		
 	// encoda para formato JSON
 	echo json_encode(array(

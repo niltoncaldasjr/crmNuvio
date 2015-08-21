@@ -9,11 +9,9 @@ class PaisDAO {
 		$this->con = $con;
 	}
 	function cadastrar(Pais $o_pais) {
-		$this->sql = sprintf ( "INSERT INTO pais (descricao, nacionalidade, datacadastro, dataedicao) VALUES ('%s', '%s', '%s', '%s')", 
+		$this->sql = sprintf ( "INSERT INTO pais (descricao, nacionalidade) VALUES ('%s', '%s')", 
 				mysqli_real_escape_string ( $this->con, $o_pais->getDescricao() ), 
-				mysqli_real_escape_string ( $this->con, $o_pais->getNacionalidade() ), 
-				mysqli_real_escape_string ( $this->con, $o_pais->getDatacadastro() ), 
-				mysqli_real_escape_string ( $this->con, $o_pais->getDataedicao() ) );
+				mysqli_real_escape_string ( $this->con, $o_pais->getNacionalidade() ) );
 		
 		if (! mysqli_query ( $this->con, $this->sql )) {
 			die ( 'Error: ' . mysqli_error ( $this->con ) );

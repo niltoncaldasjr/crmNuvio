@@ -16,15 +16,11 @@ Ext.define('crm.view.usuariorotina.RotinaListaGrid',{
 	    		var store = Ext.getStore('Rotina');
 				var rotina = store.findRecord('subrotina', value);
 				if(rotina.get('subrotina') != 0){
-					return rotina != null ? rotina.get('subrotina') : value;
-					
+					return rotina != null ? rotina.get('nome') : value;					
 				}
-				
-				
 	    	}
 	    }
-	],
-	
+	],	
 	viewConfig: {
         plugins: {
             ptype: 'gridviewdragdrop',

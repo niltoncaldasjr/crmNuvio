@@ -105,7 +105,7 @@ class Usuario implements JsonSerializable {
         }
          
 	public function jsonSerialize() {
-		$usuarios [] = [ 
+		return 	[ 
 				'id' => $this->id,
 				'nome' => $this->nome,
 				'usuario' => $this->usuario,
@@ -117,7 +117,5 @@ class Usuario implements JsonSerializable {
 				'perfil' => $this->objPerfil,
 				'PessoaFisica' => $this->objPessoafisica 
 		];
-		$json = json_encode ( $usuarios );
-		echo $json;
 	}
 }
