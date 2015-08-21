@@ -17,6 +17,16 @@ Ext.define('crm.view.logsistema.LogSistemaPanel',{
         
     }, 
     {
+    	xtype: 'panel',
+    	region: 'east',
+    	itemId: 'formLog',
+    	flex: 1,
+    	collapsible: true,
+    	collapsed: true,
+    	split: true,
+    	
+    },
+    {
         xtype: 'panel',
         region: 'south',
         itemId: 'sul',

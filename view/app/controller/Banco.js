@@ -11,7 +11,23 @@ Ext.define('crm.controller.Banco',{
     	{
 	        ref: 'bancoGrid',
 	        selector: 'bancogrid'
-    	}
+    	},
+    	{
+            ref: 'TabPanel',
+            selector: 'bancotabpanel'
+        },
+    	{
+            ref: 'Form',
+            selector: 'bancoform form'
+        },
+        {
+            ref: 'PanelOeste',
+            selector: 'bancopanel panel#oeste'
+        },
+        {
+            ref: 'PanelSul',
+            selector: 'bancopanel panel#sul'
+        }
     	
     ],
 	
@@ -43,39 +59,39 @@ Ext.define('crm.controller.Banco',{
 	
 	posicaoForm: function(item, e, options) {
 
-        var button = item.up('button');
+		 var button = item.up('button');
 
-        var oeste 	= Ext.ComponentQuery.query('bancopanel panel#oeste')[0];
-        var sul		= Ext.ComponentQuery.query('bancopanel panel#sul')[0];
-        var form 	= Ext.ComponentQuery.query('bancoform')[0];
-        
-        switch (item.itemId) {
-            case 'bottom':
-                oeste.hide();
-                sul.show();
-                sul.add(form);
-                button.setIconCls('bottom');
-                button.setText('Abaixo');
-                break;
-            case 'right':
-                sul.hide();
-                oeste.show();
-                oeste.add(form);
-                button.setIconCls('right');
-                button.setText('À Direita');
-                break;
-            default:
-                sul.hide();
-                oeste.hide();
-                button.setIconCls('hide');
-                button.setText('Oculto');
-                break;
-        }
+	        var oeste 	= this.getPanelOeste();
+	        var sul		= this.getPanelSul();
+	        var form 	= this.getTabPanel();
+	        
+	        switch (item.itemId) {
+	            case 'bottom':
+	                oeste.hide();
+	                sul.show();
+	                sul.add(form);
+	                button.setIconCls('bottom');
+	                button.setText('Abaixo');
+	                break;
+	            case 'right':
+	                sul.hide();
+	                oeste.show();
+	                oeste.add(form);
+	                button.setIconCls('right');
+	                button.setText('À Direita');
+	                break;
+	            default:
+	                sul.hide();
+	                oeste.hide();
+	                button.setIconCls('hide');
+	                button.setText('Oculto');
+	                break;
+	     }
     },
 
 	novoBanco: function(){
-		var oeste 	= Ext.ComponentQuery.query('bancopanel panel#oeste')[0];
-        var sul		= Ext.ComponentQuery.query('bancopanel panel#sul')[0];
+		var oeste 	= this.getPanelOeste();
+        var sul		= this.getPanelSul();
 
 		if( sul.isVisible() == true ){
 			sul.expand(true);
@@ -84,17 +100,15 @@ Ext.define('crm.controller.Banco',{
 		}else{
 			//
 		}
-		var edit = Ext.ComponentQuery.query('bancoform')[0];
-
-		edit.down('form').getForm().reset();
+		
+		this.getForm().reset();
 	},
 	
 	editarBanco: function(grid, record) {
-		// var edit = Ext.create('crm.view.banco.BancoForm').show();
-
-		var oeste 	= Ext.ComponentQuery.query('bancopanel panel#oeste')[0];
-        var sul		= Ext.ComponentQuery.query('bancopanel panel#sul')[0];
-
+		
+		var oeste 	= this.getPanelOeste();
+        var sul		= this.getPanelSul();
+		
 		if( sul.isVisible() == true ){
 			sul.expand(true);
 		}else if(oeste.isVisible() == true){
@@ -102,19 +116,18 @@ Ext.define('crm.controller.Banco',{
 		}else{
 			//
 		}
-
-		var edit = Ext.ComponentQuery.query('bancoform')[0];
-
+				
 		if(record){
-			edit.down('form').loadRecord(record);
+			this.getForm().loadRecord(record);
 		}
+		
 	},
 	
 	updateBanco: function(button){
-		// var win = button.up('window'),
-		var win = button.up('panel').up('panel');
-			form = win.down('panel').down('form'),
-			record = form.getRecord(),
+		var winoeste = this.getPanelOeste();
+		var winsul = this.getPanelSul();
+			form = this.getForm();
+			record = form.getRecord();
 			values = form.getValues();
 		
 		var novo = false;
@@ -129,8 +142,6 @@ Ext.define('crm.controller.Banco',{
 				this.getBancoStore().add(record);
 				novo = true;
 			}
-			console.log('botão salvar form');
-			//win.close();
 			this.getBancoStore().sync();
 			
 			/*-- Se o novo for true da reload na grid para atualizar a lista --*/
@@ -138,10 +149,18 @@ Ext.define('crm.controller.Banco',{
 				this.getBancoStore().load();
 			}
 			/*-- Limpa Form --*/
-			win.down('form').getForm().reset();
-			/*-- Minimiza Form --*/
-			win.collapse( false );
+			form.getForm().reset();
+			
+			/*-- Minimiza a Tab --*/
+			if(winoeste){
+				winoeste.collapse( false );
+			}else if(winsul){
+				winsul.collapse( false );
+			}else{
+				//nada
+			}
 		}
+		
 	},
 	
 	deleteBanco: function(btn, e, opts){
@@ -165,10 +184,21 @@ Ext.define('crm.controller.Banco',{
 	},
 	
 	cancelaBanco: function(button){
-		var win = button.up('panel').up('panel');
 		
-		win.down('form').getForm().reset();
-		win.collapse( false );
+		var winoeste = this.getPanelOeste();
+		var winsul = this.getPanelSul();
+		var form = this.getForm();
+		
+		form.getForm().reset();
+		
+		if(winoeste){
+			winoeste.collapse( false );
+		}else if(winsul){
+			winsul.collapse( false );
+		}else{
+			//nada
+		}
+		
 	}
 	
 });

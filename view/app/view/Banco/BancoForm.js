@@ -12,14 +12,14 @@ Ext.define('crm.view.banco.BancoForm',{
 	extend:	'Ext.panel.Panel',
 	alias:	'widget.bancoform',
 	
-	height: 	150,
+//	height: 	150,
 	//minHeight: 150,
-	width: 		450,
-	layout: 	'fit',
-	// iconCls: 	'icon-user',
-	// title: 		'Editar/Criar Banco',
+//	width: 		450,
+//	layout: 	'fit',
+	iconCls: 	'menu_icon_banco',
+	title: 		'Editar/Criar Banco',
 	autoShow: 	true,
-	// flex: 1,
+	flex: 1,
 	
 	items: [
 	    {

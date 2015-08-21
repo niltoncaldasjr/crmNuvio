@@ -1,13 +1,13 @@
-Ext.define('crm.view.pessoafisica.PessoaFisicaTabPanel',{
+Ext.define('crm.view.banco.BancoTabPanel',{
 	extend: 'Ext.tab.Panel',
-	alias: 'widget.pessoafisicatabpanel',
+	alias: 'widget.bancotabpanel',
 
-	requires: ['crm.view.pessoafisica.PessoaFisicaForm'],
+	requires: ['crm.view.banco.BancoForm'],
 	
 	activeTab: 0,
 
 	items: [{
-		xtype: 'pessoafisicaform',
+		xtype: 'bancoform',
 		closable: false,
 	},{
 		xtype: 'panel',

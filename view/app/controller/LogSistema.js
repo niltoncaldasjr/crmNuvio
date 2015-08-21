@@ -21,6 +21,10 @@ Ext.define('crm.controller.LogSistema',{
 	        selector: 'logsistemapanel panel#depois'
     	},
     	{
+	        ref: 'logForm',
+	        selector: 'logsistemapanel panel#formLog'
+    	},
+    	{
 	        ref: 'mainPanel',
 	        selector: 'mainpanel'
     	}
@@ -46,34 +50,30 @@ Ext.define('crm.controller.LogSistema',{
 		}else{
 			var mainPanel = this.getMainPanel();
 
-			var view = 'crm.view.'+records['class'].toLowerCase()+'.'+records['class']+'Panel';
+			var view = 'crm.view.'+records['class'].toLowerCase()+'.'+records['class']+'Form';
 			
-			//requires: [view];
+			requires: [view];
 			
-			var view = Ext.create(view);
+			view = Ext.create(view);
 			
-			console.log(view.items);
+			this.getLogForm().removeAll();
+			this.getLogForm().add(view);
 			
-//			var newTab = mainPanel.items.findBy(
-//				function(tab){
-//					return tab.title === 'text';
-//				});
-//			if(!newTab){
-//				newTab = mainPanel.add({
-//					xtype: record.raw.className, 
-//					closable: true,
-//					iconCls: record.get('iconCls'),
-//					title: record.get('text')
-//				});
-//			}
-//			mainPanel.setActiveTab(newTab);
-//		},
+			var store = Ext.getStore(records['class']);
+			
+			var model = store.findRecord( 'id', records['idregistro']);
+			
+			var form = view.down('form');
+			
+			form.loadRecord(model)
+			
 		}
 	},
 	
 	exibirDetalhes: function( linha, record, index, eOpts ){
 		var log = record.get('id');
-
+		
+		
 		/*-- Expandindo o Panel recolhido --*/
 		this.getLogPanel().expand(true);
 		
@@ -101,6 +101,7 @@ Ext.define('crm.controller.LogSistema',{
                 '<div class="patient-source"><table><tbody>';
         
 		Ext.Object.each( objDepois, function(key, value, myself){
+			if(Ext.isObject(value)){console.log("entramos aqui");}
 			descDepois += '<tr><td class="patient-label">'+key+'</td><td class="patient-name">'+value+'</td></tr>';
 		}),
 

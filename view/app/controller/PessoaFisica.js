@@ -7,10 +7,27 @@ Ext.define('crm.controller.PessoaFisica',{
 	
 	views: ['pessoafisica.PessoaFisicaPanel'],
 	
-    refs: [{
-        ref: 'PessoaFisicaGrid',
-        selector: 'gridPessoaFisica'
-    	}
+    refs: [
+        {
+        	ref: 'PessoaFisicaGrid',
+        	selector: 'gridPessoaFisica'
+    	},
+    	{
+            ref: 'TabPanel',
+            selector: 'pessoafisicatabpanel'
+        },
+    	{
+            ref: 'Form',
+            selector: 'pessoafisicaform form'
+        },
+        {
+            ref: 'PanelOeste',
+            selector: 'pessoafisicapanel panel#oeste'
+        },
+        {
+            ref: 'PanelSul',
+            selector: 'pessoafisicapanel panel#sul'
+        }
     ],
 	
 	init: function(){
@@ -44,9 +61,9 @@ Ext.define('crm.controller.PessoaFisica',{
 
         var button = item.up('button');
 
-        var oeste 	= Ext.ComponentQuery.query('pessoafisicapanel panel#oeste')[0];
-        var sul		= Ext.ComponentQuery.query('pessoafisicapanel panel#sul')[0];
-        var form 	= Ext.ComponentQuery.query('pessoafisicatabpanel')[0];
+        var oeste 	= this.getPanelOeste();
+        var sul		= this.getPanelSul();
+        var form 	= this.getTabPanel();
         
         switch (item.itemId) {
             case 'bottom':
@@ -73,8 +90,8 @@ Ext.define('crm.controller.PessoaFisica',{
     },
 	
 	novoPessoaFisica: function(){
-		var oeste 	= Ext.ComponentQuery.query('pessoafisicapanel panel#oeste')[0];
-        var sul		= Ext.ComponentQuery.query('pessoafisicapanel panel#sul')[0];
+		var oeste 	= this.getPanelOeste();
+        var sul		= this.getPanelSul();
 
 		if( sul.isVisible() == true ){
 			sul.expand(true);
@@ -83,14 +100,13 @@ Ext.define('crm.controller.PessoaFisica',{
 		}else{
 			//
 		}
-		var edit = Ext.ComponentQuery.query('pessoafisicaform')[0];
-
-		edit.down('form').getForm().reset();
+		
+		this.getForm().reset();
 	},
 	
 	editarPessoaFisica: function(grid, record) {
-		var oeste 	= Ext.ComponentQuery.query('pessoafisicapanel panel#oeste')[0];
-        var sul		= Ext.ComponentQuery.query('pessoafisicapanel panel#sul')[0];
+		var oeste 	= this.getPanelOeste();
+        var sul		= this.getPanelSul();
 		
 		if( sul.isVisible() == true ){
 			sul.expand(true);
@@ -99,46 +115,27 @@ Ext.define('crm.controller.PessoaFisica',{
 		}else{
 			//
 		}
-		
-		var edit = Ext.ComponentQuery.query('pessoafisicaform')[0];
 				
 		if(record){
-			edit.down('form').loadRecord(record);
+			this.getForm().loadRecord(record);
 		}
 	},
 	
 	updatePessoaFisica: function(button){
-		var win = button.up('panel').up('panel').up('panel'),
-			form = win.down('form'),
-			record = form.getRecord(),
+		var winoeste = this.getPanelOeste();
+		var winsul = this.getPanelSul();
+			form = this.getForm();
+			record = form.getRecord();
 			values = form.getValues();
 		
 		var novo = false;
 		
-		console.log(values['nome']);
-		
 		if( form.isValid() )
 		{
-//			var val = {
-//				id:				values['id'],
-//			    nome: 			values['nome'],
-//			    cpf: 			values['cpf'],
-//			    datanascimento:	new Date( values['datanascimento'] ),
-//			    estadocivil: 	values['estadocivil'],
-//			    sexo: 			values['sexo'],
-//			    nomepai: 		values['nomepai'],
-//			    nomemae: 		values['nomemae'],
-//			    cor: 			values['cor'],
-//			    naturalidade: 	values['naturalidade'],
-//			    nacionalidade: 	values['nacionalidade']
-//			};
-			
-//			console.log(val);
+
 			
 			if(values.id > 0){
 				record.set(values);
-				
-//				record.set('datanascimento', new Date(values.datanascimento) );
 			}else{
 				record = Ext.create('crm.model.PessoaFisica');
 				record.set(values);
@@ -146,8 +143,7 @@ Ext.define('crm.controller.PessoaFisica',{
 				this.getPessoaFisicaStore().add(record);
 				novo = true;
 			}
-			console.log(record.get('datanascimento'));
-			//win.close();
+			
 			this.getPessoaFisicaStore().sync();
 			
 			/*-- Se o novo for true da reload na grid para atualizar a lista --*/
@@ -155,9 +151,16 @@ Ext.define('crm.controller.PessoaFisica',{
 				this.getPessoaFisicaStore().load();
 			}
 			/*-- Limpa Form --*/
-			win.down('form').getForm().reset();
+			form.getForm().reset();
+			
 			/*-- Minimiza a Tab --*/
-			win.collapse( false );
+			if(winoeste){
+				winoeste.collapse( false );
+			}else if(winsul){
+				winsul.collapse( false );
+			}else{
+				//nada
+			}
 		}
 			
 	},
@@ -183,10 +186,21 @@ Ext.define('crm.controller.PessoaFisica',{
 	},
 	
 	cancelaPessoaFisica: function(button){
-		var win = button.up('panel').up('panel').up('panel');
+//		var win = button.up('panel').up('panel').up('panel');
+		var winoeste = this.getPanelOeste();
+		var winsul = this.getPanelSul();
+		var form = this.getForm();
 		
-		win.down('form').getForm().reset();
-		win.collapse( false );
+		form.getForm().reset();
+		
+		if(winoeste){
+			winoeste.collapse( false );
+		}else if(winsul){
+			winsul.collapse( false );
+		}else{
+			//nada
+		}
+		
 		
 	}
 	
