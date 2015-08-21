@@ -4,8 +4,8 @@ Ext.define('crm.view.pessoafisica.PessoaFisicaPanel',{
 
 	requires: ['crm.view.pessoafisica.PessoaFisicaTabPanel','crm.view.pessoafisica.PessoaFisicaGrid'],
 	
-	width: 600,
-    height: 400,
+//	width: 600,
+//    height: 400,
     layout: {
         type: 'border',       
         align: 'stretch',    
@@ -14,7 +14,7 @@ Ext.define('crm.view.pessoafisica.PessoaFisicaPanel',{
     items: [{               
         xtype: 'pessoafisicagrid',
         region: 'center',
-        flex: 2                                      
+        layout: 'fit',                                 
     }, 
     {
     	xtype: 'panel',
@@ -25,7 +25,7 @@ Ext.define('crm.view.pessoafisica.PessoaFisicaPanel',{
 	    title: 'Formulários',
 	    iconCls: 'icon_form_pessoafisica',
 	    split: true,
-	    flex: 2,
+	    flex: 1,
 	    autoScroll: true,
 	    hidden: true
 	       
@@ -39,7 +39,7 @@ Ext.define('crm.view.pessoafisica.PessoaFisicaPanel',{
 	    title: 'Formulários',
 	    iconCls: 'icon_form_pessoafisica',
 	    split: true,
-	    flex: 2,
+	    flex: 1,
 	    autoScroll: true,
 	    items: [{ xtype:'pessoafisicatabpanel'}]
     }]

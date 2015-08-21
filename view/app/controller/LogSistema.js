@@ -101,7 +101,7 @@ Ext.define('crm.controller.LogSistema',{
                 '<div class="patient-source"><table><tbody>';
         
 		Ext.Object.each( objDepois, function(key, value, myself){
-			if(Ext.isObject(value)){console.log("entramos aqui");}
+			
 			descDepois += '<tr><td class="patient-label">'+key+'</td><td class="patient-name">'+value+'</td></tr>';
 		}),
 
