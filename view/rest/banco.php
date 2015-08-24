@@ -71,10 +71,6 @@ function cadastraBanco() {
 	$jsonDepois = json_encode( $objBanco );
 	$jsonAntes = $jsonDepois;
 	
-	var_dump( json_encode( $objBanco ) );
-	
-	
-	
 	/*-- LogSistema      class -               ID -  NIVEL  -   AÇÃO  - ANTES - DEPOIS --*/
 	CadastraLogSistema( get_class($objBanco), $id, 'BASICO', 'INCLUIR', $jsonAntes, $jsonDepois);
 	

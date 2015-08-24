@@ -19,7 +19,7 @@ Ext.define('crm.view.contatolead.ContatoLeadForm',{
 	iconCls: 	'icon-user',
 	title: 		'Editar/Criar Contato Lead',
 	autoShow: 	true,
-	autoScroll: true,
+//	autoScroll: true,
 	
 	items: [
 	    {

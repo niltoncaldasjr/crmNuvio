@@ -5,7 +5,7 @@ Ext.define('crm.controller.LogSistema',{
 	
 	models: ['LogSistema'],
 	
-	views: ['logsistema.LogSistemaPanel' , 'MainPanel'],
+	views: ['logsistema.LogSistemaPanel'],
 	
     refs: [
 		{
@@ -23,10 +23,6 @@ Ext.define('crm.controller.LogSistema',{
     	{
 	        ref: 'logForm',
 	        selector: 'logsistemapanel panel#formLog'
-    	},
-    	{
-	        ref: 'mainPanel',
-	        selector: 'mainpanel'
     	}
     ],
 	
@@ -48,16 +44,16 @@ Ext.define('crm.controller.LogSistema',{
 		if(records['acao'] == 'EXCLUIR'){
 			
 		}else{
-			var mainPanel = this.getMainPanel();
-
 			var view = 'crm.view.'+records['class'].toLowerCase()+'.'+records['class']+'Form';
-			
-			requires: [view];
 			
 			view = Ext.create(view);
 			
-			this.getLogForm().removeAll();
-			this.getLogForm().add(view);
+			var logForm = this.getLogForm();
+			logForm.removeAll();
+			logForm.add(view);
+
+			logForm.show();
+			logForm.expand(true);
 			
 			var store = Ext.getStore(records['class']);
 			
@@ -65,8 +61,46 @@ Ext.define('crm.controller.LogSistema',{
 			
 			var form = view.down('form');
 			
-			form.loadRecord(model)
-			
+			var dock = view.down('toolbar');
+
+			form.loadRecord(model);
+
+			dock.removeAll();
+
+
+			dock.add({
+				xtype: 'button',
+				text: 'Cancelar',
+				iconCls: 'icon-reset',
+				handler: function(){
+					logForm.removeAll();
+					// logForm.update('<div>Selecione um Log</div>');
+					// logForm.collapse(false);
+					logForm.hide();
+					
+				},
+			},
+			{
+				xtype: 'button',
+				text: 'Salvar',
+				iconCls: 'icon-save',
+				handler: function(btn){
+					form.getRecord().set( form.getValues() );
+					store.sync();
+
+					logForm.removeAll();
+					// logForm.update('<div>Selecione um Log</div>');
+					// logForm.collapse(false);
+					logForm.hide();
+				}
+			});
+
+			// var btnSave = view.down('button#salva'+records['class']);
+			// var btnCancel = view.down('button#cancela'+records['class']);
+
+			// btnSave.setVisible(false);
+			// btnSave.btnCancel(false);
+
 		}
 	},
 	
@@ -88,9 +122,9 @@ Ext.define('crm.controller.LogSistema',{
         
 		Ext.Object.each( objAntes, function(key, value, myself){
 			if(Ext.isObject(value)){
-				Ext.each( key, function(val){
-					descAntes += '<tr><td class="patient-label">'+key+'</td><td class="patient-name">'+val+'</td></tr>';
-				});
+
+		    	descAntes += '<tr><td class="patient-label">'+key+'</td><td class="patient-name">'+value['id']+'</td></tr>';
+			
 			}else{
 				descAntes += '<tr><td class="patient-label">'+key+'</td><td class="patient-name">'+value+'</td></tr>';
 				
@@ -109,10 +143,11 @@ Ext.define('crm.controller.LogSistema',{
         
 		Ext.Object.each( objDepois, function(key, value, myself){
 			if(Ext.isObject(value)){
-				Ext.each( key, function(val){
-					descDepois += '<tr><td class="patient-label">'+key+'</td><td class="patient-name">'+val+'</td></tr>';
-				});
+				
+				descDepois += '<tr><td class="patient-label">'+key+'</td><td class="patient-name">'+value['id']+'</td></tr>';
+				
 			}else{
+
 				descDepois += '<tr><td class="patient-label">'+key+'</td><td class="patient-name">'+value+'</td></tr>';
 				
 			}

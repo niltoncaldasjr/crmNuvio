@@ -14,6 +14,7 @@ Ext.define('crm.view.logsistema.LogSistemaPanel',{
     items: [{              
         xtype: 'logsistemagrid',
         region: 'center',
+        layout: 'fit'
         
     }, 
     {
@@ -24,6 +25,8 @@ Ext.define('crm.view.logsistema.LogSistemaPanel',{
     	collapsible: true,
     	collapsed: true,
     	split: true,
+        autoScroll: true,
+        hidden: true
     	
     },
     {
@@ -34,16 +37,17 @@ Ext.define('crm.view.logsistema.LogSistemaPanel',{
         collapsed: true,
         split: true,
         autoScroll: true,
+        flex: 1,
+        iconCls: 'icon-user',
+        title: 'Detalhes do Log',
         layout: {
         	type: 'border',
         	padding: 0
         },
-        flex: 1,
-        iconCls: 'icon-user',
-        title: 'Detalhes do Log',
         items:[
            {
         	   xtype: 'panel',
+               autoScroll: true,
         	   region: 'center',
 //        	   collapsible: true,
         	   title: 'Anterior',
@@ -54,6 +58,7 @@ Ext.define('crm.view.logsistema.LogSistemaPanel',{
            },
            {
         	   xtype: 'panel',
+               autoScroll: true,
         	   title: 'Atual',
         	   region: 'east',
 //        	   collapsible: true,

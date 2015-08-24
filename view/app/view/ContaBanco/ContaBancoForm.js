@@ -13,13 +13,13 @@ Ext.define('crm.view.contabanco.ContaBancoForm',{
 	extend:	'Ext.panel.Panel',
 	alias:	'widget.contabancoform',
 	
-	height: 	350,
+	height: 	400,
 	width: 		450,
 	layout: 	'fit',
 	iconCls: 	'icon-user',
 	title: 		'Editar/Criar Conta Banco',
 	autoShow: 	true,
-	autoScroll: true,
+//	autoScroll: true,
 	
 	items: [
 	    {

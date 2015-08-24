@@ -16,7 +16,12 @@ Ext.define('crm.view.logsistema.LogSistemaGrid',{
 	
 	columns: [
 	    {text: 'ID',					dataIndex: 'id' },
-	    {text: 'Menu', 					dataIndex: 'class'},
+	    {text: 'Menu', 					dataIndex: 'class',
+	    	filter: 
+		    { 
+		    	type: 'string'
+	        } 
+    	},
 	    {text: 'ID Registro', 			dataIndex: 'idregistro'},
 	    {text: 'Nível', 				dataIndex: 'nivel', 			
 		    filter: 
@@ -37,6 +42,7 @@ Ext.define('crm.view.logsistema.LogSistemaGrid',{
 				var Store = Ext.getStore('Usuario');
 				var usuario = Store.findRecord('id', value);
 				return usuario != null ? usuario.get('nome') : value;
+
 		    },
 		    filter: 
 		    { 

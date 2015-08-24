@@ -38,6 +38,7 @@ Ext.define('crm.controller.Banco',{
 			// },
 			'bancogrid':  {
 				select: this.editarBanco,
+				itemdblclick: this.editarBanco
 			},
 			'bancogrid button#addBanco': {
 				click: this.novoBanco
@@ -100,8 +101,7 @@ Ext.define('crm.controller.Banco',{
 		}else{
 			//
 		}
-		
-		this.getForm().reset();
+		this.getForm().getForm().reset();
 	},
 	
 	editarBanco: function(grid, record) {
@@ -165,13 +165,17 @@ Ext.define('crm.controller.Banco',{
 	
 	deleteBanco: function(btn, e, opts){
 
+		var form = this.getForm();
+	    		
 		Ext.MessageBox.confirm('Atenção', 'Deseja realmente deletar?', function(botton){			
 			if(botton == 'yes'){
 				
-				var grid = btn.up('grid'),
-	    		records = grid.getSelectionModel().getSelection(),
+				var grid = btn.up('grid');
+				records = grid.getSelectionModel().getSelection(),
 	    		store = grid.getStore();
-	    	
+	    		
+				form.getForm().reset();
+
 	    		store.remove(records);
 		    	store.sync();
 		    	

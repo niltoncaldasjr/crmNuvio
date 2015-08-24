@@ -7,15 +7,36 @@ Ext.define('crm.controller.Lead',{
 	
 	views: ['lead.LeadPanel'],
 	
-    refs: [{
-        ref: 'leadGrid',
-        selector: 'grid'
-    	}
+    refs: [
+    	{
+	        ref: 'leadGrid',
+	        selector: 'grid'
+    	},
+    	{
+            ref: 'TabPanel',
+            selector: 'leadtabpanel'
+        },
+    	{
+            ref: 'Form',
+            selector: 'leadform form'
+        },
+        {
+            ref: 'PanelOeste',
+            selector: 'leadpanel panel#oeste'
+        },
+        {
+            ref: 'PanelSul',
+            selector: 'leadpanel panel#sul'
+        }
     ],
 	
 	init: function(){
 		this.control({
-			'leadgrid dataview': {
+			// 'leadgrid dataview': {
+			// 	itemdblclick: this.editarLead
+			// },
+			'leadgrid': {
+				select: this.editarLead,
 				itemdblclick: this.editarLead
 			},
 			'leadgrid button#addLead': {
@@ -29,31 +50,88 @@ Ext.define('crm.controller.Lead',{
 			},
 			'leadform button#cancelaLead': {
 				click: this.cancelaLead
+			},
+			'menu#posformlead menuitem': {
+				click: this.posicaoForm
 			}
 		});
 	},
 	
-	novoLead: function(){
-		// var edit = Ext.create('crm.view.lead.LeadForm').show();
-		var edit = Ext.ComponentQuery.query('leadform')[0].expand(true);
-		
-		edit.down('form').getForm().reset();
-	},
+	posicaoForm: function(item, e, options) {
+
+		var button = item.up('button');
+
+        var oeste 	= this.getPanelOeste();
+        var sul		= this.getPanelSul();
+        var form 	= this.getTabPanel();
+        
+        switch (item.itemId) {
+            case 'bottom':
+                oeste.hide();
+                sul.show();
+                sul.add(form);
+                button.setIconCls('bottom');
+                button.setText('Abaixo');
+                break;
+            case 'right':
+                sul.hide();
+                oeste.show();
+                oeste.add(form);
+                button.setIconCls('right');
+                button.setText('À Direita');
+                break;
+            default:
+                sul.hide();
+                oeste.hide();
+                button.setIconCls('hide');
+                button.setText('Oculto');
+                break;
+     	}
+
+    },
 	
-	editarLead: function(grid, record) {
-		// var edit = Ext.create('crm.view.lead.LeadForm').show();
-		var edit = Ext.ComponentQuery.query('leadform')[0].expand(true);
+	novoLead: function(){
 		
-		if(record){
-			edit.down('form').loadRecord(record);
+		var oeste 	= this.getPanelOeste();
+        var sul		= this.getPanelSul();
+
+		if( sul.isVisible() == true ){
+			sul.expand(true);
+		}else if(oeste.isVisible() == true){
+			oeste.expand(true);
+		}else{
+			//
 		}
+		
+		this.getForm().getForm().reset();
+
+	},
+
+	editarLead: function(grid, record) {
+		
+		var oeste 	= this.getPanelOeste();
+        var sul		= this.getPanelSul();
+		
+		if( sul.isVisible() == true ){
+			sul.expand(true);
+		}else if(oeste.isVisible() == true){
+			oeste.expand(true);
+		}else{
+			//
+		}
+				
+		if(record){
+			this.getForm().loadRecord(record);
+		}
+
 	},
 	
 	updateLead: function(button){
-		// var win = button.up('window'),
-		var win = button.up('panel'),
-			form = win.down('form'),
-			record = form.getRecord(),
+		
+		var winoeste = this.getPanelOeste();
+		var winsul = this.getPanelSul();
+			form = this.getForm();
+			record = form.getRecord();
 			values = form.getValues();
 		
 		var novo = false;
@@ -69,8 +147,7 @@ Ext.define('crm.controller.Lead',{
 				this.getLeadStore().add(record);
 				novo = true;
 			}
-			console.log('botão salvar form');
-			// win.close();
+			
 			this.getLeadStore().sync();
 			
 			/*-- Se o novo for true da reload na grid para atualizar a lista --*/
@@ -78,13 +155,22 @@ Ext.define('crm.controller.Lead',{
 				this.getLeadStore().load();
 			}
 			/*-- Limpa Form --*/
-			win.down('form').getForm().reset();
-			/*-- Minimiza Form --*/
-			win.collapse( false );
-		}
+			form.getForm().reset();
+			
+			/*-- Minimiza a Tab --*/
+			if(winoeste){
+				winoeste.collapse( false );
+			}else if(winsul){
+				winsul.collapse( false );
+			}else{
+				//nada
+			}
+					}
 	},
 	
 	deleteLead: function(btn, e, opts){
+
+		var form = this.getForm();
 
 		Ext.MessageBox.confirm('Atenção', 'Deseja realmente deletar?', function(botton){			
 			if(botton == 'yes'){
@@ -92,6 +178,8 @@ Ext.define('crm.controller.Lead',{
 				var grid = btn.up('grid'),
 	    		records = grid.getSelectionModel().getSelection(),
 	    		store = grid.getStore();
+
+	    		form.getForm().reset();
 	    	
 		    	store.remove(records);
 		    	store.sync();
@@ -105,10 +193,21 @@ Ext.define('crm.controller.Lead',{
 	},
 	
 	cancelaLead: function(button){
-		// var win = button.up('window');
-		button.up('panel').down('form').getForm().reset();
-		//win.close();
-		button.up('panel').collapse( false );
+		
+		var winoeste = this.getPanelOeste();
+		var winsul = this.getPanelSul();
+		var form = this.getForm();
+		
+		form.getForm().reset();
+		
+		if(winoeste){
+			winoeste.collapse( false );
+		}else if(winsul){
+			winsul.collapse( false );
+		}else{
+			//nada
+		}
+
 	}
 	
 });

@@ -36,7 +36,8 @@ Ext.define('crm.controller.PessoaFisica',{
 //				itemdblclick: this.editarPessoaFisica
 //			},
 			'pessoafisicagrid': {
-				select: this.editarPessoaFisica
+				select: this.editarPessoaFisica,
+				itemdblclick: this.editarPessoaFisica
 			},
 			'pessoafisicagrid button#addPessoaFisica': {
 				click: this.novoPessoaFisica
@@ -101,7 +102,7 @@ Ext.define('crm.controller.PessoaFisica',{
 			//
 		}
 		
-		this.getForm().reset();
+		this.getForm().getForm().reset();
 	},
 	
 	editarPessoaFisica: function(grid, record) {
@@ -167,13 +168,17 @@ Ext.define('crm.controller.PessoaFisica',{
 	
 	deletePessoaFisica: function(btn, e, opts){
 
+		var form = this.getForm();
+	    		
 		Ext.MessageBox.confirm('Atenção', 'Deseja realmente deletar?', function(botton){			
 			if(botton == 'yes'){
 				
 				var grid = btn.up('grid'),
 	    		records = grid.getSelectionModel().getSelection(),
 	    		store = grid.getStore();
-	    	
+
+	    		form.getForm().reset();
+
 		    	store.remove(records);
 		    	store.sync();
 		    	

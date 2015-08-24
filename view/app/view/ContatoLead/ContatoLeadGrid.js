@@ -53,6 +53,36 @@ Ext.define('crm.view.contatolead.ContatoLeadGrid',{
 	    		   text: 'Excluir',
 	    		   itemId: 'deleteContatoLead',
 	    		   iconCls: 'icon-delete'
+	    	   },
+	    	   {
+	    	   		xtype: 'button',
+	    	   		iconCls: 'right',
+	    	   		text: 'À Direita',
+	    	   		menu: {
+		    			xtype: 'menu',
+		    			itemId: 'posformcontatolead',
+		    			// width: 120,
+		    			items: [
+		    				{
+		    					xtype: 'menuitem',
+		    					itemId: 'hide',
+		    					iconCls: 'hide',
+		    					text: 'Formulário Oculto'
+		    				},
+		    				{
+		    					xtype: 'menuitem',
+		    					itemId: 'bottom',
+		    					iconCls: 'bottom',
+		    					text: 'Formulário  Abaixo'
+		    				},
+		    				{
+		    					xtype: 'menuitem',
+		    					itemId: 'right',
+		    					iconCls: 'right',
+		    					text: 'Formulário À Direita'
+		    				}
+		    			]
+		    		}
 	    	   }
 	    	]
 	    },

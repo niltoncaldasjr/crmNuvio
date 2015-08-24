@@ -7,15 +7,35 @@ Ext.define('crm.controller.ContatoLead',{
 	
 	views: ['contatolead.ContatoLeadPanel'],
 	
-    refs: [{
-        ref: 'ContatoLeadGrid',
-        selector: 'grid'
-    	}
+    refs: [
+    	{
+	        ref: 'ContatoLeadGrid',
+	        selector: 'grid'
+    	},
+    	{
+            ref: 'TabPanel',
+            selector: 'contatoleadtabpanel'
+        },
+    	{
+            ref: 'Form',
+            selector: 'contatoleadform form'
+        },
+        {
+            ref: 'PanelOeste',
+            selector: 'contatoleadpanel panel#oeste'
+        },
+        {
+            ref: 'PanelSul',
+            selector: 'contatoleadpanel panel#sul'
+        }
     ],
 	
 	init: function(){
 		this.control({
-			'contatoleadgrid dataview': {
+			// 'contatoleadgrid dataview': {
+			// 	itemdblclick: this.editarContatoLead
+			'contatoleadgrid': {
+				select: this.editarContatoLead,
 				itemdblclick: this.editarContatoLead
 			},
 			'contatoleadgrid button#addContatoLead': {
@@ -29,32 +49,86 @@ Ext.define('crm.controller.ContatoLead',{
 			},
 			'contatoleadform button#cancelaContatoLead': {
 				click: this.cancelaContatoLead
-			}
+			},
+			'menu#posformcontatolead menuitem': {
+				click: this.posicaoForm
+			},
 		});
 	},
 	
+	posicaoForm: function(item, e, options) {
+
+		 var button = item.up('button');
+
+	        var oeste 	= this.getPanelOeste();
+	        var sul		= this.getPanelSul();
+	        var form 	= this.getTabPanel();
+	        
+	        switch (item.itemId) {
+	            case 'bottom':
+	                oeste.hide();
+	                sul.show();
+	                sul.add(form);
+	                button.setIconCls('bottom');
+	                button.setText('Abaixo');
+	                break;
+	            case 'right':
+	                sul.hide();
+	                oeste.show();
+	                oeste.add(form);
+	                button.setIconCls('right');
+	                button.setText('À Direita');
+	                break;
+	            default:
+	                sul.hide();
+	                oeste.hide();
+	                button.setIconCls('hide');
+	                button.setText('Oculto');
+	                break;
+	     }
+    },
+
 	novoContatoLead: function(){
-		// var edit = Ext.create('crm.view.contatolead.ContatoLeadForm').show();
-		var edit = Ext.ComponentQuery.query('contatoleadform')[0].expand(true);
 		
-		edit.down('form').getForm().reset();
+		var oeste 	= this.getPanelOeste();
+        var sul		= this.getPanelSul();
+
+		if( sul.isVisible() == true ){
+			sul.expand(true);
+		}else if(oeste.isVisible() == true){
+			oeste.expand(true);
+		}else{
+			//
+		}
+		this.getForm().getForm().reset();
+
 	},
 	
 	editarContatoLead: function(grid, record) {
-		// var edit = Ext.create('crm.view.contatolead.ContatoLeadForm').show();
-		var edit = Ext.ComponentQuery.query('contatoleadform')[0].expand(true);
 		
-		if(record){
-			edit.down('form').loadRecord(record);
-			
+		var oeste 	= this.getPanelOeste();
+        var sul		= this.getPanelSul();
+		
+		if( sul.isVisible() == true ){
+			sul.expand(true);
+		}else if(oeste.isVisible() == true){
+			oeste.expand(true);
+		}else{
+			//
 		}
+				
+		if(record){
+			this.getForm().loadRecord(record);
+		}
+
 	},
 	
 	updateContatoLead: function(button){
-		//var win = button.up('window'),
-		var win = button.up('panel'),
-			form = win.down('form'),
-			record = form.getRecord(),
+		
+		var winoeste = this.getPanelOeste();
+		var winsul = this.getPanelSul();
+			form = this.getForm();
+			record = form.getRecord();
 			values = form.getValues();
 		
 		var novo = false;
@@ -78,24 +152,33 @@ Ext.define('crm.controller.ContatoLead',{
 				this.getContatoLeadStore().load();
 			}
 			/*-- Limpa Form --*/
-			win.down('form').getForm().reset();
-			/*-- Minimiza Form --*/
-			win.collapse( false );
+			form.getForm().reset();
 			
-			console.log('O formulario é válido');
+			/*-- Minimiza a Tab --*/
+			if(winoeste){
+				winoeste.collapse( false );
+			}else if(winsul){
+				winsul.collapse( false );
+			}else{
+				//nada
+			}
 			
 		}
 	},
 	
 	deleteContatoLead: function(btn, e, opts){
 		
+		var form = this.getForm();
+
 		Ext.MessageBox.confirm('Atenção', 'Deseja realmente deletar?', function(botton){			
 			if(botton == 'yes'){
 				
 				var grid = btn.up('grid'),
 	    		records = grid.getSelectionModel().getSelection(),
 	    		store = grid.getStore();
-	    	
+	    		
+	    		form.getForm().reset();
+
 		    	store.remove(records);
 		    	store.sync();
 		    	
@@ -106,15 +189,25 @@ Ext.define('crm.controller.ContatoLead',{
 		});  	
 		
 		
-		
 		/*-- reload na grid para atualizar a lista --*/
 	},
 	
 	cancelaContatoLead: function(button){
-		// var win = button.up('window');
-		button.up('panel').down('form').getForm().reset();
-		//win.close();
-		button.up('panel').collapse( false );
+		
+		var winoeste = this.getPanelOeste();
+		var winsul = this.getPanelSul();
+		var form = this.getForm();
+		
+		form.getForm().reset();
+		
+		if(winoeste){
+			winoeste.collapse( false );
+		}else if(winsul){
+			winsul.collapse( false );
+		}else{
+			//nada
+		}
+
 	}
 	
 });
