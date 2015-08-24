@@ -1,23 +1,42 @@
 Ext.define('crm.controller.Perfil', {
     extend: 'Ext.app.Controller',
 
-    stores: ['Perfil'],
+    stores: ['Perfil', 'PerfilRotina'],
 
     models: ['Perfil'],
 
-    views: ['perfil.PerfilForm', 'perfil.PerfilGrid'],
+    views: ['perfil.PerfilForm', 'perfil.PerfilGrid', 'perfil.PerfilRotinaPanel', 'perfil.PerfilRotinaGrid', 'perfil.Rotinas'],
 
-    refs: [{
-            ref: 'perfilGrid',
-            selector: 'grid'
-        }
-    ],
-
+   
+    refs: [
+   	    {
+   	    	ref: 'perfilRotinaGrid',
+   	    	selector: 'perfilrotinagrid'
+   	    },
+   	    {
+   	    	ref: 'rotinas',
+   	    	selector: 'rotinas'
+   	    },
+   	    {
+   	    	ref: 'perfilGrid',
+            selector: 'perfilgrid'
+   	    }
+   	],
+   	
     init: function() {
         this.control({
             'perfilgrid dataview': {
                 itemdblclick: this.onEditaPerfil
             },
+            'perfilgrid': {
+            	select: this.onSelect
+            },
+            'rotinas > gridview': {
+				drop : this.SalvaPerfilRotina
+			},
+			'perfilrotinagrid > gridview': {
+				drop : this.DeletaPerfilRotina
+			},
             'perfilgrid button#addPerfil': {
             	click: this.onAddPerfilClick
             },
@@ -89,20 +108,122 @@ Ext.define('crm.controller.Perfil', {
 			}
 		});
   	
-  }//,
-    
-//    onDeletePerfilClick: function(button) {
-//    	
-//    	var grid = this.getPerfilGrid(),
-//    	record = grid.getSelectionModel().getSelection(), 
-//        store = this.getPerfilStore();
-//
-//	    store.remove(record);
-//	    this.getPerfilStore().sync();
-//
-//        //faz reload para atualziar
-//        this.getPerfilStore().load();
-//    }
+  },
+  
+  onSelect: function( linha, record, index, eOpts ){
+		//console.log(record.get('id'));
+		
+//		/*-- Capturando o Id do usuario selecionado --*/
+		idperfil = record.get('id');
+//		/*-- Capturando a Store da Grid de EmpresaUsuario --*/
+		PerfilRotinaStore = this.getPerfilRotinaGrid().getStore();
+		
+//		/*-- Capturando a Store da Grid de EmpresaLista --*/
+		RotinaListaStore = this.getRotinas().getStore();
+		
+		Ext.Ajax.request({
+			url: 'php/perfilRotina/lista.php',
+			params: {
+				idperfil: idperfil,
+		},
+		failure: function(conn, response, options, eOpts) {
+			Ext.Msg.show({
+				title:'Error!',
+				msg: conn.responseText,
+				icon: Ext.Msg.ERROR,
+				buttons: Ext.Msg.OK
+			});
+		},
+		success: function(conn, response, options, eOpts) {
+			var result = Ext.JSON.decode(conn.responseText, true); 
+			if (!result){ 
+				result = {};
+				result.success = false;
+				result.msg = conn.responseText;
+			}
+			if (result.success) { 
+				//dados carrega dados na grid
+				PerfilRotinaStore.removeAll();
+				PerfilRotinaStore.addSorted(result.data2);
+				
+				PerfilRotinaStore.removeAll();
+				PerfilRotinaStore.add(result.data);
+				
+				
+			} else {
+				Ext.Msg.show({ 
+					title:'Fail!',
+					msg: result.msg, 
+					icon: Ext.Msg.ERROR,
+					buttons: Ext.Msg.OK
+				});
+			}
+		},			
+	});
+  },
+  
+  PostDeleteDrop: function(data, metodo){
+  	// console.log(data);
+
+  	/*-- Capturamos o Usuário selecionado na *UsuarioListaGrid* --*/
+  	var perfil = this.getPerfilGrid().getSelectionModel().getSelection();
+
+  	if(perfil[0])
+  	{
+	    	/*-- Contamos a quantidade de items(empresas) movidos --*/
+	    	var total = data.length;
+	    	/*-- Array de dados --*/
+	    	var dados =[];
+
+	    	/*-- Laço adicionando todos os dados ao Array --*/
+	    	for(i = 0; i < total; i++)
+	    	{
+	    		/* Adição de cada empresa em uma posição + id do usuario selecionado */
+				dados[i] = { 
+					idrotina : data[i].get('id'),
+					idperfil : perfil[0].get('id')
+				};
+	    	}
+
+	    	/*-- encodamos para Json --*/
+	    	dados = Ext.encode ( dados ) ;
+
+	    	// console.log(dados);
+
+	    	/*-- Iniciamos o Ajax do Ext --*/
+	    	Ext.Ajax.request({
+
+	    		/*-- Passamos por parametro(GET) o metodo(Post/Delete) --*/
+				url: 'php/perfilRotina/salvadeleta.php?metodo='+metodo,
+				params: {
+					/*-- Passamos na chave *data* o array *dados* --*/
+					data: dados,
+				}
+			
+			});
+	    }
+  },
+  
+  SalvaPerfilRotina: function(node, data, dropRec, dropPosition) {
+  	// console.log(data.records.length);
+
+  	/*-- 
+  		Chama o metodo de Cadastro e Delete 
+			- passamos o records do data onde estão os valores movidos
+			- passamos o metodo delete(Deletar)
+  	--*/
+		this.PostDeleteDrop(data.records, 'delete');
+  },
+  
+  DeletaPerfilRotina: function(node, data, dropRec, dropPosition) {
+  	
+  	/*-- 
+  		Chama o metodo de Cadastro e Delete 
+			- passamos o records do data onde estão os valores movidos
+			- passamos o metodo post(Cadastrar)
+  	--*/
+		this.PostDeleteDrop(data.records, 'post');
+  }
   
   
 });

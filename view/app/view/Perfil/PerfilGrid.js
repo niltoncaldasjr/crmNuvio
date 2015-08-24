@@ -22,14 +22,14 @@ Ext.define('crm.view.perfil.PerfilGrid',{
         { text: 'Data Edição', dataIndex: 'dataedicao', renderer : Ext.util.Format.dateRenderer('d/m/Y')}
 	],
 	
-	viewConfig: {
-        plugins: {
-            ptype: 'gridviewdragdrop',
-            dragGroup: 'secondGridDDGroup',
-            dropGroup: 'firstGridDDGroup',
-            pluginId: 'dragEmpresaUsuario'
-        }
-   	},	
+//	viewConfig: {
+//        plugins: {
+//            ptype: 'gridviewdragdrop',
+//            dragGroup: 'secondGridDDGroup',
+//            dropGroup: 'firstGridDDGroup',
+//            pluginId: 'dragEmpresaUsuario'
+//        }
+//   	},	
 
 	dockedItems: [
 		{
@@ -47,37 +47,7 @@ Ext.define('crm.view.perfil.PerfilGrid',{
 					text: 'Excluir',
 					itemId: 'deletePerfil',
 					iconCls: 'icon-delete'
-				},
-	    	   {
-	    	   		xtype: 'button',
-	    	   		iconCls: 'right',
-	    	   		text: 'À Direita',
-	    	   		menu: {
-		    			xtype: 'menu',
-		    			itemId: 'posformperfil',
-		    			// width: 120,
-		    			items: [
-		    				{
-		    					xtype: 'menuitem',
-		    					itemId: 'hide',
-		    					iconCls: 'hide',
-		    					text: 'Formulário Oculto'
-		    				},
-		    				{
-		    					xtype: 'menuitem',
-		    					itemId: 'bottom',
-		    					iconCls: 'bottom',
-		    					text: 'Formulário  Abaixo'
-		    				},
-		    				{
-		    					xtype: 'menuitem',
-		    					itemId: 'right',
-		    					iconCls: 'right',
-		    					text: 'Formulário À Direita'
-		    				}
-		    			]
-		    		}
-	    	   }
+				}
 			]
 		},
 		{

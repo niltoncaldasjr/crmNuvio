@@ -128,6 +128,13 @@ function deletaImposto() {
 	// INSERI O id NO OBJETO
 	$object = new Imposto();
 	$object->setId($id);
+	$object->setTitulo($data->titulo);
+	$object->setAliquotaICMS($data->aliquotaICMS);
+	$object->setAliquotaPIS($data->aliquotaPIS);
+	$object->setaliquotaCOFINS($data->aliquotaCOFINS);
+	$object->setAliquotaCSLL($data->aliquotaCSLL);
+	$object->setAliquotaISS($data->aliquotaISS);
+	$object->setAliquotaIRPJ($data->aliquotaIRPJ);
 	
 	// INSERI O OBJETO NO CONTROL
 	// E CHAMA O METODO CADASTRAR

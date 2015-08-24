@@ -52,6 +52,16 @@ class PerfilRotinaDAO{
 		return $this->objPerfilRotina = $objPerfilRotina;
 	}
 	
+	function deletarPorPerfilRotina(PerfilRotina $objPerfilRotina){
+		$this->sql = sprintf("DELETE FROM perfilrotina WHERE idrotina = %d AND idperfil = %d",
+				mysqli_real_escape_string( $this->con, $objPerfilRotina->getObjRotina()->getId() ),
+				mysqli_real_escape_string( $this->con, $objPerfilRotina->getObjPerfil()->getId() ));
+		if(!mysqli_query($this->con, $this->sql)){
+			die('[ERRO]: '.mysqli_error($this->con));
+		}
+		return $objPerfilRotina;
+	}
+	
 	/*-- Buscar por ID --*/
 	function listarPorPerfil(PerfilRotina $objPerfilRotina){
 		$this->sql = sprintf("SELECT * FROM perfilrotina WHERE idperfil = %d",

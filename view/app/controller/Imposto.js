@@ -164,6 +164,8 @@ Ext.define('crm.controller.Imposto',{
 	},
 	
 	deleteImposto: function(btn, e, opts){
+		
+		var form = this.getForm();
 
 		Ext.MessageBox.confirm('Atenção', 'Deseja realmente deletar?', function(botton){			
 			if(botton == 'yes'){
