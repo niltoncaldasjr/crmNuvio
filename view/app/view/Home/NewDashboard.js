@@ -78,7 +78,7 @@ Ext.define('crm.view.home.NewDashboard', {
                         id: 'col-2',
                         items: [{
                             id: 'portlet-3',
-                            title: 		'Logs do Sistrma',
+                            title: 		'Logs do Sistema',
                         	iconCls: 	'icon-grid',
                             tools: this.getTools(),
                             items:

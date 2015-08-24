@@ -2,8 +2,8 @@
 session_start();
 require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'control/ImpostoControl.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'model/imposto/Imposto.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'control/LogSistemaControl.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'model/logsistema/Logsistema.php';
+/*-- Log Sistema --*/
+require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" .'view/php/LogSistema/Cadastrar.php';
 
 switch ($_SERVER['REQUEST_METHOD']) {
 	
@@ -76,13 +76,12 @@ function cadastraImposto() {
 			"data" => $object
 	));
 	
-	// REGISTA O LOG NO SISTEMA
-	$log = new LogSistema();
-	$log->setOcorrencia('Inclusão de registro na Classe Imposto.');
-	$log->setNivel('BASICO');
-	$log->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
-	$logController = new LogSistemaControl($log);
-	$logController->cadastrar();
+	/**		INICIO LOGSISTEMA	**/
+	$jsonDepois = json_encode( $object );
+	$jsonAntes = $jsonDepois;
+	/*-- LogSistema      class -               ID -  NIVEL  -   AÇÃO  - ANTES - DEPOIS --*/
+	CadastraLogSistema( get_class($object), $id, 'BASICO', 'INCLUIR', $jsonAntes, $jsonDepois);
+	/**		FIM LOGSISTEMA	**/
 	
 }
 
@@ -91,6 +90,7 @@ function atualizaImposto() {
 	parse_str(file_get_contents("php://input"), $post_vars);
 	$jsonDados = $post_vars['data'];
 	$data = json_decode($jsonDados);
+	$id = $data->id;
 	
 	$object = new Imposto();
 	$object->setId($data->id);
@@ -106,15 +106,15 @@ function atualizaImposto() {
 	// INSERI O OBJETO NO CONTROL
 	// E CHAMA O METODO CADASTRAR
 	$controller = new ImpostoControl($object);
+	$antes = $controller->buscarPorId();
 	$controller->atualizar();
 	
-	// REGISTA O LOG NO SISTEMA
-	$log = new LogSistema();
-	$log->setOcorrencia('Alteração de registro na Classe Imposto.');
-	$log->setNivel('MODERADO');
-	$log->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
-	$logController = new LogSistemaControl($log);
-	$logController->cadastrar();
+	/**		INICIO LOGSISTEMA	**/
+	$jsonDepois = json_encode( $object );
+	$jsonAntes = json_encode($antes);
+	/*-- LogSistema      class -               ID -  NIVEL  -   AÇÃO  - ANTES - DEPOIS --*/
+	CadastraLogSistema( get_class($object), $id, 'MODERADO', 'ALTERAR', $jsonAntes, $jsonDepois);
+	/**		FIM LOGSISTEMA	**/
 }
 
 function deletaImposto() {
@@ -132,15 +132,15 @@ function deletaImposto() {
 	// INSERI O OBJETO NO CONTROL
 	// E CHAMA O METODO CADASTRAR
 	$controller = new ImpostoControl($object);
+	$antes = $controller->buscarPorId();
 	$controller->deletar();
 	
-	// REGISTA O LOG NO SISTEMA
-	$log = new LogSistema();
-	$log->setOcorrencia('Exclusão de registro na Classe Imposto.');
-	$log->setNivel('CRITICO');
-	$log->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
-	$logController = new LogSistemaControl($log);
-	$logController->cadastrar();
+	/**		INICIO LOGSISTEMA	**/
+	$jsonDepois = json_encode( $object );
+	$jsonAntes = json_encode($antes);
+	/*-- LogSistema      class -               ID -  NIVEL  -   AÇÃO  - ANTES - DEPOIS --*/
+	CadastraLogSistema( get_class($object), $id, 'CRITICO', 'EXCLUIR', $jsonAntes, $jsonDepois);
+	/**		FIM LOGSISTEMA	**/
 	
 }
 

@@ -10,12 +10,12 @@
 
 Ext.define('crm.view.imposto.ImpostoForm',{
 	
-	extend: 'Ext.window.Window',
+	extend: 'Ext.panel.Panel',
 	alias: 'widget.impostoform',
 
-	height: 300,
-	width: 450,
-	layout: 'fit',
+//	height: 300,
+//	width: 450,
+//	layout: 'fit',
 	iconCls: 'icon-imposto-add',
 	title: 'Editar/Criar Imposto',
 	autoShow: true,

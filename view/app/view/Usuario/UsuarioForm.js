@@ -10,7 +10,7 @@
 
 Ext.define('crm.view.usuario.UsuarioForm',{
 	
-	extend: 'Ext.window.Window',
+	extend: 'Ext.panel.Panel',
 	alias: 'widget.usuarioform',
 
 	height: 300,

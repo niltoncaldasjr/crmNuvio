@@ -38,7 +38,37 @@ Ext.define('crm.view.perfil.PerfilGrid',{
 					text: 'Excluir',
 					itemId: 'deletePerfil',
 					iconCls: 'icon-delete'
-				}
+				},
+	    	   {
+	    	   		xtype: 'button',
+	    	   		iconCls: 'right',
+	    	   		text: 'À Direita',
+	    	   		menu: {
+		    			xtype: 'menu',
+		    			itemId: 'posformperfil',
+		    			// width: 120,
+		    			items: [
+		    				{
+		    					xtype: 'menuitem',
+		    					itemId: 'hide',
+		    					iconCls: 'hide',
+		    					text: 'Formulário Oculto'
+		    				},
+		    				{
+		    					xtype: 'menuitem',
+		    					itemId: 'bottom',
+		    					iconCls: 'bottom',
+		    					text: 'Formulário  Abaixo'
+		    				},
+		    				{
+		    					xtype: 'menuitem',
+		    					itemId: 'right',
+		    					iconCls: 'right',
+		    					text: 'Formulário À Direita'
+		    				}
+		    			]
+		    		}
+	    	   }
 			]
 		},
 		{
@@ -47,7 +77,7 @@ Ext.define('crm.view.perfil.PerfilGrid',{
 	        dock: 'bottom',
 	        displayInfo: true,
 	        emptyMsg: 'Nenhum perfil encontrado',
-	    	 displayMsg: 'Mostrando {0} - {1} de {2}'
+	    	displayMsg: 'Mostrando {0} - {1} de {2}'
 		}
 	]
 	

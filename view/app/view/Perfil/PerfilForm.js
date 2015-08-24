@@ -10,7 +10,7 @@
 
 Ext.define('crm.view.perfil.PerfilForm',{
 	
-	extend: 'Ext.window.Window',
+	extend: 'Ext.panel.Panel',
 	alias: 'widget.perfilform',
 
 	height: 300,

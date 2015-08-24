@@ -12,13 +12,15 @@ Ext.define('crm.view.empresa.EmpresaTab',{
 //		iconCls: 'home',
 //		title: 'Home'
 	},{
-		xtype: 'pessoafisicaform',
+		xtype: 'impostotabpanel',
 		closable: false,
-//		iconCls: 'icon-grid',
-//		title: 'Complemento 1'
+		iconCls: 'menu_icon_imposto',
+		title: 'Imposto'
 	},{
-		xtype: 'bancoform',
+		xtype: 'bancotabpanel',
 		closable: false,
+		iconCls: 'menu_icon_banco',
+		title: 'Banco'
 	},{
 		xtype: 'contabancoform',
 		closable: false,
