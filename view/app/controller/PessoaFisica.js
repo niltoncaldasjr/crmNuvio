@@ -177,10 +177,28 @@ Ext.define('crm.controller.PessoaFisica',{
 	    		records = grid.getSelectionModel().getSelection(),
 	    		store = grid.getStore();
 
-	    		form.getForm().reset();
-
-		    	store.remove(records);
-		    	store.sync();
+				/*-- Verificando se os dados tem dependentes --*/
+				
+				var StoreContatoLead = Ext.getStore('Usuario');
+				modelContatoLead = StoreContatoLead.findRecord('idpessoafisica', records[0].get('id'));
+				
+				if(modelContatoLead){
+					
+					Ext.Msg.show({
+						title : 'Atenção!',
+						msg : "Dados não podem ser excluídos pois existem dependentes!",
+						icon : Ext.Msg.ERROR,
+						buttons : Ext.Msg.OK
+					});
+					
+				}else{
+					
+		    		form.getForm().reset();
+			    	
+				    store.remove(records);
+				    store.sync();
+				    	
+				}
 		    	
 			}
 			else if(botton == 'no'){

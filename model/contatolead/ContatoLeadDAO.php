@@ -144,5 +144,6 @@ class ContatoLeadDAO{
 		return $total;
 	}		
 	
+	
 }
 ?>

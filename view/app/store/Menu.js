@@ -9,7 +9,7 @@ Ext.define('crm.store.Menu',{
 
 	proxy: {
 		type: 'ajax',
-		url: 'rest/perfilRotina.php',
+		url: 'php/autenticacao/usuarioRotina.php',
 
 		reader: {
 			type: 'json',

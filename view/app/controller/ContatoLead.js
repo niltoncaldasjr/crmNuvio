@@ -169,14 +169,16 @@ Ext.define('crm.controller.ContatoLead',{
 	deleteContatoLead: function(btn, e, opts){
 		
 		var form = this.getForm();
-
+		
 		Ext.MessageBox.confirm('Atenção', 'Deseja realmente deletar?', function(botton){			
 			if(botton == 'yes'){
 				
 				var grid = btn.up('grid'),
 	    		records = grid.getSelectionModel().getSelection(),
 	    		store = grid.getStore();
-	    		
+				
+				storeLead.findRecord(records);
+				
 	    		form.getForm().reset();
 
 		    	store.remove(records);

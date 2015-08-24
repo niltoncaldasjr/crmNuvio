@@ -22,7 +22,8 @@ Ext.define('crm.view.lead.LeadGrid',{
 	    {text: 'Contato', 			dataIndex: 'contato' 			},
 	    {text: 'Ativo', 			dataIndex: 'ativo' 				},
 	    {text: 'Data Cadadastro', 	dataIndex: 'datacadastro', 		renderer : Ext.util.Format.dateRenderer('d/m/Y')},
-	    {text: 'Data Edição', 		dataIndex: 'dataedicao', 		renderer : Ext.util.Format.dateRenderer('d/m/Y')}
+	    {text: 'Data Edição', 		dataIndex: 'dataedicao', 		renderer : Ext.util.Format.dateRenderer('d/m/Y')},
+	    
 	],
 	
 	dockedItems: [
