@@ -101,7 +101,7 @@ Ext.define('crm.controller.Imposto',{
 			//
 		}
 		
-		this.getForm().reset();
+		this.getForm().getForm().reset();
 	},
 	
 	editarImposto: function(grid, record) {
@@ -171,6 +171,8 @@ Ext.define('crm.controller.Imposto',{
 				var grid = btn.up('grid'),
 	    		records = grid.getSelectionModel().getSelection(),
 	    		store = grid.getStore();
+				
+				form.getForm().reset();
 	    	
 	    		store.remove(records);
 		    	store.sync();

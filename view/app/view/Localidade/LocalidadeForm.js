@@ -10,7 +10,7 @@
 
 Ext.define('crm.view.localidade.LocalidadeForm',{
 	
-	extend: 'Ext.window.Window',
+	extend: 'Ext.panel.Panel',
 	alias: 'widget.localidadeform',
 
 	height: 300,

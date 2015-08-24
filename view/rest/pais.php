@@ -89,18 +89,20 @@ function atualizaPais() {
 	$data = json_decode($jsonDados);
 	$dataedicao = date("Y-m-d H:i:s");
 	
+	$id = $data->id;
+	
 	$o_pais = new Pais( $data->id, $data->descricao, $data->nacionalidade,NULL,$dataedicao);
 	
 	$o_paisControl = new PaisControl($o_pais);
+	$antes = $o_paisControl->buscarPorId();
 	$o_paisControl->atualizar();
 	
-	// REGISTA O LOG NO SISTEMA
-	$log = new LogSistema();
-	$log->setOcorrencia('Alteração de registro na Classe País.');
-	$log->setNivel('MODERADO');
-	$log->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
-	$logController = new LogSistemaControl($log);
-	$logController->cadastrar();
+	/**		INICIO LOGSISTEMA	**/
+	$jsonDepois = json_encode( $o_pais );
+	$jsonAntes = json_encode($antes);
+	/*-- LogSistema      class -               ID -  NIVEL  -   AÇÃO  - ANTES - DEPOIS --*/
+	CadastraLogSistema( get_class($o_pais), $id, 'MODERADO', 'ALTERAR', $jsonAntes, $jsonDepois);
+	/**		FIM LOGSISTEMA	**/
 	
 }
 
@@ -112,19 +114,18 @@ function deletaPais() {
 		
 	$id = $data->id;
 	
-	$o_pais = new Pais();
-	$o_pais->setId($id);
+	$o_pais = new Pais( $data->id, $data->descricao, $data->nacionalidade);
 	
 	$o_paisControl = new PaisControl($o_pais);
+	$antes = $o_paisControl->buscarPorId();
 	$o_paisControl->deletar();
 	
-	// REGISTA O LOG NO SISTEMA
-	$log = new LogSistema();
-	$log->setOcorrencia('Exclusão de registro na Classe País.');
-	$log->setNivel('CRITICO');
-	$log->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
-	$logController = new LogSistemaControl($log);
-	$logController->cadastrar();
+	/**		INICIO LOGSISTEMA	**/
+	$jsonDepois = json_encode( $o_pais );
+	$jsonAntes = json_encode($antes);
+	/*-- LogSistema      class -               ID -  NIVEL  -   AÇÃO  - ANTES - DEPOIS --*/
+	CadastraLogSistema( get_class($o_pais), $id, 'CRITICO', 'EXCLUIR', $jsonAntes, $jsonDepois);
+	/**		FIM LOGSISTEMA	**/
 	
 }
 

@@ -21,6 +21,15 @@ Ext.define('crm.view.perfil.PerfilGrid',{
         { text: 'Data Cadastro', dataIndex: 'datacadastro', renderer : Ext.util.Format.dateRenderer('d/m/Y')},
         { text: 'Data Edição', dataIndex: 'dataedicao', renderer : Ext.util.Format.dateRenderer('d/m/Y')}
 	],
+	
+	viewConfig: {
+        plugins: {
+            ptype: 'gridviewdragdrop',
+            dragGroup: 'secondGridDDGroup',
+            dropGroup: 'firstGridDDGroup',
+            pluginId: 'dragEmpresaUsuario'
+        }
+   	},	
 
 	dockedItems: [
 		{

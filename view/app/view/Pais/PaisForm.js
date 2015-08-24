@@ -10,7 +10,7 @@
 
 Ext.define('crm.view.pais.PaisForm',{
 	
-	extend: 'Ext.window.Window',
+	extend: 'Ext.panel.Panel',
 	alias: 'widget.paisform',
 
 	height: 300,

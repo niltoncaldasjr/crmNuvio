@@ -37,7 +37,37 @@ Ext.define('crm.view.pais.PaisGrid',{
 					text: 'Excluir',
 					itemId: 'deletePais',
 					iconCls: 'icon-delete'
-				}
+				},
+	    	    {
+	    	   		xtype: 'button',
+	    	   		iconCls: 'right',
+	    	   		text: 'À Direita',
+	    	   		menu: {
+		    			xtype: 'menu',
+		    			itemId: 'posformpais',
+		    			// width: 120,
+		    			items: [
+		    				{
+		    					xtype: 'menuitem',
+		    					itemId: 'hide',
+		    					iconCls: 'hide',
+		    					text: 'Formulário Oculto'
+		    				},
+		    				{
+		    					xtype: 'menuitem',
+		    					itemId: 'bottom',
+		    					iconCls: 'bottom',
+		    					text: 'Formulário  Abaixo'
+		    				},
+		    				{
+		    					xtype: 'menuitem',
+		    					itemId: 'right',
+		    					iconCls: 'right',
+		    					text: 'Formulário À Direita'
+		    				}
+		    			]
+		    		}
+	    	   }
 			]
 		},
 		{

@@ -98,7 +98,7 @@ Ext.define('crm.controller.Usuario',{
 			//
 		}
 		
-		this.getForm().reset();
+		this.getForm().getForm().reset();
 	},
 	
 	editarUsuario: function(grid, record) {
@@ -168,6 +168,8 @@ Ext.define('crm.controller.Usuario',{
 				var grid = btn.up('grid'),
 	    		records = grid.getSelectionModel().getSelection(),
 	    		store = grid.getStore();
+				
+				form.getForm().reset();
 	    	
 	    		store.remove(records);
 		    	store.sync();

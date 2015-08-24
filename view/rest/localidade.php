@@ -69,31 +69,20 @@ function cadastraLocalidade() {
 	
 	// RETORNA O id CADASTRADO PARA O OBJETO
 	$loc->setId($id);
-// 	$lista = $loc->jsonSerialize();
 	
-	// REGISTA O LOG NO SISTEMA
-	$log = new LogSistema();
-// 	$log->setOcorrencia(utf8_encode('Inclusão de registro na Classe Localidade.'));
-	$log->setOcorrencia('Inclusão de registro na Classe Localidade.');
-	$log->setNivel('BASICO');
-	$log->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
-	$logController = new LogSistemaControl($log);
-	$logController->cadastrar();
-	
-	//var_dump($data);
-	// encoda para formato JSON
 	echo json_encode(array(
 			"success" => 0,
 			"data" => array(
-					'id' => $loc->getId(),
-					'codigoIBGE' => $loc->getCodigoIBGE(),
-					'uf' => $loc->getUf(),
-					'cidade' => $loc->getCidade(),
-					'datacadastro' => $loc->getDatacadastro(),
-					'dataedicao' => $loc->getDataedicao(),
-					'idpais' => $loc->getObjPais()->getId())
+					'id' => $loc->getId())
 	));
 	
+	/**		INICIO LOGSISTEMA	**/
+	$jsonDepois = json_encode( $loc );
+	$jsonAntes = $jsonDepois;
+	/*-- LogSistema      class -               ID -  NIVEL  -   AÇÃO  - ANTES - DEPOIS --*/
+	CadastraLogSistema( get_class($loc), $id, 'BASICO', 'INCLUIR', $jsonAntes, $jsonDepois);
+	/**		FIM LOGSISTEMA	**/
+			
 }
 
 function atualizaLocalidade() {
@@ -101,6 +90,8 @@ function atualizaLocalidade() {
 	parse_str(file_get_contents("php://input"), $post_vars);
 	$jsonDados = $post_vars['data'];
 	$data = json_decode($jsonDados);
+	
+	$id = $data->id;
 	
 	$object = new Localidade();
 	$object->setId($data->id);
@@ -113,15 +104,15 @@ function atualizaLocalidade() {
 	// INSERI O OBJETO NO CONTROL
 	// E CHAMA O METODO CADASTRAR
 	$controller = new LocalidadeControl($object);
+	$antes = $controller->buscarPorId();
 	$controller->atualizar();
 	
-	// REGISTA O LOG NO SISTEMA
-	$log = new LogSistema();
-	$log->setOcorrencia('Alteração de registro na Classe Localidade');
-	$log->setNivel('MODERADO');
-	$log->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
-	$logController = new LogSistemaControl($log);
-	$logController->cadastrar();
+	/**		INICIO LOGSISTEMA	**/
+	$jsonDepois = json_encode( $object );
+	$jsonAntes = json_encode($antes);
+	/*-- LogSistema      class -               ID -  NIVEL  -   AÇÃO  - ANTES - DEPOIS --*/
+	CadastraLogSistema( get_class($object), $id, 'MODERADO', 'ALTERAR', $jsonAntes, $jsonDepois);
+	/**		FIM LOGSISTEMA	**/
 	
 }
 
@@ -135,19 +126,23 @@ function deletaLocalidade() {
 	
 	$object = new Localidade();
 	$object->setId($id);
+	$object->setCodigoIBGE($data->codigoIBGE);
+	$object->setUf($data->uf);
+	$object->setCidade($data->cidade);
+	$object->setObjPais(new Pais($data->idpais));
 	
 	// INSERI O OBJETO NO CONTROL
 	// E CHAMA O METODO CADASTRAR
 	$controller = new LocalidadeControl($object);
+	$antes = $controller->buscarPorId();
 	$result = $controller->deletar();
 	
-	// REGISTA O LOG NO SISTEMA
-	$log = new LogSistema();
-	$log->setOcorrencia('Exclusão de registro na Classe Localidade');
-	$log->setNivel('CRITICO');
-	$log->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
-	$logController = new LogSistemaControl($log);
-	$logController->cadastrar();
+	/**		INICIO LOGSISTEMA	**/
+	$jsonDepois = json_encode( $object );
+	$jsonAntes = json_encode($antes);
+	/*-- LogSistema      class -               ID -  NIVEL  -   AÇÃO  - ANTES - DEPOIS --*/
+	CadastraLogSistema( get_class($object), $id, 'CRITICO', 'EXCLUIR', $jsonAntes, $jsonDepois);
+	/**		FIM LOGSISTEMA	**/
 	
 	echo json_encode(array(
 			"success" => $result,

@@ -48,7 +48,37 @@ Ext.define('crm.view.localidade.LocalidadeGrid',{
 					text: 'Excluir',
 					itemId: 'deleteLocalidade',
 					iconCls: 'icon-delete'
-				}
+				},
+	    	    {
+	    	   		xtype: 'button',
+	    	   		iconCls: 'right',
+	    	   		text: 'À Direita',
+	    	   		menu: {
+		    			xtype: 'menu',
+		    			itemId: 'posformlocalidade',
+		    			// width: 120,
+		    			items: [
+		    				{
+		    					xtype: 'menuitem',
+		    					itemId: 'hide',
+		    					iconCls: 'hide',
+		    					text: 'Formulário Oculto'
+		    				},
+		    				{
+		    					xtype: 'menuitem',
+		    					itemId: 'bottom',
+		    					iconCls: 'bottom',
+		    					text: 'Formulário  Abaixo'
+		    				},
+		    				{
+		    					xtype: 'menuitem',
+		    					itemId: 'right',
+		    					iconCls: 'right',
+		    					text: 'Formulário À Direita'
+		    				}
+		    			]
+		    		}
+	    	   }
 			]
 		},
 		{
