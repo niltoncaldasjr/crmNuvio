@@ -31,7 +31,7 @@ Ext.define('crm.view.usuariorotina.UsuarioRotinaPanel',{
 	    {
 			xtype: 'usuariorotinagrid',
 			region: 'east',
-			flex: 2,
+			flex: 1,
 			split: true,
 		}
 	]

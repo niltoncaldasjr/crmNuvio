@@ -16,6 +16,7 @@ Ext.define('crm.view.MyViewport',{
 	requires: [
 	    'crm.view.Header',
 	    'crm.view.MainPanel',
+	    'crm.view.contatolead.ProximosContatos'
 
 	],
 	/*-- O layout será border --*/
@@ -54,12 +55,13 @@ Ext.define('crm.view.MyViewport',{
 		{
 			xtype: 'panel',
 			region: 'east',
-			width: 180,
+			width: 200,
 			collapsible: true,
 			collapsed: true,
 			split: true,
 			title: 'DashBoard',
-			iconCls: 'view'
+			iconCls: 'view',
+			items:[{xtype:'proximoscontato'}]
 		}
 	]
 });

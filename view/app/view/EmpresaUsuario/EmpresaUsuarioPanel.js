@@ -31,7 +31,7 @@ Ext.define('crm.view.empresausuario.EmpresaUsuarioPanel',{
 	    {
 			xtype: 'empresausuariogrid',
 			region: 'east',
-			flex: 2,
+			flex: 1,
 			split: true,
 		}
 	]
