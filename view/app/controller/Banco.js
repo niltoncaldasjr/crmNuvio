@@ -7,6 +7,8 @@ Ext.define('crm.controller.Banco',{
 	
 	views: ['banco.BancoPanel'],
 	
+	requires: ['crm.util.Alert'],
+	
     refs: [
     	{
 	        ref: 'bancoGrid',
@@ -192,6 +194,8 @@ Ext.define('crm.controller.Banco',{
 					
 		    		form.getForm().reset();
 			    	
+		    		crm.util.Alert.msg('Successo!', 'Banco Deletado!');
+		    		
 				    store.remove(records);
 				    store.sync();
 				    	
