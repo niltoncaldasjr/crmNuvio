@@ -93,9 +93,9 @@ function atualizaPerfil() {
 	parse_str(file_get_contents("php://input"), $post_vars);
 	$jsonDados = $post_vars['data'];
 	$data = json_decode($jsonDados);
-	
+	$id = $data->id;
 	$o_perfil = new Perfil();
-	$o_perfil->setId($data->id);
+	$o_perfil->setId($id);
 	$o_perfil->setNome($data->nome);
 	$o_perfil->setAtivo($data->ativo);
 	$o_perfil->setDataedicao(date("Y-m-d H:i:s"));
@@ -103,15 +103,15 @@ function atualizaPerfil() {
 	// INSERI O OBJETO NO CONTROL
 	// E CHAMA O METODO CADASTRAR
 	$o_perfilControl = new PerfilControl($o_perfil);
+	$antes = $o_perfilControl->buscarPorId();
 	$o_perfilControl->atualizar();
 	
-	// REGISTA O LOG NO SISTEMA
-	$log = new LogSistema();
-	$log->setOcorrencia('Alteração de registro na Classe Perfil.');
-	$log->setNivel('MODERADO');
-	$log->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
-	$logController = new LogSistemaControl($log);
-	$logController->cadastrar();
+	/**		INICIO LOGSISTEMA	**/
+	$jsonDepois = json_encode( $o_perfil );
+	$jsonAntes = json_encode($antes);
+	/*-- LogSistema      class -               ID -  NIVEL  -   AÇÃO  - ANTES - DEPOIS --*/
+	CadastraLogSistema( get_class($o_perfil), $id, 'MODERADO', 'ALTERAR', $jsonAntes, $jsonDepois);
+	/**		FIM LOGSISTEMA	**/
 }
 
 function deletaPerfil() {
@@ -124,19 +124,22 @@ function deletaPerfil() {
 	
 	$o_perfil = new Perfil();
 	$o_perfil->setId($id);
+	$o_perfil->setNome($data->nome);
+	$o_perfil->setAtivo($data->ativo);
+	$o_perfil->setDataedicao(date("Y-m-d H:i:s"));
 	
 	// INSERI O OBJETO NO CONTROL
 	// E CHAMA O METODO CADASTRAR
 	$o_perfilControl = new PerfilControl($o_perfil);
+	$antes = $o_perfilControl->buscarPorId();
 	$o_perfilControl->deletar();
 	
-	// REGISTA O LOG NO SISTEMA
-	$log = new LogSistema();
-	$log->setOcorrencia('Exclusão de registro na Classe Perfil.');
-	$log->setNivel('CRITICO');
-	$log->setObjUsuario(new Usuario($_SESSION['usuario']['idusuario']));
-	$logController = new LogSistemaControl($log);
-	$logController->cadastrar();
+	/**		INICIO LOGSISTEMA	**/
+	$jsonDepois = json_encode( $o_perfil );
+	$jsonAntes = json_encode($antes);
+	/*-- LogSistema      class -               ID -  NIVEL  -   AÇÃO  - ANTES - DEPOIS --*/
+	CadastraLogSistema( get_class($o_perfil), $id, 'CRITICO', 'EXCLUIR', $jsonAntes, $jsonDepois);
+	/**		FIM LOGSISTEMA	**/
 }
 
 ?>

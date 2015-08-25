@@ -17,6 +17,10 @@ Ext.define('crm.controller.Perfil', {
    	    	ref: 'rotinas',
    	    	selector: 'rotinas'
    	    },
+   	 {
+            ref: 'Form',
+            selector: 'perfilform form'
+        },
    	    {
    	    	ref: 'perfilGrid',
             selector: 'perfilgrid'
@@ -93,14 +97,38 @@ Ext.define('crm.controller.Perfil', {
   },
   
   onDeletePerfilClick: function(btn, e, eOpts){
+	
+	  var form = this.getForm();
+	  
   	Ext.MessageBox.confirm('Confirma', 'Deseja realmente deletar?', function(botton){			
 			if(botton == 'yes'){
 				var grid = btn.up('grid'),
 	    		records = grid.getSelectionModel().getSelection(),
 	    		store = grid.getStore();
 	    	
-		    	store.remove(records);
-		    	store.sync();
+				var StoreUsuario = Ext.getStore('Usuario');
+				modelUsuario = StoreUsuario.findRecord('idperfil', records[0].get('id'));
+				
+				var StorePerfilRotina = Ext.getStore('PerfilRotina');
+				modelPerfilRotina = StorePerfilRotina.findRecord('idperfil', records[0].get('id'));
+				
+				if(modelUsuario || modelPerfilRotina){
+					
+					Ext.Msg.show({
+						title : 'Atenção!',
+						msg : "Dados não podem ser excluídos pois existem dependentes!",
+						icon : Ext.Msg.ERROR,
+						buttons : Ext.Msg.OK
+					});
+					
+				}else{
+					if(form){
+						form.getForm().reset();
+					}
+				    store.remove(records);
+				    store.sync();
+				    	
+				}
 		    	
 			}
 			else if(botton == 'no'){
