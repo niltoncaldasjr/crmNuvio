@@ -16,14 +16,14 @@ class DocumentoPF{
 
 	/*-- Metodo Cadastrar --*/
 	function cadastrar(DocumentoPF $objDocumentoPF){
-		$this->sql = sprintf("INSERT INTO documentoPF (tipo, numero, dataemissao, orgaoemissor, via, idpessoafisica)
-				VALUES('%s', '%s', '%s', %d)",
+		$this->sql = sprintf("INSERT INTO documentopf (tipo, numero, dataemissao, orgaoemissor, via, idpessoafisica)
+				VALUES('%s', '%s', '%s', '%s', '%s', %d)",
 				mysqli_real_escape_string( $this->con, $objDocumentoPF->getTipo() ),
 				mysqli_real_escape_string( $this->con, $objDocumentoPF->getNumero() ),
 				mysqli_real_escape_string( $this->con, $objDocumentoPF->getDataemissao() ),
 				mysqli_real_escape_string( $this->con, $objDocumentoPF->getOrgaoemissor() ),
 				mysqli_real_escape_string( $this->con, $objDocumentoPF->getVia() ),
-				mysqli_real_escape_string( $this->con, $objDocumentoPF->getObjPessoafisica->getId() ) );
+				mysqli_real_escape_string( $this->con, $objDocumentoPF->getObjPessoafisica()->getId() ) );
 
 		if(!mysqli_query($this->con, $this->sql)){
 			die('[ERRO] Cadastro: '.mysqli_error($this->con));
@@ -35,13 +35,13 @@ class DocumentoPF{
 
 	/*-- Metodo Atualizar --*/
 	function atualizar(DocumentoPF $objDocumentoPF){
-		$this->sql = sprintf("UPDATE documentoPF SET tipo = %s, numero, dataemissao = %s, orgaoemissor = %s, via = %s, idpessoafisica = %d WHERE id = %d",
+		$this->sql = sprintf("UPDATE documentopf SET tipo = '%s', numero, dataemissao = '%s', orgaoemissor = '%s', via = '%s', idpessoafisica = %d WHERE id = %d",
 				mysqli_real_escape_string( $this->con, $objDocumentoPF->getTipo() ),
 				mysqli_real_escape_string( $this->con, $objDocumentoPF->getNumero() ),
 				mysqli_real_escape_string( $this->con, $objDocumentoPF->getDataemissao() ),
 				mysqli_real_escape_string( $this->con, $objDocumentoPF->getOrgaoemissor() ),
 				mysqli_real_escape_string( $this->con, $objDocumentoPF->getVia() ),
-				mysqli_real_escape_string( $this->con, $objDocumentoPF->getObjPessoaFisica->getId() ),
+				mysqli_real_escape_string( $this->con, $objDocumentoPF->getObjPessoaFisica()->getId() ),
 				mysqli_real_escape_string( $this->con, $objDocumentoPF->getId() ) );
 		if(!mysqli_query($this->con, $this->sql)){
 			die('[ERRO]: '.mysqli_error($this->con));
@@ -51,7 +51,7 @@ class DocumentoPF{
 
 	/*-- Deletar --*/
 	function deletar(DocumentoPF $objDocumentoPF){
-		$this->sql = sprintf("DELETE FROM documentoPF WHERE id = %d",
+		$this->sql = sprintf("DELETE FROM documentopf WHERE id = %d",
 				mysqli_real_escape_string( $this->con, $objDocumentoPF->getId() ) );
 		if(!mysqli_query($this->con, $this->sql)){
 			die('[ERRO]: '.mysqli_error($this->con));
@@ -61,7 +61,7 @@ class DocumentoPF{
 
 	/*-- Buscar por ID --*/
 	function buscarPorId(DocumentoPF $objDocumentoPF){
-		$this->sql = sprintf("SELECT * FROM documentoPF WHERE id = %d",
+		$this->sql = sprintf("SELECT * FROM documentopf WHERE id = %d",
 				mysqli_real_escape_string( $this->con, $objDocumentoPF->getId() ) );
 
 		$resultSet = mysqli_query($this->con, $this->sql);
@@ -82,7 +82,7 @@ class DocumentoPF{
 
 	/*-- Listar Todos --*/
 	function listarTodos(DocumentoPF $objDocumentoPF){
-		$this->sql = "SELECT * FROM documentoPF";
+		$this->sql = "SELECT * FROM documentopf";
 		$resultSet = mysqli_query($this->con, $this->sql);
 		if(!$resultSet){
 			die('[ERRO]: '.mysqli_error($this->con));
@@ -103,7 +103,7 @@ class DocumentoPF{
 
 	/*-- listaRotinar paginado --*/
 	function listarPaginado($start, $limit) {
-		$this->sql = "SELECT * FROM documentoPF limit " . $start . ", " . $limit;
+		$this->sql = "SELECT * FROM documentopf limit " . $start . ", " . $limit;
 		$result = mysqli_query ( $this->con, $this->sql );
 		if (! $result) {
 			die ( '[ERRO]: ' . mysqli_error ( $this->con ) );
@@ -120,7 +120,7 @@ class DocumentoPF{
 
 	/*-- Quantidade Total --*/
 	function qtdTotal() {
-		$this->sql = "SELECT count(*) as quantidade FROM DocumentoPF";
+		$this->sql = "SELECT count(*) as quantidade FROM documentopf";
 		$result = mysqli_query ( $this->con, $this->sql );
 		if (! $result) {
 			die ( '[ERRO]: ' . mysqli_error ( $this->con ) );

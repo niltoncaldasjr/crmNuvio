@@ -103,7 +103,6 @@ class ContatoLead implements JsonSerializable{
 	}
 	
 	/*-- Json --*/
-	
 	public function jsonSerialize() {
 		return [
 			'id' 			=> $this->id,

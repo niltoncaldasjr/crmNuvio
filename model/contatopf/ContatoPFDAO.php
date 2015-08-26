@@ -21,7 +21,7 @@ class ContatoPF{
 				mysqli_real_escape_string( $this->con, $objContatoPF->getTipo() ),
 				mysqli_real_escape_string( $this->con, $objContatoPF->getOperadora() ),
 				mysqli_real_escape_string( $this->con, $objContatoPF->getContato() ),
-				mysqli_real_escape_string( $this->con, $objContatoPF->getObjPessoaFisica->getId() ) );
+				mysqli_real_escape_string( $this->con, $objContatoPF->getObjPessoaFisica()->getId() ) );
 
 		if(!mysqli_query($this->con, $this->sql)){
 			die('[ERRO] Cadastro: '.mysqli_error($this->con));
@@ -33,11 +33,11 @@ class ContatoPF{
 
 	/*-- Metodo Atualizar --*/
 	function atualizar(ContatoPF $objContatoPF){
-		$this->sql = sprintf("UPDATE contatopf SET tipo = %s, operadora = %s, contato = %s, idpessoafisica = %d WHERE id = %d",
+		$this->sql = sprintf("UPDATE contatopf SET tipo = '%s', operadora = '%s', contato = '%s', idpessoafisica = %d WHERE id = %d",
 				mysqli_real_escape_string( $this->con, $objContatoPF->getTipo() ),
 				mysqli_real_escape_string( $this->con, $objContatoPF->getOperadora() ),
 				mysqli_real_escape_string( $this->con, $objContatoPF->getContato() ),
-				mysqli_real_escape_string( $this->con, $objContatoPF->getObjPessoafisica->getId() ),
+				mysqli_real_escape_string( $this->con, $objContatoPF->getObjPessoafisica()->getId() ),
 				mysqli_real_escape_string( $this->con, $objContatoPF->getId() ) );
 		if(!mysqli_query($this->con, $this->sql)){
 			die('[ERRO]: '.mysqli_error($this->con));
