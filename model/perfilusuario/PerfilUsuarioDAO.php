@@ -18,9 +18,13 @@ class PerfilUsuarioDAO{
 	
 	/*-- Metodo Cadastrar --*/
 	function cadastrar(PerfilUsuario $objPerfilUsuario){
-		$this->sql = sprintf("INSERT INTO perfilusuario (idperfil, idusuario) VALUES(%d, %d)",
+		$this->sql = sprintf("INSERT INTO perfilusuario (idperfil, idusuario, consulta, incluir, alterar, excluir) VALUES(%d, %d, %d, %d, %d, %d)",
 				mysqli_real_escape_string( $this->con, $objPerfilUsuario->getObjPerfil()->getId() ),
-				mysqli_real_escape_string( $this->con, $objPerfilUsuario->getObjUsuario()->getId() ) );
+				mysqli_real_escape_string( $this->con, $objPerfilUsuario->getObjUsuario()->getId() ),
+				mysqli_real_escape_string( $this->con, $objPerfilUsuario->getConsulta() ),
+				mysqli_real_escape_string( $this->con, $objPerfilUsuario->getIncluir() ),
+				mysqli_real_escape_string( $this->con, $objPerfilUsuario->getAlterar() ),
+				mysqli_real_escape_string( $this->con, $objPerfilUsuario->getExcluir() ));
 	
 		if(!mysqli_query($this->con, $this->sql)){
 			die('[ERRO] Cadastro: '.mysqli_error($this->con));
@@ -30,10 +34,14 @@ class PerfilUsuarioDAO{
 	//*******************************************************************************************
 	/*-- Metodo Atualizar --*/
 	function atualizar(PerfilUsuario $objPerfilUsuario){
-		$this->sql = sprintf("UPDATE perfilusuario SET idusuario = %d, idperfil = %d WHERE id = %d",
+		$this->sql = sprintf("UPDATE perfilusuario SET idusuario = %d, idperfil = %d, consulta = %d, incluir = %d, alterar = %d, excluir = %d WHERE id = %d",
 				mysqli_real_escape_string( $this->con, $objPerfilUsuario->getObjUsuario()->getId() ),
 				mysqli_real_escape_string( $this->con, $objPerfilUsuario->getObjPerfil()->getId() ),
-				mysqli_real_escape_string( $this->con, $objPerfilUsuario->getId() ));
+				mysqli_real_escape_string( $this->con, $objPerfilUsuario->getConsulta() ),
+				mysqli_real_escape_string( $this->con, $objPerfilUsuario->getIncluir() ),
+				mysqli_real_escape_string( $this->con, $objPerfilUsuario->getAlterar() ),
+				mysqli_real_escape_string( $this->con, $objPerfilUsuario->getExcluir() ),
+				mysqli_real_escape_string( $this->con, $objPerfilUsuario->getId() ) );
 		
 		if(!mysqli_query($this->con, $this->sql)){
 			die('[ERRO]: '.mysqli_error($this->con));

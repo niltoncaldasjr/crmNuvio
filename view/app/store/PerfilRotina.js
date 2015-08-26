@@ -10,5 +10,5 @@
 Ext.define('crm.store.PerfilRotina',{
 	extend: 'Ext.data.Store',
 
-	model: 'crm.model.Rotina'
+	model: 'crm.model.PerfilRotina'
 });

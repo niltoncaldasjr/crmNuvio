@@ -161,13 +161,15 @@ Ext.define('crm.controller.Usuario',{
 	},
 	
 	deleteUsuario: function(btn, e, opts){
+		
+		var form = this.getForm();
 
 		Ext.MessageBox.confirm('Atenção', 'Deseja realmente deletar?', function(botton){			
 			if(botton == 'yes'){
 				
 				var grid = btn.up('grid'),
 	    		records = grid.getSelectionModel().getSelection(),
-	    		store = grid.getStore();
+	    		store = grid.getStore();				
 				
 				form.getForm().reset();
 	    	

@@ -172,10 +172,10 @@ Ext.define('crm.controller.Perfil', {
 			if (result.success) { 
 				//dados carrega dados na grid
 				PerfilRotinaStore.removeAll();
-				PerfilRotinaStore.addSorted(result.data2);
+				PerfilRotinaStore.addSorted(result.data);				
 				
-				PerfilRotinaStore.removeAll();
-				PerfilRotinaStore.add(result.data);
+				RotinaListaStore.removeAll();
+				RotinaListaStore.add(result.data2);
 				
 				
 			} else {

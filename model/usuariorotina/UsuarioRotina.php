@@ -9,6 +9,10 @@ class UsuarioRotina implements JsonSerializable{
 	private $datacadastro;
 	private $objRotina;
 	private $objUsuario;
+	private $consulta;
+	private $incluir;
+	private $alterar;
+	private $excluir;
 	
 	/*-- Cronstrutor --*/
 	public function __construct
@@ -16,13 +20,21 @@ class UsuarioRotina implements JsonSerializable{
 		$id					=	NULL,
 		$datacadastro 		=   NULL,
 		Rotina $objRotina	=	NULL,
-		Usuario $objUsuario =   NULL
+		Usuario $objUsuario =   NULL,
+		$consulta			= 	null,
+		$incluir 			= 	null,
+		$alterar 			=	null,
+		$excluir 			=	null
 	)
 	{
 		$this->id 			= $id;
 		$this->datacadastro = $datacadastro;
 		$this->objRotina 	= $objRotina;
 		$this->objUsuario	= $objUsuario;
+		$this->consulta = $consulta;
+		$this->incluir = $incluir;
+		$this->alterar = $alterar;
+		$this->excluir = $excluir;
 	}
 	
 	/*-- Getters / Setters --*/
@@ -55,6 +67,30 @@ class UsuarioRotina implements JsonSerializable{
 		$this->objRotina = $objRotina;
 		return $this;
 	}
+	public function getConsulta() {
+		return $this->consulta;
+	}
+	public function setConsulta($consulta) {
+		$this->consulta = $consulta;
+	}
+	public function getIncluir() {
+		return $this->incluir;
+	}
+	public function setIncluir($incluir) {
+		$this->incluir = $incluir;
+	}
+	public function getAlterar() {
+		return $this->alterar;
+	}
+	public function setAlterar($alterar) {
+		$this->alterar = $alterar;
+	}
+	public function getExcluir() {
+		return $this->excluir;
+	}
+	public function setExcluir($excluir) {
+		$this->excluir = $excluir;
+	}
 	
 	
 	/*-- ToString --*/
@@ -70,7 +106,12 @@ class UsuarioRotina implements JsonSerializable{
 			'id'			=> $this->id,
 			'datacadastro' 	=> $this->datacadastro,
 			'objRotina'		=> $this->objRotina,
-			'objUsuario'		=> $this->objUsuario->jsonSerialize()
+			'objUsuario'	=> $this->objUsuario,
+			'consulta'		=> $this->consulta,
+			'incluir'		=> $this->incluir,
+			'alterar'		=> $this->alterar,
+			'excluir'		=> $this->excluir
+				
 		];
 	}
 	

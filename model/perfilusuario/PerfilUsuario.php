@@ -5,13 +5,31 @@ class PerfilUsuario implements JsonSerializable{
 		private $datacadastro;
         private $objPerfil;
         private $objUsuario;
+        private $consulta;
+        private $incluir;
+        private $alterar;
+        private $excluir;
         
-        function __construct($id=null, $datacadastro=null, Perfil $objPerfil=null, Usuario $objUsuario=null) {
-            $this->id = $id;
-            $this->datacadastro = $datacadastro;
-            $this->objPerfil = $objPerfil;
-            $this->objUsuario = $objUsuario;
-        }
+        function __construct(
+	        	$id=null, 
+	        	$datacadastro=null, 
+	        	Perfil $objPerfil=null, 
+	        	Usuario $objUsuario=null,
+        		$consulta = null,
+        		$incluir = null,
+        		$alterar = null,
+        		$excluir = null        		
+        	) 
+		{
+		        $this->id = $id;
+		        $this->datacadastro = $datacadastro;
+		        $this->objPerfil = $objPerfil;
+		        $this->objUsuario = $objUsuario;
+		        $this->consulta = $consulta;
+		        $this->incluir = $incluir;
+		        $this->alterar = $alterar;
+		        $this->excluir = $excluir;
+		}
 
         function getId() {
             return $this->id;
@@ -44,7 +62,31 @@ class PerfilUsuario implements JsonSerializable{
         function setObjUsuario($objUsuario) {
             $this->objUsuario = $objUsuario;
         }
-
+        
+        public function getConsulta() {
+        	return $this->consulta;
+        }
+        public function setConsulta($consulta) {
+        	$this->consulta = $consulta;
+        }
+        public function getIncluir() {
+        	return $this->incluir;
+        }
+        public function setIncluir($incluir) {
+        	$this->incluir = $incluir;
+        }
+        public function getAlterar() {
+        	return $this->alterar;
+        }
+        public function setAlterar($alterar) {
+        	$this->alterar = $alterar;
+        }
+        public function getExcluir() {
+        	return $this->excluir;
+        }
+        public function setExcluir($excluir) {
+        	$this->excluir = $excluir;
+        }
                 
         public function toString()
         {
@@ -53,14 +95,19 @@ class PerfilUsuario implements JsonSerializable{
 
                 
 	public function jsonSerialize() {
-		$perfilusuario [] = [ 
+		return [ 
 				'id' => $this->id,
                 'datacadastro' => $this->datacadastro,
 				'idperfil' => $this->objPerfil,
-				'idusuario' => $this->objUsuario
+				'idusuario' => $this->objUsuario,
+				'consulta'	=> $this->consulta,
+				'incluir'	=> $this->incluir,
+				'alterar'	=> $this->alterar,
+				'excluir'	=> $this->excluir
 				 
 		];
-		$json = json_encode ( $perfilusuario );
-		echo $json;
-	}  
+		
+	}
+	
+	  
 }

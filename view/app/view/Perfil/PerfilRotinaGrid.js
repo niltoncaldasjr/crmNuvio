@@ -16,6 +16,22 @@ Ext.define('crm.view.perfil.PerfilRotinaGrid',{
 	    	text: 'Rotina', 
 	    	dataIndex: 'nome'
 	    },
+	    {
+	    	text: 'C', 
+	    	dataIndex: 'consulta'
+	    },
+	    {
+	    	text: 'I', 
+	    	dataIndex: 'incluir'
+	    },
+	    {
+	    	text: 'A', 
+	    	dataIndex: 'alterar'
+	    },
+	    {
+	    	text: 'E', 
+	    	dataIndex: 'excluir'
+	    },
 	   
 	],
 	viewConfig: {

@@ -18,9 +18,13 @@ class UsuarioRotinaDAO{
 	
 	/*-- Metodo Cadastrar --*/
 	function cadastrar(UsuarioRotina $objUsuarioRotina){
-		$this->sql = sprintf("INSERT INTO usuariorotina (idrotina, idusuario) VALUES(%d, %d)",
+		$this->sql = sprintf("INSERT INTO usuariorotina (idrotina, idusuario, consulta, incluir, alterar, excluir) VALUES(%d, %d, %d, %d, %d, %d)",
 				mysqli_real_escape_string( $this->con, $objUsuarioRotina->getObjRotina()->getId() ),
-				mysqli_real_escape_string( $this->con, $objUsuarioRotina->getObjUsuario()->getId() ) );
+				mysqli_real_escape_string( $this->con, $objUsuarioRotina->getObjUsuario()->getId() ),
+				mysqli_real_escape_string( $this->con, $objUsuarioRotina->getConsulta() ),
+				mysqli_real_escape_string( $this->con, $objUsuarioRotina->getIncluir() ),
+				mysqli_real_escape_string( $this->con, $objUsuarioRotina->getAlterar() ),
+				mysqli_real_escape_string( $this->con, $objUsuarioRotina->getExcluir() ));
 				
 		if(!mysqli_query($this->con, $this->sql)){
 			die('[ERRO] Cadastro: '.mysqli_error($this->con));
@@ -32,9 +36,13 @@ class UsuarioRotinaDAO{
 	
 	/*-- Metodo Atualizar --*/
 	function atualizar(UsuarioRotina $objUsuarioRotina){
-		$this->sql = sprintf("UPDATE usuariorotina SET idrotina = %d, idusuario = %d WHERE id = %d",
+		$this->sql = sprintf("UPDATE usuariorotina SET idrotina = %d, idusuario = %d, consulta = %d, incluir = %d, alterar = %d, excluir = %d WHERE id = %d",
 				mysqli_real_escape_string( $this->con, $objUsuarioRotina->getObjRotina()->getId() ),
 				mysqli_real_escape_string( $this->con, $objUsuarioRotina->getObjUsuario()->getId() ),
+				mysqli_real_escape_string( $this->con, $objUsuarioRotina->getConsulta() ),
+				mysqli_real_escape_string( $this->con, $objUsuarioRotina->getIncluir() ),
+				mysqli_real_escape_string( $this->con, $objUsuarioRotina->getAlterar() ),
+				mysqli_real_escape_string( $this->con, $objUsuarioRotina->getExcluir() ),
 				mysqli_real_escape_string( $this->con, $objUsuarioRotina->getId() ) );
 		if(!mysqli_query($this->con, $this->sql)){
 			die('[ERRO]: '.mysqli_error($this->con));
