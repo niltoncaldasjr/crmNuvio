@@ -14,6 +14,8 @@ Ext.define('crm.view.pessoafisica.ContatoPFGrid',{
 	iconCls: 	'icon-grid',
 	store: 		'ContatoPF',
 	
+	
+	
 	columns: [
 	    {text: 'ID',				dataIndex: 'id' 				},
 	    {text: 'Tipo', 				dataIndex: 'tipo' 				},
@@ -43,13 +45,13 @@ Ext.define('crm.view.pessoafisica.ContatoPFGrid',{
 	    	   
 	    	]
 	    },
-	    {
-	    	xtype: 	'pagingtoolbar',
-	    	store: 	'ContatoPF',
-	    	dock:	'bottom',
-	    	displayInfo: true,
-	    	empyMsg: 'Nenhum dado encontrado'
-	    }
+//	    {
+//	    	xtype: 	'pagingtoolbar',
+//	    	store: 	'ContatoPF',
+//	    	dock:	'bottom',
+//	    	displayInfo: true,
+//	    	empyMsg: 'Nenhum dado encontrado'
+//	    }
 	    
 	]
 });

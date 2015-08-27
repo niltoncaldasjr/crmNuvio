@@ -13,8 +13,8 @@ Ext.define('crm.store.ContatoPF',{
 	model: 'crm.model.ContatoPF',
 	
 //	autoLoad: true,
-	
-	pageSize: 20,
+//	
+//	pageSize: 20,
 	
 	proxy: {
 		type: 'rest',

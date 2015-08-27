@@ -27,29 +27,27 @@ switch ($_SERVER['REQUEST_METHOD']) {
 	
 function listaContatoPF() {
 	
-	$start = $_REQUEST['start'];
-	$limit = $_REQUEST['limit'];
-	$idpessoafisica = $_REQUEST['pessoafisicaid'];
+	$idpessoafisica = $_GET['pessoafisicaid'];
 
-	echo $idpessoafisica;
+// 	echo $idpessoafisica;
 
 	$objContatoPFControl = new ContatoPFControl();
-	$listaBanco = $objContatoPFControl->listarPaginado($start, $limit);
+	$listaContatoPF = $objContatoPFControl->listarPorPessoarFisica($idpessoafisica);
 	
 	$v_registros = array();
 	
-	foreach ($listaBanco as $objBanco) {
-		$v_registros[] = $objBanco;
+	foreach ($listaContatoPF as $objContatoPF) {
+		$v_registros[] = $objContatoPF;
 	}
 	
-	$objContatoPFControl = new ContatoPFControl();
-	$totalRegistro = $objContatoPFControl->qtdTotal();
+// 	$objContatoPFControl = new ContatoPFControl();
+// 	$totalRegistro = $objContatoPFControl->qtdTotal();
 	
 	
 	// encoda para formato JSON
 	echo json_encode(array(
 			"success" => 0,
-			"total" => $totalRegistro,
+// 			"total" => $totalRegistro,
 			"data" => $v_registros
 	));
 	

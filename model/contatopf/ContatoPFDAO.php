@@ -85,7 +85,7 @@ class ContatoPFDAO{
 		}
 		while($row = mysqli_fetch_object($resultSet)){
 			$objPessoaFisica = new PessoaFisica();
-			$objPessoaFisica->setId($row->idPessoaFisica);
+			$objPessoaFisica->setId($row->idpessoafisica);
 			$objPessoaFisicaControl = new PessoaFisicaControl($objPessoaFisica);
 			$objPessoaFisica = $objPessoaFisicaControl->buscarPorId();
 
@@ -94,6 +94,27 @@ class ContatoPFDAO{
 			array_push($this->listaContatoPF, $this->objContatoPF);
 		}
 
+		return $this->listaContatoPF;
+	}
+	
+	/*-- Listar Por Pessoa Fisica --*/
+	function listarPorPessoaFisica($idpessoafisica){
+		$this->sql = "SELECT * FROM contatopf WHERE idpessoafisica = $idpessoafisica";
+		$resultSet = mysqli_query($this->con, $this->sql);
+		if(!$resultSet){
+			die('[ERRO]: '.mysqli_error($this->con));
+		}
+		while($row = mysqli_fetch_object($resultSet)){
+			$objPessoaFisica = new PessoaFisica();
+			$objPessoaFisica->setId($row->idpessoafisica);
+			$objPessoaFisicaControl = new PessoaFisicaControl($objPessoaFisica);
+			$objPessoaFisica = $objPessoaFisicaControl->buscarPorId();
+	
+			$this->objContatoPF = new ContatoPF($row->id, $row->tipo, $row->operadora, $row->contato, $objPessoaFisica);
+	
+			array_push($this->listaContatoPF, $this->objContatoPF);
+		}
+	
 		return $this->listaContatoPF;
 	}
 
