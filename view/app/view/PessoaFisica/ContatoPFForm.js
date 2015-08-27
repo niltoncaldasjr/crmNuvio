@@ -9,12 +9,12 @@
 
 Ext.define('crm.view.pessoafisica.ContatoPFForm',{
 	
-	extend:	'Ext.panel.Panel',
+	extend:	'Ext.window.Window',
 	alias:	'widget.contatopfform',
 	
-//	height: 	400,
-//	width: 		450,
-//	layout: 	'fit',
+	height: 	200,
+	width: 		450,
+	layout: 	'fit',
 	iconCls: 	'icon-user',
 	title: 		'Contato Pessoa Física',
 	autoShow: 	true,
@@ -52,21 +52,7 @@ Ext.define('crm.view.pessoafisica.ContatoPFForm',{
 	    	    	fieldLabel: 'Contato',
 	    	    	name: 		'contato',
 	    	    	allowBlank: false,
-		        },
-	    	    {
-					defaults:{anchor:'100%'},
-					xtype:'combo',
-					fieldLabel:'Pessoa Física',
-					emptyText:'Selecione...',
-					forceSelection:true,
-					editable:false,
-					name: 'idpessoafisica',
-					store: 'PessoaFisica',
-					queryMode: 'ajax',
-					displayField: 'name',
-					valueField: 'id',
-					allowBlank: false,
-				},
+		        }
 	    	  
 	    	   
 	    	]

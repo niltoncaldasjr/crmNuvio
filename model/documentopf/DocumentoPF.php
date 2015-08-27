@@ -1,5 +1,5 @@
 <?php 
-class ContatoPF implements JsonSerializable
+class DocumentoPF implements JsonSerializable
 {
 	/*-- atributos --*/
 	private $id;

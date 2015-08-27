@@ -3,7 +3,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'model/documentopf/Docum
 require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'model/pessoafisica/PessoaFisica.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'control/PessoaFisicaControl.php';
 
-class DocumentoPF{
+class DocumentoPFDAO{
 	/*-- Criando atributos da class --*/
 	private $con;
 	private $sql;

@@ -1,11 +1,11 @@
 <?php 
-require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'model/enderecopf/enderecopf.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'model/EnderecoPF/EnderecoPF.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'model/localidade/Localidade.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'control/LocalidadeControl.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'model/Localidade/Localidade.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'control/LocalidadeControl.php';
 
-class enderecopf{
+class EnderecoPFDAO{
 	/*-- Criando atributos da class --*/
 	private $con;
 	private $sql;
@@ -17,8 +17,8 @@ class enderecopf{
 	}
 
 	/*-- Metodo Cadastrar --*/
-	function cadastrar(enderecopf $objEnderecoPF){
-		$this->sql = sprintf("INSERT INTO enderecopf (tipo, logradouro, numero, complemento, bairro, cep, idlocalidade, idpessoafisica)
+	function cadastrar(EnderecoPF $objEnderecoPF){
+		$this->sql = sprintf("INSERT INTO EnderecoPF (tipo, logradouro, numero, complemento, bairro, cep, idlocalidade, idpessoafisica)
 				VALUES('%s', '%s', '%s', '%s', '%s', '%s', %d, %d)",
 				mysqli_real_escape_string( $this->con, $objEnderecoPF->getTipo() ),
 				mysqli_real_escape_string( $this->con, $objEnderecoPF->getLogradouro() ),
@@ -38,8 +38,8 @@ class enderecopf{
 	}
 
 	/*-- Metodo Atualizar --*/
-	function atualizar(enderecopf $objEnderecoPF){
-		$this->sql = sprintf("UPDATE enderecopf SET tipo = '%s', logradouro = '%s', numero = '%s', complemento = '%s', bairro = '%s', cep = '%s', idlocalidade = %d, idpessoafisica = %d WHERE id = %d",
+	function atualizar(EnderecoPF $objEnderecoPF){
+		$this->sql = sprintf("UPDATE EnderecoPF SET tipo = '%s', logradouro = '%s', numero = '%s', complemento = '%s', bairro = '%s', cep = '%s', idlocalidade = %d, idpessoafisica = %d WHERE id = %d",
 				mysqli_real_escape_string( $this->con, $objEnderecoPF->getTipo() ),
 				mysqli_real_escape_string( $this->con, $objEnderecoPF->getLogradouro() ),
 				mysqli_real_escape_string( $this->con, $objEnderecoPF->getNumero() ),
@@ -52,22 +52,22 @@ class enderecopf{
 		if(!mysqli_query($this->con, $this->sql)){
 			die('[ERRO]: '.mysqli_error($this->con));
 		}
-		return $this->objenderecopf = $objEnderecoPF;
+		return $this->objEnderecoPF = $objEnderecoPF;
 	}
 
 	/*-- Deletar --*/
-	function deletar(enderecopf $objEnderecoPF){
-		$this->sql = sprintf("DELETE FROM enderecopf WHERE id = %d",
+	function deletar(EnderecoPF $objEnderecoPF){
+		$this->sql = sprintf("DELETE FROM EnderecoPF WHERE id = %d",
 				mysqli_real_escape_string( $this->con, $objEnderecoPF->getId() ) );
 		if(!mysqli_query($this->con, $this->sql)){
 			die('[ERRO]: '.mysqli_error($this->con));
 		}
-		return $this->objenderecopf = $objEnderecoPF;
+		return $this->objEnderecoPF = $objEnderecoPF;
 	}
 
 	/*-- Buscar por ID --*/
-	function buscarPorId(enderecopf $objEnderecoPF){
-		$this->sql = sprintf("SELECT * FROM enderecopf WHERE id = %d",
+	function buscarPorId(EnderecoPF $objEnderecoPF){
+		$this->sql = sprintf("SELECT * FROM EnderecoPF WHERE id = %d",
 				mysqli_real_escape_string( $this->con, $objEnderecoPF->getId() ) );
 
 		$resultSet = mysqli_query($this->con, $this->sql);
@@ -85,15 +85,15 @@ class enderecopf{
 			$objPessoaFisicaControl = new PessoaFisicaControl($objPessoaFisica);
 			$objPessoaFisica = $objPessoaFisicaControl->buscarPorId();
 				
-			$this->objenderecopf = new enderecopf($row->id, $row->tipo, $row->logradouro, $row->numero, $row->complemento, $row->bairro, $row->cep, $objLocalidade, $objPessoaFisica);
+			$this->objEnderecoPF = new EnderecoPF($row->id, $row->tipo, $row->logradouro, $row->numero, $row->complemento, $row->bairro, $row->cep, $objLocalidade, $objPessoaFisica);
 		}
 
-		return $this->objenderecopf;
+		return $this->objEnderecoPF;
 	}
 
 	/*-- Listar Todos --*/
-	function listarTodos(enderecopf $objEnderecoPF){
-		$this->sql = "SELECT * FROM enderecopf";
+	function listarTodos(EnderecoPF $objEnderecoPF){
+		$this->sql = "SELECT * FROM EnderecoPF";
 		$resultSet = mysqli_query($this->con, $this->sql);
 		if(!$resultSet){
 			die('[ERRO]: '.mysqli_error($this->con));
@@ -109,17 +109,17 @@ class enderecopf{
 			$objPessoaFisicaControl = new PessoaFisicaControl($objPessoaFisica);
 			$objPessoaFisica = $objPessoaFisicaControl->buscarPorId();
 				
-			$this->objenderecopf = new enderecopf($row->id, $row->tipo, $row->logradouro, $row->numero, $row->complemento, $row->bairro, $row->cep, $objLocalidade, $objPessoaFisica);
+			$this->objEnderecoPF = new EnderecoPF($row->id, $row->tipo, $row->logradouro, $row->numero, $row->complemento, $row->bairro, $row->cep, $objLocalidade, $objPessoaFisica);
 
-			array_push($this->listaenderecopf, $this->objenderecopf);
+			array_push($this->listaEnderecoPF, $this->objEnderecoPF);
 		}
 
-		return $this->listaenderecopf;
+		return $this->listaEnderecoPF;
 	}
 
 	/*-- listaRotinar paginado --*/
 	function listarPaginado($start, $limit) {
-		$this->sql = "SELECT * FROM enderecopf limit " . $start . ", " . $limit;
+		$this->sql = "SELECT * FROM EnderecoPF limit " . $start . ", " . $limit;
 		$result = mysqli_query ( $this->con, $this->sql );
 		if (! $result) {
 			die ( '[ERRO]: ' . mysqli_error ( $this->con ) );
@@ -136,7 +136,7 @@ class enderecopf{
 
 	/*-- Quantidade Total --*/
 	function qtdTotal() {
-		$this->sql = "SELECT count(*) as quantidade FROM enderecopf";
+		$this->sql = "SELECT count(*) as quantidade FROM EnderecoPF";
 		$result = mysqli_query ( $this->con, $this->sql );
 		if (! $result) {
 			die ( '[ERRO]: ' . mysqli_error ( $this->con ) );

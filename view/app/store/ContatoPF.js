@@ -12,7 +12,7 @@ Ext.define('crm.store.ContatoPF',{
 	
 	model: 'crm.model.ContatoPF',
 	
-	autoLoad: true,
+//	autoLoad: true,
 	
 	pageSize: 20,
 	
@@ -32,5 +32,4 @@ Ext.define('crm.store.ContatoPF',{
 			encode: true
 		}
 	}
-	
 });
