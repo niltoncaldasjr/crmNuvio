@@ -3,14 +3,14 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'util/Conexao.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'model/contatopf/ContatoPFDAO.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'model/contatopf/ContatoPF.php';
 
-class ContatoLeadControl{
+class ContatoPFControl{
 	protected $con;
 	protected $objContatoPF;
 	protected $objContatoPFDAO;
 	
-	function __construct(ContatoLead $objContatoPF=null){
+	function __construct(ContatoPF $objContatoPF=null){
 		$this->con = Conexao::getInstance()->getConexao();
-		$this->objContatoPFDAO = new ContatoLeadDAO($this->con);
+		$this->objContatoPFDAO = new ContatoPFDAO($this->con);
 		$this->objContatoPF = $objContatoPF;
 	}
 	

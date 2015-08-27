@@ -130,6 +130,9 @@ Ext.define('crm.controller.Banco',{
 		var winsul = this.getPanelSul();
 			form = this.getForm();
 			record = form.getRecord();
+			
+			console.log( record );
+			
 			values = form.getValues();
 		
 		var novo = false;
@@ -144,7 +147,7 @@ Ext.define('crm.controller.Banco',{
 				this.getBancoStore().add(record);
 				novo = true;
 			}
-			this.getBancoStore().sync();
+//			this.getBancoStore().sync();
 			
 			/*-- Se o novo for true da reload na grid para atualizar a lista --*/
 			if(novo){

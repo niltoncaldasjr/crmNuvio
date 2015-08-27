@@ -1,16 +1,16 @@
 Ext.define('crm.controller.PessoaFisica',{
 	extend: 'Ext.app.Controller',
 	
-	stores: ['PessoaFisica'],
+	stores: ['PessoaFisica', 'ContatoPF', 'DocumentoPF', 'EnderecoPF'],
 	
-	models: ['PessoaFisica'],
+	models: ['PessoaFisica', 'ContatoPF', 'DocumentoPF', 'EnderecoPF'],
 	
 	views: ['pessoafisica.PessoaFisicaPanel'],
 	
     refs: [
         {
         	ref: 'PessoaFisicaGrid',
-        	selector: 'gridPessoaFisica'
+        	selector: 'pessoafisicagrid'
     	},
     	{
             ref: 'TabPanel',
@@ -27,6 +27,16 @@ Ext.define('crm.controller.PessoaFisica',{
         {
             ref: 'PanelSul',
             selector: 'pessoafisicapanel panel#sul'
+        },
+        
+        /*-- ContatoPF --*/
+        {
+        	ref: 'ContatoPFGrid',
+        	selector: 'contatopfgrid'
+        },
+        {
+        	ref: 'ContatoPFForm',
+        	selector: 'contatopfform'
         }
     ],
 	
@@ -54,6 +64,58 @@ Ext.define('crm.controller.PessoaFisica',{
 			'menu#posformpessoafisica menuitem': {
 				click: this.posicaoForm
 			},
+			
+			/*-- Contato PF --*/
+			'contatopfgrid button#addContatoPF': {
+				click: this.novoContatoPF
+			},
+//			'contatopfgrid button#deleteContatoPF': {
+//				click: this.delateContatoPF
+//			},
+//			'contatopfgrid': {
+//				select: this.navegaContatoPF
+//			},
+			'contatopfform button#salvaContatoPF': {
+				click: this.salvaContatoPF
+			},
+			'contatopfform button#cancelaContatoPF': {
+				click: this.cancelaContatoPF
+			},
+			
+			/*-- Documento PF --*/
+//			'documentopfgrid': {
+//				select: this.navegaDocumentoPF
+//			},
+//			'documentopfgrid button#addDocumentoPF': {
+//				click: this.novoDocumentoPF
+//			},
+//			'documentopfgrid button#deleteDocumentoPF': {
+//				click: this.deleteDocumentoPF
+//			},
+//			'documentopfform button#salvaDocumentoPF': {
+//				click: this.salvaDocumentoPF
+//			},
+//			'documentopfform button#cancelaDocumentoPF': {
+//				click: this.cancelaDocumentoPF
+//			},
+//			
+//			/*-- Endereco PF --*/
+//			'enderecopfgrid': {
+//				select: this.navegaEnderecoPF
+//			},
+//			'enderecopfgrid button#addEnderecoPF': {
+//				click: this.novoEnderecoPF
+//			},
+//			'enderecopdgrid button#deleteEnderecoPF': {
+//				click: this.deleteEnderecoPF
+//			},
+//			'enderecopfform button#salvaEnderecoPF': {
+//				click: this.salvaEnderecoPF
+//			},
+//			'enderecopfform button#cancelaEnderecoPF': {
+//				click: this.cancelaEnderecoPF
+//			}
+			
 		});
 	},
 	
@@ -119,7 +181,15 @@ Ext.define('crm.controller.PessoaFisica',{
 				
 		if(record){
 			this.getForm().loadRecord(record);
+			
+			var store = Ext.getStore('ContatoPF');
+			store.getProxy().setExtraParam( 'pessoafisicaid', record.get('id') );
+			store.load();
+			
 		}
+		
+		
+		
 	},
 	
 	updatePessoaFisica: function(button){
@@ -224,6 +294,73 @@ Ext.define('crm.controller.PessoaFisica',{
 			//nada
 		}
 		
+		
+	},
+	
+	
+	/*-- Contato PF --*/
+	novoContatoPF: function(btn, e, opts){
+		
+		if(this.getContatoPFForm()){
+			this.getContatoPFForm().center();
+			this.getContatoPFForm().down('form').getForm().reset();
+		}else{
+			var win = Ext.create('crm.view.pessoafisica.ContatoPFForm');
+			
+		}
+		
+	},
+	
+	salvaContatoPF: function(btn, e, opts){
+		
+		/*-- Pegando pessoa fisica selecionada --*/
+		var pessoa = this.getPessoaFisicaGrid().getSelectionModel().getSelection();
+		/*-- Pegando valores do formulario --*/
+		var values = this.getContatoPFForm().down('form').getValues();
+		/*-- Pegando a model caso haja --*/
+		var records = this.getContatoPFForm().down('form').getRecord();
+		/*-- Pega a Store --*/
+		var store = Ext.getStore('ContatoPF');
+		
+		/*-- Validando Formulario --*/
+		if( this.getContatoPFForm().down('form').getForm().isValid() ){
+			
+			/*-- Verificando se ID existe --*/
+			if(values.id > 0){
+				/*-- Seta os valores do formulario na model --*/
+				records.set(values);
+				/*-- Seta o ID da pessoa fisica selecionado --*/
+				records.set('idpessoafisica', pessoa[0].get('id'));
+				
+			}else{
+				
+				/*-- Cria uma nova model --*/
+				records = Ext.create('crm.model.ContatoPF');
+				/*-- Seta os valores do Formulário na model --*/
+				records.set(values);
+				/*-- Seta o ID da pessoa fisica selecionado --*/
+				records.set('idpessoafisica', pessoa[0].get('id'));
+				
+				/*-- Adiciona a Model na Store --*/
+				store.add( records );
+				
+				
+				
+			}
+			
+			this.getContatoPFForm().down('form').getForm().reset();
+			this.getContatoPFForm().close();
+			/*-- Sincroniza a store --*/
+			store.sync();
+			store.load();
+		}
+		
+	},
+	
+	cancelaContatoPF: function(btn, e, opts){
+		
+		this.getContatoPFForm().down('form').getForm().reset();
+		this.getContatoPFForm().close();
 		
 	}
 	
