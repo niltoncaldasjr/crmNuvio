@@ -9,6 +9,7 @@ Ext.define('crm.view.usuariorotina.UsuarioRotinaGrid',{
 	columns: [
 		{
 			text: 'ID', 
+			width: 30,
 			dataIndex: 'id',
 			type: 'hidden'
 		},
@@ -16,6 +17,30 @@ Ext.define('crm.view.usuariorotina.UsuarioRotinaGrid',{
 	    	text: 'Rotina', 
 	    	dataIndex: 'nome'
 	    },
+	    {
+	    	text: 'C', 
+	    	dataIndex: 'consulta',
+	    	width: 25,
+	    	xtype: 'checkcolumn'   
+	    },
+	    {
+	    	text: 'I', 
+	    	dataIndex: 'incluir',
+	    	width: 25,
+	    	xtype: 'checkcolumn'   
+	    },
+	    {
+	    	text: 'A', 
+	    	dataIndex: 'alterar',
+	    	width: 25,
+	    	xtype: 'checkcolumn'   
+	    },
+	    {
+	    	text: 'E', 
+	    	dataIndex: 'excluir',
+	    	width: 25,
+	    	xtype: 'checkcolumn'     
+	    }
 	   
 	],
 	viewConfig: {

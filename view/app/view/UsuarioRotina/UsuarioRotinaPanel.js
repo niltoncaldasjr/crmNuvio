@@ -2,7 +2,7 @@ Ext.define('crm.view.usuariorotina.UsuarioRotinaPanel',{
 	extend: 'Ext.panel.Panel',
 	alias: 'widget.usuariorotinapanel',
 	
-	requires: ['crm.view.usuariorotina.ListaUsuarioGrid', 'crm.view.usuariorotina.RotinaListaGrid', 'crm.view.usuariorotina.UsuarioRotinaGrid'],
+	requires: ['crm.view.usuariorotina.RotinaListaGrid', 'crm.view.usuariorotina.UsuarioRotinaGrid'],
 	
 	width: 600,
 	height: 400,
@@ -21,13 +21,13 @@ Ext.define('crm.view.usuariorotina.UsuarioRotinaPanel',{
 		    flex: 1,
 		    split: true
 	    },
-	    {
-		    xtype: 'listausuariogrid',
-		    region: 'west',
-		    flex: 1,
-		    split: true,
-		   
-	    },
+//	    {
+//		    xtype: 'listausuariogrid',
+//		    region: 'west',
+//		    flex: 1,
+//		    split: true,
+//		   
+//	    },
 	    {
 			xtype: 'usuariorotinagrid',
 			region: 'east',

@@ -10,10 +10,10 @@ Ext.define('crm.view.usuario.UsuarioTabPanel',{
 		xtype: 'usuarioform',
 		closable: false,
 	},{
-		xtype: 'panel',
+		xtype: 'usuariorotinapanel',
 		closable: false,
 		iconCls: 'icon-grid',
-		title: 'Complemento 1'
+		title: 'Permissões'
 	},{
 		xtype: 'panel',
 		closable: false,

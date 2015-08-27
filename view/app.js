@@ -40,8 +40,7 @@ Ext.application({
                   'Temas',
                   'SelecaoEmpresa',
                   'LogSistema',
-                  'EmpresaUsuario',
-                  'UsuarioRotina'
+                  'EmpresaUsuario'
     ],
     
     

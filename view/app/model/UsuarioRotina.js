@@ -7,7 +7,7 @@
 *  Desenvolvedor.: Fabiano Ferreira da Silva Costaº
 */
 
-Ext.define('crm.model.PerfilRotina',{
+Ext.define('crm.model.UsuarioRotina',{
 	extend: 'Ext.data.Model',
 	
 	fields: [

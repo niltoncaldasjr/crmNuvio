@@ -46,6 +46,7 @@ Ext.define('crm.view.usuario.UsuarioForm',{
 				},
 				{
 					xtype: 'textfield',
+					inputType : 'password',
 					fieldLabel:'Senha',
 					allowBlank : false,
 				    name: 'senha'

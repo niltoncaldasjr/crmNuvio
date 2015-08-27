@@ -1,6 +1,14 @@
 Ext.define('crm.controller.Perfil', {
     extend: 'Ext.app.Controller',
 
+    requires: [
+               'Ext.selection.CellModel',
+               'Ext.grid.*',
+               'Ext.data.*',
+               'Ext.util.*',
+               'Ext.form.*'
+           ],
+    
     stores: ['Perfil', 'PerfilRotina'],
 
     models: ['Perfil'],
@@ -52,6 +60,9 @@ Ext.define('crm.controller.Perfil', {
             },
             'perfilform button#cancelaperfil': {
                 click: this.onCancelPerfilClick
+            },
+            'perfilrotinagrid checkcolumn#consCheck':{
+            	checkchange: this.onChecked
             }
         });
     },
@@ -251,6 +262,16 @@ Ext.define('crm.controller.Perfil', {
 			- passamos o metodo post(Cadastrar)
   	--*/
 		this.PostDeleteDrop(data.records, 'post');
+  },
+  onChecked: function(grid, rowIndex, checked, eOpts ){
+	  
+		  var store = this.getPerfilRotinaGrid().getStore();
+//		  var model = store.findRecord('excluir', records[0].get('excluir'));
+		  
+		  PerfilRotinaStore = this.getPerfilRotinaGrid().getStore();
+		  console.log(store);
+	  
+	  
   }
   
   

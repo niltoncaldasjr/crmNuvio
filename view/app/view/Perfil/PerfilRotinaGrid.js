@@ -18,20 +18,29 @@ Ext.define('crm.view.perfil.PerfilRotinaGrid',{
 	    },
 	    {
 	    	text: 'C', 
-	    	dataIndex: 'consulta'
+	    	dataIndex: 'consulta',
+	    	itemId: 'consCheck',
+	    	width: 25,
+	    	xtype: 'checkcolumn'   
 	    },
 	    {
 	    	text: 'I', 
-	    	dataIndex: 'incluir'
+	    	dataIndex: 'incluir',
+	    	width: 25,
+	    	xtype: 'checkcolumn'   
 	    },
 	    {
 	    	text: 'A', 
-	    	dataIndex: 'alterar'
+	    	dataIndex: 'alterar',
+	    	width: 25,
+	    	xtype: 'checkcolumn'   
 	    },
 	    {
 	    	text: 'E', 
-	    	dataIndex: 'excluir'
-	    },
+	    	dataIndex: 'excluir',
+	    	width: 25,
+	    	xtype: 'checkcolumn'     
+	    }
 	   
 	],
 	viewConfig: {
@@ -41,5 +50,8 @@ Ext.define('crm.view.perfil.PerfilRotinaGrid',{
             dropGroup: 'firstGridDDGroup',
             pluginId: 'dragEmpresaUsuario'
         }
-   	},	
+   	},
+   	onChecked: function(){
+   		console.log('Hello world');
+   	}
 });
