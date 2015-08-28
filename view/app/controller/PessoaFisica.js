@@ -135,7 +135,7 @@ Ext.define('crm.controller.PessoaFisica',{
 			'enderecopfgrid button#addEnderecoPF': {
 				click: this.novoEnderecoPF
 			},
-			'enderecopdgrid button#deleteEnderecoPF': {
+			'enderecopfgrid button#deleteEnderecoPF': {
 				click: this.deletaEnderecoPF
 			},
 			'enderecopfform button#salvaEnderecoPF': {

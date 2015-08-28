@@ -23,11 +23,11 @@ Ext.define('crm.view.pessoafisica.EnderecoPFGrid',{
 	    {text: 'Bairro', 			dataIndex: 'bairro' 			},
 	    {text: 'Cep', 				dataIndex: 'cep'				},
 	    {text: 'Localidade',		dataIndex: 'idlocalidade',
-	    	renderer: function(value, metaData, record){
-			var Store = Ext.getStore('Localidade');
-			var usuario = Store.findRecord('id', value);
-			return localidade != null ? localidade.get('cidade') : value;
-	    	}
+//	    	renderer: function(value, metaData, record){
+//			var Store = Ext.getStore('Localidade');
+//			var localidade = Store.findRecord('id', value);
+//			return localidade != null ? localidade.get('cidade') : value;
+//	    	}
 	    },	
 	    {text: 'Data Cadastro', 	dataIndex: 'datacadastro', 		renderer : Ext.util.Format.dateRenderer('d/m/Y')},
 	    {text: 'Data Edição', 		dataIndex: 'dataedicao', 		renderer : Ext.util.Format.dateRenderer('d/m/Y')}

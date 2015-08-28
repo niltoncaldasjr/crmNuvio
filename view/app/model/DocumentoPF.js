@@ -5,7 +5,7 @@ Ext.define('crm.model.DocumentoPF',{
 	   {name: 'id', 			type: 'int'},
 	   {name: 'tipo', 			type: 'string'},
 	   {name: 'numero', 		type: 'string'},
-	   {name: 'dataemissao', 	type: 'string'},
+	   {name: 'dataemissao', 	type: 'date', 	dateFormate: 'c'},
 	   {name: 'orgaoemissor', 	type: 'string'},
 	   {name: 'via', 			type: 'string'},
 	   {name: 'idpessoafisica', type: 'int'},
