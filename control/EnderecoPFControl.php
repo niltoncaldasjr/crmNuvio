@@ -36,6 +36,9 @@ class EnderecoPFControl{
 	function qtdTotal(){
 		return $this->objEnderecoPFDAO->qtdTotal();
 	}
+	function listarPorPessoarFisica($idpessoafisica){
+		return $this->objEnderecoPFDAO->listarPorPessoaFisica($idpessoafisica);
+	}
 }
 
 ?>

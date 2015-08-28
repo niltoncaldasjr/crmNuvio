@@ -10,7 +10,7 @@
 Ext.define('crm.view.pessoafisica.ContatoPFGrid',{
 	extend: 	'Ext.grid.Panel',
 	alias: 		'widget.contatopfgrid',
-	title: 		'Cadastro de Contato Pessoa Fisica',
+	title: 		'Contatos',
 	iconCls: 	'icon-grid',
 	store: 		'ContatoPF',
 	

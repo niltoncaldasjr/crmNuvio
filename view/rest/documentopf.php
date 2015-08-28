@@ -27,12 +27,11 @@ switch ($_SERVER['REQUEST_METHOD']) {
 	
 function listaDocumentoPF() {
 	
-	$start = $_REQUEST['start'];
-	$limit = $_REQUEST['limit'];
+	$idpessoafisica = $_REQUEST['idpessoafisica'];
 	
 
 	$objDocumentoPFControl = new DocumentoPFControl();
-	$listaBanco = $objDocumentoPFControl->listarPaginado($start, $limit);
+	$listaBanco = $objDocumentoPFControl->listarPorPessoarFisica($idpessoafisica);
 	
 	$v_registros = array();
 	
@@ -40,14 +39,9 @@ function listaDocumentoPF() {
 		$v_registros[] = $objDocumentoPF;
 	}
 	
-	$objDocumentoPFControl = new DocumentoPFControl();
-	$totalRegistro = $objDocumentoPFControl->qtdTotal();
-	
-	
 	// encoda para formato JSON
 	echo json_encode(array(
 			"success" => 0,
-			"total" => $totalRegistro,
 			"data" => $v_registros
 	));
 	
@@ -70,7 +64,7 @@ function cadastraDocumentoPF() {
 	$objDocumentoPF->setVia($data->via);
 	$objDocumentoPF->setObjpessoafisica( new PessoaFisica($data->idpessoafisica) );
 	
-	$objDocumentoPFControl = new ContatoPFControl($objDocumentoPF);
+	$objDocumentoPFControl = new DocumentoPFControl($objDocumentoPF);
 	$id = $objDocumentoPFControl->cadastrar();
 	
 	$objDocumentoPF->setId($id);

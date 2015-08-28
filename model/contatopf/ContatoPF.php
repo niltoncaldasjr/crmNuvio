@@ -18,7 +18,7 @@ class ContatoPF implements JsonSerializable
 		$operadora 			= NULL,
 		$contato 			= NULL,
 		$objpessoafisica 	= NULL,
-		$datacadastro		= NUll,
+		$datacadastro		= NULL,
 		$dataedicao 		= NULL
 	)
 	{
@@ -94,6 +94,7 @@ class ContatoPF implements JsonSerializable
 			'id'			=> $this->id,
 			'tipo'			=> $this->tipo,
 			'operadora' 	=> $this->operadora,
+			'contato'		=> $this->contato,
 			'pessoafisica' 	=> $this->objpessoafisica->jsonSerialize(),
 			'datacadastro'	=> $this->datacadastro,
 			'dataedicao'	=> $this->dataedicao

@@ -27,7 +27,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
 	
 function listaContatoPF() {
 	
-	$idpessoafisica = $_GET['pessoafisicaid'];
+	$idpessoafisica = $_GET['idpessoafisica'];
 
 // 	echo $idpessoafisica;
 
@@ -74,7 +74,7 @@ function cadastraContatoPF() {
 	$jsonDepois = json_encode( $objContatoPF );
 	$jsonAntes = $jsonDepois;
 	
-	/*-- LogSistema      class -               ID -  NIVEL  -   AÇÃO  - ANTES - DEPOIS --*/
+	/*-- LogSistema      class -               			ID -  NIVEL  -   AÇÃO  - ANTES - DEPOIS --*/
 	CadastraLogSistema( get_class($objContatoPF), $id, 'BASICO', 'INCLUIR', $jsonAntes, $jsonDepois);
 	
 	// encoda para formato JSON
@@ -103,7 +103,7 @@ function atualizaContatoPF() {
 
 	$objContatoPFControl->atualizar();
 	
-	/*-- LogSistema      class -               ID -  NIVEL  -   AÇÃO  - ANTES - DEPOIS --*/
+	/*-- LogSistema      class -               					ID -  NIVEL  -   AÇÃO  - ANTES - DEPOIS --*/
 	CadastraLogSistema( get_class($objContatoPF), $data->id, 'MODERADO', 'ALTERAR', $jsonAntes, $jsonDepois);
 	
 }
@@ -112,7 +112,7 @@ function deletaContatoPF() {
 	
 	parse_str(file_get_contents("php://input"), $post_vars);
 	$jsonDados = $post_vars['data'];
-	$data = json_decode(stripslashes($jsonDados));
+	$data = json_decode( $jsonDados );
 
 	$jsonDepois = json_encode( $data );
 		
@@ -127,7 +127,7 @@ function deletaContatoPF() {
 
 	$objContatoPFControl->deletar();
 	
-	/*-- LogSistema      class -               ID -  NIVEL  -   AÇÃO  - ANTES - DEPOIS --*/
+	/*-- LogSistema      class -               			ID -  NIVEL  -   AÇÃO  - ANTES - DEPOIS --*/
 	CadastraLogSistema( get_class($objContatoPF), $id, 'CRITICO', 'EXCLUIR', $jsonAntes, $jsonDepois);
 	
 }

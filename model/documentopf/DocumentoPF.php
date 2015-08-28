@@ -115,7 +115,7 @@ class DocumentoPF implements JsonSerializable
 			'id' 			=> $this->id,
 			'tipo'			=> $this->tipo,
 			'numero'		=> $this->numero,
-			'dataemissao'	=> $this->emissao,
+			'dataemissao'	=> $this->dataemissao,
 			'orgaoemissor'	=> $this->orgaoemissor,
 			'via'			=> $this->via,
 			'pessoafisica'	=> $this->objpessoafisica->jsonSerialize(),

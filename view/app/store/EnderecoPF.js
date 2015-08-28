@@ -12,10 +12,6 @@ Ext.define('crm.store.EnderecoPF',{
 	
 	model: 'crm.model.EnderecoPF',
 	
-	autoLoad: true,
-	
-	pageSize: 20,
-	
 	proxy: {
 		type: 'rest',
 		

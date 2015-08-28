@@ -7,48 +7,14 @@
 *  Desenvolvedor.: Fabiano Ferreira da Silva Costa
 */
 
-/*-- Criando Store de ComboBox Estado Civil --*/
-var estadoCivil = Ext.create('Ext.data.Store', {
-    fields: ['value', 'name'],
-    data : [
-        {"value":"SOLTEIRO", "name":"SOLTEIRO"},
-        {"value":"CASADO", "name":"CASADO"},
-        {"value":"DIVORCIADO", "name":"DIVORCIADO"},
-        {"value":"VIUVO", "name":"VIÚVO"}
-        //...
-    ]
-});
-
-/*-- Criando Store de ComboBox Sexo --*/
-var sexo = Ext.create('Ext.data.Store', {
-    fields: ['value', 'name'],
-    data : [
-        {"value":"MASCULINO", "name":"MASCULINO"},
-        {"value":"FEMININO", "name":"FEMININO"}
-        //...
-    ]
-});
-
-/*-- Criando Store de ComboBox Cor --*/
-var cor = Ext.create('Ext.data.Store', {
-    fields: ['value', 'name'],
-    data : [
-        {"value":"BRANCA", "name":"BRANCA"},
-        {"value":"PRETA", "name":"PRETA"},
-        {"value":"PARDA", "name":"PARDA"},
-        {"value":"AMARELA", "name":"AMARELA"}
-        //...
-    ]
-});
-
 Ext.define('crm.view.pessoafisica.EnderecoPFForm',{
 	
-	extend:	'Ext.panel.Panel',
+	extend:	'Ext.window.Window',
 	alias:	'widget.enderecopfform',
 	
-//	height: 	400,
-//	width: 		450,
-//	layout: 	'fit',
+	height: 	300,
+	width: 		450,
+	layout: 	'fit',
 	iconCls: 	'icon-user',
 	title: 		'Endereço Pessoa Física',
 	autoShow: 	true,
@@ -106,30 +72,15 @@ Ext.define('crm.view.pessoafisica.EnderecoPFForm',{
 	    	    	allowBlank: false,
 		        },
 		        {
-					defaults:{anchor:'100%'},
 					xtype:'combo',
 					fieldLabel:'Localidade',
 					emptyText:'Selecione...',
 					forceSelection:true,
 					editable:false,
 					name: 'idlocalidade',
-					store: estadoCivil,
+					store: 'Localidade',
 					queryMode: 'ajax',
 					displayField: 'cidade',
-					valueField: 'id',
-					allowBlank: false,
-				},
-				{
-					defaults:{anchor:'100%'},
-					xtype:'combo',
-					fieldLabel:'Pessoa Física',
-					emptyText:'Selecione...',
-					forceSelection:true,
-					editable:false,
-					name: 'idpessoafisica',
-					store: 'PessoaFisica',
-					queryMode: 'ajax',
-					displayField: 'name',
 					valueField: 'id',
 					allowBlank: false,
 				},

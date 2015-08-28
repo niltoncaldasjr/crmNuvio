@@ -10,7 +10,7 @@
 Ext.define('crm.view.pessoafisica.DocumentoPFGrid',{
 	extend: 	'Ext.grid.Panel',
 	alias: 		'widget.documentopfgrid',
-	title: 		'Cadastro de Documento Pessoa Fisica',
+	title: 		'Documentos',
 	iconCls: 	'icon-grid',
 	store: 		'DocumentoPF',
 	
@@ -45,13 +45,7 @@ Ext.define('crm.view.pessoafisica.DocumentoPFGrid',{
 	    	   
 	    	]
 	    },
-	    {
-	    	xtype: 	'pagingtoolbar',
-	    	store: 	'DocumentoPF',
-	    	dock:	'bottom',
-	    	displayInfo: true,
-	    	empyMsg: 'Nenhum dado encontrado'
-	    }
+	    
 	    
 	]
 });

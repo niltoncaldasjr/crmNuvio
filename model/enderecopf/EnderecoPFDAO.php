@@ -27,7 +27,7 @@ class EnderecoPFDAO{
 				mysqli_real_escape_string( $this->con, $objEnderecoPF->getBairro() ),
 				mysqli_real_escape_string( $this->con, $objEnderecoPF->getCep() ),
 				mysqli_real_escape_string( $this->con, $objEnderecoPF->getObjLocalidade()->getId() ),
-				mysqli_real_escape_string( $this->con, $objEnderecoPF->getObjLocalidade()->getId() ) );
+				mysqli_real_escape_string( $this->con, $objEnderecoPF->getObjpessoafisica()->getId() ) );
 
 		if(!mysqli_query($this->con, $this->sql)){
 			die('[ERRO] Cadastro: '.mysqli_error($this->con));
@@ -47,7 +47,7 @@ class EnderecoPFDAO{
 				mysqli_real_escape_string( $this->con, $objEnderecoPF->getBairro() ),
 				mysqli_real_escape_string( $this->con, $objEnderecoPF->getCep() ),
 				mysqli_real_escape_string( $this->con, $objEnderecoPF->getObjLocalidade()->getId() ),
-				mysqli_real_escape_string( $this->con, $objEnderecoPF->getObjLocalidade()->getId() ),
+				mysqli_real_escape_string( $this->con, $objEnderecoPF->getObjpessoafisica()->getId() ),
 				mysqli_real_escape_string( $this->con, $objEnderecoPF->getId() ) );
 		if(!mysqli_query($this->con, $this->sql)){
 			die('[ERRO]: '.mysqli_error($this->con));
@@ -81,11 +81,11 @@ class EnderecoPFDAO{
 			$objLocalidade = $objLocalidadeControl->buscarPorId();
 			
 			$objPessoaFisica = new PessoaFisica();
-			$objPessoaFisica->setId($row->idPessoaFisica);
+			$objPessoaFisica->setId($row->idpessoafisica);
 			$objPessoaFisicaControl = new PessoaFisicaControl($objPessoaFisica);
 			$objPessoaFisica = $objPessoaFisicaControl->buscarPorId();
 				
-			$this->objEnderecoPF = new EnderecoPF($row->id, $row->tipo, $row->logradouro, $row->numero, $row->complemento, $row->bairro, $row->cep, $objLocalidade, $objPessoaFisica);
+			$this->objEnderecoPF = new EnderecoPF($row->id, $row->tipo, $row->logradouro, $row->numero, $row->complemento, $row->bairro, $row->cep, $objLocalidade, $objPessoaFisica, $row->datacadastro, $row->dataedicao);
 		}
 
 		return $this->objEnderecoPF;
@@ -105,15 +105,41 @@ class EnderecoPFDAO{
 			$objLocalidade = $objLocalidadeControl->buscarPorId();
 			
 			$objPessoaFisica = new PessoaFisica();
-			$objPessoaFisica->setId($row->idPessoaFisica);
+			$objPessoaFisica->setId($row->idpessoafisica);
 			$objPessoaFisicaControl = new PessoaFisicaControl($objPessoaFisica);
 			$objPessoaFisica = $objPessoaFisicaControl->buscarPorId();
 				
-			$this->objEnderecoPF = new EnderecoPF($row->id, $row->tipo, $row->logradouro, $row->numero, $row->complemento, $row->bairro, $row->cep, $objLocalidade, $objPessoaFisica);
+			$this->objEnderecoPF = new EnderecoPF($row->id, $row->tipo, $row->logradouro, $row->numero, $row->complemento, $row->bairro, $row->cep, $objLocalidade, $objPessoaFisica, $row->datacadastro, $row->dataedicao);
 
 			array_push($this->listaEnderecoPF, $this->objEnderecoPF);
 		}
 
+		return $this->listaEnderecoPF;
+	}
+	
+	/*-- Listar Por Pessoa Fisica --*/
+	function listarPorPessoaFisica($idpessoafisica){
+		$this->sql = "SELECT * FROM enderecopf WHERE idpessoafisica = $idpessoafisica";
+		$resultSet = mysqli_query($this->con, $this->sql);
+		if(!$resultSet){
+			die('[ERRO]: '.mysqli_error($this->con));
+		}
+		while($row = mysqli_fetch_object($resultSet)){
+			$objLocalidade = new Localidade();
+			$objLocalidade->setId($row->idlocalidade);
+			$objLocalidadeControl = new LocalidadeControl($objLocalidade);
+			$objLocalidade = $objLocalidadeControl->buscarPorId();
+			
+			$objPessoaFisica = new PessoaFisica();
+			$objPessoaFisica->setId($row->idpessoafisica);
+			$objPessoaFisicaControl = new PessoaFisicaControl($objPessoaFisica);
+			$objPessoaFisica = $objPessoaFisicaControl->buscarPorId();
+	
+			$this->objEnderecoPF = new EnderecoPF($row->id, $row->tipo, $row->logradouro, $row->numero, $row->complemento, $row->bairro, $row->cep, $objLocalidade, $objPessoaFisica, $row->datacadastro, $row->dataedicao);
+	
+			array_push($this->listaEnderecoPF, $this->objEnderecoPF);
+		}
+	
 		return $this->listaEnderecoPF;
 	}
 

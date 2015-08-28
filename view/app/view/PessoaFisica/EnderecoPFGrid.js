@@ -10,7 +10,7 @@
 Ext.define('crm.view.pessoafisica.EnderecoPFGrid',{
 	extend: 	'Ext.grid.Panel',
 	alias: 		'widget.enderecopfgrid',
-	title: 		'Cadastro de Endereço Pessoa Física',
+	title: 		'Endereços',
 	iconCls: 	'icon-grid',
 	store: 		'EnderecoPF',
 	
@@ -22,11 +22,11 @@ Ext.define('crm.view.pessoafisica.EnderecoPFGrid',{
 	    {text: 'Complemento', 		dataIndex: 'complemento'		},
 	    {text: 'Bairro', 			dataIndex: 'bairro' 			},
 	    {text: 'Cep', 				dataIndex: 'cep'				},
-	    {text: 'Localidade',		dataIndex: 'idlocalalidade',
+	    {text: 'Localidade',		dataIndex: 'idlocalidade',
 	    	renderer: function(value, metaData, record){
 			var Store = Ext.getStore('Localidade');
 			var usuario = Store.findRecord('id', value);
-			return localidade != null ? localidade.get('nome') : value;
+			return localidade != null ? localidade.get('cidade') : value;
 	    	}
 	    },	
 	    {text: 'Data Cadastro', 	dataIndex: 'datacadastro', 		renderer : Ext.util.Format.dateRenderer('d/m/Y')},
@@ -53,13 +53,7 @@ Ext.define('crm.view.pessoafisica.EnderecoPFGrid',{
 	    	   
 	    	]
 	    },
-	    {
-	    	xtype: 	'pagingtoolbar',
-	    	store: 	'EnderecoPF',
-	    	dock:	'bottom',
-	    	displayInfo: true,
-	    	empyMsg: 'Nenhum dado encontrado'
-	    }
+	    
 	    
 	]
 });

@@ -7,14 +7,27 @@
 *  Desenvolvedor.: Fabiano Ferreira da Silva Costa
 */
 
-Ext.define('crm.view.pessoafisica.DocumentoPF',{
+/*-- Criando Store de ComboBox Tipo --*/
+var tipo = Ext.create('Ext.data.Store', {
+    fields: ['value', 'name'],
+    data : [
+        {"value":"RG", "name":"RG"},
+        {"value":"CNH", "name":"CNH"},
+        {"value":"CTPS", "name":"CTPS"},
+        {"value":"PASSAPORTE", "name":"PASSAPORTE"},
+        {"value":"OUTROS", "name":"OUTROS"}
+    ]
+});
+
+
+Ext.define('crm.view.pessoafisica.DocumentoPFForm',{
 	
-	extend:	'Ext.panel.Panel',
+	extend:	'Ext.window.Window',
 	alias:	'widget.documentopfform',
 	
-//	height: 	400,
-//	width: 		450,
-//	layout: 	'fit',
+	height: 	250,
+	width: 		450,
+	layout: 	'fit',
 	iconCls: 	'icon-user',
 	title: 		'Documento Pessoa Física',
 	autoShow: 	true,
@@ -36,10 +49,17 @@ Ext.define('crm.view.pessoafisica.DocumentoPF',{
 	    	    	name: 		'id'
 	    	    },
 	    	    {
-	    	    	xtype: 		'textfield',
-	    	    	fieldLabel: 'Tipo',
-	    	    	name: 		'tipo',
-	    	    	allowBlank: false,
+	    	    	xtype:'combo',
+					fieldLabel:'Tipo',
+					emptyText:'Selecione...',
+					forceSelection:true,
+					editable:false,
+					name: 'tipo',
+					store: tipo,
+					queryMode: 'local',
+					displayField: 'name',
+					valueField: 'value',
+					allowBlank: false,
 	    	    },
 	    	    {
 	    	    	xtype: 		'textfield',
@@ -69,20 +89,7 @@ Ext.define('crm.view.pessoafisica.DocumentoPF',{
 	    	    	name: 		'via',
 	    	    	allowBlank: false,
 				},
-				{
-					defaults:{anchor:'100%'},
-					xtype:'combo',
-					fieldLabel:'Pessoa Física',
-					emptyText:'Selecione...',
-					forceSelection:true,
-					editable:false,
-					name: 'idpessoafisica',
-					store: 'PessoaFisica',
-					queryMode: 'ajax',
-					displayField: 'name',
-					valueField: 'id',
-					allowBlank: false,
-				},
+			
 	    	  
 	    	   
 	    	]

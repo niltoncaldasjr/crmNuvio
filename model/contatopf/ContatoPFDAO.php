@@ -66,11 +66,11 @@ class ContatoPFDAO{
 		}
 		while($row = mysqli_fetch_object($resultSet)){
 			$objPessoaFisica = new PessoaFisica();
-			$objPessoaFisica->setId($row->idPessoaFisica);
+			$objPessoaFisica->setId($row->idpessoafisica);
 			$objPessoaFisicaControl = new PessoaFisicaControl($objPessoaFisica);
 			$objPessoaFisica = $objPessoaFisicaControl->buscarPorId();
 				
-			$this->objContatoPF = new ContatoPF($row->id, $row->tipo, $row->operadora, $row->contato, $objPessoaFisica);
+			$this->objContatoPF = new ContatoPF($row->id, $row->tipo, $row->operadora, $row->contato, $objPessoaFisica, $row->datacadastro, $row->dataedicao);
 		}
 
 		return $this->objContatoPF;
@@ -89,7 +89,7 @@ class ContatoPFDAO{
 			$objPessoaFisicaControl = new PessoaFisicaControl($objPessoaFisica);
 			$objPessoaFisica = $objPessoaFisicaControl->buscarPorId();
 
-			$this->objContatoPF = new ContatoPF($row->id, $row->tipo, $row->operadora, $row->contato, $objPessoaFisica);
+			$this->objContatoPF = new ContatoPF($row->id, $row->tipo, $row->operadora, $row->contato, $objPessoaFisica, $row->datacadastro, $row->dataedicao);
 
 			array_push($this->listaContatoPF, $this->objContatoPF);
 		}
@@ -110,7 +110,7 @@ class ContatoPFDAO{
 			$objPessoaFisicaControl = new PessoaFisicaControl($objPessoaFisica);
 			$objPessoaFisica = $objPessoaFisicaControl->buscarPorId();
 	
-			$this->objContatoPF = new ContatoPF($row->id, $row->tipo, $row->operadora, $row->contato, $objPessoaFisica);
+			$this->objContatoPF = new ContatoPF($row->id, $row->tipo, $row->operadora, $row->contato, $objPessoaFisica, $row->datacadastro, $row->dataedicao);
 	
 			array_push($this->listaContatoPF, $this->objContatoPF);
 		}

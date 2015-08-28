@@ -36,6 +36,9 @@ class DocumentoPFControl{
 	function qtdTotal(){
 		return $this->objDocumentoPFDAO->qtdTotal();
 	}
+	function listarPorPessoarFisica($idpessoafisica){
+		return $this->objDocumentoPFDAO->listarPorPessoaFisica($idpessoafisica);
+	}
 }
 
 ?>

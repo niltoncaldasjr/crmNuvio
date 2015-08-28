@@ -12,10 +12,6 @@ Ext.define('crm.store.DocumentoPF',{
 	
 	model: 'crm.model.DocumentoPF',
 	
-	autoLoad: true,
-	
-	pageSize: 20,
-	
 	proxy: {
 		type: 'rest',
 		

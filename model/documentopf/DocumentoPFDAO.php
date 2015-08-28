@@ -35,7 +35,7 @@ class DocumentoPFDAO{
 
 	/*-- Metodo Atualizar --*/
 	function atualizar(DocumentoPF $objDocumentoPF){
-		$this->sql = sprintf("UPDATE documentopf SET tipo = '%s', numero, dataemissao = '%s', orgaoemissor = '%s', via = '%s', idpessoafisica = %d WHERE id = %d",
+		$this->sql = sprintf("UPDATE documentopf SET tipo = '%s', numero = '%s', dataemissao = '%s', orgaoemissor = '%s', via = '%s', idpessoafisica = %d WHERE id = %d",
 				mysqli_real_escape_string( $this->con, $objDocumentoPF->getTipo() ),
 				mysqli_real_escape_string( $this->con, $objDocumentoPF->getNumero() ),
 				mysqli_real_escape_string( $this->con, $objDocumentoPF->getDataemissao() ),
@@ -70,11 +70,11 @@ class DocumentoPFDAO{
 		}
 		while($row = mysqli_fetch_object($resultSet)){
 			$objPessoaFisica = new PessoaFisica();
-			$objPessoaFisica->setId($row->idPessoaFisica);
+			$objPessoaFisica->setId($row->idpessoafisica);
 			$objPessoaFisicaControl = new PessoaFisicaControl($objPessoaFisica);
 			$objPessoaFisica = $objPessoaFisicaControl->buscarPorId();
 				
-			$this->objDocumentoPF = new DocumentoPF($row->id, $row->tipo, $row->numero, $row->dataemissao, $row->orgaoemissor, $row->via, $objPessoaFisica);
+			$this->objDocumentoPF = new DocumentoPF($row->id, $row->tipo, $row->numero, $row->dataemissao, $row->orgaoemissor, $row->via, $objPessoaFisica, $row->datacadastro, $row->dataedicao);
 		}
 
 		return $this->objDocumentoPF;
@@ -89,15 +89,36 @@ class DocumentoPFDAO{
 		}
 		while($row = mysqli_fetch_object($resultSet)){
 			$objPessoaFisica = new PessoaFisica();
-			$objPessoaFisica->setId($row->idPessoaFisica);
+			$objPessoaFisica->setId($row->idpessoafisica);
 			$objPessoaFisicaControl = new PessoaFisicaControl($objPessoaFisica);
 			$objPessoaFisica = $objPessoaFisicaControl->buscarPorId();
 
-			$this->objDocumentoPF = new DocumentoPF($row->id, $row->tipo, $row->numero, $row->dataemissao, $row->orgaoemissor, $row->via, $objPessoaFisica);
+			$this->objDocumentoPF = new DocumentoPF($row->id, $row->tipo, $row->numero, $row->dataemissao, $row->orgaoemissor, $row->via, $objPessoaFisica, $row->datacadastro, $row->dataedicao);
 
 			array_push($this->listaDocumentoPF, $this->objDocumentoPF);
 		}
 
+		return $this->listaDocumentoPF;
+	}
+	
+	/*-- Listar Por Pessoa Fisica --*/
+	function listarPorPessoaFisica($idpessoafisica){
+		$this->sql = "SELECT * FROM documentopf WHERE idpessoafisica = $idpessoafisica";
+		$resultSet = mysqli_query($this->con, $this->sql);
+		if(!$resultSet){
+			die('[ERRO]: '.mysqli_error($this->con));
+		}
+		while($row = mysqli_fetch_object($resultSet)){
+			$objPessoaFisica = new PessoaFisica();
+			$objPessoaFisica->setId($row->idpessoafisica);
+			$objPessoaFisicaControl = new PessoaFisicaControl($objPessoaFisica);
+			$objPessoaFisica = $objPessoaFisicaControl->buscarPorId();
+	
+			$this->objDocumentoPF = new DocumentoPF($row->id, $row->tipo, $row->numero, $row->dataemissao, $row->orgaoemissor, $row->via, $objPessoaFisica, $row->datacadastro, $row->dataedicao);
+	
+			array_push($this->listaDocumentoPF, $this->objDocumentoPF);
+		}
+	
 		return $this->listaDocumentoPF;
 	}
 

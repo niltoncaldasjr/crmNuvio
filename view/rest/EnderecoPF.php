@@ -27,12 +27,10 @@ switch ($_SERVER['REQUEST_METHOD']) {
 	
 function listaEnderecoPF() {
 	
-	$start = $_REQUEST['start'];
-	$limit = $_REQUEST['limit'];
+	$idpessoafisica = $_REQUEST['idpessoafisica'];
 	
-
 	$objEnderecoPFControl = new EnderecoPFControl();
-	$listaBanco = $objEnderecoPFControl->listarPaginado($start, $limit);
+	$listaBanco = $objEnderecoPFControl->listarPorPessoarFisica($idpessoafisica);
 	
 	$v_registros = array();
 	
@@ -40,14 +38,9 @@ function listaEnderecoPF() {
 		$v_registros[] = $objEnderecoPF;
 	}
 	
-	$objEnderecoPFControl = new EnderecoPFControl();
-	$totalRegistro = $objEnderecoPFControl->qtdTotal();
-	
-	
 	// encoda para formato JSON
 	echo json_encode(array(
 			"success" => 0,
-			"total" => $totalRegistro,
 			"data" => $v_registros
 	));
 	
@@ -59,9 +52,6 @@ function cadastraEnderecoPF() {
 
 	$data = json_decode( $jsonDados );
 	
-	$dataemissao = $data->dataemissao;
-	$dataemissao = preg_replace("/\D+/", "", $dataemissao); // remove qualquer caracter nãoo numérico
-		
 	$objEnderecoPF = new EnderecoPF();
 	$objEnderecoPF->setTipo($data->tipo);
 	$objEnderecoPF->setLogradouro($data->logradouro);

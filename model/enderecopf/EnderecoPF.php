@@ -37,7 +37,7 @@ class EnderecoPF implements JsonSerializable
 		$this->complemento 		= $complemento;
 		$this->bairro			= $bairro;
 		$this->cep 				= $cep;
-		$this->objlocalidade	+ $objlocalidade;
+		$this->objlocalidade	= $objlocalidade;
 		$this->objpessoafisica 	= $objpesoafisica;
 		$this->datacadastro		= $datacadastro;
 		$this->dataedicao 		= $dataedicao;
@@ -133,8 +133,8 @@ class EnderecoPF implements JsonSerializable
 			'complemento'	=> $this->complemento,
 			'bairro'		=> $this->bairro,
 			'cep'			=> $this->cep,
-			'localidade'	=> $this->objlocalidade->jsonSerialize(),
-			'pessoafisica'	=> $this->objpessoafisica->jsonSerialize(),
+			'idlocalidade'	=> $this->objlocalidade->jsonSerialize(),
+			'idpessoafisica'=> $this->objpessoafisica->jsonSerialize(),
 			'datacadastro'	=> $this->datacadastro,
 			'dataedicao'	=> $this->dataedicao
 		];
