@@ -120,27 +120,18 @@ class EnderecoPFDAO{
 	/*-- Listar Por Pessoa Fisica --*/
 	function listarPorPessoaFisica($idpessoafisica){
 		$this->sql = "SELECT * FROM enderecopf WHERE idpessoafisica = $idpessoafisica";
-		$resultSet = mysqli_query($this->con, $this->sql);
-		if(!$resultSet){
-			die('[ERRO]: '.mysqli_error($this->con));
+		$result = mysqli_query ( $this->con, $this->sql );
+		if (! $result) {
+			die ( '[ERRO]: ' . mysqli_error ( $this->con ) );
 		}
-		while($row = mysqli_fetch_object($resultSet)){
-			$objLocalidade = new Localidade();
-			$objLocalidade->setId($row->idlocalidade);
-			$objLocalidadeControl = new LocalidadeControl($objLocalidade);
-			$objLocalidade = $objLocalidadeControl->buscarPorId();
-			
-			$objPessoaFisica = new PessoaFisica();
-			$objPessoaFisica->setId($row->idpessoafisica);
-			$objPessoaFisicaControl = new PessoaFisicaControl($objPessoaFisica);
-			$objPessoaFisica = $objPessoaFisicaControl->buscarPorId();
-	
-			$this->objEnderecoPF = new EnderecoPF($row->id, $row->tipo, $row->logradouro, $row->numero, $row->complemento, $row->bairro, $row->cep, $objLocalidade, $objPessoaFisica, $row->datacadastro, $row->dataedicao);
-	
-			array_push($this->listaEnderecoPF, $this->objEnderecoPF);
+
+		$lista = array();
+
+		while ( $row = mysqli_fetch_assoc ( $result ) ) {
+			$lista[]=$row;
 		}
-	
-		return $this->listaEnderecoPF;
+		//teste
+		return $lista;
 	}
 
 	/*-- listaRotinar paginado --*/
