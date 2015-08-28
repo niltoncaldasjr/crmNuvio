@@ -436,16 +436,16 @@ Ext.define('crm.controller.PessoaFisica',{
 	deletaContatoPF: function(btn, e, opts){
 		
 		/*-- Pegando pessoa fisica selecionada --*/
-		var pessoa = this.getPessoaFisicaGrid().getSelectionModel().getSelection();
+		var contato = this.getContatoPFGrid().getSelectionModel().getSelection();
 		var store = Ext.getStore('ContatoPF');
 		var form = this.getContatoPFForm();
 		
-		if(pessoa){
+		if(contato){
 			
 			Ext.MessageBox.confirm('Atenção', 'Deseja realmente deletar?', function(botton){			
 				if(botton == 'yes'){
 					
-				    store.remove(pessoa);
+				    store.remove(contato);
 				    store.sync();
 				    
 				    if(form){
@@ -568,16 +568,16 @@ Ext.define('crm.controller.PessoaFisica',{
 	deletaDocumentoPF: function(btn, e, opts){
 		
 		/*-- Pegando pessoa fisica selecionada --*/
-		var pessoa = this.getPessoaFisicaGrid().getSelectionModel().getSelection();
+		var documento = this.getDocumentoPFGrid().getSelectionModel().getSelection();
 		var store = Ext.getStore('DocumentoPF');
 		var form = this.getDocumentoPFForm();
 		
-		if(pessoa){
+		if(documento){
 			
 			Ext.MessageBox.confirm('Atenção', 'Deseja realmente deletar?', function(botton){			
 				if(botton == 'yes'){
 					
-				    store.remove(pessoa);
+				    store.remove(documento);
 				    store.sync();
 				    
 				    if(form){
@@ -700,16 +700,16 @@ Ext.define('crm.controller.PessoaFisica',{
 	deletaEnderecoPF: function(btn, e, opts){
 		
 		/*-- Pegando pessoa fisica selecionada --*/
-		var pessoa = this.getPessoaFisicaGrid().getSelectionModel().getSelection();
+		var endereco = this.getEnderecoPFGrid().getSelectionModel().getSelection();
 		var store = Ext.getStore('EnderecoPF');
 		var form = this.getEnderecoPFForm();
 		
-		if(pessoa){
+		if(endereco){
 			
 			Ext.MessageBox.confirm('Atenção', 'Deseja realmente deletar?', function(botton){			
 				if(botton == 'yes'){
 					
-				    store.remove(pessoa);
+				    store.remove(endereco);
 				    store.sync();
 				    
 				    if(form){

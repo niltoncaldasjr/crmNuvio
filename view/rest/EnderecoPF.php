@@ -108,7 +108,7 @@ function deletaEnderecoPF() {
 	
 	parse_str(file_get_contents("php://input"), $post_vars);
 	$jsonDados = $post_vars['data'];
-	$data = json_decode(stripslashes($jsonDados));
+	$data = json_decode($jsonDados);
 
 	$jsonDepois = json_encode( $data );
 		
