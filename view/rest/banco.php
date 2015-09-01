@@ -88,7 +88,7 @@ function atualizaBanco() {
 	$jsonDados = $post_vars['data'];
 	$data = json_decode( $jsonDados );
 
-	$jsonDepois = json_encode( $data );
+// 	$jsonDepois = json_encode( $data );
 	
 	$datahora = date("Y-m-d H:i:s");
 	
@@ -97,6 +97,8 @@ function atualizaBanco() {
 	$objBancoControl = new BancoControl($objBanco);
 
 	$jsonAntes = json_encode( $objBancoControl->BuscarPorID() );
+	
+	$jsonDepois = json_encode( $objBanco );
 
 	$objBancoControl->atualizar();
 	
@@ -111,7 +113,7 @@ function deletaBanco() {
 	$jsonDados = $post_vars['data'];
 	$data = json_decode(stripslashes($jsonDados));
 
-	$jsonDepois = json_encode( $data );
+// 	$jsonDepois = json_encode( $data );
 		
 	$id = $data->id;
 	
@@ -121,7 +123,7 @@ function deletaBanco() {
 	$objBancoControl = new BancoControl($objBanco);
 
 	$jsonAntes = json_encode( $objBancoControl->BuscarPorID() );
-
+	$jsonDepois = $jsonAntes;
 	$objBancoControl->deletar();
 	
 	/*-- LogSistema      class -               ID -  NIVEL  -   AÇÃO  - ANTES - DEPOIS --*/

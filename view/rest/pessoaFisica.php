@@ -104,7 +104,7 @@ function atualizaPessoaFisica() {
 	$jsonDados = $post_vars['data'];
 	$data = json_decode( $jsonDados );
 	
-	$jsonDepois = json_encode( $data );
+// 	$jsonDepois = json_encode( $data );
 	
 	$datahora = date("Y-m-d H:i:s");
 	
@@ -125,6 +125,8 @@ function atualizaPessoaFisica() {
 	
 	$jsonAntes = json_encode( $objPessoaFisicaControl->BuscarPorID() );
 	
+	$jsonDepois = json_encode( $objPessoaFisica );
+	
 	$objPessoaFisicaControl->atualizar();
 	
 	/*-- LogSistema      class -                                ID -  NIVEL  -   AÇÃO  - ANTES - DEPOIS --*/
@@ -138,7 +140,7 @@ function deletaPessoaFisica() {
 	$jsonDados = $post_vars['data'];
 	$data = json_decode(stripslashes($jsonDados));
 	
-	$jsonDepois = json_encode( $data );
+// 	$jsonDepois = json_encode( $data );
 		
 	$id = $data->id;
 	
@@ -148,6 +150,8 @@ function deletaPessoaFisica() {
 	$objPessoaFisicaControl = new PessoaFisicaControl($objPessoaFisica);
 	
 	$jsonAntes = json_encode( $objPessoaFisicaControl->BuscarPorID() );
+	
+	$jsonDepois = $jsonAntes;
 	
 	$objPessoaFisicaControl->deletar();
 	

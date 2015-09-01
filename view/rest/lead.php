@@ -92,7 +92,7 @@ function atualizaLead() {
 	$jsonDados = $post_vars['data'];
 	$data = json_decode( $jsonDados );
 	
-	$jsonDepois = json_encode( $data );
+// 	$jsonDepois = json_encode( $data );
 
 	$datahora = date("Y-m-d H:i:s");
 	
@@ -101,6 +101,8 @@ function atualizaLead() {
 	$objLeadControl = new LeadControl($objLead);
 
 	$jsonAntes = json_encode( $objLeadControl->BuscarPorID() );
+	
+	$jsonDepois = $jsonAntes;
 
 	$objLeadControl->atualizar();
 	
