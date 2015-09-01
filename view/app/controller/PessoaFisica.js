@@ -263,13 +263,13 @@ Ext.define('crm.controller.PessoaFisica',{
 			form.getForm().reset();
 			
 			/*-- Minimiza a Tab --*/
-			if(winoeste){
-				winoeste.collapse( false );
-			}else if(winsul){
-				winsul.collapse( false );
-			}else{
-				//nada
-			}
+//			if(winoeste){
+//				winoeste.collapse( false );
+//			}else if(winsul){
+//				winsul.collapse( false );
+//			}else{
+//				//nada
+//			}
 		}
 			
 	},
@@ -324,13 +324,13 @@ Ext.define('crm.controller.PessoaFisica',{
 		
 		form.getForm().reset();
 		
-		if(winoeste){
-			winoeste.collapse( false );
-		}else if(winsul){
-			winsul.collapse( false );
-		}else{
-			//nada
-		}
+//		if(winoeste){
+//			winoeste.collapse( false );
+//		}else if(winsul){
+//			winsul.collapse( false );
+//		}else{
+//			//nada
+//		}
 		
 		
 	},

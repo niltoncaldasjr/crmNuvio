@@ -105,7 +105,7 @@ function atualizaContatoLead() {
 	$jsonDados = $post_vars['data'];
 	$data = json_decode( $jsonDados );
 
-	$jsonDepois = json_encode( $data );
+// 	$jsonDepois = json_encode( $data );
 	
 	$datahora = date("Y-m-d H:i:s");
 	
@@ -134,6 +134,8 @@ function atualizaContatoLead() {
 
 	$jsonAntes = json_encode( $objContaContatoLeadControl->BuscarPorID() );
 
+	$jsonDepois = json_encode( $objContatoLead );
+	
 	$objContaContatoLeadControl->atualizar();
 	
 	/*-- LogSistema      class -               ID -  NIVEL  -   AÇÃO  - ANTES - DEPOIS --*/
@@ -147,7 +149,7 @@ function deletaContatoLead() {
 	$jsonDados = $post_vars['data'];
 	$data = json_decode(stripslashes($jsonDados));
 		
-	$jsonDepois = json_encode( $data );
+// 	$jsonDepois = json_encode( $data );
 
 	$id = $data->id;
 	
@@ -158,6 +160,8 @@ function deletaContatoLead() {
 	$objContaContatoLeadControl = new ContatoLeadControl($objContatoLead);
 
 	$jsonAntes = json_encode( $objContaContatoLeadControl->BuscarPorID() );
+	
+	$jsonDepois = $jsonAntes;
 
 	$objContaContatoLeadControl->deletar();
 	

@@ -89,7 +89,7 @@ function atualizaDocumentoPF() {
 	$jsonDados = $post_vars['data'];
 	$data = json_decode( $jsonDados );
 
-	$jsonDepois = json_encode( $data );
+// 	$jsonDepois = json_encode( $data );
 	
 	$datahora = date("Y-m-d H:i:s");
 	
@@ -98,6 +98,8 @@ function atualizaDocumentoPF() {
 	$objDocumentoPFControl = new DocumentoPFControl($objDocumentoPF);
 
 	$jsonAntes = json_encode( $objDocumentoPFControl->BuscarPorID() );
+	
+	$jsonDepois = json_encode( $objDocumentoPF );
 
 	$objDocumentoPFControl->atualizar();
 	
@@ -110,7 +112,7 @@ function deletaDocumentoPF() {
 	
 	parse_str(file_get_contents("php://input"), $post_vars);
 	$jsonDados = $post_vars['data'];
-	$data = json_decode(stripslashes($jsonDados));
+// 	$data = json_decode(stripslashes($jsonDados));
 
 	$jsonDepois = json_encode( $data );
 		
@@ -122,6 +124,7 @@ function deletaDocumentoPF() {
 	$objDocumentoPFControl = new DocumentoPFControl($objDocumentoPF);
 
 	$jsonAntes = json_encode( $objDocumentoPFControl->BuscarPorID() );
+	$jsonDepois = $jsonAntes;
 
 	$objDocumentoPFControl->deletar();
 	

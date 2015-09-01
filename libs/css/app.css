@@ -326,3 +326,6 @@ td.patient-label {
     font-family: verdana,arial,sans-serif;
     font-size: 12px;
 }
+.patient-name2{
+	border: 1px solid #ff0000;
+}

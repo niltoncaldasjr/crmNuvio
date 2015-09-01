@@ -111,8 +111,8 @@ class ContatoLead implements JsonSerializable{
 			'dataretorno' 	=> $this->dataretorno,
 			'datacadastro' 	=> $this->datacadastro,
 			'dataeedicao' 	=> $this->dataedicao,
-			'objUsuario' 	=> $this->objUsuario->jsonSerialize(),
-			'objLead' 		=> $this->objLead->jsonSerialize()
+			'idusuario' 	=> $this->objUsuario->jsonSerialize(),
+			'idlead' 		=> $this->objLead->jsonSerialize()
 		];
 	}
 	

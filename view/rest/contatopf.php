@@ -91,7 +91,7 @@ function atualizaContatoPF() {
 	$jsonDados = $post_vars['data'];
 	$data = json_decode( $jsonDados );
 
-	$jsonDepois = json_encode( $data );
+// 	$jsonDepois = json_encode( $data );
 	
 	$datahora = date("Y-m-d H:i:s");
 	
@@ -100,6 +100,8 @@ function atualizaContatoPF() {
 	$objContatoPFControl = new ContatoPFControl($objContatoPF);
 
 	$jsonAntes = json_encode( $objContatoPFControl->BuscarPorID() );
+	
+	$jsonDepois = json_encode( $objContatoPF );
 
 	$objContatoPFControl->atualizar();
 	
@@ -114,7 +116,7 @@ function deletaContatoPF() {
 	$jsonDados = $post_vars['data'];
 	$data = json_decode( $jsonDados );
 
-	$jsonDepois = json_encode( $data );
+	//$jsonDepois = json_encode( $data );
 		
 	$id = $data->id;
 	
@@ -124,6 +126,7 @@ function deletaContatoPF() {
 	$objContatoPFControl = new ContatoPFControl($objContatoPF);
 
 	$jsonAntes = json_encode( $objContatoPFControl->BuscarPorID() );
+	$jsonDepois = $jsonAntes;
 
 	$objContatoPFControl->deletar();
 	

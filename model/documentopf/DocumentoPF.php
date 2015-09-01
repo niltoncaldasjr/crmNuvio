@@ -112,15 +112,15 @@ class DocumentoPF implements JsonSerializable
 	/*-- Json --*/
 	public function jsonSerialize(){
 		return [
-			'id' 			=> $this->id,
-			'tipo'			=> $this->tipo,
-			'numero'		=> $this->numero,
-			'dataemissao'	=> $this->dataemissao,
-			'orgaoemissor'	=> $this->orgaoemissor,
-			'via'			=> $this->via,
-			'pessoafisica'	=> $this->objpessoafisica->jsonSerialize(),
-			'datacadastro'	=> $this->datacadastro,
-			'dataedicao'	=> $this->dataedicao
+			'id' 				=> $this->id,
+			'tipo'				=> $this->tipo,
+			'numero'			=> $this->numero,
+			'dataemissao'		=> $this->dataemissao,
+			'orgaoemissor'		=> $this->orgaoemissor,
+			'via'				=> $this->via,
+			'idpessoafisica'	=> $this->objpessoafisica->jsonSerialize(),
+			'datacadastro'		=> $this->datacadastro,
+			'dataedicao'		=> $this->dataedicao
 		];
 	}
 }

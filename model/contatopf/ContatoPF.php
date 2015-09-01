@@ -91,13 +91,13 @@ class ContatoPF implements JsonSerializable
 	/*-- Json Serializable --*/
 	public function jsonSerialize(){
 		return[
-			'id'			=> $this->id,
-			'tipo'			=> $this->tipo,
-			'operadora' 	=> $this->operadora,
-			'contato'		=> $this->contato,
-			'pessoafisica' 	=> $this->objpessoafisica->jsonSerialize(),
-			'datacadastro'	=> $this->datacadastro,
-			'dataedicao'	=> $this->dataedicao
+			'id'				=> $this->id,
+			'tipo'				=> $this->tipo,
+			'operadora' 		=> $this->operadora,
+			'contato'			=> $this->contato,
+			'idpessoafisica'	=> $this->objpessoafisica->jsonSerialize(),
+			'datacadastro'		=> $this->datacadastro,
+			'dataedicao'		=> $this->dataedicao
 		];
 	}
 	

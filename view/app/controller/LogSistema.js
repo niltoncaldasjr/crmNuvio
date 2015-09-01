@@ -141,16 +141,35 @@ Ext.define('crm.controller.LogSistema',{
 		var descDepois = '<tpl for=".">' +
                 '<div class="patient-source"><table><tbody>';
         
-		Ext.Object.each( objDepois, function(key, value, myself){
-			if(Ext.isObject(value)){
+		Ext.Object.each( objAntes, function(key, value, myself){
+		
+			Ext.Object.each( objDepois, function(key2, value2, myself2){
 				
-				descDepois += '<tr><td class="patient-label">'+key+'</td><td class="patient-name">'+value['id']+'</td></tr>';
 				
-			}else{
-
-				descDepois += '<tr><td class="patient-label">'+key+'</td><td class="patient-name">'+value+'</td></tr>';
+				if(key == key2){
+					
+					if( Ext.isObject(value) ){
+						
+						if(value['id'] != value2['id'] && (key2 != 'datacadastro' && key2 != 'dataedicao')){
+								descDepois += '<tr><td class="patient-label">'+key2+'</td><td class="patient-name2">'+value2['id']+'</td></tr>';
+							}else{
+								descDepois += '<tr><td class="patient-label">'+key2+'</td><td class="patient-name">'+value2['id']+'</td></tr>';
+							}
+						
+					}else{
+		
+						
+						if(value != value2 && (key2 != 'datacadastro' && key2 != 'dataedicao')){
+							descDepois += '<tr><td class="patient-label">'+key2+'</td><td class="patient-name2">'+value2+'</td></tr>';
+						}else{
+							descDepois += '<tr><td class="patient-label">'+key2+'</td><td class="patient-name">'+value2+'</td></tr>';
+						}
+						
+					}
+				}
 				
-			}
+			});
+			
 		}),
 
 		descDepois += '</tbody></table></div>' +

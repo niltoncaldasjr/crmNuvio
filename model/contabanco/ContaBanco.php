@@ -175,8 +175,8 @@ class ContaBanco implements JsonSerializable{
 			'telefoneContato' 	=>	$this->telefoneContato,
 			'datacadastro' 		=>	$this->datacadastro,
 			'dataedicao' 		=>	$this->dataedicao,
-			'objBanco' 			=>	$this->objBanco->jsonSerialize(),
-			'objEmpresa' 		=>	$this->objEmpresa->jsonSerialize()
+			'idbanco' 			=>	$this->objBanco->jsonSerialize(),
+			'idempresa' 		=>	$this->objEmpresa->jsonSerialize()
 		];
 	}
 	

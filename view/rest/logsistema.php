@@ -11,17 +11,17 @@ switch ($_SERVER['REQUEST_METHOD']) {
 			listaLogSistema();
 			break;
 	
-		case 'POST':
-			cadastraLogSistema();
-			break;
+// 		case 'POST':
+// 			cadastraLogSistema();
+// 			break;
 	
-		case 'PUT':
-			atualizaLogSistema();
-			break;
+// 		case 'PUT':
+// 			atualizaLogSistema();
+// 			break;
 				
-		case 'DELETE':
-			deletaLogSistema();
-			break;
+// 		case 'DELETE':
+// 			deletaLogSistema();
+// 			break;
 }
 	
 function listaLogSistema() {
@@ -54,7 +54,7 @@ function listaLogSistema() {
 	
 }
 
-function cadastraLogSistema() {
+// function cadastraLogSistema() {
 	
 	// $jsonDados = $_POST['data'];
 	// $data = json_decode(stripslashes($jsonDados));
@@ -83,9 +83,9 @@ function cadastraLogSistema() {
 	// $objLogSistemaController = new LogSistemaControl($objLogSistema);
 	// $objLogSistemaController->cadastrar();
 	
-}
+// }
 
-function atualizaLogSistema() {
+// function atualizaLogSistema() {
 	
 	// parse_str(file_get_contents("php://input"), $post_vars);
 	// $jsonDados = $post_vars['data'];
@@ -106,9 +106,9 @@ function atualizaLogSistema() {
 	// $objLogSistemaController = new LogSistemaControl($objLogSistema);
 	// $objLogSistemaController->cadastrar();
 	
-}
+// }
 
-function deletaLogSistema() {
+// function deletaLogSistema() {
 	
 	// parse_str(file_get_contents("php://input"), $post_vars);
 	// $jsonDados = $post_vars['data'];
@@ -130,6 +130,6 @@ function deletaLogSistema() {
 	// $objLogSistemaController = new LogSistemaControl($objLogSistema);
 	// $objLogSistemaController->cadastrar();
 	
-}
+// }
 
 ?>

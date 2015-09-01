@@ -101,7 +101,7 @@ function atualizaContaBanco() {
 	$jsonDados = $post_vars['data'];
 	$data = json_decode( $jsonDados );
 	
-	$jsonDepois = json_encode( $data );
+// 	$jsonDepois = json_encode( $data );
 
 	$datahora = date("Y-m-d H:i:s");
 	
@@ -122,6 +122,7 @@ function atualizaContaBanco() {
 	$objContaBanco->setObjEmpresa($objEmpresa);
 	
 	//echo $objContaBanco;
+	$jsonDepois = json_encode( $objContaBanco );
 	
 	$objContaContaBancoControl = new ContaBancoControl($objContaBanco);
 
@@ -140,7 +141,7 @@ function deletaContaBanco() {
 	$jsonDados = $post_vars['data'];
 	$data = json_decode(stripslashes($jsonDados));
 
-	$jsonDepois = json_encode( $data );
+// 	$jsonDepois = json_encode( $data );
 		
 	$id = $data->id;
 	
@@ -150,6 +151,8 @@ function deletaContaBanco() {
 	$objContaContaBancoControl = new ContaBancoControl($objContaBanco);
 
 	$jsonAntes = json_encode( $objContaContaBancoControl->BuscarPorID() );
+	
+	$jsonDepois = $jsonAntes;
 	
 	$objContaContaBancoControl->deletar();
 	

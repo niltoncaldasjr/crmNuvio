@@ -87,7 +87,7 @@ function atualizaEnderecoPF() {
 	$jsonDados = $post_vars['data'];
 	$data = json_decode( $jsonDados );
 
-	$jsonDepois = json_encode( $data );
+// 	$jsonDepois = json_encode( $data );
 	
 	$datahora = date("Y-m-d H:i:s");
 	
@@ -96,6 +96,8 @@ function atualizaEnderecoPF() {
 	$objEnderecoPFControl = new EnderecoPFControl($objEnderecpPF);
 
 	$jsonAntes = json_encode( $objEnderecoPFControl->BuscarPorID() );
+	
+	$jsonDepois = json_encode($objEnderecpPF);
 
 	$objEnderecoPFControl->atualizar();
 	
@@ -110,7 +112,7 @@ function deletaEnderecoPF() {
 	$jsonDados = $post_vars['data'];
 	$data = json_decode($jsonDados);
 
-	$jsonDepois = json_encode( $data );
+// 	$jsonDepois = json_encode( $data );
 		
 	$id = $data->id;
 	
@@ -120,6 +122,7 @@ function deletaEnderecoPF() {
 	$objEnderecoPFControl = new EnderecoPFControl($objEnderecoPF);
 
 	$jsonAntes = json_encode( $objEnderecoPFControl->BuscarPorID() );
+	$jsonDepois = $jsonAntes;
 
 	$objEnderecoPFControl->deletar();
 	
