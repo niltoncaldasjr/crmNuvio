@@ -107,6 +107,7 @@ Ext.define('crm.controller.LogSistema',{
 	exibirDetalhes: function( linha, record, index, eOpts ){
 		var log = record.get('id');
 		
+		control = this;
 		
 		/*-- Expandindo o Panel recolhido --*/
 		this.getLogPanel().expand(true);
@@ -123,9 +124,12 @@ Ext.define('crm.controller.LogSistema',{
 		Ext.Object.each( objAntes, function(key, value, myself){
 			if(Ext.isObject(value)){
 
-		    	descAntes += '<tr><td class="patient-label">'+key+'</td><td class="patient-name">'+value['id']+'</td></tr>';
-			
-			}else{
+//		    	descAntes += '<tr><td class="patient-label">'+key+'</td><td class="patient-name">'+value['id']+'</td></tr>';
+				value = control.RenderName(record.get('class'), key, value);
+				descAntes += '<tr><td class="patient-label">'+key+'</td><td class="patient-name">'+value+'</td></tr>';
+		    	
+		    	
+		    }else{
 				descAntes += '<tr><td class="patient-label">'+key+'</td><td class="patient-name">'+value+'</td></tr>';
 				
 			}
@@ -151,9 +155,15 @@ Ext.define('crm.controller.LogSistema',{
 					if( Ext.isObject(value) ){
 						
 						if(value['id'] != value2['id'] && (key2 != 'datacadastro' && key2 != 'dataedicao')){
-								descDepois += '<tr><td class="patient-label">'+key2+'</td><td class="patient-name2">'+value2['id']+'</td></tr>';
+//								descDepois += '<tr><td class="patient-label">'+key2+'</td><td class="patient-name2">'+value2['id']+'</td></tr>';
+								value2 = control.RenderName(record.get('class'), key2, value2);
+								descDepois += '<tr><td class="patient-label">'+key2+'</td><td class="patient-name2">'+value2+'</td></tr>';
+								
 							}else{
-								descDepois += '<tr><td class="patient-label">'+key2+'</td><td class="patient-name">'+value2['id']+'</td></tr>';
+//								descDepois += '<tr><td class="patient-label">'+key2+'</td><td class="patient-name">'+value2['id']+'</td></tr>';
+								value2 = control.RenderName(record.get('class'), key2, value2);
+								descDepois += '<tr><td class="patient-label">'+key2+'</td><td class="patient-name">'+value2+'</td></tr>';
+								
 							}
 						
 					}else{
@@ -185,6 +195,135 @@ Ext.define('crm.controller.LogSistema',{
 			btn.setText('Rowback');
 		}
 
+	},
+	
+	RenderName: function(classe, key, value ){
+		
+		switch(classe){
+			
+			case "ContaBanco":{
+				
+				if(key == 'idbanco'){
+					var Store = Ext.getStore('Banco');
+					var obj = Store.findRecord('id', value['id']);
+					if(obj!=null){
+						value = obj.get('nome');
+						return value;
+					}
+				}else{
+					var Store = Ext.getStore('Empresa');
+					var obj = Store.findRecord('id', value['id']);
+					if(obj!=null){
+						value = obj.get('nomeFantasia');
+						return value;
+					}
+					
+				}
+				break;
+			
+			}
+			case "ContatoLead":{
+				
+				if(key == 'idlead'){
+					var Store = Ext.getStore('Lead');
+					var obj = Store.findRecord('id', value['id']);
+					if(obj!=null){
+						value = obj.get('empresa');
+						return value;
+					}
+				}else{
+					var Store = Ext.getStore('Usuario');
+					var obj = Store.findRecord('id', value['id']);
+					if(obj!=null){
+						value = obj.get('nome');
+						return value;
+					}
+					
+				}
+				break;
+			}
+			case "Empresa":{
+				
+				if(key == 'idlocalidade'){
+					var Store = Ext.getStore('Localidade');
+					var obj = Store.findRecord('id', value['id']);
+					if(obj!=null){
+						value = obj.get('cidade');
+						return value;
+					}
+				}else{
+					var Store = Ext.getStore('Imposto');
+					var obj = Store.findRecord('id', value['id']);
+					if(obj!=null){
+						value = obj.get('titulo');
+						return value;
+					}
+					
+				}
+				break;
+			}
+			case "Localidade":{
+				
+				var Store = Ext.getStore('Pais');
+				var obj = Store.findRecord('id', value['id']);
+				if(obj!=null){
+					value = obj.get('descricao');
+					return value;
+				}
+				break;
+				
+			}
+			case "Usuario":{
+				
+				if(key == 'idperfil'){
+					var Store = Ext.getStore('Perfil');
+					var obj = Store.findRecord('id', value['id']);
+					if(obj!=null){
+						value = obj.get('nome');
+						return value;
+					}
+				}else{
+					var Store = Ext.getStore('PessoaFisica');
+					var obj = Store.findRecord('id', value['id']);
+					if(obj!=null){
+						value = obj.get('nome');
+						return value;
+					}
+					
+				}
+				break;
+			}
+			case "ContatoPF":{
+				var Store = Ext.getStore('PessoaFisica');
+				var obj = Store.findRecord('id', value['id']);
+				if(obj!=null){
+					value = obj.get('nome');
+					return value;
+				}
+				break;
+			}
+			case "DocumentoPF":{
+				var Store = Ext.getStore('PessoaFisica');
+				var obj = Store.findRecord('id', value['id']);
+				if(obj!=null){
+					value = obj.get('nome');
+					return value;
+				}
+				break;
+			}
+			case "EnderecoPF":{
+				var Store = Ext.getStore('PessoaFisica');
+				var obj = Store.findRecord('id', value['id']);
+				if(obj!=null){
+					value = obj.get('nome');
+					return value;
+				}
+				break;
+			}
+		
+		}
+		
+		
 	}
 
 	
