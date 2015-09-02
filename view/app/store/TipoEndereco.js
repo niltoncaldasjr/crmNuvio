@@ -10,7 +10,7 @@
 Ext.define('crm.store.TipoEndereco',{
 	extend: 'Ext.data.Store',
 	
-	model: 'crm.model.TipoEnderco',
+	model: 'crm.model.TipoEndereco',
 	
 	autoLoad: true,
 	

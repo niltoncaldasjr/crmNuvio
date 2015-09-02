@@ -36,10 +36,17 @@ Ext.define('crm.view.pessoafisica.EnderecoPFForm',{
 	    	    	name: 		'id'
 	    	    },
 	    	    {
-	    	    	xtype: 		'textfield',
-	    	    	fieldLabel: 'Tipo',
-	    	    	name: 		'tipo',
-	    	    	allowBlank: false,
+	    	    	xtype:'combo',
+					fieldLabel:'Tipo',
+					emptyText:'Selecione...',
+					forceSelection:true,
+					editable:false,
+					name: 'idtipoendereco',
+					store: 'TipoEndereco',
+					queryMode: 'ajax',
+					displayField: 'descricao',
+					valueField: 'id',
+					allowBlank: false,
 	    	    },
 	    	    {
 	    	    	xtype: 		'textfield',

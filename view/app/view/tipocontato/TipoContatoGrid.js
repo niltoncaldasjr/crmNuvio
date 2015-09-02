@@ -7,7 +7,7 @@
 *  Desenvolvedor.: Fabiano Ferreira da Silva Costa
 */
 
-Ext.define('crm.view.tipocontato.TipoContato',{
+Ext.define('crm.view.tipocontato.TipoContatoGrid',{
 	extend: 	'Ext.grid.Panel',
 	alias: 		'widget.tipocontatogrid',
 	title: 		'Cadastro de Tipo de Contato',

@@ -7,7 +7,7 @@
 *  Desenvolvedor.: Fabiano Ferreira da Silva Costa
 */
 
-Ext.define('crm.view.tipoendereco.TipoEndereco',{
+Ext.define('crm.view.tipoendereco.TipoEnderecoGrid',{
 	extend: 	'Ext.grid.Panel',
 	alias: 		'widget.tipoenderecogrid',
 	title: 		'Cadastro de Tipo Endereco',

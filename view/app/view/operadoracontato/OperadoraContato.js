@@ -7,7 +7,7 @@
 *  Desenvolvedor.: Fabiano Ferreira da Silva Costa
 */
 
-Ext.define('crm.view.operadoracontato.OperadoraContato',{
+Ext.define('crm.view.operadoracontato.OperadoraContatoGrid',{
 	extend: 	'Ext.grid.Panel',
 	alias: 		'widget.operadoracontatogrid',
 	title: 		'Cadastro de Operadora',

@@ -40,7 +40,10 @@ Ext.application({
                   'Temas',
                   'SelecaoEmpresa',
                   'LogSistema',
-                  'EmpresaUsuario'
+                  'EmpresaUsuario',
+                  'TipoContatoController',
+                  'OperadoraContatoController',
+                  'TipoEnderecoController'
     ],
     
     
