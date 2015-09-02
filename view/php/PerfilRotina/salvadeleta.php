@@ -1,5 +1,6 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'util/Conexao.php';
+require_once $_SERVER ['DOCUMENT_ROOT'] . "crmNuvio/" . 'util/retornarJson.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'control/PerfilRotinaControl.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" .'model/perfilrotina/PerfilRotina.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'model/rotina/Rotina.php';
@@ -13,7 +14,7 @@ $metodo = $_GET['metodo'];
 
 switch($metodo)
 {
-	case "post": {
+	case "post": {		
 		SalvaPerfilRotina($data);
 		break;
 	}
@@ -38,9 +39,20 @@ function SalvaPerfilRotina($data){
 
 		$objPerfilRotinaControl = new PerfilRotinaControl($objPerfilRotina);
 
-		$objPerfilRotinaControl->cadastrar();
-
+		$id = $objPerfilRotinaControl->cadastrar();
+		$objPerfilRotina->setId($id);
 	}
+	
+	$funcao = new RetornarJson($objPerfil->getId());
+	$lista_pr = $funcao->retornarPerfilRotinas();
+	$lista_r = $funcao->retornarRotinas();
+	
+	echo json_encode ( array (
+			"success" => true,
+			"data" => $lista_pr,
+			"rotinas" => $lista_r
+				
+	) );
 }
 
 /*-- Metodos de delete da EmpresaUsuario --*/

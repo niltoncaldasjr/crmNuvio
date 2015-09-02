@@ -18,7 +18,7 @@ class PerfilRotinaDAO{
 	
 	/*-- Metodo Cadastrar --*/
 	function cadastrar(PerfilRotina $objPerfilRotina){
-		$this->sql = sprintf("INSERT INTO perfilrotina (idrotina, idperfil) VALUES(%d, %d)",
+		$this->sql = sprintf("INSERT INTO perfilrotina (idrotina, idperfil,consulta,incluir,alterar,excluir) VALUES(%d, %d,0,0,0,0)",
 				mysqli_real_escape_string( $this->con, $objPerfilRotina->getObjRotina()->getId() ),
 				mysqli_real_escape_string( $this->con, $objPerfilRotina->getObjPerfil()->getId() ) );
 				
@@ -29,6 +29,22 @@ class PerfilRotinaDAO{
 		/*-- Pegando ultimo obj cadastrado --*/
 		return mysqli_insert_id ( $this->con );
 	}
+	
+// 	function alterar_vizualizacao(PerfilRotina $objPerfilRotina){
+// 		$this->sql = sprintf("SELECT * FROM perfilrotina WHERE idperfil = %d AND idrotina = %d",
+// 				mysqli_real_escape_string($this->con, $objPerfilRotina->getObjPerfil()->getId()),
+// 				mysqli_real_escape_string($this->con, $objPerfilRotina->getObjRotina()->getId()));
+		
+// 		$result = mysqli_query($this->con, $this->sql);
+// 		if(!$result){
+// 			die('[ERRO]: '.mysqli_error($this->con));
+// 		}
+// 		while($row = mysqli_fetch_object($result)){
+			
+// 			$perfilRotinaAlterar = $row;
+// 		}
+// 		$query = sprintf("UPDATE perfilrotina SET consulta = $objPerfilRotina->get");
+// 	}
 	
 	/*-- Metodo Atualizar --*/
 	function atualizar(PerfilRotina $objPerfilRotina){
@@ -74,20 +90,9 @@ class PerfilRotinaDAO{
 		while($row = mysqli_fetch_object($resultSet)){
 			
 			$lista[] = $row;
-// 			$objRotina = new Rotina();
-// 			$objRotina->setId($row->idrotina);
-// 			$objRotinaControl = new RotinaControl($objRotina);
-// 			$objRotina = $objRotinaControl->buscarPorId();
-			
-// 			$objPerfil = new Perfil();
-// 			$objPerfil->setId($row->idperfil);
-// 			$objPerfilControl = new PerfilControl($objPerfil);
-// 			$objPerfil = $objPerfilControl->buscarPorId();
-			
-// 			$this->objPerfilRotina = new PerfilRotina($row->id, $row->datacadastro, $objRotina, $objPerfil); 
 		}
 		
-		return $lista;//$this->objPerfilRotina;
+		return $lista;
 	}
 	
 	/*-- Buscar por ID de Perfil --*/

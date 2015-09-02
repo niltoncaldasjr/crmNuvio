@@ -7,6 +7,7 @@ session_start();
 $mysqli = Conexao::getInstance()->getConexao();
 	
 $id = $_POST['idperfil'];
+$idperfil = $_POST['idperfil'];
 
 $queryString = "SELECT e.* FROM perfil u ";
 $queryString .= "INNER JOIN perfilrotina eu ON u.id = eu.idperfil ";
@@ -20,12 +21,37 @@ $empresas2 	= array();
 if($resultdb = $mysqli->query($queryString)){
 	
 	$empresaUsuario = "(";
-	while($user = $resultdb->fetch_assoc()){
-		$empresas[] = $user;
-		$empresaUsuario .= $user['id'] . ",";
+	while($row = $resultdb->fetch_assoc()){
+		$row['param'] = $idperfil;
+		if($row['consulta'] == 0){
+			$row['consulta'] = true;
+		}else if($row['consulta'] == 1){
+			$row['consulta'] = false;
+		}
+		
+		if($row['incluir'] == 0){
+			$row['incluir'] = true;
+		}else if($row['incluir'] == 1){
+			$row['incluir'] = false;
+		}
+		
+		if($row['alterar'] == 0){
+			$row['alterar'] = true;
+		}else if($row['alterar'] == 1){
+			$row['alterar'] = false;
+		}
+		
+		if($row['excluir'] == 0){
+			$row['excluir'] = true;
+		}else if($row['excluir'] == 1){
+			$row['excluir'] = false;
+		}
+		$empresas[] = $row;
+// 		
+		$empresaUsuario .= $row['id'] . ",";
 		
 	}
-
+	
 	$empresaUsuario = substr($empresaUsuario, 0, -1) . ")";
 	
 	if($empresaUsuario == ")"){$empresaUsuario = "( 0 )";}
@@ -37,11 +63,12 @@ if($resultdb = $mysqli->query($queryString)){
 	if($resultdb = $mysqli->query($query)){
 		
 		while($empresa = $resultdb->fetch_assoc()){
+			$empresa['param'] = $idperfil;
 			$empresas2[] = $empresa;
-		}
-		
+					
+		}		
 	}
-
+	
 	$success = 'true';
 	$msg = 'Sucesso';
 	

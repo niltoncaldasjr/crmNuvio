@@ -12,11 +12,12 @@ Ext.define('crm.model.PerfilRotina',{
 	
 	fields: [
 	         	{name: 'id', type: 'int'},
-	         	{name: 'nome', type: 'string'},
-	         	{name: 'consulta', type: 'string'},
-	         	{name: 'incluir', type: 'string'},
-	         	{name: 'alterar', type: 'string'},
-	         	{name: 'excluir', type: 'string'}
+	         	{name: 'idperfil'},
+	         	{name: 'idrotina'},
+	         	{name: 'consulta'},
+	         	{name: 'incluir'},
+	         	{name: 'alterar'},
+	         	{name: 'excluir'}
 	         
 	]
 

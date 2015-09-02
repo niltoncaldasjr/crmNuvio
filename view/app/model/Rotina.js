@@ -19,10 +19,7 @@ Ext.define('crm.model.Rotina', {
 	    {name: 'ativo', 		type: 'int'},
 	    {name: 'icon', 			type: 'string'},
 	    {name: 'datacadastro', 	type: 'date', dateFormat: 'c'},
-	    {name: 'dataedicao', 	type: 'date', dateFormat: 'c'},
-	    {name: 'consulta', type: 'string'},
-     	{name: 'incluir', type: 'string'},
-     	{name: 'alterar', type: 'string'},
-     	{name: 'excluir', type: 'string'}
+	    {name: 'dataedicao', 	type: 'date', dateFormat: 'c'}
+	    
 	]
 });

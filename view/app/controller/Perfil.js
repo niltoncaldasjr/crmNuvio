@@ -1,37 +1,39 @@
 Ext.define('crm.controller.Perfil', {
     extend: 'Ext.app.Controller',
 
-    requires: [
-               'Ext.selection.CellModel',
-               'Ext.grid.*',
-               'Ext.data.*',
-               'Ext.util.*',
-               'Ext.form.*'
-           ],
+    requires: ['Ext.ux.CheckColumn', 'crm.util.Alert'],
     
     stores: ['Perfil', 'PerfilRotina'],
 
-    models: ['Perfil'],
+    models: ['Perfil','PerfilRotina'],
 
-    views: ['perfil.PerfilForm', 'perfil.PerfilGrid', 'perfil.PerfilRotinaPanel', 'perfil.PerfilRotinaGrid', 'perfil.Rotinas'],
+    views: ['perfil.PerfilForm', 'perfil.PerfilRotinaEdicao', 'perfil.PerfilGrid', 'perfil.PerfilRotinaPanel', 'perfil.PerfilRotinaGrid', 'perfil.Rotinas','crm.view.perfilrotina.ListaPFGrid'],
 
    
     refs: [
-   	    {
-   	    	ref: 'perfilRotinaGrid',
-   	    	selector: 'perfilrotinagrid'
-   	    },
+//   	    {
+//   	    	ref: 'adicionarRotina',
+//   	    	selector: 'rotinas button#adicionarRotina'
+//   	    },
    	    {
    	    	ref: 'rotinas',
    	    	selector: 'rotinas'
    	    },
-   	 {
+   	    {
             ref: 'Form',
             selector: 'perfilform form'
         },
    	    {
    	    	ref: 'perfilGrid',
             selector: 'perfilgrid'
+   	    },
+//   	    {
+//   	    	ref: 'perfilRotinaEdicao',
+//   	    	selector: 'perfilrotinaedicao'
+//   	    },
+   	    {
+   	    	ref: 'listaPFGrid',
+   	    	selector: 'listapfgrid'
    	    }
    	],
    	
@@ -40,14 +42,15 @@ Ext.define('crm.controller.Perfil', {
             'perfilgrid dataview': {
                 itemdblclick: this.onEditaPerfil
             },
+            
             'perfilgrid': {
             	select: this.onSelect
             },
-            'rotinas > gridview': {
-				drop : this.SalvaPerfilRotina
+            'rotinas button#adicionarRotina': {
+				click : this.adicionarPerfilRotina
 			},
-			'perfilrotinagrid > gridview': {
-				drop : this.DeletaPerfilRotina
+			'listapfgrid button#excluirRotina': {
+				click : this.excluirPerfilRotina
 			},
             'perfilgrid button#addPerfil': {
             	click: this.onAddPerfilClick
@@ -61,9 +64,12 @@ Ext.define('crm.controller.Perfil', {
             'perfilform button#cancelaperfil': {
                 click: this.onCancelPerfilClick
             },
-            'perfilrotinagrid checkcolumn#consCheck':{
-            	checkchange: this.onChecked
+            'listapfgrid checkcolumn':{
+            	checkchange: this.onCheckedConsulta
             }
+//            'perfilrotinagrid dataview':{
+//            	itemdblclick: this.onAbrirEdicao
+//            }
         });
     },
 
@@ -151,19 +157,14 @@ Ext.define('crm.controller.Perfil', {
   
   onSelect: function( linha, record, index, eOpts ){
 		//console.log(record.get('id'));
-		
+	  	pr_store = this.getListaPFGrid().getStore();
+	  	r_store  = this.getRotinas().getStore();
 //		/*-- Capturando o Id do usuario selecionado --*/
-		idperfil = record.get('id');
-//		/*-- Capturando a Store da Grid de EmpresaUsuario --*/
-		PerfilRotinaStore = this.getPerfilRotinaGrid().getStore();
-		
-//		/*-- Capturando a Store da Grid de EmpresaLista --*/
-		RotinaListaStore = this.getRotinas().getStore();
-		
+		id = record.get('id');
 		Ext.Ajax.request({
-			url: 'php/perfilRotina/lista.php',
+			url: 'php/perfilRotina/listarrotinas.php',
 			params: {
-				idperfil: idperfil,
+				idperfil: id,
 		},
 		failure: function(conn, response, options, eOpts) {
 			Ext.Msg.show({
@@ -182,16 +183,14 @@ Ext.define('crm.controller.Perfil', {
 			}
 			if (result.success) { 
 				//dados carrega dados na grid
-				PerfilRotinaStore.removeAll();
-				PerfilRotinaStore.addSorted(result.data);				
+				pr_store.removeAll();
+				pr_store.add(result.data);
 				
-				RotinaListaStore.removeAll();
-				RotinaListaStore.add(result.data2);
-				
-				
+				r_store.removeAll();
+				r_store.add(result.rotinas);
 			} else {
 				Ext.Msg.show({ 
-					title:'Fail!',
+					title:'FaiÔOOOO!',
 					msg: result.msg, 
 					icon: Ext.Msg.ERROR,
 					buttons: Ext.Msg.OK
@@ -201,78 +200,161 @@ Ext.define('crm.controller.Perfil', {
 	});
   },
   
-  PostDeleteDrop: function(data, metodo){
-  	// console.log(data);
-
-  	/*-- Capturamos o Usuário selecionado na *UsuarioListaGrid* --*/
-  	var perfil = this.getPerfilGrid().getSelectionModel().getSelection();
-
-  	if(perfil[0])
-  	{
-	    	/*-- Contamos a quantidade de items(empresas) movidos --*/
-	    	var total = data.length;
-	    	/*-- Array de dados --*/
-	    	var dados =[];
-
-	    	/*-- Laço adicionando todos os dados ao Array --*/
-	    	for(i = 0; i < total; i++)
-	    	{
-	    		/* Adição de cada empresa em uma posição + id do usuario selecionado */
-				dados[i] = { 
-					idrotina : data[i].get('id'),
-					idperfil : perfil[0].get('id')
-				};
-	    	}
-
-	    	/*-- encodamos para Json --*/
-	    	dados = Ext.encode ( dados ) ;
-
-	    	// console.log(dados);
-
-	    	/*-- Iniciamos o Ajax do Ext --*/
-	    	Ext.Ajax.request({
-
-	    		/*-- Passamos por parametro(GET) o metodo(Post/Delete) --*/
-				url: 'php/perfilRotina/salvadeleta.php?metodo='+metodo,
+  onCheckedConsulta: function(grid, rowIndex, checked, eOpts ){
+		  var store = this.getListaPFGrid().getStore();		  
+		  model = store.getAt(rowIndex);
+		  
+		  model = Ext.encode(model['data']);
+		  Ext.Ajax.request({
+				url: 'php/perfilRotina/alteracao.php',
 				params: {
-					/*-- Passamos na chave *data* o array *dados* --*/
-					data: dados,
-				}
+					data: model
+			},
 			
 			});
-	    }
+		  store.sync();	  
   },
   
-  SalvaPerfilRotina: function(node, data, dropRec, dropPosition) {
-  	// console.log(data.records.length);
-
-  	/*-- 
-  		Chama o metodo de Cadastro e Delete 
-			- passamos o records do data onde estão os valores movidos
-			- passamos o metodo delete(Deletar)
-  	--*/
-		this.PostDeleteDrop(data.records, 'delete');
+  adicionarPerfilRotina: function(btn, e, eOpts){
+	  metodo = "post";
+	  perfil = this.getPerfilGrid().getSelectionModel().getSelection();
+	  rotinas = this.getRotinas().getSelectionModel().getSelection();
+	  if(perfil[0])
+	  	{
+		    	/*-- Contamos a quantidade de items(empresas) movidos --*/
+		    	var total = rotinas.length;
+		    	/*-- Array de dados --*/
+		    	var dados =[];
+	
+		    	/*-- Laço adicionando todos os dados ao Array --*/
+		    	for(i = 0; i < total; i++)
+		    	{
+		    		/* Adição de cada empresa em uma posição + id do usuario selecionado */
+					dados[i] = { 
+						idrotina : rotinas[i].get('id'),
+						idperfil : perfil[0].get('id')
+					};
+		    	}
+	
+		    	/*-- encodamos para Json --*/
+		    	dados = Ext.encode ( dados ) ;
+	
+		    	 console.log(dados);
+		    	 
+		    	 Ext.Ajax.request({
+	 				url: 'php/perfilRotina/salvadeleta.php?metodo='+metodo,
+	 				params: {
+	 					/*-- Passamos na chave *data* o array *dados* --*/
+	 					data: dados,
+	 				},
+	 				failure: function(conn, response, options, eOpts) {
+	 					Ext.Msg.show({
+	 						title:'Error!',
+	 						msg: conn.responseText,
+	 						icon: Ext.Msg.ERROR,
+	 						buttons: Ext.Msg.OK
+	 					});
+	 				},
+	 				success: function(conn, response, options, eOpts) {
+	 					var result = Ext.JSON.decode(conn.responseText, true); 
+	 					if (!result){ 
+	 						result = {};
+	 						result.success = false;
+	 						result.msg = conn.responseText;
+	 					}
+	 					if (result.success) { 
+	 						//dados carrega dados na grid
+	 						pr_store.removeAll();
+	 						pr_store.add(result.data);
+	 						pr_store.sync();
+	 						
+	 						r_store.removeAll();
+	 						r_store.add(result.rotinas);
+	 					} else {
+	 						Ext.Msg.show({ 
+	 							title:'Falhou no metodo add!',
+	 							msg: result.msg, 
+	 							icon: Ext.Msg.ERROR,
+	 							buttons: Ext.Msg.OK
+	 						});
+	 					}
+	 				},	
+	 			});
+		    	 
+	  	}
   },
   
-  DeletaPerfilRotina: function(node, data, dropRec, dropPosition) {
-  	
-  	/*-- 
-  		Chama o metodo de Cadastro e Delete 
-			- passamos o records do data onde estão os valores movidos
-			- passamos o metodo post(Cadastrar)
-  	--*/
-		this.PostDeleteDrop(data.records, 'post');
-  },
-  onChecked: function(grid, rowIndex, checked, eOpts ){
-	  
-		  var store = this.getPerfilRotinaGrid().getStore();
-//		  var model = store.findRecord('excluir', records[0].get('excluir'));
-		  
-		  PerfilRotinaStore = this.getPerfilRotinaGrid().getStore();
-		  console.log(store);
-	  
+  excluirPerfilRotina: function(btn, e, eOpts){
+	  metodo = "delete";
+	  perfilrotina = this.getListaPFGrid().getSelectionModel().getSelection();
+	  console.log(perfilrotina);
+	  if(perfilrotina[0])
+	  	{
+//		    	/*-- Contamos a quantidade de items(empresas) movidos --*/
+//		    	var total = rotinas.length;
+//		    	/*-- Array de dados --*/
+//		    	var dados =[];
+//	
+//		    	/*-- Laço adicionando todos os dados ao Array --*/
+//		    	for(i = 0; i < total; i++)
+//		    	{
+//		    		/* Adição de cada empresa em uma posição + id do usuario selecionado */
+//					dados[i] = { 
+//						idrotina : rotinas[i].get('id'),
+//						idperfil : perfil[0].get('id')
+//					};
+//		    	}
+//		  		var dados =[];
+//		  		dados = perfilrotina[0]
+		    	/*-- encodamos para Json --*/
+		    	dados = Ext.encode ( perfilrotina ) ;
+	
+		    	 console.log(dados);
+		    	 
+		    	 Ext.Ajax.request({
+	 				url: 'php/perfilRotina/salvadeleta.php?metodo='+metodo,
+	 				params: {
+	 					/*-- Passamos na chave *data* o array *dados* --*/
+	 					data: dados,
+	 				},
+	 				failure: function(conn, response, options, eOpts) {
+	 					Ext.Msg.show({
+	 						title:'Error!',
+	 						msg: conn.responseText,
+	 						icon: Ext.Msg.ERROR,
+	 						buttons: Ext.Msg.OK
+	 					});
+	 				},
+	 				success: function(conn, response, options, eOpts) {
+	 					var result = Ext.JSON.decode(conn.responseText, true); 
+	 					if (!result){ 
+	 						result = {};
+	 						result.success = false;
+	 						result.msg = conn.responseText;
+	 					}
+	 					if (result.success) { 
+	 						//dados carrega dados na grid
+	 						pr_store.removeAll();
+	 						pr_store.add(result.data);
+	 						pr_store.sync();
+	 						
+	 						r_store.removeAll();
+	 						r_store.add(result.rotinas);
+	 					} else {
+	 						Ext.Msg.show({ 
+	 							title:'Falhou no metodo add!',
+	 							msg: result.msg, 
+	 							icon: Ext.Msg.ERROR,
+	 							buttons: Ext.Msg.OK
+	 						});
+	 					}
+	 				},	
+	 			});
+		    	 
+	  	}
 	  
   }
   
+
   
 });

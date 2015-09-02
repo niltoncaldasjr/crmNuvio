@@ -8,16 +8,24 @@ Ext.define('crm.view.perfil.Rotinas',{
 	
 	columns: [
 	    {text: 'ID', 	dataIndex: 'id'},
-	    {text: 'Rotina', 	dataIndex: 'nome', width: 150},
-	    
+	    {text: 'Rotina', 	dataIndex: 'nome', width: 150}	    
 //	    
 	],	
-	viewConfig: {
-        plugins: {
-            ptype: 'gridviewdragdrop',
-            dragGroup: 'firstGridDDGroup',
-            dropGroup: 'secondGridDDGroup',
-            pluginId: 'drag'
-        },
-   	}
+	dockedItems: [
+		      	    {
+		      	    	xtype: 'toolbar',
+		      	    	dock: 	'right',
+		      	    	layout: {
+		  	    		  type:	'vbox',
+		  	    		  pack:	'center'
+		  	    	  },
+		      	    	items: [		      	    	 
+		      	    	   {
+		      					xtype: 'button',
+		      					itemId: 'adicionarRotina',
+		      					iconCls: 'icon-add'
+		      	    	   }
+		      	    	]
+		      	    }
+		      	]
 });
