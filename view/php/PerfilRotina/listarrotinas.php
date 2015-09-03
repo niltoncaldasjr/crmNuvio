@@ -1,6 +1,7 @@
 <?php
 require_once $_SERVER ['DOCUMENT_ROOT'] . "/crmNuvio/" . 'util/Conexao.php';
 require_once $_SERVER ['DOCUMENT_ROOT'] . "crmNuvio/" . 'util/retornarJson.php';
+$id = 1;
 
 if(isset($_POST['idperfil'])){
 
@@ -11,7 +12,7 @@ else if(isset($_GET['idperfil'])){
 	$id = $_GET['idperfil'];
 }
 
-$funcao = new RetornarJson($id);
+$funcao = new RetornarJson(@$id);
 $lista_pr = $funcao->retornarPerfilRotinas();
 $lista_r = $funcao->retornarRotinas();
 

@@ -11,7 +11,6 @@ session_start();
 $data =  json_decode( $_POST['data'] );
 $metodo = $_GET['metodo'];
 
-
 switch($metodo)
 {
 	case "post": {		
@@ -56,8 +55,7 @@ function SalvaPerfilRotina($data){
 }
 
 /*-- Metodos de delete da EmpresaUsuario --*/
-function DeletaPerfilRotina($data){
-	// echo "Vamos deletar";
+function DeletaPerfilRotina($data){		
 	foreach ($data as $key) {
 		$objRotina = new Rotina();
 		$objPerfil = new Perfil();
@@ -73,7 +71,16 @@ function DeletaPerfilRotina($data){
 		$objPerfilRotinaControl->deletarPorPerfilRotina();
 
 	}
-		
+	$funcao = new RetornarJson($data[0]->idperfil);
+	$lista_pr = $funcao->retornarPerfilRotinas();
+	$lista_r = $funcao->retornarRotinas();
+	
+	echo json_encode ( array (
+			"success" => true,
+			"data" => $lista_pr,
+			"rotinas" => $lista_r
+	
+	) );
 }
 
 

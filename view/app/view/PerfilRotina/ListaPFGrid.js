@@ -12,15 +12,19 @@ Ext.define('crm.view.perfilrotina.ListaPFGrid',{
 			dataIndex: 'id',
 			type: 'hidden'
 		},
-		{ 
-        	text: 'Rotina',  
-        	dataIndex: 'idrotina',
-        	renderer: function(value, metaData, record ){ 
-				var Store = Ext.getStore('Rotina');
-				var rotina = Store.findRecord('id', value);
-				return rotina != null ? rotina.get('nome') : value;
-			}
-        },
+		{
+	    	text: 'Rotina', 
+	    	dataIndex: 'nome'   
+	    },
+//		{ 
+//        	text: 'Rotina',  
+//        	dataIndex: 'idrotina',
+//        	renderer: function(value, metaData, record ){ 
+//				var Store = Ext.getStore('Rotina');
+//				var rotina = Store.findRecord('id', value);
+//				return rotina != null ? rotina.get('nome') : value;
+//			}
+//        },
 	    {
 	    	text: 'C', 
 	    	dataIndex: 'consulta',

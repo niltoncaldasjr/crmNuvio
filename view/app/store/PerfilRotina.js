@@ -12,7 +12,7 @@ Ext.define('crm.store.PerfilRotina',{
 
 	model: 'crm.model.PerfilRotina',
 	
-	autoLoad: true,
+//	autoLoad: true,
 	
 	pageSize: 20,
 	

@@ -17,7 +17,8 @@ Ext.define('crm.model.PerfilRotina',{
 	         	{name: 'consulta'},
 	         	{name: 'incluir'},
 	         	{name: 'alterar'},
-	         	{name: 'excluir'}
+	         	{name: 'excluir'},
+	         	{name: 'nome'}
 	         
 	]
 

@@ -1,5 +1,7 @@
 <?php
 require_once $_SERVER ['DOCUMENT_ROOT'] . "/crmNuvio/" . 'util/Conexao.php';
+require_once $_SERVER ['DOCUMENT_ROOT'] . "/crmNuvio/" . 'model/rotina/Rotina.php';
+require_once $_SERVER ['DOCUMENT_ROOT'] . "/crmNuvio/" . 'control/RotinaControl.php';
 
 class RetornarJson{
 	private $link;
@@ -42,7 +44,14 @@ class RetornarJson{
 			} else if ($row ['excluir'] == 1) {
 				$row ['excluir'] = false;
 			}
-		
+			// ************
+			$rotina = new Rotina($row['idrotina']);
+			$rcontrol = new RotinaControl($rotina);
+			$rotina = $rcontrol->buscarPorId();
+			
+			//*************
+			
+			$row['nome'] = $rotina->getNome();
 			$lista [] = $row; // pronto essa lista vai direto pro ENCODE
 		}
 		return $lista;

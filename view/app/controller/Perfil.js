@@ -287,71 +287,62 @@ Ext.define('crm.controller.Perfil', {
   excluirPerfilRotina: function(btn, e, eOpts){
 	  metodo = "delete";
 	  perfilrotina = this.getListaPFGrid().getSelectionModel().getSelection();
-	  console.log(perfilrotina);
-	  if(perfilrotina[0])
+	  if(perfilrotina)		  
 	  	{
-//		    	/*-- Contamos a quantidade de items(empresas) movidos --*/
-//		    	var total = rotinas.length;
-//		    	/*-- Array de dados --*/
-//		    	var dados =[];
-//	
-//		    	/*-- Laço adicionando todos os dados ao Array --*/
-//		    	for(i = 0; i < total; i++)
-//		    	{
-//		    		/* Adição de cada empresa em uma posição + id do usuario selecionado */
-//					dados[i] = { 
-//						idrotina : rotinas[i].get('id'),
-//						idperfil : perfil[0].get('id')
-//					};
-//		    	}
-//		  		var dados =[];
-//		  		dados = perfilrotina[0]
-		    	/*-- encodamos para Json --*/
-		    	dados = Ext.encode ( perfilrotina ) ;
-	
-		    	 console.log(dados);
-		    	 
-		    	 Ext.Ajax.request({
-	 				url: 'php/perfilRotina/salvadeleta.php?metodo='+metodo,
-	 				params: {
-	 					/*-- Passamos na chave *data* o array *dados* --*/
-	 					data: dados,
-	 				},
-	 				failure: function(conn, response, options, eOpts) {
-	 					Ext.Msg.show({
-	 						title:'Error!',
-	 						msg: conn.responseText,
-	 						icon: Ext.Msg.ERROR,
-	 						buttons: Ext.Msg.OK
-	 					});
-	 				},
-	 				success: function(conn, response, options, eOpts) {
-	 					var result = Ext.JSON.decode(conn.responseText, true); 
-	 					if (!result){ 
-	 						result = {};
-	 						result.success = false;
-	 						result.msg = conn.responseText;
-	 					}
-	 					if (result.success) { 
-	 						//dados carrega dados na grid
-	 						pr_store.removeAll();
-	 						pr_store.add(result.data);
-	 						pr_store.sync();
-	 						
-	 						r_store.removeAll();
-	 						r_store.add(result.rotinas);
-	 					} else {
-	 						Ext.Msg.show({ 
-	 							title:'Falhou no metodo add!',
-	 							msg: result.msg, 
-	 							icon: Ext.Msg.ERROR,
-	 							buttons: Ext.Msg.OK
-	 						});
-	 					}
-	 				},	
-	 			});
-		    	 
-	  	}
+		  var total = perfilrotina.length;
+		  var dados =[];
+		  for(i = 0; i < total; i++)
+		  {
+			dados[i] = { 		 
+			  idperfil : perfilrotina[i].get('idperfil'),
+			  idrotina : perfilrotina[i].get('idrotina'),
+			};
+		  }
+			
+		  dados = Ext.encode ( dados ) ;
+		  
+		  
+		 Ext.Ajax.request({
+			url: 'php/perfilRotina/salvadeleta.php?metodo='+metodo,
+			params: {
+				/*-- Passamos na chave *data* o array *dados* --*/
+					data: dados,
+			},
+			failure: function(conn, response, options, eOpts) {
+					Ext.Msg.show({
+						title:'Error!',
+						msg: conn.responseText,
+						icon: Ext.Msg.ERROR,
+						buttons: Ext.Msg.OK
+					});
+			},
+			success: function(conn, response, options, eOpts) {
+				var result = Ext.JSON.decode(conn.responseText, true); 
+				if (!result){ 
+					result = {};
+					result.success = false;
+					result.msg = conn.responseText;
+				}
+				if (result.success) { 
+					//dados carrega dados na grid
+					pr_store.removeAll();
+					pr_store.add(result.data);
+					pr_store.sync();
+					
+					r_store.removeAll();
+					r_store.add(result.rotinas);
+				} else {
+					Ext.Msg.show({ 
+						title:'Falhou no metodo add!',
+						msg: result.msg, 
+						icon: Ext.Msg.ERROR,
+						buttons: Ext.Msg.OK
+					});
+				}
+			},
+		});		    	 
+	  	
+	}
 	  
   }
   
