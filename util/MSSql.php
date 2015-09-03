@@ -1,11 +1,11 @@
 <?php
-class MSSql{	
+class ConnectMssql{	
 	private $con;
 	
 	protected function __construct(){
 
-		$this->con =  mssql_connect("localhost","root","") or die(mssql_get_last_message());
-		mssql_select_db("crmnuvio") or die (mssql_get_last_message());
+		$this->con =  mssql_connect("10.51.1.3","root","",true) or die(mssql_get_last_message());
+		mssql_select_db("dbteste") or die (mssql_get_last_message());
 		
 	}
 	
