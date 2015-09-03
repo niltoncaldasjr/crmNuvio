@@ -1,10 +1,13 @@
-<?php 
+<?php
+require_once $_SERVER['DOCUMENT_ROOT'] .  "/crmNuvio/" . 'model/tipocontato/TipoContato.php';
+require_once $_SERVER['DOCUMENT_ROOT'] .  "/crmNuvio/" . 'model/operadoracontato/OperadoraContato.php';
+
 class ContatoPF implements JsonSerializable
 {
 	/*-- atributos --*/
 	private $id;
-	private $tipo;
-	private $operadora;
+	private $objtipocontato;
+	private $objoperadoracontato;
 	private $contato;
 	private $objpessoafisica;
 	private $datacadastro;
@@ -13,22 +16,22 @@ class ContatoPF implements JsonSerializable
 	/*-- Construtor --*/
 	public function __construct
 	(
-		$id 				= NULL,
-		$tipo 				= NULL,
-		$operadora 			= NULL,
-		$contato 			= NULL,
-		$objpessoafisica 	= NULL,
-		$datacadastro		= NULL,
-		$dataedicao 		= NULL
+		$id 									= NULL,
+		TipoContato $objtipocontato				= NULL,
+		OperadoraContato $objoperadoracontato	= NULL,
+		$contato 								= NULL,
+		PessoaFisica $objpessoafisica 			= NULL,
+		$datacadastro							= NULL,
+		$dataedicao 							= NULL
 	)
 	{
-		$this->id 				= $id;
-		$this->tipo 			= $tipo;
-		$this->operadora	 	= $operadora;
-		$this->contato			= $contato;
-		$this->objpessoafisica 	= $objpessoafisica;
-		$this->datacadastro 	= $datacadastro;
-		$this->dataedicao 		= $dataedicao;
+		$this->id 					= $id;
+		$this->objtipocontato 		= $objtipocontato;
+		$this->objoperadoracontato	= $objoperadoracontato;
+		$this->contato				= $contato;
+		$this->objpessoafisica 		= $objpessoafisica;
+		$this->datacadastro 		= $datacadastro;
+		$this->dataedicao 			= $dataedicao;
 	}
 	
 	/*-- Getters and Setters --*/
@@ -39,18 +42,18 @@ class ContatoPF implements JsonSerializable
 		$this->id = $id;
 		return $this;
 	}
-	public function getTipo() {
-		return $this->tipo;
+	public function getObjtipocontato() {
+		return $this->objtipocontato;
 	}
-	public function setTipo($tipo) {
-		$this->tipo = $tipo;
+	public function setObjtipocontato($objtipocontato) {
+		$this->objtipocontato = $objtipocontato;
 		return $this;
 	}
-	public function getOperadora() {
-		return $this->operadora;
+	public function getObjoperadoracontato() {
+		return $this->objoperadoracontato;
 	}
-	public function setOperadora($operadora) {
-		$this->operadora = $operadora;
+	public function setObjoperadoracontato($objoperadoracontato) {
+		$this->objoperadoracontato = $objoperadoracontato;
 		return $this;
 	}
 	public function getContato() {
@@ -84,20 +87,20 @@ class ContatoPF implements JsonSerializable
 	
 	/*-- to string --*/
 	public function __toString(){
-		return sprintf("ContatoPF [ ID: %d, Tipo: %s, Operadora: %s, Pessoa Física: %s, Data Cadastro: %s, Data Edição: %s ]",
-				$this->id, $this->tipo, $this->operadora, $this->objpessoafisica->getNome(), $this->datacadastro, $this->dataedicao );
+		return sprintf("ContatoPF [ ID: %d, Objtipocontato: %s, Objoperadoracontato: %s, Pessoa Física: %s, Data Cadastro: %s, Data Edição: %s ]",
+				$this->id, $this->objtipocontato, $this->objoperadoracontato, $this->objpessoafisica->getNome(), $this->datacadastro, $this->dataedicao );
 	}
 	
 	/*-- Json Serializable --*/
 	public function jsonSerialize(){
 		return[
-			'id'				=> $this->id,
-			'tipo'				=> $this->tipo,
-			'operadora' 		=> $this->operadora,
-			'contato'			=> $this->contato,
-			'idpessoafisica'	=> $this->objpessoafisica->jsonSerialize(),
-			'datacadastro'		=> $this->datacadastro,
-			'dataedicao'		=> $this->dataedicao
+			'id'					=> $this->id,
+			'idtipocontato'			=> $this->objtipocontato->jsonSerialize(),
+			'idoperadoracontato'	=> $this->objoperadoracontato->jsonSerialize(),
+			'contato'				=> $this->contato,
+			'idpessoafisica'		=> $this->objpessoafisica->jsonSerialize(),
+			'datacadastro'			=> $this->datacadastro,
+			'dataedicao'			=> $this->dataedicao
 		];
 	}
 	

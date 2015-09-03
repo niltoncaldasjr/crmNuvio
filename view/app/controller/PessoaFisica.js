@@ -398,36 +398,55 @@ Ext.define('crm.controller.PessoaFisica',{
 		var records = this.getContatoPFForm().down('form').getRecord();
 		/*-- Pega a Store --*/
 		var store = Ext.getStore('ContatoPF');
+		/*-- novo --*/
+		var novo = false;
 		
 		/*-- Validando Formulario --*/
 		if( this.getContatoPFForm().down('form').getForm().isValid() ){
 			
-			/*-- Verificando se ID existe --*/
-			if(values.id > 0){
-				/*-- Seta os valores do formulario na model --*/
-				records.set(values);
-				/*-- Seta o ID da pessoa fisica selecionado --*/
-				records.set('idpessoafisica', pessoa[0].get('id'));
+			if( pessoa[0] ){
+				
+				/*-- Verificando se ID existe --*/
+				if(values.id > 0){
+					/*-- Seta os valores do formulario na model --*/
+					records.set(values);
+					/*-- Seta o ID da pessoa fisica selecionado --*/
+					records.set('idpessoafisica', pessoa[0].get('id'));
+					
+				}else{
+					
+					/*-- Cria uma nova model --*/
+					records = Ext.create('crm.model.ContatoPF');
+					/*-- Seta os valores do Formulário na model --*/
+					records.set(values);
+					/*-- Seta o ID da pessoa fisica selecionado --*/
+					records.set('idpessoafisica', pessoa[0].get('id'));
+					
+					/*-- Adiciona a Model na Store --*/
+					store.add( records );
+					
+					novo = true;
+				}
+				
+				this.getContatoPFForm().down('form').getForm().reset();
+				this.getContatoPFForm().close();
+				/*-- Sincroniza a store --*/
+				store.sync();
+				
+				if(novo){
+					store.load();
+				}
 				
 			}else{
 				
-				/*-- Cria uma nova model --*/
-				records = Ext.create('crm.model.ContatoPF');
-				/*-- Seta os valores do Formulário na model --*/
-				records.set(values);
-				/*-- Seta o ID da pessoa fisica selecionado --*/
-				records.set('idpessoafisica', pessoa[0].get('id'));
-				
-				/*-- Adiciona a Model na Store --*/
-				store.add( records );
-
+				Ext.Msg.show({
+					title : 'Atenção!',
+					msg : " Selecione Uma pessoa física para salvar o contato!",
+					icon : Ext.Msg.ERROR,
+					buttons : Ext.Msg.OK
+				});
 				
 			}
-			
-			this.getContatoPFForm().down('form').getForm().reset();
-			this.getContatoPFForm().close();
-			/*-- Sincroniza a store --*/
-			store.sync();
 			
 		}
 		
@@ -534,34 +553,50 @@ Ext.define('crm.controller.PessoaFisica',{
 		/*-- Validando Formulario --*/
 		if( this.getDocumentoPFForm().down('form').getForm().isValid() ){
 			
-			/*-- Verificando se ID existe --*/
-			if(values.id > 0){
-				/*-- Seta os valores do formulario na model --*/
-				records.set(values);
-				/*-- Seta o ID da pessoa fisica selecionado --*/
-				records.set('idpessoafisica', pessoa[0].get('id'));
+			
+			if( pessoa[0] ){
+			
+				/*-- Verificando se ID existe --*/
+				if(values.id > 0){
+					/*-- Seta os valores do formulario na model --*/
+					records.set(values);
+					/*-- Seta o ID da pessoa fisica selecionado --*/
+					records.set('idpessoafisica', pessoa[0].get('id'));
+					
+				}else{
+					
+					/*-- Cria uma nova model --*/
+					records = Ext.create('crm.model.DocumentoPF');
+					/*-- Seta os valores do Formulário na model --*/
+					records.set(values);
+					/*-- Seta o ID da pessoa fisica selecionado --*/
+					records.set('idpessoafisica', pessoa[0].get('id'));
+					
+					/*-- Adiciona a Model na Store --*/
+					store.add( records );
+	
+					
+				}
+				
+				this.getDocumentoPFForm().down('form').getForm().reset();
+				this.getDocumentoPFForm().close();
+				/*-- Sincroniza a store --*/
+				store.sync();
 				
 			}else{
 				
-				/*-- Cria uma nova model --*/
-				records = Ext.create('crm.model.DocumentoPF');
-				/*-- Seta os valores do Formulário na model --*/
-				records.set(values);
-				/*-- Seta o ID da pessoa fisica selecionado --*/
-				records.set('idpessoafisica', pessoa[0].get('id'));
-				
-				/*-- Adiciona a Model na Store --*/
-				store.add( records );
-
+				Ext.Msg.show({
+					title : 'Atenção!',
+					msg : " Selecione Uma pessoa física para salvar o documento!",
+					icon : Ext.Msg.ERROR,
+					buttons : Ext.Msg.OK
+				});
 				
 			}
-			
-			this.getDocumentoPFForm().down('form').getForm().reset();
-			this.getDocumentoPFForm().close();
-			/*-- Sincroniza a store --*/
-			store.sync();
-			
+				
 		}
+			
+		
 		
 	},
 	
@@ -666,32 +701,46 @@ Ext.define('crm.controller.PessoaFisica',{
 		/*-- Validando Formulario --*/
 		if( this.getEnderecoPFForm().down('form').getForm().isValid() ){
 			
-			/*-- Verificando se ID existe --*/
-			if(values.id > 0){
-				/*-- Seta os valores do formulario na model --*/
-				records.set(values);
-				/*-- Seta o ID da pessoa fisica selecionado --*/
-				records.set('idpessoafisica', pessoa[0].get('id'));
+			
+			if( pessoa[0] ){ 
+			
+				/*-- Verificando se ID existe --*/
+				if(values.id > 0){
+					/*-- Seta os valores do formulario na model --*/
+					records.set(values);
+					/*-- Seta o ID da pessoa fisica selecionado --*/
+					records.set('idpessoafisica', pessoa[0].get('id'));
+					
+				}else{
+					
+					/*-- Cria uma nova model --*/
+					records = Ext.create('crm.model.EnderecoPF');
+					/*-- Seta os valores do Formulário na model --*/
+					records.set(values);
+					/*-- Seta o ID da pessoa fisica selecionado --*/
+					records.set('idpessoafisica', pessoa[0].get('id'));
+					
+					/*-- Adiciona a Model na Store --*/
+					store.add( records );
+	
+					
+				}
 				
+				this.getEnderecoPFForm().down('form').getForm().reset();
+				this.getEnderecoPFForm().close();
+				/*-- Sincroniza a store --*/
+				store.sync();
+			
 			}else{
 				
-				/*-- Cria uma nova model --*/
-				records = Ext.create('crm.model.EnderecoPF');
-				/*-- Seta os valores do Formulário na model --*/
-				records.set(values);
-				/*-- Seta o ID da pessoa fisica selecionado --*/
-				records.set('idpessoafisica', pessoa[0].get('id'));
-				
-				/*-- Adiciona a Model na Store --*/
-				store.add( records );
-
+				Ext.Msg.show({
+					title : 'Atenção!',
+					msg : " Selecione Uma pessoa física para salvar o endereço!",
+					icon : Ext.Msg.ERROR,
+					buttons : Ext.Msg.OK
+				});
 				
 			}
-			
-			this.getEnderecoPFForm().down('form').getForm().reset();
-			this.getEnderecoPFForm().close();
-			/*-- Sincroniza a store --*/
-			store.sync();
 			
 		}
 		

@@ -1,9 +1,16 @@
 <?php 
+require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'control/TipoEnderecoControl.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" .'model/tipoendereco/TipoEndereco.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'control/LocalidadeControl.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" .'model/localidade/Localidade.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'control/PessoaFisicaControl.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" .'model/pessoafisica/PessoaFisica.php';
+
 class EnderecoPF implements JsonSerializable
 {
 	/*-- atributos --*/
 	private $id;
-	private $tipo;
+	private $objtipoendereco;
 	private $logradouro;
 	private $numero;
 	private $complemento;
@@ -17,21 +24,21 @@ class EnderecoPF implements JsonSerializable
 	/*-- Construtor --*/
 	public function __construct
 	(
-		$id 			= NULL,
-		$tipo 			= NULL,
-		$logradouro 	= NULL,
-		$numero 		= NULL,
-		$complemento 	= NULL,
-		$bairro 		= NULL,
-		$cep 			= NULL,
-		$objlocalidade	= NULL,
-		$objpesoafisica = NULL,
-		$datacadastro 	= NULL,
-		$dataedicao 	= NULL
+		$id 							= NULL,
+		TipoEndereco $objtipoendereco 	= NULL,
+		$logradouro 					= NULL,
+		$numero 						= NULL,
+		$complemento 					= NULL,
+		$bairro 						= NULL,
+		$cep 							= NULL,
+		Localidade $objlocalidade		= NULL,
+		PessoaFisica $objpesoafisica 	= NULL,
+		$datacadastro 					= NULL,
+		$dataedicao 					= NULL
 	)
 	{
 		$this->id 				= $id;
-		$this->tipo				= $tipo;
+		$this->objtipoendereco	= $objtipoendereco;
 		$this->logradouro		= $logradouro;
 		$this->numero 			= $numero;
 		$this->complemento 		= $complemento;
@@ -52,11 +59,11 @@ class EnderecoPF implements JsonSerializable
 		$this->id = $id;
 		return $this;
 	}
-	public function getTipo() {
-		return $this->tipo;
+	public function getObjtipoendereco() {
+		return $this->objtipoendereco;
 	}
-	public function setTipo($tipo) {
-		$this->tipo = $tipo;
+	public function setObjtipoendereco($objtipoendereco) {
+		$this->objtipoendereco = $objtipoendereco;
 		return $this;
 	}
 	public function getLogradouro() {
@@ -126,17 +133,17 @@ class EnderecoPF implements JsonSerializable
 	/*-- Json --*/
 	public function jsonSerialize(){
 		return [
-			'id' 			=> $this->id,
-			'tipo'			=> $this->tipo,
-			'logradouro'	=> $this->logradouro,
-			'numero'		=> $this->numero,
-			'complemento'	=> $this->complemento,
-			'bairro'		=> $this->bairro,
-			'cep'			=> $this->cep,
-			'idlocalidade'	=> $this->objlocalidade->jsonSerialize(),
-			'idpessoafisica'=> $this->objpessoafisica->jsonSerialize(),
-			'datacadastro'	=> $this->datacadastro,
-			'dataedicao'	=> $this->dataedicao
+			'id' 				=> $this->id,
+			'objtipoendereco'	=> $this->objtipoendereco->jsonSerialize(),
+			'logradouro'		=> $this->logradouro,
+			'numero'			=> $this->numero,
+			'complemento'		=> $this->complemento,
+			'bairro'			=> $this->bairro,
+			'cep'				=> $this->cep,
+			'idlocalidade'		=> $this->objlocalidade->jsonSerialize(),
+			'idpessoafisica'	=> $this->objpessoafisica->jsonSerialize(),
+			'datacadastro'		=> $this->datacadastro,
+			'dataedicao'		=> $this->dataedicao
 		];
 	}
 	

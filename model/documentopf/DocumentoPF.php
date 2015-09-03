@@ -1,4 +1,7 @@
 <?php 
+require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'control/PessoaFisicaControl.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" .'model/pessoafisica/PessoaFisica.php';
+
 class DocumentoPF implements JsonSerializable
 {
 	/*-- atributos --*/
@@ -15,15 +18,15 @@ class DocumentoPF implements JsonSerializable
 	/*-- Construtor --*/
 	public function __construct
 	(
-		$id 			= NULL,
-		$tipo 			= NULL,
-		$numero 		= NULL,
-		$dataemissao 	= NULL,
-		$orgaoemissor 	= NULL,
-		$via 			= NULL,
-		$objpesoafisica = NULL,
-		$datacadastro 	= NULL,
-		$dataedicao 	= NULL
+		$id 							= NULL,
+		$tipo 							= NULL,
+		$numero 						= NULL,
+		$dataemissao 					= NULL,
+		$orgaoemissor 					= NULL,
+		$via 							= NULL,
+		PessoaFisica $objpessoafisica 	= NULL,
+		$datacadastro 					= NULL,
+		$dataedicao 					= NULL
 	)
 	{
 		$this->id 				= $id;
@@ -32,7 +35,7 @@ class DocumentoPF implements JsonSerializable
 		$this->dataemissao 		= $dataemissao;
 		$this->orgaoemissor		= $orgaoemissor;
 		$this->via 				= $via;
-		$this->objpessoafisica 	= $objpesoafisica;
+		$this->objpessoafisica 	= $objpessoafisica;
 		$this->datacadastro		= $datacadastro;
 		$this->dataedicao 		= $dataedicao;
 		

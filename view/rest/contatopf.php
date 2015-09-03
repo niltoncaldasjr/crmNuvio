@@ -60,8 +60,8 @@ function cadastraContatoPF() {
 	$data = json_decode( $jsonDados );
 		
 	$objContatoPF = new ContatoPF();
-	$objContatoPF->setTipo($data->tipo);
-	$objContatoPF->setOperadora($data->operadora);
+	$objContatoPF->setObjtipocontato( new TipoContato( $data->idtipocontato) );
+	$objContatoPF->setObjoperadoracontato( new OperadoraContato( $data->idoperadoracontato) );
 	$objContatoPF->setContato($data->contato);
 	$objContatoPF->setObjpessoafisica( new PessoaFisica($data->idpessoafisica) );
 	
@@ -95,7 +95,7 @@ function atualizaContatoPF() {
 	
 	$datahora = date("Y-m-d H:i:s");
 	
-	$objContatoPF = new ContatoPF($data->id, $data->tipo, $data->operadora, $data->contato, new PessoaFisica($data->idpessoafisica), NULL, $datahora );
+	$objContatoPF = new ContatoPF($data->id, new TipoContato( $data->idtipocontato ), new OperadoraContato($data->idoperadoracontato), $data->contato, new PessoaFisica($data->idpessoafisica), NULL, $datahora );
 	
 	$objContatoPFControl = new ContatoPFControl($objContatoPF);
 

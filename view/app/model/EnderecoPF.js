@@ -3,7 +3,7 @@ Ext.define('crm.model.EnderecoPF',{
 	
 	fields: [
 	   {name: 'id', 				type: 'int'},
-	   {name: 'tipo', 				type: 'string'},
+	   {name: 'idtipoendereco', 	type: 'int'},
 	   {name: 'logradouro', 		type: 'string'},
 	   {name: 'numero', 			type: 'string'},
 	   {name: 'complemento', 		type: 'string'},

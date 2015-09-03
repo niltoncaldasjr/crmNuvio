@@ -12,7 +12,6 @@ class TipoContato implements JsonSerializable
 	(
 		$id=NULL,
 		$descricao=NULL,
-		$codigoBancoCentral=NULL,
 		$datacadastro=NULL,
 		$dataedicao=NULL
 	)
@@ -37,13 +36,6 @@ class TipoContato implements JsonSerializable
 	}
 	public function setDescricao($descricao) {
 		$this->descricao = $descricao;
-		return $this;
-	}
-	public function getCodigoBancoCentral() {
-		return $this->codigoBancoCentral;
-	}
-	public function setCodigoBancoCentral($codigoBancoCentral) {
-		$this->codigoBancoCentral = $codigoBancoCentral;
 		return $this;
 	}
 	public function getDatacadastro() {

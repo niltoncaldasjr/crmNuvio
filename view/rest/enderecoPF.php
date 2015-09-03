@@ -3,6 +3,7 @@
 session_start();
 require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'control/EnderecoPFControl.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" .'model/enderecopf/EnderecoPF.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" .'model/tipoendereco/TipoEndereco.php';
 /*-- Log Sistema --*/
 require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" .'view/php/LogSistema/Cadastrar.php';
 
@@ -53,7 +54,7 @@ function cadastraEnderecoPF() {
 	$data = json_decode( $jsonDados );
 	
 	$objEnderecoPF = new EnderecoPF();
-	$objEnderecoPF->setTipo($data->tipo);
+	$objEnderecoPF->setObjtipoendereco( new TipoEndereco( $data->idtipoendereco) );
 	$objEnderecoPF->setLogradouro($data->logradouro);
 	$objEnderecoPF->setNumero($data->numero);
 	$objEnderecoPF->setComplemento($data->complemento);
@@ -91,7 +92,7 @@ function atualizaEnderecoPF() {
 	
 	$datahora = date("Y-m-d H:i:s");
 	
-	$objEnderecpPF = new EnderecoPF($data->id, $data->tipo, $data->logradouro, $data->numero, $data->complemento, $data->bairro, $data->cep,  new Localidade( $data->idlocalidade ), new PessoaFisica($data->idpessoafisica), NULL, $datahora );
+	$objEnderecpPF = new EnderecoPF($data->id, new TipoEndereco( $data->idtipoendereco ), $data->logradouro, $data->numero, $data->complemento, $data->bairro, $data->cep,  new Localidade( $data->idlocalidade ), new PessoaFisica($data->idpessoafisica), NULL, $datahora );
 	
 	$objEnderecoPFControl = new EnderecoPFControl($objEnderecpPF);
 

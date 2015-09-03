@@ -16,7 +16,13 @@ Ext.define('crm.view.pessoafisica.EnderecoPFGrid',{
 	
 	columns: [
 	    {text: 'ID',				dataIndex: 'id' 				},
-	    {text: 'Tipo', 				dataIndex: 'tipo' 				},
+	    {text: 'Tipo', 				dataIndex: 'idtipoendereco',
+	    	renderer: function(value, metaData, record){
+				var Store = Ext.getStore('TipoEndereco');
+				var localidade = Store.findRecord('id', value);
+				return localidade != null ? localidade.get('descricao') : value;
+		    	}
+		},	
 	    {text: 'Logradouro', 		dataIndex: 'logradouro'			},
 	    {text: 'Número', 			dataIndex: 'numero' 			},
 	    {text: 'Complemento', 		dataIndex: 'complemento'		},

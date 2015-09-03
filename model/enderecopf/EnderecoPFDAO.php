@@ -18,9 +18,9 @@ class EnderecoPFDAO{
 
 	/*-- Metodo Cadastrar --*/
 	function cadastrar(EnderecoPF $objEnderecoPF){
-		$this->sql = sprintf("INSERT INTO EnderecoPF (tipo, logradouro, numero, complemento, bairro, cep, idlocalidade, idpessoafisica)
-				VALUES('%s', '%s', '%s', '%s', '%s', '%s', %d, %d)",
-				mysqli_real_escape_string( $this->con, $objEnderecoPF->getTipo() ),
+		$this->sql = sprintf("INSERT INTO EnderecoPF (idtipoendereco, logradouro, numero, complemento, bairro, cep, idlocalidade, idpessoafisica)
+				VALUES(%d, '%s', '%s', '%s', '%s', '%s', %d, %d)",
+				mysqli_real_escape_string( $this->con, $objEnderecoPF->getObjtipoendereco()->getId() ),
 				mysqli_real_escape_string( $this->con, $objEnderecoPF->getLogradouro() ),
 				mysqli_real_escape_string( $this->con, $objEnderecoPF->getNumero() ),
 				mysqli_real_escape_string( $this->con, $objEnderecoPF->getComplemento() ),
@@ -28,6 +28,8 @@ class EnderecoPFDAO{
 				mysqli_real_escape_string( $this->con, $objEnderecoPF->getCep() ),
 				mysqli_real_escape_string( $this->con, $objEnderecoPF->getObjLocalidade()->getId() ),
 				mysqli_real_escape_string( $this->con, $objEnderecoPF->getObjpessoafisica()->getId() ) );
+		
+		var_dump($this->sql);
 
 		if(!mysqli_query($this->con, $this->sql)){
 			die('[ERRO] Cadastro: '.mysqli_error($this->con));
@@ -39,8 +41,8 @@ class EnderecoPFDAO{
 
 	/*-- Metodo Atualizar --*/
 	function atualizar(EnderecoPF $objEnderecoPF){
-		$this->sql = sprintf("UPDATE EnderecoPF SET tipo = '%s', logradouro = '%s', numero = '%s', complemento = '%s', bairro = '%s', cep = '%s', idlocalidade = %d, idpessoafisica = %d WHERE id = %d",
-				mysqli_real_escape_string( $this->con, $objEnderecoPF->getTipo() ),
+		$this->sql = sprintf("UPDATE EnderecoPF SET idtipoendereco = %d, logradouro = '%s', numero = '%s', complemento = '%s', bairro = '%s', cep = '%s', idlocalidade = %d, idpessoafisica = %d WHERE id = %d",
+				mysqli_real_escape_string( $this->con, $objEnderecoPF->getObjtipoendereco()->getId() ),
 				mysqli_real_escape_string( $this->con, $objEnderecoPF->getLogradouro() ),
 				mysqli_real_escape_string( $this->con, $objEnderecoPF->getNumero() ),
 				mysqli_real_escape_string( $this->con, $objEnderecoPF->getComplemento() ),
@@ -75,6 +77,11 @@ class EnderecoPFDAO{
 			die('[ERRO]: '.mysqli_error($this->con));
 		}
 		while($row = mysqli_fetch_object($resultSet)){
+			$objTipoEndereco = new TipoEndereco();
+			$objTipoEndereco->setId($row->idtipoendereco);
+			$objTipoEnderecoControl = new TipoEnderecoControl($objTipoEndereco);
+			$objTipoEndereco = $objTipoEnderecoControl->buscarPorId();
+			
 			$objLocalidade = new Localidade();
 			$objLocalidade->setId($row->idlocalidade);
 			$objLocalidadeControl = new LocalidadeControl($objLocalidade);
@@ -85,7 +92,7 @@ class EnderecoPFDAO{
 			$objPessoaFisicaControl = new PessoaFisicaControl($objPessoaFisica);
 			$objPessoaFisica = $objPessoaFisicaControl->buscarPorId();
 				
-			$this->objEnderecoPF = new EnderecoPF($row->id, $row->tipo, $row->logradouro, $row->numero, $row->complemento, $row->bairro, $row->cep, $objLocalidade, $objPessoaFisica, $row->datacadastro, $row->dataedicao);
+			$this->objEnderecoPF = new EnderecoPF($row->id, $objTipoEndereco, $row->logradouro, $row->numero, $row->complemento, $row->bairro, $row->cep, $objLocalidade, $objPessoaFisica, $row->datacadastro, $row->dataedicao);
 		}
 
 		return $this->objEnderecoPF;
@@ -99,6 +106,11 @@ class EnderecoPFDAO{
 			die('[ERRO]: '.mysqli_error($this->con));
 		}
 		while($row = mysqli_fetch_object($resultSet)){
+			$objTipoEndereco = new TipoEndereco();
+			$objTipoEndereco->setId($row->idtipoendereco);
+			$objTipoEnderecoControl = new TipoEnderecoControl($objTipoEndereco);
+			$objTipoEndereco = $objTipoEnderecoControl->buscarPorId();
+			
 			$objLocalidade = new Localidade();
 			$objLocalidade->setId($row->idlocalidade);
 			$objLocalidadeControl = new LocalidadeControl($objLocalidade);
@@ -109,8 +121,8 @@ class EnderecoPFDAO{
 			$objPessoaFisicaControl = new PessoaFisicaControl($objPessoaFisica);
 			$objPessoaFisica = $objPessoaFisicaControl->buscarPorId();
 				
-			$this->objEnderecoPF = new EnderecoPF($row->id, $row->tipo, $row->logradouro, $row->numero, $row->complemento, $row->bairro, $row->cep, $objLocalidade, $objPessoaFisica, $row->datacadastro, $row->dataedicao);
-
+			$this->objEnderecoPF = new EnderecoPF($row->id, $objTipoEndereco, $row->logradouro, $row->numero, $row->complemento, $row->bairro, $row->cep, $objLocalidade, $objPessoaFisica, $row->datacadastro, $row->dataedicao);
+		
 			array_push($this->listaEnderecoPF, $this->objEnderecoPF);
 		}
 
