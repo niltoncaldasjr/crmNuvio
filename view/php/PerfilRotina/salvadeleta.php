@@ -1,6 +1,6 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'util/Conexao.php';
-require_once $_SERVER ['DOCUMENT_ROOT'] . "crmNuvio/" . 'util/retornarJson.php';
+require_once $_SERVER ['DOCUMENT_ROOT'] . "/crmNuvio/" . 'util/retornarJson.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'control/PerfilRotinaControl.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" .'model/perfilrotina/PerfilRotina.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . "/crmNuvio/" . 'model/rotina/Rotina.php';

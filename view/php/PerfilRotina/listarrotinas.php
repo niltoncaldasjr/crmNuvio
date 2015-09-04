@@ -1,6 +1,6 @@
 <?php
 require_once $_SERVER ['DOCUMENT_ROOT'] . "/crmNuvio/" . 'util/Conexao.php';
-require_once $_SERVER ['DOCUMENT_ROOT'] . "crmNuvio/" . 'util/retornarJson.php';
+require_once $_SERVER ['DOCUMENT_ROOT'] . "/crmNuvio/" . 'util/retornarJson.php';
 $id = 1;
 
 if(isset($_POST['idperfil'])){
