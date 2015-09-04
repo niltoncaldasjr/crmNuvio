@@ -8,7 +8,11 @@ Ext.define('crm.controller.LogSistema',{
 	views: ['logsistema.LogSistemaPanel'],
 	
     refs: [
-		{
+        {
+        	ref: 'Grid',
+        	selector: 'logsistemagrid'
+        },
+        {
 		    ref: 'logPanel',
 		    selector: 'logsistemapanel panel#sul'
 		},
@@ -25,9 +29,12 @@ Ext.define('crm.controller.LogSistema',{
 	        selector: 'logsistemapanel panel#formLog'
     	}
     ],
-	
-	init: function(){
+    
+    init: function(){
 		this.control({
+			'logsistemagrid':{
+				render: this.onRender
+			},
 			'logsistemagrid': {
 				select: this.exibirDetalhes
 			},
@@ -35,6 +42,12 @@ Ext.define('crm.controller.LogSistema',{
 				click: this.editaLog
 			}
 		});
+	},
+	
+	onRender: function( grid, eOpts ){
+//		this.getGrid().getSelectionModel().select(0);
+		
+		console.log(this.getGrid().getSelectionModel().select(0));
 	},
 	
 	editaLog: function(btn, e, opts){
@@ -294,11 +307,28 @@ Ext.define('crm.controller.LogSistema',{
 				break;
 			}
 			case "ContatoPF":{
-				var Store = Ext.getStore('PessoaFisica');
-				var obj = Store.findRecord('id', value['id']);
-				if(obj!=null){
-					value = obj.get('nome');
-					return value;
+				if(key == 'idtipocontato'){
+					var Store = Ext.getStore('TipoContato');
+					var obj = Store.findRecord('id', value['id']);
+					if(obj!=null){
+						value = obj.get('descricao');
+						return value;
+					}
+				}else if(key == 'idoperadoracontato'){
+					var Store = Ext.getStore('OperadoraContato');
+					var obj = Store.findRecord('id', value['id']);
+					if(obj!=null){
+						value = obj.get('descricao');
+						return value;
+					}
+				}else{
+					var Store = Ext.getStore('PessoaFisica');
+					var obj = Store.findRecord('id', value['id']);
+					if(obj!=null){
+						value = obj.get('nome');
+						return value;
+					}
+					
 				}
 				break;
 			}
@@ -312,11 +342,21 @@ Ext.define('crm.controller.LogSistema',{
 				break;
 			}
 			case "EnderecoPF":{
-				var Store = Ext.getStore('PessoaFisica');
-				var obj = Store.findRecord('id', value['id']);
-				if(obj!=null){
-					value = obj.get('nome');
-					return value;
+				if(key == 'idtipoendereco'){
+					var Store = Ext.getStore('TipoEndereco');
+					var obj = Store.findRecord('id', value['id']);
+					if(obj!=null){
+						value = obj.get('descricao');
+						return value;
+					}
+				}else{
+					var Store = Ext.getStore('PessoaFisica');
+					var obj = Store.findRecord('id', value['id']);
+					if(obj!=null){
+						value = obj.get('nome');
+						return value;
+					}
+					
 				}
 				break;
 			}

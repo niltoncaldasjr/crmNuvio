@@ -29,8 +29,6 @@ class EnderecoPFDAO{
 				mysqli_real_escape_string( $this->con, $objEnderecoPF->getObjLocalidade()->getId() ),
 				mysqli_real_escape_string( $this->con, $objEnderecoPF->getObjpessoafisica()->getId() ) );
 		
-		var_dump($this->sql);
-
 		if(!mysqli_query($this->con, $this->sql)){
 			die('[ERRO] Cadastro: '.mysqli_error($this->con));
 		}
